@@ -1,0 +1,826 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F1016B722B1E144002018E7 /* GKJumpApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1016B622B1E144002018E7 /* GKJumpApp.m */; };
+		0F1016BA22B1EA50002018E7 /* GKHomeNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1016B922B1EA50002018E7 /* GKHomeNetManager.m */; };
+		0F14E1D122B23F30007FBA04 /* GKMineSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F14E1D022B23F30007FBA04 /* GKMineSelectController.m */; };
+		0F14E1D422B2496E007FBA04 /* GKHomeMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F14E1D322B2496E007FBA04 /* GKHomeMoreController.m */; };
+		0F1B813422B095610061FD7A /* GKBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B813322B095610061FD7A /* GKBookModel.m */; };
+		0F22DAAD22AF8A80000FC9AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F22DAAC22AF8A80000FC9AE /* AppDelegate.m */; };
+		0F22DAB322AF8A80000FC9AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F22DAB122AF8A80000FC9AE /* Main.storyboard */; };
+		0F22DAB522AF8A81000FC9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F22DAB422AF8A81000FC9AE /* Assets.xcassets */; };
+		0F22DAB822AF8A81000FC9AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F22DAB622AF8A81000FC9AE /* LaunchScreen.storyboard */; };
+		0F22DABB22AF8A81000FC9AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F22DABA22AF8A81000FC9AE /* main.m */; };
+		0F5F63D722AFA2D8009096BD /* ProgressWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */; };
+		0F5F63E422AFA2D8009096BD /* BaseWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B222AFA2D8009096BD /* BaseWebController.m */; };
+		0F5F63E522AFA2D8009096BD /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B622AFA2D8009096BD /* BaseTableViewController.m */; };
+		0F5F63E622AFA2D8009096BD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B822AFA2D8009096BD /* BaseViewController.m */; };
+		0F5F63E722AFA2D8009096BD /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B922AFA2D8009096BD /* BaseNavigationController.m */; };
+		0F5F63E822AFA2D8009096BD /* BaseConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63BA22AFA2D8009096BD /* BaseConnectionController.m */; };
+		0F5F63E922AFA2D8009096BD /* BaseRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63BE22AFA2D8009096BD /* BaseRefreshController.m */; };
+		0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C222AFA2D8009096BD /* BaseModel.m */; };
+		0F5F63EB22AFA2D8009096BD /* BaseMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C422AFA2D8009096BD /* BaseMacro.m */; };
+		0F5F63EC22AFA2D8009096BD /* BaseNetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C622AFA2D8009096BD /* BaseNetModel.m */; };
+		0F5F63ED22AFA2D8009096BD /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C822AFA2D8009096BD /* BaseCell.m */; };
+		0F5F63EE22AFA2D8009096BD /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C922AFA2D8009096BD /* BaseView.m */; };
+		0F5F63EF22AFA2D8009096BD /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63CA22AFA2D8009096BD /* BaseTableView.m */; };
+		0F5F63F022AFA2D8009096BD /* BaseNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63CF22AFA2D8009096BD /* BaseNetManager.m */; };
+		0F5F63F122AFA2D8009096BD /* BaseNetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63D022AFA2D8009096BD /* BaseNetTool.m */; };
+		0F5F63F222AFA2D8009096BD /* BaseDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63D122AFA2D8009096BD /* BaseDataQueue.m */; };
+		0F5F63F322AFA2D8009096BD /* GKNovelNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63D622AFA2D8009096BD /* GKNovelNetManager.m */; };
+		0F5F640122AFB1CA009096BD /* GKNovelTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F640022AFB1CA009096BD /* GKNovelTabBarController.m */; };
+		0F5F640422AFB287009096BD /* GKHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F640322AFB287009096BD /* GKHomeController.m */; };
+		0F5F640722AFB2D1009096BD /* GKClassContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F640622AFB2D1009096BD /* GKClassContentController.m */; };
+		0F5F640A22AFB2F3009096BD /* GKMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F640922AFB2F3009096BD /* GKMineController.m */; };
+		0F5F641122AFB7EB009096BD /* GKHomeHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F640F22AFB7EB009096BD /* GKHomeHotCell.m */; };
+		0F5F641222AFB7EB009096BD /* GKHomeHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5F641022AFB7EB009096BD /* GKHomeHotCell.xib */; };
+		0F7BC03322B1F1F5000B267B /* GKMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7BC03122B1F1F5000B267B /* GKMineCell.m */; };
+		0F7BC03422B1F1F5000B267B /* GKMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F7BC03222B1F1F5000B267B /* GKMineCell.xib */; };
+		0F7BC03722B1F40B000B267B /* UIImageView+GKLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7BC03622B1F40B000B267B /* UIImageView+GKLoad.m */; };
+		0F7BC03A22B1FAD6000B267B /* GKMineRankController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7BC03922B1FAD6000B267B /* GKMineRankController.m */; };
+		0F7BC04222B21A9D000B267B /* ATActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7BC03C22B21A9D000B267B /* ATActionSheet.m */; };
+		0F7BC04322B21A9D000B267B /* ATSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7BC03D22B21A9D000B267B /* ATSheetView.m */; };
+		0F7BC04422B21A9D000B267B /* ATAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7BC03E22B21A9D000B267B /* ATAlertView.m */; };
+		0F8AA7DA22B0CD6800332ECB /* GKClassItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7D922B0CD6800332ECB /* GKClassItemController.m */; };
+		0F8AA7DE22B0CDCD00332ECB /* GKNewNavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AA7DB22B0CDCD00332ECB /* GKNewNavBarView.xib */; };
+		0F8AA7DF22B0CDCD00332ECB /* GKNewNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7DC22B0CDCD00332ECB /* GKNewNavBarView.m */; };
+		0F8AA7E222B0D32300332ECB /* GKClassItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7E122B0D32300332ECB /* GKClassItemModel.m */; };
+		0F8AA7E522B0D65D00332ECB /* GKClassflyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7E422B0D65D00332ECB /* GKClassflyController.m */; };
+		0F8AA7E922B0DDFF00332ECB /* GKClassflyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7E722B0DDFF00332ECB /* GKClassflyCell.m */; };
+		0F8AA7EA22B0DDFF00332ECB /* GKClassflyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AA7E822B0DDFF00332ECB /* GKClassflyCell.xib */; };
+		0FE8B42922B0A45B00ECAD07 /* GKHomeReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE8B42722B0A45B00ECAD07 /* GKHomeReusableView.m */; };
+		0FE8B42A22B0A45B00ECAD07 /* GKHomeReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FE8B42822B0A45B00ECAD07 /* GKHomeReusableView.xib */; };
+		0FEB43BB22B0E891005FF5DF /* GKStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43B922B0E891005FF5DF /* GKStartViewController.m */; };
+		0FEB43BC22B0E891005FF5DF /* GKStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB43BA22B0E891005FF5DF /* GKStartViewController.xib */; };
+		0FEB43C022B0F934005FF5DF /* GKUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43BF22B0F934005FF5DF /* GKUserManager.m */; };
+		0FEB43C322B0F94C005FF5DF /* GKUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43C222B0F94C005FF5DF /* GKUserModel.m */; };
+		0FEB43C622B0FD64005FF5DF /* GKRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43C522B0FD64005FF5DF /* GKRankModel.m */; };
+		0FEB43CC22B104E0005FF5DF /* GKCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43CA22B104DF005FF5DF /* GKCollectionViewLayout.m */; };
+		0FEB43D022B105D2005FF5DF /* GKStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43CE22B105D2005FF5DF /* GKStartCell.m */; };
+		0FEB43D122B105D2005FF5DF /* GKStartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB43CF22B105D2005FF5DF /* GKStartCell.xib */; };
+		DEC0F6D1F57FDCCA48B88D01 /* libPods-GKiOSNovel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0799E86D2A4A4DE739E82B6D /* Pods-GKiOSNovel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GKiOSNovel.release.xcconfig"; path = "Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel.release.xcconfig"; sourceTree = "<group>"; };
+		0F1016B522B1E144002018E7 /* GKJumpApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKJumpApp.h; sourceTree = "<group>"; };
+		0F1016B622B1E144002018E7 /* GKJumpApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKJumpApp.m; sourceTree = "<group>"; };
+		0F1016B822B1EA50002018E7 /* GKHomeNetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKHomeNetManager.h; sourceTree = "<group>"; };
+		0F1016B922B1EA50002018E7 /* GKHomeNetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKHomeNetManager.m; sourceTree = "<group>"; };
+		0F14E1CF22B23F30007FBA04 /* GKMineSelectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKMineSelectController.h; sourceTree = "<group>"; };
+		0F14E1D022B23F30007FBA04 /* GKMineSelectController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKMineSelectController.m; sourceTree = "<group>"; };
+		0F14E1D222B2496E007FBA04 /* GKHomeMoreController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKHomeMoreController.h; sourceTree = "<group>"; };
+		0F14E1D322B2496E007FBA04 /* GKHomeMoreController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKHomeMoreController.m; sourceTree = "<group>"; };
+		0F1B813222B095610061FD7A /* GKBookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookModel.h; sourceTree = "<group>"; };
+		0F1B813322B095610061FD7A /* GKBookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookModel.m; sourceTree = "<group>"; };
+		0F22DAA822AF8A80000FC9AE /* GKiOSNovel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKiOSNovel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F22DAAB22AF8A80000FC9AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0F22DAAC22AF8A80000FC9AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0F22DAB222AF8A80000FC9AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0F22DAB422AF8A81000FC9AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0F22DAB722AF8A81000FC9AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0F22DAB922AF8A81000FC9AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F22DABA22AF8A81000FC9AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressWKWebView.m; sourceTree = "<group>"; };
+		0F5F63B222AFA2D8009096BD /* BaseWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebController.m; sourceTree = "<group>"; };
+		0F5F63B322AFA2D8009096BD /* ProgressWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressWKWebView.h; sourceTree = "<group>"; };
+		0F5F63B422AFA2D8009096BD /* BaseWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebController.h; sourceTree = "<group>"; };
+		0F5F63B622AFA2D8009096BD /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		0F5F63B722AFA2D8009096BD /* BaseRefreshController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshController.h; sourceTree = "<group>"; };
+		0F5F63B822AFA2D8009096BD /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		0F5F63B922AFA2D8009096BD /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		0F5F63BA22AFA2D8009096BD /* BaseConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseConnectionController.m; sourceTree = "<group>"; };
+		0F5F63BB22AFA2D8009096BD /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		0F5F63BC22AFA2D8009096BD /* BaseConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseConnectionController.h; sourceTree = "<group>"; };
+		0F5F63BD22AFA2D8009096BD /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		0F5F63BE22AFA2D8009096BD /* BaseRefreshController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshController.m; sourceTree = "<group>"; };
+		0F5F63BF22AFA2D8009096BD /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		0F5F63C122AFA2D8009096BD /* BaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMacro.h; sourceTree = "<group>"; };
+		0F5F63C222AFA2D8009096BD /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		0F5F63C322AFA2D8009096BD /* BaseNetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetModel.h; sourceTree = "<group>"; };
+		0F5F63C422AFA2D8009096BD /* BaseMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMacro.m; sourceTree = "<group>"; };
+		0F5F63C522AFA2D8009096BD /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		0F5F63C622AFA2D8009096BD /* BaseNetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetModel.m; sourceTree = "<group>"; };
+		0F5F63C822AFA2D8009096BD /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
+		0F5F63C922AFA2D8009096BD /* BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
+		0F5F63CA22AFA2D8009096BD /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
+		0F5F63CB22AFA2D8009096BD /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
+		0F5F63CC22AFA2D8009096BD /* BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
+		0F5F63CD22AFA2D8009096BD /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
+		0F5F63CF22AFA2D8009096BD /* BaseNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetManager.m; sourceTree = "<group>"; };
+		0F5F63D022AFA2D8009096BD /* BaseNetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNetTool.m; sourceTree = "<group>"; };
+		0F5F63D122AFA2D8009096BD /* BaseDataQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDataQueue.m; sourceTree = "<group>"; };
+		0F5F63D222AFA2D8009096BD /* GKNovelNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNovelNetManager.h; sourceTree = "<group>"; };
+		0F5F63D322AFA2D8009096BD /* BaseNetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetTool.h; sourceTree = "<group>"; };
+		0F5F63D422AFA2D8009096BD /* BaseNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetManager.h; sourceTree = "<group>"; };
+		0F5F63D522AFA2D8009096BD /* BaseDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDataQueue.h; sourceTree = "<group>"; };
+		0F5F63D622AFA2D8009096BD /* GKNovelNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNovelNetManager.m; sourceTree = "<group>"; };
+		0F5F63F522AFA357009096BD /* GKiOSNovel.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKiOSNovel.pch; sourceTree = "<group>"; };
+		0F5F63FF22AFB1CA009096BD /* GKNovelTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNovelTabBarController.h; sourceTree = "<group>"; };
+		0F5F640022AFB1CA009096BD /* GKNovelTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNovelTabBarController.m; sourceTree = "<group>"; };
+		0F5F640222AFB287009096BD /* GKHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKHomeController.h; sourceTree = "<group>"; };
+		0F5F640322AFB287009096BD /* GKHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKHomeController.m; sourceTree = "<group>"; };
+		0F5F640522AFB2D1009096BD /* GKClassContentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassContentController.h; sourceTree = "<group>"; };
+		0F5F640622AFB2D1009096BD /* GKClassContentController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassContentController.m; sourceTree = "<group>"; };
+		0F5F640822AFB2F3009096BD /* GKMineController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKMineController.h; sourceTree = "<group>"; };
+		0F5F640922AFB2F3009096BD /* GKMineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKMineController.m; sourceTree = "<group>"; };
+		0F5F640E22AFB7EB009096BD /* GKHomeHotCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKHomeHotCell.h; sourceTree = "<group>"; };
+		0F5F640F22AFB7EB009096BD /* GKHomeHotCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKHomeHotCell.m; sourceTree = "<group>"; };
+		0F5F641022AFB7EB009096BD /* GKHomeHotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKHomeHotCell.xib; sourceTree = "<group>"; };
+		0F7BC03022B1F1F5000B267B /* GKMineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKMineCell.h; sourceTree = "<group>"; };
+		0F7BC03122B1F1F5000B267B /* GKMineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKMineCell.m; sourceTree = "<group>"; };
+		0F7BC03222B1F1F5000B267B /* GKMineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKMineCell.xib; sourceTree = "<group>"; };
+		0F7BC03522B1F40B000B267B /* UIImageView+GKLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+GKLoad.h"; sourceTree = "<group>"; };
+		0F7BC03622B1F40B000B267B /* UIImageView+GKLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+GKLoad.m"; sourceTree = "<group>"; };
+		0F7BC03822B1FAD6000B267B /* GKMineRankController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKMineRankController.h; sourceTree = "<group>"; };
+		0F7BC03922B1FAD6000B267B /* GKMineRankController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKMineRankController.m; sourceTree = "<group>"; };
+		0F7BC03C22B21A9D000B267B /* ATActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATActionSheet.m; sourceTree = "<group>"; };
+		0F7BC03D22B21A9D000B267B /* ATSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSheetView.m; sourceTree = "<group>"; };
+		0F7BC03E22B21A9D000B267B /* ATAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAlertView.m; sourceTree = "<group>"; };
+		0F7BC03F22B21A9D000B267B /* ATActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATActionSheet.h; sourceTree = "<group>"; };
+		0F7BC04022B21A9D000B267B /* ATAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAlertView.h; sourceTree = "<group>"; };
+		0F7BC04122B21A9D000B267B /* ATSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSheetView.h; sourceTree = "<group>"; };
+		0F8AA7D822B0CD6800332ECB /* GKClassItemController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassItemController.h; sourceTree = "<group>"; };
+		0F8AA7D922B0CD6800332ECB /* GKClassItemController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassItemController.m; sourceTree = "<group>"; };
+		0F8AA7DB22B0CDCD00332ECB /* GKNewNavBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GKNewNavBarView.xib; sourceTree = "<group>"; };
+		0F8AA7DC22B0CDCD00332ECB /* GKNewNavBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNewNavBarView.m; sourceTree = "<group>"; };
+		0F8AA7DD22B0CDCD00332ECB /* GKNewNavBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNewNavBarView.h; sourceTree = "<group>"; };
+		0F8AA7E022B0D32300332ECB /* GKClassItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassItemModel.h; sourceTree = "<group>"; };
+		0F8AA7E122B0D32300332ECB /* GKClassItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassItemModel.m; sourceTree = "<group>"; };
+		0F8AA7E322B0D65D00332ECB /* GKClassflyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassflyController.h; sourceTree = "<group>"; };
+		0F8AA7E422B0D65D00332ECB /* GKClassflyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassflyController.m; sourceTree = "<group>"; };
+		0F8AA7E622B0DDFF00332ECB /* GKClassflyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassflyCell.h; sourceTree = "<group>"; };
+		0F8AA7E722B0DDFF00332ECB /* GKClassflyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassflyCell.m; sourceTree = "<group>"; };
+		0F8AA7E822B0DDFF00332ECB /* GKClassflyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKClassflyCell.xib; sourceTree = "<group>"; };
+		0FE8B42622B0A45B00ECAD07 /* GKHomeReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKHomeReusableView.h; sourceTree = "<group>"; };
+		0FE8B42722B0A45B00ECAD07 /* GKHomeReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKHomeReusableView.m; sourceTree = "<group>"; };
+		0FE8B42822B0A45B00ECAD07 /* GKHomeReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKHomeReusableView.xib; sourceTree = "<group>"; };
+		0FEB43B822B0E891005FF5DF /* GKStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKStartViewController.h; sourceTree = "<group>"; };
+		0FEB43B922B0E891005FF5DF /* GKStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKStartViewController.m; sourceTree = "<group>"; };
+		0FEB43BA22B0E891005FF5DF /* GKStartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKStartViewController.xib; sourceTree = "<group>"; };
+		0FEB43BE22B0F934005FF5DF /* GKUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKUserManager.h; sourceTree = "<group>"; };
+		0FEB43BF22B0F934005FF5DF /* GKUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKUserManager.m; sourceTree = "<group>"; };
+		0FEB43C122B0F94C005FF5DF /* GKUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKUserModel.h; sourceTree = "<group>"; };
+		0FEB43C222B0F94C005FF5DF /* GKUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKUserModel.m; sourceTree = "<group>"; };
+		0FEB43C422B0FD64005FF5DF /* GKRankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKRankModel.h; sourceTree = "<group>"; };
+		0FEB43C522B0FD64005FF5DF /* GKRankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKRankModel.m; sourceTree = "<group>"; };
+		0FEB43CA22B104DF005FF5DF /* GKCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKCollectionViewLayout.m; sourceTree = "<group>"; };
+		0FEB43CB22B104E0005FF5DF /* GKCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCollectionViewLayout.h; sourceTree = "<group>"; };
+		0FEB43CD22B105D2005FF5DF /* GKStartCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKStartCell.h; sourceTree = "<group>"; };
+		0FEB43CE22B105D2005FF5DF /* GKStartCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKStartCell.m; sourceTree = "<group>"; };
+		0FEB43CF22B105D2005FF5DF /* GKStartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKStartCell.xib; sourceTree = "<group>"; };
+		8980FBFCE4E375292C7A93A9 /* Pods-GKiOSNovel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GKiOSNovel.debug.xcconfig"; path = "Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel.debug.xcconfig"; sourceTree = "<group>"; };
+		9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GKiOSNovel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F22DAA522AF8A80000FC9AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEC0F6D1F57FDCCA48B88D01 /* libPods-GKiOSNovel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F1016B122B1E109002018E7 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				0F7BC03B22B21A9D000B267B /* ATAlertView */,
+				0F1016B522B1E144002018E7 /* GKJumpApp.h */,
+				0F1016B622B1E144002018E7 /* GKJumpApp.m */,
+				0F7BC03522B1F40B000B267B /* UIImageView+GKLoad.h */,
+				0F7BC03622B1F40B000B267B /* UIImageView+GKLoad.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		0F22DA9F22AF8A80000FC9AE = {
+			isa = PBXGroup;
+			children = (
+				0F22DAAA22AF8A80000FC9AE /* GKiOSNovel */,
+				0F22DAA922AF8A80000FC9AE /* Products */,
+				5DEA5C3F8394CC90BB71C3FF /* Pods */,
+				ACFD72EF9F7D832D7AD48A32 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0F22DAA922AF8A80000FC9AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0F22DAA822AF8A80000FC9AE /* GKiOSNovel.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0F22DAAA22AF8A80000FC9AE /* GKiOSNovel */ = {
+			isa = PBXGroup;
+			children = (
+				0F22DAAB22AF8A80000FC9AE /* AppDelegate.h */,
+				0F22DAAC22AF8A80000FC9AE /* AppDelegate.m */,
+				0F22DAB422AF8A81000FC9AE /* Assets.xcassets */,
+				0F5F639922AFA2D8009096BD /* Base */,
+				0F5F63F722AFB05C009096BD /* Class */,
+				0F5F63F522AFA357009096BD /* GKiOSNovel.pch */,
+				0F5F63FF22AFB1CA009096BD /* GKNovelTabBarController.h */,
+				0F5F640022AFB1CA009096BD /* GKNovelTabBarController.m */,
+				0F22DAB922AF8A81000FC9AE /* Info.plist */,
+				0F22DAB622AF8A81000FC9AE /* LaunchScreen.storyboard */,
+				0F22DABA22AF8A81000FC9AE /* main.m */,
+				0F22DAB122AF8A80000FC9AE /* Main.storyboard */,
+				0F1016B122B1E109002018E7 /* Tool */,
+			);
+			path = GKiOSNovel;
+			sourceTree = "<group>";
+		};
+		0F5F639922AFA2D8009096BD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F639A22AFA2D8009096BD /* Web */,
+				0F5F63B522AFA2D8009096BD /* Controller */,
+				0F5F63C022AFA2D8009096BD /* Model */,
+				0F5F63C722AFA2D8009096BD /* View */,
+				0F5F63CE22AFA2D8009096BD /* NetManager */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0F5F639A22AFA2D8009096BD /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F63B422AFA2D8009096BD /* BaseWebController.h */,
+				0F5F63B222AFA2D8009096BD /* BaseWebController.m */,
+				0F5F63B322AFA2D8009096BD /* ProgressWKWebView.h */,
+				0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		0F5F63B522AFA2D8009096BD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F63BC22AFA2D8009096BD /* BaseConnectionController.h */,
+				0F5F63BA22AFA2D8009096BD /* BaseConnectionController.m */,
+				0F5F63BD22AFA2D8009096BD /* BaseNavigationController.h */,
+				0F5F63B922AFA2D8009096BD /* BaseNavigationController.m */,
+				0F5F63B722AFA2D8009096BD /* BaseRefreshController.h */,
+				0F5F63BE22AFA2D8009096BD /* BaseRefreshController.m */,
+				0F5F63BB22AFA2D8009096BD /* BaseTableViewController.h */,
+				0F5F63B622AFA2D8009096BD /* BaseTableViewController.m */,
+				0F5F63BF22AFA2D8009096BD /* BaseViewController.h */,
+				0F5F63B822AFA2D8009096BD /* BaseViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0F5F63C022AFA2D8009096BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F63C122AFA2D8009096BD /* BaseMacro.h */,
+				0F5F63C422AFA2D8009096BD /* BaseMacro.m */,
+				0F5F63C522AFA2D8009096BD /* BaseModel.h */,
+				0F5F63C222AFA2D8009096BD /* BaseModel.m */,
+				0F5F63C322AFA2D8009096BD /* BaseNetModel.h */,
+				0F5F63C622AFA2D8009096BD /* BaseNetModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0F5F63C722AFA2D8009096BD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F63CB22AFA2D8009096BD /* BaseCell.h */,
+				0F5F63C822AFA2D8009096BD /* BaseCell.m */,
+				0F5F63CD22AFA2D8009096BD /* BaseTableView.h */,
+				0F5F63CA22AFA2D8009096BD /* BaseTableView.m */,
+				0F5F63CC22AFA2D8009096BD /* BaseView.h */,
+				0F5F63C922AFA2D8009096BD /* BaseView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0F5F63CE22AFA2D8009096BD /* NetManager */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F63D522AFA2D8009096BD /* BaseDataQueue.h */,
+				0F5F63D122AFA2D8009096BD /* BaseDataQueue.m */,
+				0F5F63D422AFA2D8009096BD /* BaseNetManager.h */,
+				0F5F63CF22AFA2D8009096BD /* BaseNetManager.m */,
+				0F5F63D322AFA2D8009096BD /* BaseNetTool.h */,
+				0F5F63D022AFA2D8009096BD /* BaseNetTool.m */,
+				0F5F63D222AFA2D8009096BD /* GKNovelNetManager.h */,
+				0F5F63D622AFA2D8009096BD /* GKNovelNetManager.m */,
+			);
+			path = NetManager;
+			sourceTree = "<group>";
+		};
+		0F5F63F722AFB05C009096BD /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				0FEB43BD22B0F922005FF5DF /* GKUser */,
+				0F5F63F922AFB150009096BD /* Classify */,
+				0F5F63FA22AFB150009096BD /* Home */,
+				0FEB43B722B0E875005FF5DF /* Launch */,
+				0F5F63FB22AFB150009096BD /* Mine */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		0F5F63F922AFB150009096BD /* Classify */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F640522AFB2D1009096BD /* GKClassContentController.h */,
+				0F5F640622AFB2D1009096BD /* GKClassContentController.m */,
+				0F8AA7D822B0CD6800332ECB /* GKClassItemController.h */,
+				0F8AA7D922B0CD6800332ECB /* GKClassItemController.m */,
+				0F8AA7DD22B0CDCD00332ECB /* GKNewNavBarView.h */,
+				0F8AA7DC22B0CDCD00332ECB /* GKNewNavBarView.m */,
+				0F8AA7DB22B0CDCD00332ECB /* GKNewNavBarView.xib */,
+				0F8AA7E022B0D32300332ECB /* GKClassItemModel.h */,
+				0F8AA7E122B0D32300332ECB /* GKClassItemModel.m */,
+				0F8AA7E322B0D65D00332ECB /* GKClassflyController.h */,
+				0F8AA7E422B0D65D00332ECB /* GKClassflyController.m */,
+				0F8AA7E622B0DDFF00332ECB /* GKClassflyCell.h */,
+				0F8AA7E722B0DDFF00332ECB /* GKClassflyCell.m */,
+				0F8AA7E822B0DDFF00332ECB /* GKClassflyCell.xib */,
+			);
+			path = Classify;
+			sourceTree = "<group>";
+		};
+		0F5F63FA22AFB150009096BD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0F5F640222AFB287009096BD /* GKHomeController.h */,
+				0F5F640322AFB287009096BD /* GKHomeController.m */,
+				0F5F640E22AFB7EB009096BD /* GKHomeHotCell.h */,
+				0F5F640F22AFB7EB009096BD /* GKHomeHotCell.m */,
+				0F5F641022AFB7EB009096BD /* GKHomeHotCell.xib */,
+				0F1B813222B095610061FD7A /* GKBookModel.h */,
+				0F1B813322B095610061FD7A /* GKBookModel.m */,
+				0FE8B42622B0A45B00ECAD07 /* GKHomeReusableView.h */,
+				0FE8B42722B0A45B00ECAD07 /* GKHomeReusableView.m */,
+				0FE8B42822B0A45B00ECAD07 /* GKHomeReusableView.xib */,
+				0F1016B822B1EA50002018E7 /* GKHomeNetManager.h */,
+				0F1016B922B1EA50002018E7 /* GKHomeNetManager.m */,
+				0F14E1D222B2496E007FBA04 /* GKHomeMoreController.h */,
+				0F14E1D322B2496E007FBA04 /* GKHomeMoreController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0F5F63FB22AFB150009096BD /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				0F7BC03022B1F1F5000B267B /* GKMineCell.h */,
+				0F7BC03122B1F1F5000B267B /* GKMineCell.m */,
+				0F7BC03222B1F1F5000B267B /* GKMineCell.xib */,
+				0F5F640822AFB2F3009096BD /* GKMineController.h */,
+				0F5F640922AFB2F3009096BD /* GKMineController.m */,
+				0F7BC03822B1FAD6000B267B /* GKMineRankController.h */,
+				0F7BC03922B1FAD6000B267B /* GKMineRankController.m */,
+				0F14E1CF22B23F30007FBA04 /* GKMineSelectController.h */,
+				0F14E1D022B23F30007FBA04 /* GKMineSelectController.m */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		0F7BC03B22B21A9D000B267B /* ATAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				0F7BC03F22B21A9D000B267B /* ATActionSheet.h */,
+				0F7BC03C22B21A9D000B267B /* ATActionSheet.m */,
+				0F7BC04022B21A9D000B267B /* ATAlertView.h */,
+				0F7BC03E22B21A9D000B267B /* ATAlertView.m */,
+				0F7BC04122B21A9D000B267B /* ATSheetView.h */,
+				0F7BC03D22B21A9D000B267B /* ATSheetView.m */,
+			);
+			path = ATAlertView;
+			sourceTree = "<group>";
+		};
+		0FEB43B722B0E875005FF5DF /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				0FEB43B822B0E891005FF5DF /* GKStartViewController.h */,
+				0FEB43B922B0E891005FF5DF /* GKStartViewController.m */,
+				0FEB43BA22B0E891005FF5DF /* GKStartViewController.xib */,
+				0FEB43CB22B104E0005FF5DF /* GKCollectionViewLayout.h */,
+				0FEB43CA22B104DF005FF5DF /* GKCollectionViewLayout.m */,
+				0FEB43CD22B105D2005FF5DF /* GKStartCell.h */,
+				0FEB43CE22B105D2005FF5DF /* GKStartCell.m */,
+				0FEB43CF22B105D2005FF5DF /* GKStartCell.xib */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		0FEB43BD22B0F922005FF5DF /* GKUser */ = {
+			isa = PBXGroup;
+			children = (
+				0FEB43C422B0FD64005FF5DF /* GKRankModel.h */,
+				0FEB43C522B0FD64005FF5DF /* GKRankModel.m */,
+				0FEB43BE22B0F934005FF5DF /* GKUserManager.h */,
+				0FEB43BF22B0F934005FF5DF /* GKUserManager.m */,
+				0FEB43C122B0F94C005FF5DF /* GKUserModel.h */,
+				0FEB43C222B0F94C005FF5DF /* GKUserModel.m */,
+			);
+			path = GKUser;
+			sourceTree = "<group>";
+		};
+		5DEA5C3F8394CC90BB71C3FF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8980FBFCE4E375292C7A93A9 /* Pods-GKiOSNovel.debug.xcconfig */,
+				0799E86D2A4A4DE739E82B6D /* Pods-GKiOSNovel.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		ACFD72EF9F7D832D7AD48A32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0F22DAA722AF8A80000FC9AE /* GKiOSNovel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F22DABE22AF8A81000FC9AE /* Build configuration list for PBXNativeTarget "GKiOSNovel" */;
+			buildPhases = (
+				F3CBA2448B26EA1CC25CE00E /* [CP] Check Pods Manifest.lock */,
+				0F22DAA422AF8A80000FC9AE /* Sources */,
+				0F22DAA522AF8A80000FC9AE /* Frameworks */,
+				0F22DAA622AF8A80000FC9AE /* Resources */,
+				B1E209384D6F2612AEC7D44F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GKiOSNovel;
+			productName = GKiOSNovel;
+			productReference = 0F22DAA822AF8A80000FC9AE /* GKiOSNovel.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0F22DAA022AF8A80000FC9AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = wangws1990;
+				TargetAttributes = {
+					0F22DAA722AF8A80000FC9AE = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 0F22DAA322AF8A80000FC9AE /* Build configuration list for PBXProject "GKiOSNovel" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0F22DA9F22AF8A80000FC9AE;
+			productRefGroup = 0F22DAA922AF8A80000FC9AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0F22DAA722AF8A80000FC9AE /* GKiOSNovel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0F22DAA622AF8A80000FC9AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F5F641222AFB7EB009096BD /* GKHomeHotCell.xib in Resources */,
+				0FEB43BC22B0E891005FF5DF /* GKStartViewController.xib in Resources */,
+				0F8AA7DE22B0CDCD00332ECB /* GKNewNavBarView.xib in Resources */,
+				0FEB43D122B105D2005FF5DF /* GKStartCell.xib in Resources */,
+				0F7BC03422B1F1F5000B267B /* GKMineCell.xib in Resources */,
+				0FE8B42A22B0A45B00ECAD07 /* GKHomeReusableView.xib in Resources */,
+				0F22DAB822AF8A81000FC9AE /* LaunchScreen.storyboard in Resources */,
+				0F22DAB522AF8A81000FC9AE /* Assets.xcassets in Resources */,
+				0F8AA7EA22B0DDFF00332ECB /* GKClassflyCell.xib in Resources */,
+				0F22DAB322AF8A80000FC9AE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B1E209384D6F2612AEC7D44F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3CBA2448B26EA1CC25CE00E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GKiOSNovel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F22DAA422AF8A80000FC9AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F5F63F222AFA2D8009096BD /* BaseDataQueue.m in Sources */,
+				0F5F63EF22AFA2D8009096BD /* BaseTableView.m in Sources */,
+				0F5F63F322AFA2D8009096BD /* GKNovelNetManager.m in Sources */,
+				0FEB43C322B0F94C005FF5DF /* GKUserModel.m in Sources */,
+				0F5F63ED22AFA2D8009096BD /* BaseCell.m in Sources */,
+				0F5F63EC22AFA2D8009096BD /* BaseNetModel.m in Sources */,
+				0F8AA7DF22B0CDCD00332ECB /* GKNewNavBarView.m in Sources */,
+				0F14E1D422B2496E007FBA04 /* GKHomeMoreController.m in Sources */,
+				0F5F63E522AFA2D8009096BD /* BaseTableViewController.m in Sources */,
+				0F7BC04222B21A9D000B267B /* ATActionSheet.m in Sources */,
+				0F5F63E822AFA2D8009096BD /* BaseConnectionController.m in Sources */,
+				0F5F63EE22AFA2D8009096BD /* BaseView.m in Sources */,
+				0F5F641122AFB7EB009096BD /* GKHomeHotCell.m in Sources */,
+				0F5F63EB22AFA2D8009096BD /* BaseMacro.m in Sources */,
+				0FEB43BB22B0E891005FF5DF /* GKStartViewController.m in Sources */,
+				0F5F63E622AFA2D8009096BD /* BaseViewController.m in Sources */,
+				0FEB43C022B0F934005FF5DF /* GKUserManager.m in Sources */,
+				0F5F640122AFB1CA009096BD /* GKNovelTabBarController.m in Sources */,
+				0F7BC04322B21A9D000B267B /* ATSheetView.m in Sources */,
+				0F5F63E722AFA2D8009096BD /* BaseNavigationController.m in Sources */,
+				0FE8B42922B0A45B00ECAD07 /* GKHomeReusableView.m in Sources */,
+				0F1016BA22B1EA50002018E7 /* GKHomeNetManager.m in Sources */,
+				0F8AA7E222B0D32300332ECB /* GKClassItemModel.m in Sources */,
+				0F5F640722AFB2D1009096BD /* GKClassContentController.m in Sources */,
+				0F1016B722B1E144002018E7 /* GKJumpApp.m in Sources */,
+				0F14E1D122B23F30007FBA04 /* GKMineSelectController.m in Sources */,
+				0F5F63F022AFA2D8009096BD /* BaseNetManager.m in Sources */,
+				0F8AA7DA22B0CD6800332ECB /* GKClassItemController.m in Sources */,
+				0F7BC03322B1F1F5000B267B /* GKMineCell.m in Sources */,
+				0F22DABB22AF8A81000FC9AE /* main.m in Sources */,
+				0F7BC03722B1F40B000B267B /* UIImageView+GKLoad.m in Sources */,
+				0F5F63F122AFA2D8009096BD /* BaseNetTool.m in Sources */,
+				0F7BC03A22B1FAD6000B267B /* GKMineRankController.m in Sources */,
+				0F5F640422AFB287009096BD /* GKHomeController.m in Sources */,
+				0F5F63D722AFA2D8009096BD /* ProgressWKWebView.m in Sources */,
+				0FEB43CC22B104E0005FF5DF /* GKCollectionViewLayout.m in Sources */,
+				0FEB43C622B0FD64005FF5DF /* GKRankModel.m in Sources */,
+				0F5F640A22AFB2F3009096BD /* GKMineController.m in Sources */,
+				0F5F63E422AFA2D8009096BD /* BaseWebController.m in Sources */,
+				0F22DAAD22AF8A80000FC9AE /* AppDelegate.m in Sources */,
+				0F7BC04422B21A9D000B267B /* ATAlertView.m in Sources */,
+				0F1B813422B095610061FD7A /* GKBookModel.m in Sources */,
+				0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */,
+				0F5F63E922AFA2D8009096BD /* BaseRefreshController.m in Sources */,
+				0F8AA7E922B0DDFF00332ECB /* GKClassflyCell.m in Sources */,
+				0F8AA7E522B0D65D00332ECB /* GKClassflyController.m in Sources */,
+				0FEB43D022B105D2005FF5DF /* GKStartCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0F22DAB122AF8A80000FC9AE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F22DAB222AF8A80000FC9AE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0F22DAB622AF8A81000FC9AE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F22DAB722AF8A81000FC9AE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0F22DABC22AF8A81000FC9AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0F22DABD22AF8A81000FC9AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0F22DABF22AF8A81000FC9AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8980FBFCE4E375292C7A93A9 /* Pods-GKiOSNovel.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/GKiOSNovel.pch";
+				INFOPLIST_FILE = GKiOSNovel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.3733SDK.sdk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0F22DAC022AF8A81000FC9AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0799E86D2A4A4DE739E82B6D /* Pods-GKiOSNovel.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/GKiOSNovel.pch";
+				INFOPLIST_FILE = GKiOSNovel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.3733SDK.sdk;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F22DAA322AF8A80000FC9AE /* Build configuration list for PBXProject "GKiOSNovel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F22DABC22AF8A81000FC9AE /* Debug */,
+				0F22DABD22AF8A81000FC9AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F22DABE22AF8A81000FC9AE /* Build configuration list for PBXNativeTarget "GKiOSNovel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F22DABF22AF8A81000FC9AE /* Debug */,
+				0F22DAC022AF8A81000FC9AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0F22DAA022AF8A80000FC9AE /* Project object */;
+}
