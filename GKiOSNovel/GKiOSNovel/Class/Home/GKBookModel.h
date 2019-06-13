@@ -42,5 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *_id;
 @property (copy, nonatomic) NSString *shortTitle;
+
+@property (assign, nonatomic) NSInteger bookSort;
+
 @end
 NS_ASSUME_NONNULL_END

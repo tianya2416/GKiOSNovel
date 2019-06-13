@@ -35,9 +35,13 @@
         [self.collectionView reloadData];
         [self endRefresh:NO];
     } failure:^(NSString * _Nonnull error) {
-        self.listData = @[];
-        [self.collectionView reloadData];
-        [self endRefreshFailure];
+        if (!self.reachable) {
+            [self endRefreshFailure];
+        }else{
+            self.listData = @[];
+            [self.collectionView reloadData];
+            [self endRefresh:NO];
+        }
     }];
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{

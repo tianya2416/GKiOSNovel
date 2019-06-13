@@ -14,5 +14,10 @@
     self.searchView.layer.masksToBounds = YES;
     self.searchView.layer.cornerRadius = AppRadius;
 }
-
+- (void)setState:(GKUserState)state{
+    if (_state != state) {
+        _state = state;
+        [self.moreBtn setImage:[UIImage imageNamed:_state== GKUserBoy?@"icon_boy_h":@"icon_girl_h"] forState:UIControlStateNormal];
+    }
+}
 @end

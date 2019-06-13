@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *totalRank;
 
 @property (assign, nonatomic) BOOL select;
-
+@property (assign, nonatomic) NSInteger rankSort;//用来排序
 @end
 
 @interface GKRankInfo : BaseModel

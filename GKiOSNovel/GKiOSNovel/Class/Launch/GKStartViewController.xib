@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="boyBtn" destination="WME-FA-6eK" id="dMD-Yv-zyS"/>
                 <outlet property="girlBtn" destination="gJY-2Y-4uJ" id="bfe-yy-AS9"/>
+                <outlet property="titleLab" destination="GUp-C6-KdH" id="tCW-FY-SdU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -14,6 +14,8 @@
 @interface GKStartViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *boyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *girlBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLab;
+
 @property (strong, nonatomic) UIButton *sureBtn;
 @property (copy, nonatomic)void(^completion)(void);
 @property (strong, nonatomic) GKRankInfo *rankInfo;
@@ -59,6 +61,7 @@
     if (_userState != userState) {
         _userState = userState;
         _userState == GKUserBoy ? [self boyAction] : [self girlAction];
+        self.titleLab.text = _userState == GKUserBoy ? @"我是小哥哥":@"我是小姐姐";
         self.rankInfo.state = _userState;
         self.layout.dataArr = self.rankInfo.listData;
         [self.collectionView reloadData];

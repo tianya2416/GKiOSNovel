@@ -7,6 +7,7 @@
 //
 
 #import "GKClassContentController.h"
+#import "GKStartViewController.h"
 #import "GKClassItemController.h"
 #import "KLRecycleScrollView.h"
 #import "GKNewNavBarView.h"
@@ -43,6 +44,10 @@
     }
     [self loadData];
     
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navBarView.state = [GKUserManager shareInstance].user.state;
 }
 - (void)loadData{
     self.listTitles = @[@"男生",@"女生",@"出版社"];
@@ -122,6 +127,11 @@
 - (void)recycleScrollView:(KLRecycleScrollView *)recycleScrollView didSelectView:(UIView *)view forItemAtIndex:(NSInteger)index{
     //[self searchAction];
 }
+- (void)addAction{
+    GKStartViewController *vc = [[GKStartViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark get
 -(VTMagicController *)magicController {
     
@@ -158,7 +168,7 @@
     if (!_navBarView) {
         _navBarView = [GKNewNavBarView instanceView];
         _navBarView.backgroundColor = AppColor;
-        //        [_navBarView.moreBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
+        [_navBarView.moreBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _navBarView;
 }

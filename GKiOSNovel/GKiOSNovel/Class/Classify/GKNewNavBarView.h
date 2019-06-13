@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 
+@property (assign, nonatomic) GKUserState state;
+
 @end
 
 NS_ASSUME_NONNULL_END
