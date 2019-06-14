@@ -7,6 +7,7 @@
 //
 
 #import "GKClassContentController.h"
+#import "GKSearchHistoryController.h"
 #import "GKStartViewController.h"
 #import "GKClassItemController.h"
 #import "KLRecycleScrollView.h"
@@ -53,10 +54,8 @@
     self.listTitles = @[@"男生",@"女生",@"出版社"];
     self.listData = @[@"male",@"female",@"press"];
     [self.magicController.magicView reloadData];
-    self.listHotWords = @[@"心梦无恒",@"辰东",@"我吃西红柿",@"唐家三少",@"天蚕土豆",@"耳根",@"烟雨江南",@"梦入神机",@"骷髅精灵",@"完美世界",@"大主宰",@"斗破苍穹",@"斗罗大陆",@"如果蜗牛有爱情",@"极品家丁",@"择天记",@"神墓",@"遮天",@"太古神王",@"帝霸",@"校花的贴身高手",@"武动乾坤"];
+    self.listHotWords = [BaseMacro hotDatas];
     [self.vmessage reloadData:self.listHotWords.count];
-    GKUserState state = [GKUserManager shareInstance].user.state;
-    [self.magicController.magicView reloadDataToPage:state-1];
 }
 #pragma mark VTMagicViewDataSource,VTMagicViewDelegate
 /**
@@ -125,12 +124,17 @@
     return label;
 }
 - (void)recycleScrollView:(KLRecycleScrollView *)recycleScrollView didSelectView:(UIView *)view forItemAtIndex:(NSInteger)index{
-    //[self searchAction];
+    [self searchAction];
 }
 - (void)addAction{
     GKStartViewController *vc = [[GKStartViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)searchAction{
+    GKSearchHistoryController *vc = [[GKSearchHistoryController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:NO];
 }
 #pragma mark get
 -(VTMagicController *)magicController {

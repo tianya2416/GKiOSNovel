@@ -94,12 +94,16 @@
 - (void)sureAction{
     NSPredicate *pre1 = [NSPredicate predicateWithFormat:@"select = %@",@(YES)];
     NSArray * array  = [self.rankInfo.listData filteredArrayUsingPredicate:pre1];
+    if (array.count == 0) {
+        [ATAlertView showTitle:@"选择一个或者多个做为首页推荐吧！" message:@"" normalButtons:@[@"确定"] highlightButtons:nil completion:nil];
+        return;
+    }
     GKUserModel *user = [GKUserModel vcWithState:self.userState rankDatas:array];
     [GKUserManager saveUserModel:user];
     if (self.completion) {
         !self.completion ?: self.completion();
     }else{
-        [GKUserManager loadingHomeData:YES];
+        [GKUserManager reloadHomeData:YES];
         [self goBack];
     }
 }

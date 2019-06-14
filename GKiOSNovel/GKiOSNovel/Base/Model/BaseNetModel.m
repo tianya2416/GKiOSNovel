@@ -11,17 +11,17 @@
 @implementation BaseNetModel
 
 + (NSDictionary<NSString *,id> *)modelCustomPropertyMapper {
-    return @{@"msg" : @[@"msg", @"err",@"error"],@"resultset":@[@"resultset",@"res",@"result"],@"code":@[@"code",@"ok"]};
+    return @{@"msg" : @[@"msg", @"err",@"error"],@"resultset":@[@"resultset",@"res",@"result"]};
 }
 //数据是否正常
 -(BOOL)isDataSuccess
 {
-    return self.code == 1;
+    return self.ok == 1;
     
 }
 - (BOOL)isNetError
 {
-    return self.code != 1;
+    return self.ok != 1;
 }
 + (instancetype)successModel:(id)response urlString:(NSString *)urlString params:(NSDictionary *)params headParams:(NSDictionary *)headParams
 {
@@ -30,6 +30,9 @@
     model.requestUrl = urlString;
     model.params = params;
     model.headParams = headParams;
+    if (![model.allResultData containsObjectForKey:@"ok"]) {
+        model.ok = 1;
+    }
     if (!model.resultset) {
         model.resultset = model.allResultData;
     }
@@ -72,7 +75,7 @@
 {
     BaseNetModel * model = [[[self class] alloc] init];
     model.msg = error;
-    model.code = 404;
+    model.ok = 404;
     model.resultset = nil;
     model.allResultData = nil;
     return model;

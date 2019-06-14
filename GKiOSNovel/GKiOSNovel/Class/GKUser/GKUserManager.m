@@ -50,10 +50,10 @@ static NSString *gkUser = @"gkUser";
     id object = [[NSUserDefaults standardUserDefaults] objectForKey:gkUser];
     return object;
 }
-+ (void)loadingHomeData:(BOOL)loadData{
++ (void)reloadHomeData:(BOOL)loadData{
     ![GKUserManager shareInstance].completion ?: [GKUserManager shareInstance].completion(loadData);
 }
-+ (void)loadingHomeDataNeed:(void(^)(BOOL loadData))completion{
++ (void)reloadHomeDataNeed:(void(^)(BOOL loadData))completion{
     [GKUserManager shareInstance].completion = completion;
 }
 @end

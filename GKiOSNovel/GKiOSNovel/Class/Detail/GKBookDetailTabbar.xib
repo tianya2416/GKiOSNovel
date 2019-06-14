@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GKBookDetailTabbar">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQx-XC-cIQ">
+                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="1"/>
+                    <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.80000000000000004" id="34X-aO-CfO"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1o-ka-zTJ">
+                    <rect key="frame" x="0.0" y="1" width="187.5" height="80"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="放入书架">
+                        <color key="titleColor" red="0.40000000000000002" green="0.63137254899999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bd0-T7-kd7">
+                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="81"/>
+                    <color key="backgroundColor" red="0.40000000000000002" green="0.63529411759999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="立即阅读">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bd0-T7-kd7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="8j8-3S-G5F"/>
+                <constraint firstItem="xQx-XC-cIQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="B03-Mi-TIT"/>
+                <constraint firstItem="bd0-T7-kd7" firstAttribute="width" secondItem="e1o-ka-zTJ" secondAttribute="width" id="CQ4-DQ-Rfe"/>
+                <constraint firstItem="xQx-XC-cIQ" firstAttribute="trailing" secondItem="e1o-ka-zTJ" secondAttribute="trailing" id="ECM-Fq-aXR"/>
+                <constraint firstItem="xQx-XC-cIQ" firstAttribute="leading" secondItem="e1o-ka-zTJ" secondAttribute="leading" id="RaN-De-V9a"/>
+                <constraint firstItem="e1o-ka-zTJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="1" id="Zcz-zy-e75"/>
+                <constraint firstItem="e1o-ka-zTJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bl6-8o-XRs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bd0-T7-kd7" secondAttribute="trailing" id="cco-GG-I4M"/>
+                <constraint firstItem="bd0-T7-kd7" firstAttribute="leading" secondItem="e1o-ka-zTJ" secondAttribute="trailing" id="jxe-lz-5nx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bd0-T7-kd7" secondAttribute="bottom" id="pEW-Yt-gog"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="e1o-ka-zTJ" secondAttribute="bottom" id="z1L-v5-K2q"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138.40000000000001" y="-129.98500749625188"/>
+        </view>
+    </objects>
+</document>

@@ -16,15 +16,15 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="244" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSk-xR-xrw">
-                    <rect key="frame" x="15" y="23.5" width="79.5" height="36"/>
+                    <rect key="frame" x="15" y="31.5" width="79.5" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                     <color key="textColor" red="0.14509803921568626" green="0.14901960784313725" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
+                <constraint firstItem="eSk-xR-xrw" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" constant="8" id="LoI-mX-FTi"/>
                 <constraint firstItem="eSk-xR-xrw" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="PXn-lt-tMo"/>
-                <constraint firstItem="eSk-xR-xrw" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="wAY-Yg-Olw"/>
             </constraints>
             <connections>
                 <outlet property="titleLab" destination="eSk-xR-xrw" id="bTw-Lo-Std"/>

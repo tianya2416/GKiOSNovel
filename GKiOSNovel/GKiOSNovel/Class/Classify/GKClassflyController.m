@@ -35,13 +35,14 @@
 }
 - (void)refreshData:(NSInteger)page{
     [GKNovelNetManager homeClssItem:self.group major:self.name page:page success:^(id  _Nonnull object) {
+         GKBookInfo *info = [GKBookInfo modelWithJSON:object];
         if (page == RefreshPageStart) {
             [self.listData removeAllObjects];
+            [self showNavTitle:[NSString stringWithFormat:@"%@(%@)",self.name,@(info.total)]];
         }
-        NSArray *datas = [NSArray modelArrayWithClass:GKBookModel.class json:object[@"books"]];
-        datas.count ? [self.listData addObjectsFromArray:datas] : nil;
+        info.books.count ? [self.listData addObjectsFromArray:info.books] : nil;
         [self.tableView reloadData];
-        [self endRefresh:datas.count >= RefreshPageSize];
+        [self endRefresh:info.books.count >= RefreshPageSize];
     } failure:^(NSString * _Nonnull error) {
         [self endRefreshFailure];
     }];
@@ -59,5 +60,11 @@
     GKClassflyCell *cell = [GKClassflyCell cellForTableView:tableView indexPath:indexPath];
     cell.model = self.listData[indexPath.row];
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GKBookModel *model =  self.listData[indexPath.row];
+    [GKJumpApp jumpToBookDetail:model._id];
+    
 }
 @end

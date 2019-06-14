@@ -15,9 +15,26 @@
 
 @implementation GKBookInfo
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"books" : GKBookModel.class};
+    return @{@"books" : GKBookModel.class,@"listData":GKBookModel.class};
 }
-- (void)setBooks:(NSArray<GKBookModel *> *)books{
-    _books = (books.count > 6) ? [books subarrayWithRange:NSMakeRange(0, 6)] : books;
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"listData" : @"books",
+             @"books" : @"books"};
+}
+//- (void)setBooks:(NSArray<GKBookModel *> *)books{
+//    if (books.count <= 6) {
+//        _books = books;
+//    }else{
+//        NSInteger index = arc4random() % (books.count - 6);
+//        _books = [books subarrayWithRange:NSMakeRange(index, 6)];
+//    }
+//}
+- (void)setListData:(NSArray<GKBookModel *> *)listData{
+    if (listData.count <= 6) {
+        _listData = listData;
+    }else{
+        NSInteger index = arc4random() % (listData.count - 6);
+        _listData = [listData subarrayWithRange:NSMakeRange(index, 6)];
+    }
 }
 @end

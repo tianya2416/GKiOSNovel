@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+
     [GKJumpApp jumpToAppGuidePage:^{
          self.window.rootViewController = [[GKNovelTabBarController alloc] init];
     }];

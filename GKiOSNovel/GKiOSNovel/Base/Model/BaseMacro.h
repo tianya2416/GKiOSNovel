@@ -27,11 +27,11 @@ static  NSString *BaseUrl = @"http://api.zhuishushenqi.com/";
 #define kBaseUrl(url)  [NSString stringWithFormat:@"%@%@", BaseUrl, url]
 
 #define RefreshPageStart (1)
-#define RefreshPageSize (20)
+#define RefreshPageSize (35)
 
 #ifdef DEBUG
 #ifndef NSLog
-//#   define NSLog(...)
+#   define NSLog(...)
 #endif
 #endif
 NS_ASSUME_NONNULL_BEGIN
@@ -40,6 +40,6 @@ typedef NS_ENUM(NSInteger, GKUserState) {
     GKUserGirl = 2,
 };
 @interface BaseMacro : NSObject
-
++ (NSArray *)hotDatas;
 @end
 NS_ASSUME_NONNULL_END

@@ -34,6 +34,8 @@
 #import "GKBookModel.h"
 #import "GKUserManager.h"
 #import "GKJumpApp.h"
+#import "BaseDataQueue.h"
+#import "GKSearchDataQueue.h"
 
 #import "ATAlertView.h"
 #import "ATActionSheet.h"

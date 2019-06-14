@@ -7,10 +7,9 @@
 //
 
 #import "BaseDataQueue.h"
-#import <FMDB.h>
-
+static NSString * DataBase = @"DataBase.sqlite";//数据库名称
 @interface BaseDataQueue()
-@property (strong, nonatomic)FMDatabaseQueue *dataQueue;
+@property(strong, nonatomic)FMDatabaseQueue *dataQueue;
 @property(copy, nonatomic)NSString *tableName;
 @property(copy, nonatomic)NSString *primaryId;
 @end
@@ -26,40 +25,33 @@
     });
     return dataBase;
 }
-- (instancetype)init
-{
-    if (self = [super init]) {
-        [self createDateBaseTable];
-    }
-    return self;
-}
 - (void)createDateBaseTable
 {
     if (self.tableName.length > 0 && self.primaryId.length > 0) {
         [self.dataQueue inDatabase:^(FMDatabase * dataBase) {
-            if ([dataBase open]) {
-                //数据库建表
-                NSString * sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' (data text,'%@' text PRIMARY KEY)",self.tableName,self.primaryId];
-                [dataBase executeUpdate:sql];
-                [dataBase close];
-            }
-            else
-            {
-                NSLog(@"dataBase open error");
+            if (![dataBase tableExists:self.tableName]) {
+                if ([dataBase open]) {
+                    NSString * sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' (data text,'%@' text PRIMARY KEY)",self.tableName,self.primaryId];
+                    [dataBase executeUpdate:sql];
+                    [dataBase close];
+                }else{
+                    NSLog(@"create table faile");
+                }
             }
         }];
     }
 }
+
 + (void)insertDataToDataBase:(NSString *)tableName
                    primaryId:(NSString *)primaryId
                     userInfo:(NSDictionary *)userInfo
                   completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
-        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         dataBase.tableName = tableName;
         dataBase.primaryId = primaryId;
         [dataBase createDateBaseTable];
+        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = userInfo[primaryId];
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase * db) {
@@ -79,16 +71,49 @@
         }
     });
 }
++ (void)insertDatasDataBase:(NSString *)tableName
+                  primaryId:(NSString *)primaryId
+                   listData:(NSArray <NSDictionary *>*)listData
+                 completion:(void(^)(BOOL success))completion{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
+        dataBase.primaryId = primaryId;
+        dataBase.tableName = tableName;
+        [dataBase createDateBaseTable];
+        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
+        [dataQueue inDatabase:^(FMDatabase * db) {
+            if ([db open]) {
+                [db beginTransaction];
+                for (NSDictionary * userInfo in listData) {
+                    NSString *userId = userInfo[primaryId];
+                    if (userId) {
+                        NSData * data = [BaseDataQueue archivedDataForData:userInfo];
+                        NSString * v5TableSql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?:@"",primaryId?:@""];
+                        BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
+                        if (res) {
+                            NSLog(@"insert or replace into success");
+                        }
+                    }
+                }
+                BOOL success = [db commit];
+                [db close];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    !completion ?: completion(success);
+                });
+            }
+        }];
+    });
+}
 + (void)updateDataToDataBase:(NSString *)tableName
                    primaryId:(NSString *)primaryId
                     userInfo:(NSDictionary *)userInfo
                   completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
-        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         dataBase.primaryId = primaryId;
         dataBase.tableName = tableName;
-        //[dataBase createDateBaseTable];
+        [dataBase createDateBaseTable];
+        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = userInfo[primaryId];
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase * db) {
@@ -115,10 +140,10 @@
                   completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
-        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         dataBase.primaryId = primaryId;
         dataBase.tableName = tableName;
         [dataBase createDateBaseTable];
+        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = primaryValue ?:@"";
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase *db) {
@@ -148,10 +173,10 @@
                   completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
-        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         dataBase.primaryId = primaryId;
         dataBase.tableName = tableName;
         [dataBase createDateBaseTable];
+        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         [dataQueue inDatabase:^(FMDatabase * db) {
             if ([db open]) {
                 [db beginTransaction];
@@ -175,39 +200,7 @@
         }];
     });
 }
-+ (void)insertDatasDataBase:(NSString *)tableName
-                  primaryId:(NSString *)primaryId
-                   listData:(NSArray <NSDictionary *>*)listData
-                 completion:(void(^)(BOOL success))completion{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
-        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
-        dataBase.primaryId = primaryId;
-        dataBase.tableName = tableName;
-        [dataBase createDateBaseTable];
-        [dataQueue inDatabase:^(FMDatabase * db) {
-            if ([db open]) {
-                [db beginTransaction];
-                for (NSDictionary * userInfo in listData) {
-                    NSString *userId = userInfo[primaryId];
-                    if (userId) {
-                        NSData * data = [BaseDataQueue archivedDataForData:userInfo];
-                        NSString * v5TableSql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?:@"",primaryId?:@""];
-                        BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
-                        if (res) {
-                            NSLog(@"insert or replace into success");
-                        }
-                    }
-                }
-                BOOL success = [db commit];
-                [db close];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    !completion ?: completion(success);
-                });
-            }
-        }];
-    });
-}
+
 + (void)getDatasFromDataBase:(NSString *)tableName
                    primaryId:(NSString *)primaryId
                   completion:(void(^)(NSArray <NSDictionary *>*listData))completion{
@@ -237,17 +230,47 @@
         }];
     });
 }
-
++ (void)getDatasFromDataBase:(NSString *)tableName
+                   primaryId:(NSString *)primaryId
+                        page:(NSInteger)page
+                    pageSize:(NSInteger)pageSize
+                  completion:(void(^)(NSArray <NSDictionary *>*listData))completion{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
+        dataBase.primaryId = primaryId;
+        dataBase.tableName = tableName;
+        [dataBase createDateBaseTable];
+        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
+        [dataQueue inDatabase:^(FMDatabase *db) {
+            if ([db open]) {
+                NSString * sql = [NSString stringWithFormat:
+                                  @"select * from '%@' order by '%@' limit %@,%@",tableName ?:@"",primaryId ?:@"",@((page-1)*pageSize),@(pageSize)];
+                FMResultSet * rs = [db executeQuery:sql];
+                NSData * data;
+                NSMutableArray * array = [[NSMutableArray alloc]init];
+                while ([rs next])
+                {
+                    data = [rs dataForColumn:@"data"];
+                    [array addObject:[BaseDataQueue unarchiveForData:data]];
+                }
+                [db close];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    !completion ?:completion(array);
+                });
+            }
+        }];
+    });
+}
 + (void)getDatasFromDataBase:(NSString *)tableName
                    primaryId:(NSString *)primaryId
                 primaryValue:(NSString *)primaryValue
                   completion:(void(^)(NSDictionary *dictionary))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
-        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         dataBase.primaryId = primaryId;
         dataBase.tableName = tableName;
         [dataBase createDateBaseTable];
+        FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         [dataQueue inDatabase:^(FMDatabase *db) {
             if ([db open]) {
                 NSString * sql = [NSString stringWithFormat:
@@ -328,8 +351,8 @@
                 NSLog(@"create successful");
             }
         }
-        //        NSString *stringPath =[[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.todayClock"] absoluteString];
-        NSString * path = [stringPath stringByAppendingPathComponent:@"DataBase.sqlite"];
+        //NSString *stringPath =[[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.todayClock"] absoluteString];
+        NSString * path = [stringPath stringByAppendingPathComponent:DataBase];
         _dataQueue = [FMDatabaseQueue databaseQueueWithPath:path];
     }
     return _dataQueue;

@@ -9,12 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "GKRankModel.h"
 NS_ASSUME_NONNULL_BEGIN
-
+typedef NS_ENUM(NSInteger, GKStartState) {
+    GKStartStateDefault =  0,
+    GKStartStateBack   = 1,
+    GKStartStateBoard  = 2,
+};
 @interface GKStartCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
-
 @property (strong, nonatomic)GKRankModel *model;
-
++ (instancetype)cellForCollectionView:(UICollectionView *)collectionView
+                            indexPath:(NSIndexPath *)indexPath
+                           startState:(GKStartState)startState;
+    
 @end
 
 NS_ASSUME_NONNULL_END

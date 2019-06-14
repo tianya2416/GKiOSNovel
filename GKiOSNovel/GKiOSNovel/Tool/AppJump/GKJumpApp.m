@@ -8,6 +8,7 @@
 
 #import "GKJumpApp.h"
 #import "GKStartViewController.h"
+#import "GKBookDetailController.h"
 @implementation GKJumpApp
 + (void)jumpToAppGuidePage:(void(^)(void))completion
 {
@@ -18,6 +19,12 @@
     {
         !completion ?: completion();
     }
+}
++ (void)jumpToBookDetail:(NSString *)bookId{
+    UIViewController *nvc = [UIViewController rootTopPresentedController];
+    GKBookDetailController *vc = [GKBookDetailController vcWithBookId:bookId];
+    vc.hidesBottomBarWhenPushed = YES;
+    [nvc.navigationController pushViewController:vc animated:YES];
 }
 +  (UIWindow *)window
 {

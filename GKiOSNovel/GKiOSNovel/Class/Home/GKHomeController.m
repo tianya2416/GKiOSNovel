@@ -21,7 +21,7 @@
     self.listData = @[].mutableCopy;
     [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到设置-排行榜-添加项目"];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
-    [GKUserManager loadingHomeDataNeed:^(BOOL loadData) {
+    [GKUserManager reloadHomeDataNeed:^(BOOL loadData) {
         if (loadData) {
             [self headerRefreshing];
         }
@@ -49,7 +49,7 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     GKBookInfo *info = self.listData[section];
-    return info.books.count;
+    return info.listData.count;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -61,7 +61,7 @@
 {
     GKHomeHotCell *cell = [GKHomeHotCell cellForCollectionView:collectionView indexPath:indexPath];
     GKBookInfo *info = self.listData[indexPath.section];
-    GKBookModel *model = info.books[indexPath.row];
+    GKBookModel *model = info.listData[indexPath.row];
     cell.model = model;
     return cell;
 }
@@ -77,7 +77,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     GKBookInfo *info = self.listData[section];
-    return CGSizeMake(SCREEN_WIDTH, info.books.count ? 60 : 0.001f);
+    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? 60 : 0.001f);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
@@ -91,5 +91,10 @@
         [self.navigationController pushViewController:vc animated:YES];
     }];
     return res;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    GKBookInfo *info = self.listData[indexPath.section];
+    GKBookModel *model = info.listData[indexPath.row];
+    [GKJumpApp jumpToBookDetail:model._id];
 }
 @end

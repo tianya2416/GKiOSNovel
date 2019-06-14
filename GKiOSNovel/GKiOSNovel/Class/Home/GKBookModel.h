@@ -37,13 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookInfo : BaseModel
 
-@property (strong, nonatomic) NSArray <GKBookModel *>*books;
-@property (assign, nonatomic) NSInteger total;
-@property (copy, nonatomic) NSString *title;
-@property (copy, nonatomic) NSString *_id;
-@property (copy, nonatomic) NSString *shortTitle;
+@property (strong, nonatomic) NSArray <GKBookModel *>*books;//所有数据
+@property (assign, nonatomic) NSInteger total;//数据个数
+@property (copy, nonatomic) NSString *title;//标题
+@property (copy, nonatomic) NSString *shortTitle;//标题
+@property (copy, nonatomic) NSString *_id;//Id
 
-@property (assign, nonatomic) NSInteger bookSort;
-
+@property (assign, nonatomic) NSInteger bookSort;//用于排序
+@property (strong, nonatomic) NSArray <GKBookModel *>*listData;//首页用于显示 一般下6个
 @end
 NS_ASSUME_NONNULL_END

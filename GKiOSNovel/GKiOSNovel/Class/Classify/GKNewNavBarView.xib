@@ -22,7 +22,7 @@
                         <constraint firstAttribute="width" constant="44" id="Lnd-21-ayz"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" image="playing1"/>
+                    <state key="normal" image="icon_boy_h"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mqc-t4-Sm6">
                     <rect key="frame" x="15" y="60.5" width="300" height="35"/>
@@ -70,6 +70,6 @@
     </objects>
     <resources>
         <image name="ic_strategy_search" width="12" height="13"/>
-        <image name="playing1" width="28" height="28"/>
+        <image name="icon_boy_h" width="25" height="25"/>
     </resources>
 </document>

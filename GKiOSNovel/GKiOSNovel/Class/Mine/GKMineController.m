@@ -33,7 +33,7 @@ static NSString *sex = @"性别";
 }
 - (void)reloadUI{
     GKUserState state = [GKUserManager shareInstance].user.state;
-    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"男生":@"女生")}];
+    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")}];
     [self.tableView reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

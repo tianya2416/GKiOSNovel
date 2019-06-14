@@ -19,9 +19,9 @@
         !success ?: success(object[@"ranking"]);
     } failure:failure];
 }
-+ (void)homeSearch:(NSString *)rankId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"ranking/5a6844aafc84c2b8efaa6b6e") params:nil success:success failure:failure];
-}
+//+ (void)homeSearch:(NSString *)rankId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+//    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"ranking/5a6844aafc84c2b8efaa6b6e") params:nil success:success failure:failure];
+//}
 + (void)homeClass:(NSString *)category success:(void(^)(id object))success failure:(void(^)(NSString *error))failure
 {
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"cats/lv2/statistics") params:nil success:^(id object) {
@@ -49,5 +49,17 @@
                              };
     NSString *url = [NSString stringWithFormat:@"mobile/others/ca/album/track/%@/true/%@/%@?",albumId?:@"",@(page),@(RefreshPageSize)];
     [BaseNetManager method:HttpMethodPost urlString:kBaseUrl(url) params:params success:success failure:failure];
+}
++ (void)homeSearch:(NSString *)hotWord page:(NSInteger)page success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSDictionary *params = @{
+                             @"query":hotWord ?:@"",
+                             @"start":@(page-1),//服务器接口要求
+                             @"limit":@(RefreshPageSize)
+                             };
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"book/fuzzy-search") params:params success:success failure:failure];
+}
++ (void)bookDetail:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSString *url = [NSString stringWithFormat:@"book/%@",bookId?:@""];
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:nil success:success failure:failure];
 }
 @end

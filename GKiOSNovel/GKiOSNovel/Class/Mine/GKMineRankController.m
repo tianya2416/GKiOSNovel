@@ -10,7 +10,7 @@
 #import "GKMineSelectController.h"
 #import "GKMineCell.h"
 @interface GKMineRankController ()
-@property (strong, nonatomic) NSArray <GKRankModel *>*listData;
+@property (strong, nonatomic) NSMutableArray <GKRankModel *>*listData;
 @end
 
 @implementation GKMineRankController
@@ -27,7 +27,7 @@
     [self headerRefreshing];
 }
 - (void)refreshData:(NSInteger)page{
-    self.listData = [GKUserManager shareInstance].user.rankDatas;
+    self.listData = [GKUserManager shareInstance].user.rankDatas.mutableCopy;
     [self.tableView reloadData];
     [self endRefresh:NO];
 }
@@ -65,8 +65,13 @@
     }
 }
 - (void)deleteAction:(GKRankModel *)model{
-    [ATAlertView showTitle:[NSString stringWithFormat:@"确定要删除:<%@>",model.shortTitle] message:nil normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
+    [ATAlertView showTitle:[NSString stringWithFormat:@"删除<%@>后,首页将失去该项",model.shortTitle] message:nil normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
         if (index > 0) {
+            [self.listData removeObject:model];
+            GKUserModel *model = [GKUserModel vcWithState:[GKUserManager shareInstance].user.state rankDatas:self.listData.copy];
+            [GKUserManager saveUserModel:model];
+            [GKUserManager reloadHomeData:YES];
+            [self refreshData:1];
             
         }
     }];

@@ -15,12 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)rankSuccess:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 
 + (void)homeHot:(NSString *)rankId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
-+ (void)homeSearch:(NSString *)rankId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 
 + (void)homeClass:(NSString *)group success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 + (void)homeClssItem:(NSString *)key major:(NSString *)major page:(NSInteger)page success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 
-+ (void)songDetail:(NSString *)albumId title:(NSString *)title page:(NSInteger)page success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
++ (void)homeSearch:(NSString *)hotWord page:(NSInteger)page success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
+
++ (void)bookDetail:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

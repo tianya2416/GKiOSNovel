@@ -26,7 +26,7 @@
 //所有数据
 @property(nonatomic, strong)NSDictionary *allResultData;
 //返回码
-@property(nonatomic,assign)NSInteger code;
+@property(nonatomic,assign)NSInteger ok;
 //错误消息
 @property(nonatomic, copy )NSString *msg;
 //具体数据(一般是Dictionary或Array)
