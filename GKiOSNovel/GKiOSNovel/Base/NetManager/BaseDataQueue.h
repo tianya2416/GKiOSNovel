@@ -46,17 +46,17 @@ NS_ASSUME_NONNULL_BEGIN
                    primaryId:(NSString *)primaryId
                 primaryValue:(NSString *)primaryValue
                   completion:(void(^)(BOOL success))completion;
-+ (void)deleteDataToDataBase:(NSString *)tableName
-                   primaryId:(NSString *)primaryId
-                    listData:(NSArray <NSDictionary *>*)listData
-                  completion:(void(^)(BOOL success))completion;
++ (void)deleteDatasToDataBase:(NSString *)tableName
+                    primaryId:(NSString *)primaryId
+                     listData:(NSArray <NSDictionary *>*)listData
+                   completion:(void(^)(BOOL success))completion;
 /**
  *  @brief 获取数据
  */
-+ (void)getDatasFromDataBase:(NSString *)tableName
-                   primaryId:(NSString *)primaryId
-                primaryValue:(NSString *)primaryValue
-                  completion:(void(^)(NSDictionary *dictionary))completion;
++ (void)getDataFromDataBase:(NSString *)tableName
+                  primaryId:(NSString *)primaryId
+               primaryValue:(NSString *)primaryValue
+                 completion:(void(^)(NSDictionary *dictionary))completion;
 + (void)getDatasFromDataBase:(NSString *)tableName
                    primaryId:(NSString *)primaryId
                   completion:(void(^)(NSArray <NSDictionary *>*listData))completion;

@@ -9,5 +9,18 @@
 #import "GKBookDetailTabbar.h"
 
 @implementation GKBookDetailTabbar
-
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self.addBtn setTitle:@"放入书架" forState:UIControlStateNormal];
+    [self.addBtn setTitle:@"放入书架" forState:UIControlStateNormal|UIControlStateHighlighted];
+    
+    [self.addBtn setTitle:@"已收藏" forState:UIControlStateSelected];
+    [self.addBtn setTitle:@"已收藏" forState:UIControlStateSelected|UIControlStateHighlighted];
+}
+- (void)setCollection:(BOOL)collection{
+    if (_collection != collection) {
+        _collection = collection;
+        self.addBtn.selected = collection;
+    }
+}
 @end

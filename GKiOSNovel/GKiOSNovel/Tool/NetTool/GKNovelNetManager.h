@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)homeSearch:(NSString *)hotWord page:(NSInteger)page success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 
 + (void)bookDetail:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
+
++ (void)bookCommend:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
++ (void)bookListCommend:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
++ (void)bookListDetail:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

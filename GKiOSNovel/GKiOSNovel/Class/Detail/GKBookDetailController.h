@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GKBookDetailController : BaseTableViewController
+@interface GKBookDetailController : BaseConnectionController
 + (instancetype)vcWithBookId:(NSString *)bookId;
 @end
 

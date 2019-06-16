@@ -36,6 +36,7 @@
 #import "GKJumpApp.h"
 #import "BaseDataQueue.h"
 #import "GKSearchDataQueue.h"
+#import "GKBookCaseDataQueue.h"
 
 #import "ATAlertView.h"
 #import "ATActionSheet.h"

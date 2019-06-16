@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "GKBookModel.h"
+#import "GKClassItemModel.h"
 NS_ASSUME_NONNULL_BEGIN
+@class GKBookDetailModel,GKBookListModel;
+@interface GKBookDetailInfo : BaseModel
+@property (nonatomic, strong)GKBookDetailModel *bookModel;
+@property (nonatomic, strong)NSArray *listData;
++ (void)bookDetail:(NSString *)bookId
+           success:(void(^)(GKBookDetailInfo *info))success
+           failure:(void(^)(NSString *error))failure;
+@end
 
 @interface GKBookDetailModel : GKBookModel
 @property (nonatomic, strong) NSString * cat;
@@ -35,6 +44,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL le;
 @property (nonatomic, assign) BOOL allowBeanVoucher;
 @property (nonatomic, assign) BOOL allowVoucher;
-@end
 
+@property (nonatomic, assign) CGFloat height;
+
+@end
+@interface GKBookListModel : BaseModel
+@property (nonatomic, copy) NSString *_id;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *desc;
+@property (nonatomic, copy) NSString *cover;
+@property (nonatomic, copy) NSString *covers;
+@property (nonatomic, copy) NSString *author;
+@property (nonatomic, assign) NSInteger bookCount;
+@property (nonatomic, assign) NSInteger collectorCount;
+@end
 NS_ASSUME_NONNULL_END

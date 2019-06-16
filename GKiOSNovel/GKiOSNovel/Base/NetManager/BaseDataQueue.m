@@ -31,11 +31,12 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         [self.dataQueue inDatabase:^(FMDatabase * dataBase) {
             if (![dataBase tableExists:self.tableName]) {
                 if ([dataBase open]) {
-                    NSString * sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' (data text,'%@' text PRIMARY KEY)",self.tableName,self.primaryId];
-                    [dataBase executeUpdate:sql];
+                    //数据库建表
+                    NSString * sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' (data text,'%@' varchar primary key)",self.tableName,self.primaryId];
+                    if ([dataBase executeUpdate:sql]) {
+                        NSLog(@"create table success");
+                    }
                     [dataBase close];
-                }else{
-                    NSLog(@"create table faile");
                 }
             }
         }];
@@ -120,7 +121,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                 if ([db open]) {
                     NSData * data = [BaseDataQueue archivedDataForData:userInfo];
                     // NSString * v5TableSql = [NSString stringWithFormat:@"replace into '%@' (data,'%@') values (?,?)",tableName ?: @"",primaryId ?: @""];
-                    NSString * v5TableSql = [NSString stringWithFormat:@"update %@ set data = ? where %@ = ?",tableName ?:@"", primaryId ?:@""];
+                    NSString * v5TableSql = [NSString stringWithFormat:@"update %@ set data = ? where %@ ='%@'",tableName ?:@"", primaryId ?:@""];
                     BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
                     if (res) {//update 'defaultTableManager' set data = ? where 'identy' = ?
                         NSLog(@"update success");
@@ -167,10 +168,10 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         }
     });
 }
-+ (void)deleteDataToDataBase:(NSString *)tableName
-                   primaryId:(NSString *)primaryId
-                    listData:(NSArray <NSDictionary *>*)listData
-                  completion:(void(^)(BOOL success))completion{
++ (void)deleteDatasToDataBase:(NSString *)tableName
+                    primaryId:(NSString *)primaryId
+                     listData:(NSArray <NSDictionary *>*)listData
+                   completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         dataBase.primaryId = primaryId;
@@ -261,10 +262,10 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         }];
     });
 }
-+ (void)getDatasFromDataBase:(NSString *)tableName
-                   primaryId:(NSString *)primaryId
-                primaryValue:(NSString *)primaryValue
-                  completion:(void(^)(NSDictionary *dictionary))completion{
++ (void)getDataFromDataBase:(NSString *)tableName
+                  primaryId:(NSString *)primaryId
+               primaryValue:(NSString *)primaryValue
+                 completion:(void(^)(NSDictionary *dictionary))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         dataBase.primaryId = primaryId;
@@ -274,7 +275,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         [dataQueue inDatabase:^(FMDatabase *db) {
             if ([db open]) {
                 NSString * sql = [NSString stringWithFormat:
-                                  @"select * from %@ where %@ = %@",tableName ?:@"",primaryId ?:@"",primaryValue ?:@""];
+                                  @"select * from %@ where %@ ='%@'",tableName ?:@"",primaryId ?:@"",primaryValue ?:@""];
                 FMResultSet * rs = [db executeQuery:sql];
                 NSData * data;
                 NSMutableArray * array = [[NSMutableArray alloc]init];

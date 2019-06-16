@@ -20,12 +20,6 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.collectionView.superview);
     }];
-//    [self.collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    NSMutableArray *temp = [[NSMutableArray alloc] init];
-//    [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_collectionView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_collectionView)]];
-//    [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_collectionView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_collectionView)]];
-//    [self.view addConstraints:temp];
-    
     self.collectionView.backgroundColor =Appxffffff;
 }
 
@@ -34,19 +28,15 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.backgroundColor = Appxffffff;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.scrollEnabled = YES;
         [_collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:NSStringFromClass(UICollectionViewCell.class)];
         [_collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:NSStringFromClass(UICollectionReusableView.class) withReuseIdentifier:NSStringFromClass(UICollectionReusableView.class)];
-        layout.minimumLineSpacing = 10;
-        if (@available(iOS 11.0, *)) {
-            _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        
     }
     return _collectionView;
 }

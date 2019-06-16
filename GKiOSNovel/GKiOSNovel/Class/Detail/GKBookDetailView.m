@@ -9,13 +9,16 @@
 #import "GKBookDetailView.h"
 
 @implementation GKBookDetailView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.contentTitleLab.preferredMaxLayoutWidth = SCREEN_WIDTH - 30;
 }
-*/
+- (void)setModel:(GKBookDetailModel *)model{
+    if (_model != model) {
+        _model = model;
+        [self.imageV setGkImageWithURL:_model.cover];
+        self.contentTitleLab.text = _model.longIntro ?:@"";
+    }
+}
 
 @end

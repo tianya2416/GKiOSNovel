@@ -9,7 +9,7 @@
 #import "GKSearchDataQueue.h"
 
 
-static NSString *SearchTable = @"searchTable";
+static NSString *SearchTable = @"SearchTable";
 
 @interface GKSearchDataQueue()
 
@@ -31,7 +31,9 @@ static NSString *SearchTable = @"searchTable";
         if (![dataBase tableExists:SearchTable]) {
             if ([dataBase open]) {
                 NSString * sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,name varchar(128) NOT NULL,updateTime integer(10) NOT NULL)",SearchTable];
-                [dataBase executeUpdate:sql];
+                if ([dataBase executeUpdate:sql]) {
+                    NSLog(@"create table success");
+                }
                 [dataBase close];
             }
         }
@@ -54,10 +56,10 @@ static NSString *SearchTable = @"searchTable";
                     int totalCount = [s intForColumnIndex:0];
                     res = totalCount > 0;
                 }
+                NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
                 if (res) {
                     sql = [NSString stringWithFormat:@"update %@ set updateTime = '%ld' where name='%@'",SearchTable,(long)time,hotWord];
                 }else{
-                    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
                     sql = [NSString stringWithFormat:@"insert or replace into '%@' (name,updateTime) values ('%@','%ld')",SearchTable ?: @"",hotWord?:@"",(long)time];
                 }
                 res = [db executeUpdate:sql];
@@ -149,7 +151,7 @@ static NSString *SearchTable = @"searchTable";
                     pageSize:(NSInteger)pageSize
                   completion:(void(^)(NSArray <NSString *>*listData))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BaseDataQueue *dataBase = [GKSearchDataQueue shareInstance];
+        GKSearchDataQueue *dataBase = [GKSearchDataQueue shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         [dataQueue inDatabase:^(FMDatabase *db) {
             if ([db open]) {

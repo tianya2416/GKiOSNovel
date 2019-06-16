@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GKClassItemModel : BaseModel
 
 @property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *bookCount;
 @property (copy, nonatomic) NSString *monthlyCount;
 @property (copy, nonatomic) NSString *icon;
+@property (assign, nonatomic) NSInteger bookCount;
 @property (strong, nonatomic) NSArray *bookCover;
 
 @end

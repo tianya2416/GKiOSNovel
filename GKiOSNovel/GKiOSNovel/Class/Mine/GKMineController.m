@@ -9,9 +9,11 @@
 #import "GKMineController.h"
 #import "GKMineRankController.h"
 #import "GKStartViewController.h"
+#import "GKBooCaseController.h"
 #import "GKMineCell.h"
 static NSString *rank = @"排行榜";
 static NSString *sex = @"性别";
+static NSString *bookCase = @"书架";
 @interface GKMineController ()
 @property (strong, nonatomic) NSArray *listData;
 @end
@@ -33,7 +35,7 @@ static NSString *sex = @"性别";
 }
 - (void)reloadUI{
     GKUserState state = [GKUserManager shareInstance].user.state;
-    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")}];
+    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")},@{@"title":bookCase?:@"",@"subTitle":@""}];
     [self.tableView reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -56,14 +58,15 @@ static NSString *sex = @"性别";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
      NSDictionary *dic = self.listData[indexPath.row];
     NSString *title = dic[@"title"];
+    UIViewController *vc = nil;
     if ([title isEqualToString:rank]) {
-        GKMineRankController *vc = [[GKMineRankController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        vc = [[GKMineRankController alloc] init];
     }else if ([title isEqualToString:sex]){
-        GKStartViewController *vc = [[GKStartViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        vc = [[GKStartViewController alloc] init];
+    }else if([title isEqualToString:bookCase]){
+        vc = [[GKBooCaseController alloc] init];
     }
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

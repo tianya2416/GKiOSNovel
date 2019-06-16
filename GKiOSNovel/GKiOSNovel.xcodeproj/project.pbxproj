@@ -74,6 +74,12 @@
 		0FEB43CC22B104E0005FF5DF /* GKCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43CA22B104DF005FF5DF /* GKCollectionViewLayout.m */; };
 		0FEB43D022B105D2005FF5DF /* GKStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43CE22B105D2005FF5DF /* GKStartCell.m */; };
 		0FEB43D122B105D2005FF5DF /* GKStartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB43CF22B105D2005FF5DF /* GKStartCell.xib */; };
+		8F1A7CB422B5195500BB325E /* GKBookDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CB222B5195500BB325E /* GKBookDetailCell.m */; };
+		8F1A7CB522B5195500BB325E /* GKBookDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1A7CB322B5195500BB325E /* GKBookDetailCell.xib */; };
+		8F1A7CB922B536B500BB325E /* GKBookDetailCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CB722B536B500BB325E /* GKBookDetailCollectionCell.m */; };
+		8F1A7CBA22B536B500BB325E /* GKBookDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1A7CB822B536B500BB325E /* GKBookDetailCollectionCell.xib */; };
+		8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */; };
+		8F1A7CC022B682AC00BB325E /* GKBooCaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBF22B682AC00BB325E /* GKBooCaseController.m */; };
 		DEC0F6D1F57FDCCA48B88D01 /* libPods-GKiOSNovel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */; };
 /* End PBXBuildFile section */
 
@@ -204,6 +210,16 @@
 		0FEB43CE22B105D2005FF5DF /* GKStartCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKStartCell.m; sourceTree = "<group>"; };
 		0FEB43CF22B105D2005FF5DF /* GKStartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKStartCell.xib; sourceTree = "<group>"; };
 		8980FBFCE4E375292C7A93A9 /* Pods-GKiOSNovel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GKiOSNovel.debug.xcconfig"; path = "Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel.debug.xcconfig"; sourceTree = "<group>"; };
+		8F1A7CB122B5195500BB325E /* GKBookDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookDetailCell.h; sourceTree = "<group>"; };
+		8F1A7CB222B5195500BB325E /* GKBookDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookDetailCell.m; sourceTree = "<group>"; };
+		8F1A7CB322B5195500BB325E /* GKBookDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKBookDetailCell.xib; sourceTree = "<group>"; };
+		8F1A7CB622B536B500BB325E /* GKBookDetailCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookDetailCollectionCell.h; sourceTree = "<group>"; };
+		8F1A7CB722B536B500BB325E /* GKBookDetailCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookDetailCollectionCell.m; sourceTree = "<group>"; };
+		8F1A7CB822B536B500BB325E /* GKBookDetailCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKBookDetailCollectionCell.xib; sourceTree = "<group>"; };
+		8F1A7CBB22B64DF700BB325E /* GKBookCaseDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookCaseDataQueue.h; sourceTree = "<group>"; };
+		8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookCaseDataQueue.m; sourceTree = "<group>"; };
+		8F1A7CBE22B682AC00BB325E /* GKBooCaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBooCaseController.h; sourceTree = "<group>"; };
+		8F1A7CBF22B682AC00BB325E /* GKBooCaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBooCaseController.m; sourceTree = "<group>"; };
 		9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GKiOSNovel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -401,6 +417,8 @@
 				0F7BC03922B1FAD6000B267B /* GKMineRankController.m */,
 				0F14E1CF22B23F30007FBA04 /* GKMineSelectController.h */,
 				0F14E1D022B23F30007FBA04 /* GKMineSelectController.m */,
+				8F1A7CBE22B682AC00BB325E /* GKBooCaseController.h */,
+				8F1A7CBF22B682AC00BB325E /* GKBooCaseController.m */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -486,6 +504,8 @@
 			children = (
 				0F6C5FEE22B38B6C00A4C2BE /* GKSearchDataQueue.h */,
 				0F6C5FEF22B38B6C00A4C2BE /* GKSearchDataQueue.m */,
+				8F1A7CBB22B64DF700BB325E /* GKBookCaseDataQueue.h */,
+				8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */,
 			);
 			path = AppDataBase;
 			sourceTree = "<group>";
@@ -503,6 +523,12 @@
 				0F6C5FFD22B3AE0600A4C2BE /* GKBookDetailView.h */,
 				0F6C5FFE22B3AE0600A4C2BE /* GKBookDetailView.m */,
 				0F6C600022B3AE1000A4C2BE /* GKBookDetailView.xib */,
+				8F1A7CB122B5195500BB325E /* GKBookDetailCell.h */,
+				8F1A7CB222B5195500BB325E /* GKBookDetailCell.m */,
+				8F1A7CB322B5195500BB325E /* GKBookDetailCell.xib */,
+				8F1A7CB622B536B500BB325E /* GKBookDetailCollectionCell.h */,
+				8F1A7CB722B536B500BB325E /* GKBookDetailCollectionCell.m */,
+				8F1A7CB822B536B500BB325E /* GKBookDetailCollectionCell.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -619,10 +645,12 @@
 				0F7BC03422B1F1F5000B267B /* GKMineCell.xib in Resources */,
 				0FE8B42A22B0A45B00ECAD07 /* GKHomeReusableView.xib in Resources */,
 				0F22DAB822AF8A81000FC9AE /* LaunchScreen.storyboard in Resources */,
+				8F1A7CB522B5195500BB325E /* GKBookDetailCell.xib in Resources */,
 				0F6C5FFC22B3ABDD00A4C2BE /* GKBookDetailTabbar.xib in Resources */,
 				0F22DAB522AF8A81000FC9AE /* Assets.xcassets in Resources */,
 				0F6C5FC522B33FD100A4C2BE /* GKSearchTextView.xib in Resources */,
 				0F8AA7EA22B0DDFF00332ECB /* GKClassflyCell.xib in Resources */,
+				8F1A7CBA22B536B500BB325E /* GKBookDetailCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,11 +735,14 @@
 				0F6C5FDE22B37CA100A4C2BE /* ATSheetView.m in Sources */,
 				0F8AA7DA22B0CD6800332ECB /* GKClassItemController.m in Sources */,
 				0F7BC03322B1F1F5000B267B /* GKMineCell.m in Sources */,
+				8F1A7CC022B682AC00BB325E /* GKBooCaseController.m in Sources */,
 				0F5F63F122AFA2D8009096BD /* BaseNetTool.m in Sources */,
 				0F7BC03A22B1FAD6000B267B /* GKMineRankController.m in Sources */,
 				0F5F640422AFB287009096BD /* GKHomeController.m in Sources */,
 				0F5F63D722AFA2D8009096BD /* ProgressWKWebView.m in Sources */,
+				8F1A7CB922B536B500BB325E /* GKBookDetailCollectionCell.m in Sources */,
 				0FEB43CC22B104E0005FF5DF /* GKCollectionViewLayout.m in Sources */,
+				8F1A7CB422B5195500BB325E /* GKBookDetailCell.m in Sources */,
 				0F6C5FC022B339D400A4C2BE /* GKSearchHistoryController.m in Sources */,
 				0FEB43C622B0FD64005FF5DF /* GKRankModel.m in Sources */,
 				0F5F640A22AFB2F3009096BD /* GKMineController.m in Sources */,
@@ -721,6 +752,7 @@
 				0F6C5FDB22B37CA100A4C2BE /* GKNovelNetManager.m in Sources */,
 				0F1B813422B095610061FD7A /* GKBookModel.m in Sources */,
 				0F6C5FF422B3A63200A4C2BE /* GKBookDetailController.m in Sources */,
+				8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */,
 				0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */,
 				0F6C5FC422B33FD100A4C2BE /* GKSearchTextView.m in Sources */,
 				0F6C5FE922B37CD600A4C2BE /* AppDelegate.m in Sources */,
@@ -864,8 +896,9 @@
 			baseConfigurationReference = 8980FBFCE4E375292C7A93A9 /* Pods-GKiOSNovel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				DEVELOPMENT_TEAM = 84H56RC9VF;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/App/GKiOSNovel.pch";
@@ -875,8 +908,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.3733SDK.sdk;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zy-com.024";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -886,8 +920,9 @@
 			baseConfigurationReference = 0799E86D2A4A4DE739E82B6D /* Pods-GKiOSNovel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				DEVELOPMENT_TEAM = 84H56RC9VF;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/App/GKiOSNovel.pch";
@@ -897,8 +932,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.3733SDK.sdk;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zy-com.024";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

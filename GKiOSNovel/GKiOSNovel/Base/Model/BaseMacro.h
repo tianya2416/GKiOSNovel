@@ -23,7 +23,7 @@
 #define placeholdersmall [UIImage imageNamed:@"placeholder_small"]
 
 #pragma mark login
-static  NSString *BaseUrl = @"http://api.zhuishushenqi.com/";
+#define BaseUrl  @"http://api.zhuishushenqi.com/"
 #define kBaseUrl(url)  [NSString stringWithFormat:@"%@%@", BaseUrl, url]
 
 #define RefreshPageStart (1)
@@ -31,7 +31,7 @@ static  NSString *BaseUrl = @"http://api.zhuishushenqi.com/";
 
 #ifdef DEBUG
 #ifndef NSLog
-#   define NSLog(...)
+//#   define NSLog(...)
 #endif
 #endif
 NS_ASSUME_NONNULL_BEGIN

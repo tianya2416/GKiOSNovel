@@ -24,7 +24,16 @@
     UIViewController *nvc = [UIViewController rootTopPresentedController];
     GKBookDetailController *vc = [GKBookDetailController vcWithBookId:bookId];
     vc.hidesBottomBarWhenPushed = YES;
-    [nvc.navigationController pushViewController:vc animated:YES];
+    NSArray <UIViewController *>*list =  nvc.navigationController.viewControllers;
+    NSMutableArray *vcs = @[].mutableCopy;
+    [list enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (![obj isKindOfClass:GKBookDetailController.class]) {
+            [vcs addObject:obj];
+        }
+    }];
+    [vcs addObject:vc];
+    [nvc.navigationController setViewControllers:vcs animated:YES];
+   // [nvc.navigationController pushViewController:vc animated:YES];
 }
 +  (UIWindow *)window
 {

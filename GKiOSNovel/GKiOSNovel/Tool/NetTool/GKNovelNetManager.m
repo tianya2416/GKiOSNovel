@@ -39,17 +39,6 @@
                             };
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"book/by-categories") params:params success:success failure:failure];
 }
-+ (void)songDetail:(NSString *)albumId title:(NSString *)title page:(NSInteger)page success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-    NSDictionary *params = @{
-                             @"albumId": albumId?:@"",
-                             @"title": title?:@"",
-                             @"device": @"ios",
-                             @"position": @"1",
-                             @"isAsc": @"1"
-                             };
-    NSString *url = [NSString stringWithFormat:@"mobile/others/ca/album/track/%@/true/%@/%@?",albumId?:@"",@(page),@(RefreshPageSize)];
-    [BaseNetManager method:HttpMethodPost urlString:kBaseUrl(url) params:params success:success failure:failure];
-}
 + (void)homeSearch:(NSString *)hotWord page:(NSInteger)page success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{
                              @"query":hotWord ?:@"",
@@ -61,5 +50,28 @@
 + (void)bookDetail:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSString *url = [NSString stringWithFormat:@"book/%@",bookId?:@""];
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:nil success:success failure:failure];
+}
+//推荐列表
++ (void)bookCommend:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSString *url = [NSString stringWithFormat:@"book/%@/recommend",bookId?:@""];
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:nil success:success failure:failure];
+}
+//推荐书单
++ (void)bookListCommend:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSString *url = [NSString stringWithFormat:@"book-list/%@/recommend",bookId?:@""];
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:nil success:success failure:failure];
+}
+//推荐书单详情
++ (void)bookListDetail:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSString *url = [NSString stringWithFormat:@"book-list/%@/",bookId?:@""];
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:nil success:success failure:failure];
+}
+//书源
++ (void)bookSummary:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSDictionary *params = @{
+                             @"book":bookId ?:@"",
+                             @"view":@"summary",//服务器接口要求
+                             };
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"toc") params:params success:success failure:failure];
 }
 @end
