@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GKReadBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWQ-Ci-F3f">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="ESA-Rj-hlO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="Button"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAY-of-VSL">
+                    <rect key="frame" x="125" y="11" width="125" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p1-xs-g8g">
+                    <rect key="frame" x="250" y="11" width="125" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="Button"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.1450980392" green="0.14901960780000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="GAY-of-VSL" firstAttribute="width" secondItem="2p1-xs-g8g" secondAttribute="width" id="4FR-iM-7HW"/>
+                <constraint firstItem="SWQ-Ci-F3f" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="9Mr-MT-zQd"/>
+                <constraint firstItem="GAY-of-VSL" firstAttribute="centerY" secondItem="SWQ-Ci-F3f" secondAttribute="centerY" id="F90-wu-ORX"/>
+                <constraint firstItem="GAY-of-VSL" firstAttribute="width" secondItem="SWQ-Ci-F3f" secondAttribute="width" id="O6d-m1-0Cu"/>
+                <constraint firstItem="2p1-xs-g8g" firstAttribute="centerY" secondItem="GAY-of-VSL" secondAttribute="centerY" id="Ubb-tQ-4Wa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2p1-xs-g8g" secondAttribute="trailing" id="Z8M-Sd-p5L"/>
+                <constraint firstItem="2p1-xs-g8g" firstAttribute="leading" secondItem="GAY-of-VSL" secondAttribute="trailing" id="iyv-c5-v97"/>
+                <constraint firstItem="SWQ-Ci-F3f" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="oAD-eq-Ko8"/>
+                <constraint firstItem="GAY-of-VSL" firstAttribute="leading" secondItem="SWQ-Ci-F3f" secondAttribute="trailing" id="qUe-rg-VOX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="53.600000000000001" y="65.217391304347828"/>
+        </view>
+    </objects>
+</document>

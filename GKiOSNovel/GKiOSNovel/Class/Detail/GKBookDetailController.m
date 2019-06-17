@@ -86,7 +86,7 @@
     }
 }
 - (void)readAction{
-    
+    [GKJumpApp jumpToReadBook:self.bookId];
 }
 #pragma mark UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -152,7 +152,8 @@
         GKBookModel *model = object;
         [GKJumpApp jumpToBookDetail:model._id];
     }else if ([object isKindOfClass:GKBookListModel.class]){
-
+        GKBookListModel *model = object;
+        [GKJumpApp jumpToBookListDetail:model._id];
     }
 }
 #pragma mark get

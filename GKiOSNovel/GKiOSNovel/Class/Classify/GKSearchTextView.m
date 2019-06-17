@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
+    self.backgroundColor = AppColor;
     self.searchView.layer.masksToBounds = YES;
     self.searchView.layer.cornerRadius = AppRadius;
     self.textField.placeholder = @"作者/书名";

@@ -35,7 +35,7 @@ static NSString *bookCase = @"书架";
 }
 - (void)reloadUI{
     GKUserState state = [GKUserManager shareInstance].user.state;
-    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")},@{@"title":bookCase?:@"",@"subTitle":@""}];
+    self.listData = @[@{@"title":bookCase?:@"",@"subTitle":@""},@{@"title":rank,@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")}];
     [self.tableView reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

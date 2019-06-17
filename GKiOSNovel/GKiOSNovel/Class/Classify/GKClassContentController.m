@@ -171,7 +171,6 @@
 - (GKNewNavBarView *)navBarView{
     if (!_navBarView) {
         _navBarView = [GKNewNavBarView instanceView];
-        _navBarView.backgroundColor = AppColor;
         [_navBarView.moreBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _navBarView;

@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNZ-FF-Jg4">
-                        <rect key="frame" x="38" y="10" width="37" height="20"/>
+                        <rect key="frame" x="20" y="10" width="37" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="dAb-mE-WL9"/>
                         </constraints>
@@ -48,8 +48,8 @@
                 <constraint firstAttribute="bottom" secondItem="mK9-mS-yRo" secondAttribute="bottom" constant="40" id="PLA-tq-blu"/>
                 <constraint firstItem="wNZ-FF-Jg4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="VZy-Cp-pZM"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aHj-Av-nNq" secondAttribute="bottom" id="XKK-Qh-hTG"/>
-                <constraint firstItem="wNZ-FF-Jg4" firstAttribute="trailing" secondItem="mK9-mS-yRo" secondAttribute="trailing" constant="-25" id="Yn2-L3-20G"/>
                 <constraint firstItem="aHj-Av-nNq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="jcU-pc-gsN"/>
+                <constraint firstItem="wNZ-FF-Jg4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="lJJ-Qe-9bx"/>
                 <constraint firstItem="mK9-mS-yRo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="m9R-pc-lXa"/>
                 <constraint firstAttribute="trailing" secondItem="aHj-Av-nNq" secondAttribute="trailing" constant="5" id="rlu-79-rVg"/>
             </constraints>

@@ -19,9 +19,7 @@
         !success ?: success(object[@"ranking"]);
     } failure:failure];
 }
-//+ (void)homeSearch:(NSString *)rankId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-//    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"ranking/5a6844aafc84c2b8efaa6b6e") params:nil success:success failure:failure];
-//}
+
 + (void)homeClass:(NSString *)category success:(void(^)(id object))success failure:(void(^)(NSString *error))failure
 {
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"cats/lv2/statistics") params:nil success:^(id object) {
@@ -74,4 +72,27 @@
                              };
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"toc") params:params success:success failure:failure];
 }
++ (void)bookChapters:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSDictionary *params = @{
+                             @"view":@"chapters",//服务器接口要求
+                             };
+    NSString *url = [NSString stringWithFormat:@"toc/%@",bookId?:@""];
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:params success:success failure:failure];
+}
++ (void)bookContent:(NSString *)url success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+   //url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+   NSString * urlStr = [NSString stringWithFormat:@"https://chapter2.zhuishushenqi.com/chapter/%@",url];
+   [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil success:success failure:failure];
+}
++ (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
+    NSDictionary *params = @{@"id":bookId?:@"",
+                             @"view":@"updated",//服务器接口要求
+                             };
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"book") params:params success:success failure:failure];
+}
+//+ (NSString *)encodeToPercentEscapeString:(NSString *)input {
+//    NSString *outputStr = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(__bridge CFStringRef)input, NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
+//    return outputStr;
+//}
+
 @end

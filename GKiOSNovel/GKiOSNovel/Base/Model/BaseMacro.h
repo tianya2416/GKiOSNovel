@@ -24,7 +24,10 @@
 
 #pragma mark login
 #define BaseUrl  @"http://api.zhuishushenqi.com/"
+#define BaseUrlIcon  @"https://statics.zhuishushenqi.com"
+
 #define kBaseUrl(url)  [NSString stringWithFormat:@"%@%@", BaseUrl, url]
+#define kBaseUrlIcon(url)  [NSString stringWithFormat:@"%@%@", BaseUrlIcon, url]
 
 #define RefreshPageStart (1)
 #define RefreshPageSize (35)

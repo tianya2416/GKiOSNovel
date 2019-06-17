@@ -34,8 +34,8 @@
         self.subTitleLab.text = model.shortIntro ?:@"";
         self.nickNameLab.text = model.author ?:@"";
         self.monthLab.text = [NSString stringWithFormat:@"%@",[@(model.latelyFollower) decimalString]];
-        [self.focusBtn setTitle:[NSString stringWithFormat:@"关注度:%@%@",@(model.retentionRatio),@"%"] forState:UIControlStateNormal];
-        [self.stateBtn setTitle:model.allowMonthly?@"完结":@"连载" forState:UIControlStateNormal];
+        [self.focusBtn setTitle:[NSString stringWithFormat:@"关注度:%.2f%@",model.retentionRatio,@"%"] forState:UIControlStateNormal];
+        [self.stateBtn setTitle:model.majorCate forState:UIControlStateNormal];
     }
 }
 @end

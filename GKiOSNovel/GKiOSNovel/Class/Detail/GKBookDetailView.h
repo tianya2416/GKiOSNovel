@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GKBookDetailModel.h"
+#import "GKBookListDetailModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookDetailView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *contentTitleLab;
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLab;
+@property (weak, nonatomic) IBOutlet UIButton *lvBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLab;
 
-@property (strong, nonatomic) GKBookDetailModel *model;
+@property (strong, nonatomic) GKBookListDetailModel *model;
 
 @end
 

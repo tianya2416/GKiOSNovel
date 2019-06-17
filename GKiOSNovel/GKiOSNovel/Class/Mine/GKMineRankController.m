@@ -19,7 +19,7 @@
     [super viewDidLoad];
     [self showNavTitle:@"自定义首页"];
     [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_nav_add"] action:@selector(addAction)];
-    [self setupEmpty:self.tableView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角添加"];
+    [self setupEmpty:self.tableView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角进行添加"];
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -77,6 +77,6 @@
     }];
 }
 - (void)addAction{
-    [self.navigationController pushViewController:[GKMineSelectController new] animated:YES];
+   [GKJumpApp jumpToAddSelect];
 }
 @end

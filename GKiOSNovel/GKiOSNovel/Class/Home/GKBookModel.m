@@ -9,7 +9,9 @@
 #import "GKBookModel.h"
 
 @implementation GKBookModel
-
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"majorCate" : @[@"majorCate",@"cat"]};
+}
 @end
 
 

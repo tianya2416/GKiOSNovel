@@ -13,6 +13,7 @@
     [super awakeFromNib];
     self.searchView.layer.masksToBounds = YES;
     self.searchView.layer.cornerRadius = AppRadius;
+    self.backgroundColor = AppColor;
 }
 - (void)setState:(GKUserState)state{
     if (_state != state) {

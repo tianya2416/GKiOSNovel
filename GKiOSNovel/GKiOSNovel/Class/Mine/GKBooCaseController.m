@@ -10,6 +10,7 @@
 #import "GKHomeHotCell.h"
 @interface GKBooCaseController ()
 @property (strong, nonatomic) NSMutableArray *listData;
+@property (assign, nonatomic) BOOL needRequesst;
 @end
 
 @implementation GKBooCaseController
@@ -20,11 +21,15 @@
     self.listData = @[].mutableCopy;
     [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到数据详情页收藏你喜欢的书籍吧"];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
+    self.needRequesst = NO;
     
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self headerRefreshing];
+    if (self.needRequesst) {
+        [self headerRefreshing];
+    }
+    self.needRequesst = YES;
 }
 - (void)refreshData:(NSInteger)page{
     [GKBookCaseDataQueue getDatasFromDataBase:page pageSize:RefreshPageSize completion:^(NSArray<NSString *> * _Nonnull listData) {

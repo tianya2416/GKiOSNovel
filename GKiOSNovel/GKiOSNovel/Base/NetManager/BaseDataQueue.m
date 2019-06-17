@@ -121,7 +121,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                 if ([db open]) {
                     NSData * data = [BaseDataQueue archivedDataForData:userInfo];
                     // NSString * v5TableSql = [NSString stringWithFormat:@"replace into '%@' (data,'%@') values (?,?)",tableName ?: @"",primaryId ?: @""];
-                    NSString * v5TableSql = [NSString stringWithFormat:@"update %@ set data = ? where %@ ='%@'",tableName ?:@"", primaryId ?:@""];
+                    NSString * v5TableSql = [NSString stringWithFormat:@"update %@ set data = ? where %@ = '%@'",tableName?:@"",primaryId?:@"",userId?:@""];
                     BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
                     if (res) {//update 'defaultTableManager' set data = ? where 'identy' = ?
                         NSLog(@"update success");
@@ -150,7 +150,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
             [dataQueue inDatabase:^(FMDatabase *db) {
                 if ([db open]) {
                     [db beginTransaction];
-                    NSString * v5TableSql = [NSString stringWithFormat:@"delete from '%@' where %@ = '%@'",tableName ?:@"",primaryId?:@"",userId ?: @""];
+                    NSString * v5TableSql = [NSString stringWithFormat:@"delete from '%@' where %@ = '%@'",tableName,primaryId,userId ?: @""];
                     BOOL res = [db executeUpdate:v5TableSql];
                     if (res) {
                         [db commit];

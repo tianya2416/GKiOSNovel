@@ -19,8 +19,9 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.listData = @[].mutableCopy;
-    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到设置-排行榜-添加项目"];
+    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角进行添加"];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
+    [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_nav_add"] action:@selector(addAction)];
     [GKUserManager reloadHomeDataNeed:^(BOOL loadData) {
         if (loadData) {
             [self headerRefreshing];
@@ -43,6 +44,9 @@
             [self endRefresh:NO];
         }
     }];
+}
+- (void)addAction{
+    [GKJumpApp jumpToAddSelect];
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return self.listData.count;
