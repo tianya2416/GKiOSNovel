@@ -68,31 +68,27 @@
 + (void)bookSummary:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{
                              @"book":bookId ?:@"",
-                             @"view":@"summary",//服务器接口要求
+                             @"view":@"summary",
                              };
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"toc") params:params success:success failure:failure];
 }
 + (void)bookChapters:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{
-                             @"view":@"chapters",//服务器接口要求
+                             @"view":@"chapters",
                              };
+    
     NSString *url = [NSString stringWithFormat:@"toc/%@",bookId?:@""];
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:params success:success failure:failure];
 }
 + (void)bookContent:(NSString *)url success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-   //url = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+   url = [url stringByURLEncode];
    NSString * urlStr = [NSString stringWithFormat:@"https://chapter2.zhuishushenqi.com/chapter/%@",url];
    [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil success:success failure:failure];
 }
 + (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{@"id":bookId?:@"",
-                             @"view":@"updated",//服务器接口要求
+                             @"view":@"updated",
                              };
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"book") params:params success:success failure:failure];
 }
-//+ (NSString *)encodeToPercentEscapeString:(NSString *)input {
-//    NSString *outputStr = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(__bridge CFStringRef)input, NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
-//    return outputStr;
-//}
-
 @end

@@ -36,7 +36,7 @@
         _listData = listData;
     }else{
         NSInteger index = arc4random() % (listData.count - 6);
-        _listData = [listData subarrayWithRange:NSMakeRange(index, 6)];
+        _listData = [listData subarrayWithRange:NSMakeRange(0, 6)];
     }
 }
 @end

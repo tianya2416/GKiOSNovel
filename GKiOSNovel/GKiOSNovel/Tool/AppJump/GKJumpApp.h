@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "GKBookDetailModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKJumpApp : NSObject
@@ -15,6 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)jumpToBookDetail:(NSString *)bookId;
 + (void)jumpToBookListDetail:(NSString *)bookId;
 + (void)jumpToAddSelect;
-+ (void)jumpToReadBook:(NSString *)bookId;
++ (void)jumpToReadBook:(GKBookDetailModel *)model;
 @end
 NS_ASSUME_NONNULL_END

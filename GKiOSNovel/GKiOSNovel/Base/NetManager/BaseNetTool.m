@@ -34,13 +34,16 @@
     }
     netManager.requestSerializer.timeoutInterval = timeOut;
     netManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
-    [netManager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+   // [netManager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [netManager.requestSerializer setValue:@"chrome" forHTTPHeaderField:@"User-Agent"];
+   // [request addValue:@"chrome" forHTTPHeaderField:@"User-Agent"];
     // 2.加上这个函数，https ssl 验证。
     // [netManager setSecurityPolicy:[BaseNetManager securityPolicy]];
     
     switch (method) {
         case HttpMethodGet: {
-            urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            //部分接口不需要二次encode
+            //urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
             return [netManager GET:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 !success ?: success(responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -112,7 +115,7 @@
         case HttpMethodGet:{
             methods = @"GET";
             urlString = [NSString stringWithFormat:@"%@%@%@",urlString,params ?@"?":@"",AFQueryStringFromParameters(params)];
-             urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         }break;
         case HttpMethodPost:
             methods = @"POST";
@@ -133,6 +136,7 @@
     switch (serializer) {
         case HttpSerializeDefault:
             [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            [request addValue:@"chrome" forHTTPHeaderField:@"User-Agent"];
             if ([methods isEqualToString:@"POST"]) {
                 request.HTTPBody = [AFQueryStringFromParameters(params) dataUsingEncoding:NSUTF8StringEncoding];
             }

@@ -32,7 +32,6 @@
         self.listData = [NSArray modelArrayWithClass:GKClassItemModel.class json:object];
         [self.collectionView reloadData];
         [self endRefresh:NO];
-        NSLog(@"%@",object);
     } failure:^(NSString * _Nonnull error) {
         [self endRefreshFailure];
     }];

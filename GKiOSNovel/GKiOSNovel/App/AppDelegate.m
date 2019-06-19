@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GKNovelTabBarController.h"
 #import "GKStartViewController.h"
+#import "BaseNetCache.h"
 @interface AppDelegate ()
 
 @end
@@ -18,8 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-
-
+    [BaseNetCache diskCacheSize];
     [GKJumpApp jumpToAppGuidePage:^{
          self.window.rootViewController = [[GKNovelTabBarController alloc] init];
     }];

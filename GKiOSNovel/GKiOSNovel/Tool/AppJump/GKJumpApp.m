@@ -12,6 +12,7 @@
 #import "GKBookListDetailController.h"
 #import "GKMineSelectController.h"
 #import "GKReadViewController.h"
+#import "GKReadContentController.h"
 @implementation GKJumpApp
 + (void)jumpToAppGuidePage:(void(^)(void))completion
 {
@@ -58,9 +59,9 @@
     vc.hidesBottomBarWhenPushed = YES;
     [nvc.navigationController pushViewController:vc animated:YES];
 }
-+ (void)jumpToReadBook:(NSString *)bookId{
++ (void)jumpToReadBook:(GKBookDetailModel *)model{
     UIViewController *nvc = [UIViewController rootTopPresentedController];
-    GKReadViewController *vc = [[GKReadViewController alloc] init];
+    GKReadContentController *vc = [GKReadContentController vcWithBookDetailModel:model];
     vc.hidesBottomBarWhenPushed = YES;
     [nvc presentViewController:vc animated:NO completion:nil];
 }

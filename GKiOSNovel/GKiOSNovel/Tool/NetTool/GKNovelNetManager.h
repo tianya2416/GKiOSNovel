@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 //章节列表
 + (void)bookChapters:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 //章节内容
-+ (void)bookContent:(NSString *)url success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
++ (void)bookContent:(NSString *)linkUrl success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 //更新内容
 + (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 @end

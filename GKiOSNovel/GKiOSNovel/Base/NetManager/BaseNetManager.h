@@ -17,9 +17,9 @@
                          success:(void(^)(id object))success
                          failure:(void(^)(NSString *error))failure;
 + (NSURLSessionDataTask *)method:(HttpMethod)method
-                      serializer:(HttpSerializer)serializer
                        urlString:(NSString *)urlString
                           params:(NSDictionary *)params
+                           cache:(BOOL)cache
                          success:(void(^)(id object))success
                          failure:(void(^)(NSString *error))failure;
 /**

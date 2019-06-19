@@ -345,7 +345,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
 - (FMDatabaseQueue *)dataQueue
 {
     if (!_dataQueue) {
-        NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/House"];
+        NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/Sqlite"];
         if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath]) {
             BOOL res = [[NSFileManager defaultManager]createDirectoryAtPath:stringPath withIntermediateDirectories:YES attributes:nil error:nil];
             if (res) {

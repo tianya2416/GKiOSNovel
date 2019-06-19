@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BaseDataQueue : NSObject
 
 @property(strong, nonatomic,readonly)FMDatabaseQueue *dataQueue;
-
 /**
  *  @brief 单利
  */

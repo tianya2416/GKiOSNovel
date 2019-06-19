@@ -25,8 +25,17 @@
 }
 + (instancetype)successModel:(id)response urlString:(NSString *)urlString params:(NSDictionary *)params headParams:(NSDictionary *)headParams
 {
-    BaseNetModel * model = [BaseNetModel modelWithJSON:response];
-    model.allResultData = response;
+    NSDictionary *allResultData = nil;
+    if ([response isKindOfClass:NSArray.class]&&response) {
+        allResultData = @{@"resultset":response,@"ok":@"1"};
+    }else if([response isKindOfClass:NSDictionary.class]){
+        allResultData = response;
+    }else{
+        BOOL res = ![response isKindOfClass:NSArray.class] || ![response isKindOfClass:NSDictionary.class];
+        NSAssert(!res,@"response must NSArray or NSDictionary");
+    }
+    BaseNetModel * model = [BaseNetModel modelWithJSON:allResultData];
+    model.allResultData = allResultData;
     model.requestUrl = urlString;
     model.params = params;
     model.headParams = headParams;
@@ -68,7 +77,7 @@
     }else if ([response isKindOfClass:[NSArray class]]){
         obj = response;
     }
-    NSLog(@"%@",obj);
+//    NSLog(@"%@",obj);
     return obj;
 }
 + (instancetype)netErrorModel:(NSString *)error
