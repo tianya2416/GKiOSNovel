@@ -11,6 +11,7 @@
 @interface GKBooCaseController ()
 @property (strong, nonatomic) NSMutableArray *listData;
 @property (assign, nonatomic) BOOL needRequesst;
+@property (assign, nonatomic) BOOL editor;
 @end
 
 @implementation GKBooCaseController
@@ -22,7 +23,8 @@
     [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到书籍详情页收藏你喜欢的书籍吧"];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
     self.needRequesst = NO;
-    
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+    [self.collectionView addGestureRecognizer:longPressGesture];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -58,8 +60,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GKHomeHotCell *cell = [GKHomeHotCell cellForCollectionView:collectionView indexPath:indexPath];
+    @weakify(self)
+    @weakify(cell)
+    [cell.deleteBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        @strongify(self)
+        @strongify(cell)
+        [self deleteAction:cell.model];
+    }];
     GKBookModel *model = self.listData[indexPath.row];
     cell.model = model;
+    cell.deleteBtn.hidden = !self.editor;
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
@@ -83,15 +93,52 @@
     GKBookModel *model = self.listData[indexPath.row];
     [GKJumpApp jumpToBookDetail:model._id];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.editor;
 }
-*/
+- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(nonnull NSIndexPath *)sourceIndexPath toIndexPath:(nonnull NSIndexPath *)destinationIndexPath
+{
+    [self.listData exchangeObjectAtIndex:sourceIndexPath.item withObjectAtIndex:destinationIndexPath.item];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
+}
+- (void)deleteAction:(GKBookModel *)model{
+    [ATAlertView showTitle:[NSString stringWithFormat:@"确定将%@从书架中移除",model.title] message:nil normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
+        if (index > 0) {
+            [GKBookCaseDataQueue deleteDataToDataBase:model._id completion:^(BOOL success) {
+                if (success) {
+                    [self.listData removeObject:model];
+                    self.editor = NO;
+                    [self.collectionView reloadData];
+                }
+            }];
+        }
+    }];
+}
+- (void)longPressAction:(UILongPressGestureRecognizer *)longPress {
+    CGPoint point = [longPress locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    switch (longPress.state) {
+        case UIGestureRecognizerStateBegan:
+            if (!indexPath) {
+                break;
+            }
+            [self.collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
+            break;
+        case UIGestureRecognizerStateChanged:
+            [self.collectionView updateInteractiveMovementTargetPosition:point];
+            break;
+        case UIGestureRecognizerStateEnded:
+            self.editor = !self.editor;
+            [self.collectionView reloadData];
+            [self.collectionView endInteractiveMovement];
+            break;
+        default:
+            [self.collectionView cancelInteractiveMovement];
+            break;
+    }
+}
+
 
 @end

@@ -29,8 +29,26 @@
     }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         if (arrayDatas.count) {
-            NSArray *datas = [GKHomeNetManager sortedArrayUsingComparator:arrayDatas key:@"bookSort" ascending:YES];
-            !success ?: success(datas);
+            
+            dispatch_group_t groupQueue = dispatch_group_create();
+            dispatch_group_enter(groupQueue);
+            __block GKBookInfo *bookCase = nil;
+            [GKBookCaseDataQueue getDatasFromDataBase:^(NSArray<GKBookDetailModel *> * _Nonnull listData) {
+                bookCase = [[GKBookInfo alloc] init];
+                bookCase.shortTitle = @"我的书架";
+                bookCase.listData = listData;
+                dispatch_group_leave(groupQueue);
+            }];
+            dispatch_group_notify(groupQueue, dispatch_get_main_queue(), ^{
+                NSMutableArray *datas = [GKHomeNetManager sortedArrayUsingComparator:arrayDatas key:@"bookSort" ascending:YES].mutableCopy;
+                if (bookCase.listData.count > 0) {
+                    [datas insertObject:bookCase atIndex:0];
+                }
+                !success ?: success(datas.copy);
+            });
+//            [GKBookReadDataQueue getDatasFromDataBase:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
+//
+//            }];
         }else{
             !failure ?:failure(@"");
         }

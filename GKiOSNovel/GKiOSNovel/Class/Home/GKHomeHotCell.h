@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 @property (weak, nonatomic) IBOutlet UIButton *tagBtn;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
 @property (strong, nonatomic) GKBookModel *model;
 

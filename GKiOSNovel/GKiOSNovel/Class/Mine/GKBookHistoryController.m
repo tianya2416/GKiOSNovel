@@ -78,17 +78,29 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
-- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除";
+//设置返回存放侧滑按钮数组
+-(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //这是iOS8以后的方法
+
+    GKBookReadModel*model = self.listData[indexPath.row];
+    UITableViewRowAction *deleBtn = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [self deleteAction:model];
+    }];
+    UITableViewRowAction *topBtn = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"置顶" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [self topAction:model];
+    }];
+   // deleBtn.backgroundColor = [UIColor colorWithRGB:0x71d321];
+    topBtn.backgroundColor = AppColor;
+    return @[topBtn,deleBtn];
+    
 }
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete;
-}
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self deleteAction:self.listData[indexPath.row]];
-    }
+- (void)topAction:(GKBookReadModel *)model{
+    model.updateTime = @"";
+    [GKBookReadDataQueue updateDataToDataBase:model completion:^(BOOL success) {
+        if (success) {
+            [self headerRefreshing];
+        }
+    }];
 }
 - (void)deleteAction:(GKBookReadModel *)model{
     [ATAlertView showTitle:[NSString stringWithFormat:@"确定将%@从历史记录删除吗？",model.bookModel.title] message:nil normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
@@ -101,4 +113,5 @@
         }
     }];
 }
+
 @end

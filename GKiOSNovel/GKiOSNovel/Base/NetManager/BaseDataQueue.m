@@ -122,7 +122,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                     NSData * data = [BaseDataQueue archivedDataForData:userInfo];
                     // NSString * v5TableSql = [NSString stringWithFormat:@"replace into '%@' (data,'%@') values (?,?)",tableName ?: @"",primaryId ?: @""];
                     NSString * v5TableSql = [NSString stringWithFormat:@"update %@ set data = ? where %@ = '%@'",tableName?:@"",primaryId?:@"",userId?:@""];
-                    BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
+                    BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data]];
                     if (res) {//update 'defaultTableManager' set data = ? where 'identy' = ?
                         NSLog(@"update success");
                     }
