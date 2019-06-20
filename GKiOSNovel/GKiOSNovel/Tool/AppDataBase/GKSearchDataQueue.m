@@ -156,7 +156,7 @@ static NSString *SearchTable = @"SearchTable";
         [dataQueue inDatabase:^(FMDatabase *db) {
             if ([db open]) {
                 NSString * sql = [NSString stringWithFormat:
-                                  @"select * from '%@' order by updateTime limit %@,%@",SearchTable,@((page-1)*pageSize),@(pageSize)];
+                                  @"select * from '%@' order by updateTime asc limit %@,%@",SearchTable,@((page-1)*pageSize),@(pageSize)];
                 FMResultSet * rs = [db executeQuery:sql];
                 NSString *name = nil;
                 NSMutableArray * array = [[NSMutableArray alloc]init];

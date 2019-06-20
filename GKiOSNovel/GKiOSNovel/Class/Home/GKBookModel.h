@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GKBookModel : BaseModel
 
 @property (copy, nonatomic) NSString *_id;
+@property (copy, nonatomic) NSString *updateTime;
+
 @property (copy, nonatomic) NSString *author;
 @property (copy, nonatomic) NSString *cover;
 @property (copy, nonatomic) NSString *shortIntro;

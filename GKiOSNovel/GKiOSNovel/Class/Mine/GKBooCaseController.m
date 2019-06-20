@@ -19,7 +19,7 @@
     [super viewDidLoad];
     [self showNavTitle:@"书架"];
     self.listData = @[].mutableCopy;
-    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到数据详情页收藏你喜欢的书籍吧"];
+    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到书籍详情页收藏你喜欢的书籍吧"];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
     self.needRequesst = NO;
     

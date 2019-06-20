@@ -67,7 +67,7 @@
 - (void)addAction:(UIButton *)sender{
     
     if (sender.selected) {
-        [ATAlertView showTitle:@"确定取消收藏" message:@"" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
+        [ATAlertView showTitle:@"确定从书架中移出吗？" message:@"" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
             if (index > 0) {
                 [GKBookCaseDataQueue deleteDataToDataBase:self.bookDetail.bookModel._id completion:^(BOOL success) {
                     if (success) {
@@ -80,7 +80,7 @@
         [GKBookCaseDataQueue insertDataToDataBase:self.bookDetail.bookModel completion:^(BOOL success) {
             if (success) {
                 [self reloadUI:YES];
-                [MBProgressHUD showMessage:@"收藏成功" toView:self.view];
+                [MBProgressHUD showMessage:@"已成功放入书架" toView:self.view];
             }
         }];
     }

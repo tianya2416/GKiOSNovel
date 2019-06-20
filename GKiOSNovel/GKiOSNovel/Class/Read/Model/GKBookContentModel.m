@@ -10,12 +10,10 @@
 #import "GKReadManager.h"
 @interface GKBookContentModel()
 @property (strong, nonatomic) NSMutableArray *pageArray;
-@property (assign, nonatomic) NSInteger pageCount;
 @property (strong, nonatomic) NSMutableAttributedString *attributedString;
 @end
 
 @implementation GKBookContentModel
-
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
     return @{@"_id":@[@"id",@"_id"],@"content":@[@"cpContent",@"body",@"content"]};
 }
@@ -23,7 +21,6 @@
     _content = content;
     _content = [_content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
-//    NSLog(@"%@",content);
 }
 - (void)setContentPage {
     [self setPageBound:AppReadContent];
@@ -52,8 +49,10 @@
     if (frameSetter) {
         CFRelease(frameSetter);
     }
-    self.pageCount = self.pageArray.count;
     self.attributedString = attr;
+}
+- (NSInteger)pageCount{
+    return self.pageArray.count;
 }
 - (NSAttributedString *)getContentAtt:(NSInteger)page {
     page = page >= self.pageArray.count ? self.pageArray.count - 1 : page;
@@ -72,11 +71,3 @@
 
 @end
 
-@implementation GKBookContentInfo
-- (NSMutableArray *)listData{
-    if (!_listData) {
-        _listData = [[NSMutableArray alloc] init];
-    }
-    return _listData;
-}
-@end

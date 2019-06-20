@@ -16,4 +16,8 @@
 - (NSString *)bookSourceId{
     return self.listData.firstObject._id ?:@"";
 }
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"listData" : GKBookSourceModel.class
+             };
+}
 @end

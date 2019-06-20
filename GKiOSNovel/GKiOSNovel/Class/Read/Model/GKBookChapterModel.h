@@ -16,12 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *_id;
 @property (copy, nonatomic) NSString *isVip;
 @property (copy, nonatomic) NSString *link;
-@property (copy, nonatomic) NSString *order;
-@property (copy, nonatomic) NSString *partsize;
 @property (copy, nonatomic) NSString *time;
 @property (copy, nonatomic) NSString *title;
-@property (copy, nonatomic) NSString *unreadble;
 
+@property (assign, nonatomic) NSInteger order;
+@property (assign, nonatomic) NSInteger chapterIndex;
+@property (assign, nonatomic) NSInteger partsize;
 @property (assign, nonatomic) NSInteger totalpage;
 @property (assign, nonatomic) NSInteger currency;
 @end

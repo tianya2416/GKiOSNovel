@@ -16,19 +16,31 @@ static YYDiskCache *_diskCache = nil;
     if (!object || !key) {
         return;
     }
-    [BaseNetCache.diskCache setObject:object forKey:key withBlock:completion];
+    [BaseNetCache.diskCache setObject:object forKey:key withBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !completion ?: completion();
+        });
+    }];
 }
 + (void)objectForKey:(NSString *)key completion:(void (^)(NSString * _Nonnull, id<NSCoding> _Nullable))completion{
     if (!key) {
         return;
     }
-    [BaseNetCache.diskCache objectForKey:key withBlock:completion];
+    [BaseNetCache.diskCache objectForKey:key withBlock:^(NSString * _Nonnull key, id<NSCoding>  _Nullable object) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !completion ?: completion(key,object);
+        });
+    }];
 }
 + (void)removeObjectForKey:(NSString *)key completion:(void (^)(NSString * _Nonnull))completion{
     if (!key ) {
         return;
     }
-    [BaseNetCache.diskCache removeObjectForKey:key withBlock:completion];
+    [BaseNetCache.diskCache removeObjectForKey:key withBlock:^(NSString * _Nonnull key) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !completion ?: completion(key);
+        });
+    }];
 }
 + (void)removeDiskCache{
     [BaseNetCache.diskCache removeAllObjectsWithBlock:^{

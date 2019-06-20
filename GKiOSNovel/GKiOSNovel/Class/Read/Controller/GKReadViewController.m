@@ -19,7 +19,7 @@
 
 @implementation GKReadViewController
 - (void)dealloc{
-    NSLog(@"%@ dealloc",self.class);
+    //NSLog(@"%@ dealloc",self.class);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,8 +31,9 @@
     self.pageIndex = currentPage;
     self.chapterIndex = chapter;
     self.readView.content = content;
-    self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage+1),@(totalPage)];
     self.titleLab.text = title ?:@"";
+    currentPage = currentPage + 1 >totalPage ? totalPage : currentPage + 1;
+    self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage),@(totalPage)];
 }
 
 - (void)loadUI{

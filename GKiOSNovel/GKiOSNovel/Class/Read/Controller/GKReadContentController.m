@@ -11,6 +11,7 @@
 #import "GKBookSourceModel.h"
 #import "GKBookChapterModel.h"
 #import "GKBookContentModel.h"
+#import "GKBookReadModel.h"
 #import "GKReadTopView.h"
 #import "GKReadBottomView.h"
 #import "GKReadView.h"
@@ -26,9 +27,10 @@
 @property (strong, nonatomic) GKBookChapterInfo *bookChapter;
 @property (strong, nonatomic) GKBookContentModel *bookContent;
 
+@property (strong, nonatomic) GKBookReadModel *bookModel;
+
 @property (assign, nonatomic) NSInteger chapter;
 @property (assign, nonatomic) NSInteger pageIndex;
-@property (assign, nonatomic) BOOL forward;
 @end
 
 @implementation GKReadContentController
@@ -37,19 +39,28 @@
     vc.model = model;
     return vc;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadUI];
-    [self loadData];
+    [GKBookReadDataQueue getDataFromDataBase:self.model._id completion:^(GKBookReadModel * _Nonnull bookModel) {
+        if (bookModel.bookSource.bookSourceId && bookModel.bookChapter.link) {
+            self.bookModel = bookModel;
+            self.chapter = bookModel.bookChapter.chapterIndex ?: 0;
+            self.pageIndex = bookModel.bookContent.pageIndex ?: 0;
+            [self loadBookContent:YES chapter:self.chapter];
+        }else{
+            self.chapter = 0;
+            self.pageIndex = 0;
+            [self loadData];
+        }
+    }];
 }
 - (void)loadUI{
-    self.chapter = 0;
-    self.pageIndex = 0;
-    
     self.topView.titleLab.text = self.model.title?:@"";
     self.fd_prefersNavigationBarHidden = YES;
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    self.pageViewController.doubleSided = NO;
+    self.pageViewController.doubleSided = YES;
     
     
     self.pageViewController.dataSource = self;
@@ -63,7 +74,7 @@
     
     [self.pageViewController didMoveToParentViewController:self];
 
-    [self performSelector:@selector(tapAction) withObject:nil afterDelay:3];
+    [self performSelector:@selector(tapAction) withObject:nil afterDelay:2];
     [self.view addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.topView.superview);
@@ -85,9 +96,10 @@
 - (UIViewController *)viewControllerAtPage:(NSUInteger)pageIndex chapter:(NSInteger)chapterIndex
 {
     GKReadViewController *vc = [[GKReadViewController alloc] init];
-    if (chapterIndex != self.chapter) {
+    self.pageIndex = pageIndex;
+    if (self.chapter != chapterIndex) {
         self.chapter = chapterIndex;
-        [self loadBookContent:chapterIndex];
+        [self loadBookContent:NO chapter:self.chapter];
     }
     [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title content:[self.bookContent getContentAtt:pageIndex]];
     return vc;
@@ -116,47 +128,75 @@
     });
     dispatch_async(queue, ^{
         dispatch_semaphore_wait(sem2,DISPATCH_TIME_FOREVER);
-        [self loadBookContent:0];
+        [self loadBookContent:NO chapter:self.chapter];
     });
 }
 
-- (void)loadBookContent:(NSInteger )chapterIndex{
-    if (self.bookChapter.chapters.count > chapterIndex) {
-        GKBookChapterModel *model = self.bookChapter.chapters[chapterIndex];
-        [GKNovelNetManager bookContent:model.link success:^(id  _Nonnull object) {
-            self.bookContent = [GKBookContentModel modelWithJSON:object[@"chapter"]];
-            [self.bookContent setContentPage];
-            [self reloadUI];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        } failure:^(NSString * _Nonnull error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        }];
-    }else{
-        [MBProgressHUD showMessage:@"没有下一章了"];
+- (void)loadBookContent:(BOOL)history chapter:(NSInteger)chapterIndex{
+    GKBookChapterModel *model = nil;
+    if (history) {
+        model = self.bookModel.bookChapter;
+    }else if (!self.bookChapter){
+        [self loadData];
+        return;
     }
+    else if(self.bookChapter.chapters.count > chapterIndex)
+    {
+        model = self.bookChapter.chapters[chapterIndex];
+    }
+    else if (self.bookChapter.chapters.count <= chapterIndex){
+        [MBProgressHUD showMessage:@"没有下一章了"];
+        return;
+    }
+    model.chapterIndex = chapterIndex;
+    BOOL maxIndex = (self.pageIndex+1 == self.bookContent.pageCount) ? YES : NO;
+    [GKNovelNetManager bookContent:model.link success:^(id  _Nonnull object) {
+        self.bookContent = [GKBookContentModel modelWithJSON:object[@"chapter"]];
+        [self.bookContent setContentPage];
+        [self reloadUI:history maxIndex:maxIndex];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } failure:^(NSString * _Nonnull error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
-- (void)reloadUI{
+- (void)reloadUI:(BOOL)history maxIndex:(BOOL)maxIndex
+{
+    if (!history) {
+        self.pageIndex = maxIndex ? self.bookContent.pageCount - 1 : 0;
+    }
+    [self insertDataQueue];
     UIViewController *vc = [self viewControllerAtPage:self.pageIndex chapter:self.chapter];
     [self.pageViewController setViewControllers:@[vc]
                                       direction:UIPageViewControllerNavigationDirectionReverse
                                        animated:NO
                                      completion:nil];
+
+}
+- (void)insertDataQueue{
+    GKBookChapterModel *chapterModel = [self.bookChapter.chapters objectSafeAtIndex:self.chapter] ? : self.bookModel.bookChapter;
+    GKBookSourceInfo *souceInfo = self.bookSource ?: self.bookModel.bookSource;
+    GKBookContentModel *contentModel = self.bookContent ?: self.bookModel.bookContent;
+    chapterModel.chapterIndex = self.chapter;
+    contentModel.pageIndex = self.pageIndex;
+    
+    GKBookReadModel *readModel = [GKBookReadModel vcWithBookId:self.model._id bookSource:souceInfo bookChapter:chapterModel bookContent:contentModel bookModel:self.model];
+    [GKBookReadDataQueue insertDataToDataBase:readModel completion:^(BOOL success) {
+        if (success) {
+            NSLog(@"insert successful");
+        }
+    }];
 }
 #pragma mark UIPageViewControllerDelegate,UIPageViewControllerDataSource
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(GKReadViewController *)viewController {
-    NSLog(@"%s", __FUNCTION__);
     NSInteger pageIndex = viewController.pageIndex;
     NSUInteger chapter = viewController.chapterIndex;
     if (pageIndex == 0 && chapter == 0){
         return nil;
     }
-    if (pageIndex > 0) {
+    if (pageIndex >= 0) {
         pageIndex = pageIndex - 1;
     }else{
-        //chapter = chapter - 1;
-        if (pageViewController.) {
-            <#statements#>
-        }
+        chapter = chapter - 1;
         pageIndex = self.bookContent.pageCount - 1;
     }
     return [self viewControllerAtPage:pageIndex chapter:chapter];
@@ -165,7 +205,6 @@
 }
 #pragma mark 返回下一个ViewController对象
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(GKReadViewController *)viewController {
-    NSLog(@"%s", __FUNCTION__);
     NSUInteger pageIndex = viewController.pageIndex;
     NSUInteger chapter = viewController.chapterIndex;
     if (pageIndex >= self.bookContent.pageCount) {
@@ -176,14 +215,14 @@
     }
     return [self viewControllerAtPage:pageIndex chapter:chapter];
 }
-- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
-    pageViewController.view.userInteractionEnabled = NO;
-}
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
-    if (completed && finished) {
-        pageViewController.view.userInteractionEnabled = YES;
-    }
-}
+//- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+//    pageViewController.view.userInteractionEnabled = NO;
+//}
+//- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
+//    if (finished) {
+//        pageViewController.view.userInteractionEnabled = YES;
+//    }
+//}
 
 #pragma mark buttonAction
 - (void)tapAction{
@@ -235,6 +274,7 @@
     }];
 }
 - (void)goBack{
+    [self insertDataQueue];
     [self goBack:NO];
 }
 - (void)moreAction{

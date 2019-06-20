@@ -37,6 +37,7 @@
 #import "BaseDataQueue.h"
 #import "GKSearchDataQueue.h"
 #import "GKBookCaseDataQueue.h"
+#import "GKBookReadDataQueue.h"
 
 #import "ATAlertView.h"
 #import "ATActionSheet.h"

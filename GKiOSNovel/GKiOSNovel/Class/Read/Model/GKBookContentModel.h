@@ -7,34 +7,24 @@
 //
 
 #import "BaseModel.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookContentModel : BaseModel
 
-@property (copy, nonatomic) NSString *title;
-@property (copy, nonatomic) NSString *content;
-@property (copy, nonatomic) NSString *_id;
-@property (copy, nonatomic) NSString *traditional;//body对于繁体
-@property (copy, nonatomic) NSString *created;
-@property (copy, nonatomic) NSString *updated;
+@property (copy, nonatomic) NSString *_id;//id
+@property (copy, nonatomic) NSString *title;//文章标题
+@property (copy, nonatomic) NSString *content;//content简体
+@property (copy, nonatomic) NSString *traditional;//content繁体
+@property (copy, nonatomic) NSString *created;//创建时间
+@property (copy, nonatomic) NSString *updated;//更新时间
+@property (assign, nonatomic) BOOL isVip;//是否需要vip
 
-@property (assign, nonatomic) BOOL isVip;
-@property (assign, nonatomic) NSInteger order;//章节
-@property (assign, nonatomic) NSInteger currency;
-
-@property (assign, nonatomic,readonly) NSInteger pageCount;
+@property (assign, nonatomic)NSInteger pageIndex;//当前第几页
+@property (assign, nonatomic)NSInteger pageCount;//文章总共多少页
 
 - (void)setContentPage;
 - (NSAttributedString *)getContentAtt:(NSInteger)page;
 @end
 
-@interface GKBookContentInfo : BaseModel
-
-@property (strong, nonatomic)NSMutableArray <GKBookContentModel *>*listData;
-@property (assign, nonatomic,readonly) NSInteger totalPage;
-
-//- (void)addObjectsFromArray:(NSArray *)
-@end
 
 NS_ASSUME_NONNULL_END

@@ -70,7 +70,7 @@
                              @"book":bookId ?:@"",
                              @"view":@"summary",
                              };
-    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"toc") params:params success:success failure:failure];
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"toc") params:params cache:YES success:success failure:failure];
 }
 + (void)bookChapters:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{
@@ -78,12 +78,12 @@
                              };
     
     NSString *url = [NSString stringWithFormat:@"toc/%@",bookId?:@""];
-    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:params success:success failure:failure];
+    [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:params cache:YES success:success failure:failure];
 }
 + (void)bookContent:(NSString *)url success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
    url = [url stringByURLEncode];
    NSString * urlStr = [NSString stringWithFormat:@"https://chapter2.zhuishushenqi.com/chapter/%@",url];
-   [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil success:success failure:failure];
+   [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil cache:YES success:success failure:failure];
 }
 + (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{@"id":bookId?:@"",

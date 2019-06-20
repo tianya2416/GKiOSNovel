@@ -15,6 +15,7 @@ static NSString *primaryId = @"_id";
  */
 + (void)insertDataToDataBase:(GKBookDetailModel *)bookModel
                   completion:(void(^)(BOOL success))completion{
+    bookModel.updateTime = @"";
     [BaseDataQueue insertDataToDataBase:table primaryId:primaryId userInfo:[bookModel modelToJSONObject] completion:completion];
 }
 + (void)insertDatasDataBase:(NSString *)tableName
@@ -28,6 +29,7 @@ static NSString *primaryId = @"_id";
  */
 + (void)updateDataToDataBase:(GKBookDetailModel *)bookModel
                   completion:(void(^)(BOOL success))completion{
+    bookModel.updateTime = @"";
     [BaseDataQueue updateDataToDataBase:table primaryId:primaryId userInfo:[bookModel modelToJSONObject] completion:completion];
 }
 /**
@@ -54,14 +56,24 @@ static NSString *primaryId = @"_id";
 }
 + (void)getDatasFromDataBase:(void(^)(NSArray <GKBookDetailModel *>*listData))completion{
     [BaseDataQueue getDatasFromDataBase:table primaryId:primaryId completion:^(NSArray<NSDictionary *> * _Nonnull listData) {
-        !completion ?: completion([NSArray modelArrayWithClass:GKBookModel.class json:listData]);
+        NSArray *datas = [NSArray modelArrayWithClass:GKBookDetailModel.class json:listData];
+        datas = [GKBookCaseDataQueue sortedArrayUsingComparator:datas key:@"updateTime" ascending:NO];
+        !completion ?: completion(datas);
     }];
 }
 + (void)getDatasFromDataBase:(NSInteger)page
                     pageSize:(NSInteger)pageSize
                   completion:(void(^)(NSArray <GKBookDetailModel *>*listData))completion{
     [BaseDataQueue getDatasFromDataBase:table primaryId:primaryId page:page pageSize:pageSize completion:^(NSArray<NSDictionary *> * _Nonnull listData) {
-        !completion ?: completion([NSArray modelArrayWithClass:GKBookModel.class json:listData]);
+        NSArray *datas = [NSArray modelArrayWithClass:GKBookDetailModel.class json:listData];
+        datas = [GKBookCaseDataQueue sortedArrayUsingComparator:datas key:@"updateTime" ascending:NO];
+        !completion ?: completion(datas);
     }];
+}
+
++ (NSArray *)sortedArrayUsingComparator:(NSArray <GKBookDetailModel *>*)listData key:(NSString *)key ascending:(BOOL)ascending
+{
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key?:@"bookId" ascending:ascending];
+    return [listData sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 }
 @end

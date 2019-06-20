@@ -12,6 +12,14 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"majorCate" : @[@"majorCate",@"cat"]};
 }
+- (void)setUpdateTime:(NSString *)updateTime{
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    if (updateTime.length == 0) {
+        _updateTime = timeSp;
+    }else {
+        _updateTime = updateTime;
+    }
+}
 @end
 
 
@@ -23,19 +31,12 @@
     return @{@"listData" : @"books",
              @"books" : @"books"};
 }
-//- (void)setBooks:(NSArray<GKBookModel *> *)books{
-//    if (books.count <= 6) {
-//        _books = books;
-//    }else{
-//        NSInteger index = arc4random() % (books.count - 6);
-//        _books = [books subarrayWithRange:NSMakeRange(index, 6)];
-//    }
-//}
+
 - (void)setListData:(NSArray<GKBookModel *> *)listData{
     if (listData.count <= 6) {
         _listData = listData;
     }else{
-        NSInteger index = arc4random() % (listData.count - 6);
+//        NSInteger index = arc4random() % (listData.count - 6);
         _listData = [listData subarrayWithRange:NSMakeRange(0, 6)];
     }
 }
