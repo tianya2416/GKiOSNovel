@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GKHomeNetManager : NSObject
 
-+ (void)homeNet:(NSArray <GKRankModel *>*)listData success:(void(^)(NSArray <GKBookInfo *>*datas))success failure:(void(^)(NSString *error))failure;
+- (void)homeNet:(NSArray <GKRankModel *>*)listData loadData:(GKLoadDataState)loadData success:(void(^)(NSArray <GKBookInfo *>*datas))success failure:(void(^)(NSString *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

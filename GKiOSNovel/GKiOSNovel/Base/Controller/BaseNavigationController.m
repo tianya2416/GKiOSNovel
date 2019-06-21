@@ -10,7 +10,7 @@
 
 @interface BaseNavigationController ()<UINavigationControllerDelegate>
 
-@property (nonatomic, assign) BOOL pushing;
+@property (nonatomic, getter=isPushing) BOOL pushing;
 
 @end
 

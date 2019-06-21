@@ -70,7 +70,7 @@
             [self.listData removeObject:model];
             GKUserModel *model = [GKUserModel vcWithState:[GKUserManager shareInstance].user.state rankDatas:self.listData.copy];
             [GKUserManager saveUserModel:model];
-            [GKUserManager reloadHomeData:YES];
+            [GKUserManager reloadHomeData:GKLoadDataDefault];
             [self refreshData:1];
             
         }

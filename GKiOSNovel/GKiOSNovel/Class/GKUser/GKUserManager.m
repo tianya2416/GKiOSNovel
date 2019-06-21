@@ -10,7 +10,7 @@
 static NSString *gkUser = @"gkUser";
 @interface GKUserManager()
 @property (strong, nonatomic) GKUserModel *user;
-@property (copy, nonatomic) void(^completion)(BOOL loadData);
+@property (copy, nonatomic) void(^completion)(GKLoadDataState option);
 @end
 @implementation GKUserManager
 + (instancetype)shareInstance {
@@ -50,10 +50,10 @@ static NSString *gkUser = @"gkUser";
     id object = [[NSUserDefaults standardUserDefaults] objectForKey:gkUser];
     return object;
 }
-+ (void)reloadHomeData:(BOOL)loadData{
-    ![GKUserManager shareInstance].completion ?: [GKUserManager shareInstance].completion(loadData);
++ (void)reloadHomeData:(GKLoadDataState)option{
+    ![GKUserManager shareInstance].completion ?: [GKUserManager shareInstance].completion(option);
 }
-+ (void)reloadHomeDataNeed:(void(^)(BOOL loadData))completion{
++ (void)reloadHomeDataNeed:(void(^)(GKLoadDataState option))completion{
     [GKUserManager shareInstance].completion = completion;
 }
 @end

@@ -14,7 +14,7 @@
 #import "GKMineCell.h"
 static NSString *rank = @"自定义首页";
 static NSString *sex = @"性别";
-static NSString *bookCase = @"书架";
+static NSString *bookCase = @"我的书架";
 static NSString *readHistory = @"读书记录";
 @interface GKMineController ()
 @property (strong, nonatomic) NSArray *listData;

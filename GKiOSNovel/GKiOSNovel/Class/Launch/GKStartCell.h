@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, GKStartState) {
 + (instancetype)cellForCollectionView:(UICollectionView *)collectionView
                             indexPath:(NSIndexPath *)indexPath
                            startState:(GKStartState)startState;
-    
+- (void)setSelect:(BOOL)select;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -103,7 +103,7 @@
     if (self.completion) {
         !self.completion ?: self.completion();
     }else{
-        [GKUserManager reloadHomeData:YES];
+        [GKUserManager reloadHomeData:GKLoadDataDefault];
         [self goBack];
     }
 }

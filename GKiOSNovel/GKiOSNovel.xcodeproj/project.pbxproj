@@ -76,6 +76,10 @@
 		0F8AA7E522B0D65D00332ECB /* GKClassflyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7E422B0D65D00332ECB /* GKClassflyController.m */; };
 		0F8AA7E922B0DDFF00332ECB /* GKClassflyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7E722B0DDFF00332ECB /* GKClassflyCell.m */; };
 		0F8AA7EA22B0DDFF00332ECB /* GKClassflyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AA7E822B0DDFF00332ECB /* GKClassflyCell.xib */; };
+		0FB445CC22BC828400ABCC55 /* GKTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB445CB22BC828400ABCC55 /* GKTimeTool.m */; };
+		0FB445CF22BCC52400ABCC55 /* GKBookChapterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB445CE22BCC52400ABCC55 /* GKBookChapterController.m */; };
+		0FB445D322BCD83000ABCC55 /* GKBookChapterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB445D122BCD83000ABCC55 /* GKBookChapterCell.m */; };
+		0FB445D422BCD83000ABCC55 /* GKBookChapterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB445D222BCD83000ABCC55 /* GKBookChapterCell.xib */; };
 		0FB6DB3D22BB3B6100C48F64 /* GKBookReadDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */; };
 		0FB6DB4022BB580F00C48F64 /* GKBookReadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6DB3F22BB580F00C48F64 /* GKBookReadModel.m */; };
 		0FB6DB4322BB746200C48F64 /* GKBookHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6DB4222BB746200C48F64 /* GKBookHistoryController.m */; };
@@ -232,6 +236,13 @@
 		0F8AA7E622B0DDFF00332ECB /* GKClassflyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassflyCell.h; sourceTree = "<group>"; };
 		0F8AA7E722B0DDFF00332ECB /* GKClassflyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassflyCell.m; sourceTree = "<group>"; };
 		0F8AA7E822B0DDFF00332ECB /* GKClassflyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKClassflyCell.xib; sourceTree = "<group>"; };
+		0FB445CA22BC828400ABCC55 /* GKTimeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKTimeTool.h; sourceTree = "<group>"; };
+		0FB445CB22BC828400ABCC55 /* GKTimeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKTimeTool.m; sourceTree = "<group>"; };
+		0FB445CD22BCC52400ABCC55 /* GKBookChapterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookChapterController.h; sourceTree = "<group>"; };
+		0FB445CE22BCC52400ABCC55 /* GKBookChapterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookChapterController.m; sourceTree = "<group>"; };
+		0FB445D022BCD83000ABCC55 /* GKBookChapterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookChapterCell.h; sourceTree = "<group>"; };
+		0FB445D122BCD83000ABCC55 /* GKBookChapterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookChapterCell.m; sourceTree = "<group>"; };
+		0FB445D222BCD83000ABCC55 /* GKBookChapterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKBookChapterCell.xib; sourceTree = "<group>"; };
 		0FB6DB3B22BB3B6100C48F64 /* GKBookReadDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookReadDataQueue.h; sourceTree = "<group>"; };
 		0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookReadDataQueue.m; sourceTree = "<group>"; };
 		0FB6DB3E22BB580F00C48F64 /* GKBookReadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookReadModel.h; sourceTree = "<group>"; };
@@ -337,6 +348,11 @@
 				0F5DFB8822B78D940056F8E6 /* GKReadViewController.m */,
 				0F76098F22B9E09D005978F7 /* GKReadManager.h */,
 				0F76099022B9E09D005978F7 /* GKReadManager.m */,
+				0FB445CD22BCC52400ABCC55 /* GKBookChapterController.h */,
+				0FB445CE22BCC52400ABCC55 /* GKBookChapterController.m */,
+				0FB445D022BCD83000ABCC55 /* GKBookChapterCell.h */,
+				0FB445D122BCD83000ABCC55 /* GKBookChapterCell.m */,
+				0FB445D222BCD83000ABCC55 /* GKBookChapterCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -609,12 +625,14 @@
 		0F6C5FEA22B37DEF00A4C2BE /* AppDataBase */ = {
 			isa = PBXGroup;
 			children = (
-				0F6C5FEE22B38B6C00A4C2BE /* GKSearchDataQueue.h */,
-				0F6C5FEF22B38B6C00A4C2BE /* GKSearchDataQueue.m */,
 				8F1A7CBB22B64DF700BB325E /* GKBookCaseDataQueue.h */,
 				8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */,
 				0FB6DB3B22BB3B6100C48F64 /* GKBookReadDataQueue.h */,
 				0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */,
+				0F6C5FEE22B38B6C00A4C2BE /* GKSearchDataQueue.h */,
+				0F6C5FEF22B38B6C00A4C2BE /* GKSearchDataQueue.m */,
+				0FB445CA22BC828400ABCC55 /* GKTimeTool.h */,
+				0FB445CB22BC828400ABCC55 /* GKTimeTool.m */,
 			);
 			path = AppDataBase;
 			sourceTree = "<group>";
@@ -758,6 +776,7 @@
 				0FEB43D122B105D2005FF5DF /* GKStartCell.xib in Resources */,
 				0F7BC03422B1F1F5000B267B /* GKMineCell.xib in Resources */,
 				0FE8B42A22B0A45B00ECAD07 /* GKHomeReusableView.xib in Resources */,
+				0FB445D422BCD83000ABCC55 /* GKBookChapterCell.xib in Resources */,
 				0F22DAB822AF8A81000FC9AE /* LaunchScreen.storyboard in Resources */,
 				8F1A7CB522B5195500BB325E /* GKBookDetailCell.xib in Resources */,
 				0F6C5FFC22B3ABDD00A4C2BE /* GKBookDetailTabbar.xib in Resources */,
@@ -830,6 +849,7 @@
 				0F6C5FE822B37CD600A4C2BE /* main.m in Sources */,
 				0F5F63EC22AFA2D8009096BD /* BaseNetModel.m in Sources */,
 				0F8AA7DF22B0CDCD00332ECB /* GKNewNavBarView.m in Sources */,
+				0FB445CF22BCC52400ABCC55 /* GKBookChapterController.m in Sources */,
 				0F14E1D422B2496E007FBA04 /* GKHomeMoreController.m in Sources */,
 				0F1B796C22B8952C00883CC9 /* GKBookChapterModel.m in Sources */,
 				0F6C5FDF22B37CA100A4C2BE /* ATAlertView.m in Sources */,
@@ -881,6 +901,7 @@
 				0F2A18B122B8E1CF00426D5A /* BaseNetCache.m in Sources */,
 				0F6C5FF422B3A63200A4C2BE /* GKBookDetailController.m in Sources */,
 				8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */,
+				0FB445CC22BC828400ABCC55 /* GKTimeTool.m in Sources */,
 				0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */,
 				0F6C5FC422B33FD100A4C2BE /* GKSearchTextView.m in Sources */,
 				0F6C5FE922B37CD600A4C2BE /* AppDelegate.m in Sources */,
@@ -889,6 +910,7 @@
 				0F8AA7E922B0DDFF00332ECB /* GKClassflyCell.m in Sources */,
 				0FB6DB4022BB580F00C48F64 /* GKBookReadModel.m in Sources */,
 				0F8AA7E522B0D65D00332ECB /* GKClassflyController.m in Sources */,
+				0FB445D322BCD83000ABCC55 /* GKBookChapterCell.m in Sources */,
 				0F29078922B73A3000F28ADB /* GKBookListDetailModel.m in Sources */,
 				0FEB43D022B105D2005FF5DF /* GKStartCell.m in Sources */,
 				0F6C5FFA22B3ABD000A4C2BE /* GKBookDetailTabbar.m in Sources */,

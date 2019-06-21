@@ -73,7 +73,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GKBookReadModel*model = self.listData[indexPath.row];
-    [GKJumpApp jumpToReadBook:model.bookModel];
+    [GKJumpApp jumpToBookRead:model.bookModel];
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;

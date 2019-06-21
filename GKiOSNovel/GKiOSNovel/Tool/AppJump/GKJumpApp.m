@@ -13,6 +13,8 @@
 #import "GKMineSelectController.h"
 #import "GKReadViewController.h"
 #import "GKReadContentController.h"
+#import "GKBookHistoryController.h"
+#import "GKBooCaseController.h"
 @implementation GKJumpApp
 + (void)jumpToAppGuidePage:(void(^)(void))completion
 {
@@ -59,11 +61,25 @@
     vc.hidesBottomBarWhenPushed = YES;
     [nvc.navigationController pushViewController:vc animated:YES];
 }
-+ (void)jumpToReadBook:(GKBookDetailModel *)model{
-    UIViewController *nvc = [UIViewController rootTopPresentedController];
++ (void)jumpToBookRead:(GKBookDetailModel *)model{
+    UIViewController *root = [UIViewController rootTopPresentedController];
+    
     GKReadContentController *vc = [GKReadContentController vcWithBookDetailModel:model];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
     vc.hidesBottomBarWhenPushed = YES;
-    [nvc presentViewController:vc animated:NO completion:nil];
+    [root presentViewController:nav animated:NO completion:nil];
+}
++ (void)jumpToBookCase{
+    UIViewController *nvc = [UIViewController rootTopPresentedController];
+    GKBooCaseController *vc = [[GKBooCaseController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [nvc.navigationController pushViewController:vc animated:YES];
+}
++ (void)jumpToBookHistory{
+    UIViewController *nvc = [UIViewController rootTopPresentedController];
+    GKBookHistoryController *vc = [[GKBookHistoryController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+     [nvc.navigationController pushViewController:vc animated:YES];
 }
 +  (UIWindow *)window
 {

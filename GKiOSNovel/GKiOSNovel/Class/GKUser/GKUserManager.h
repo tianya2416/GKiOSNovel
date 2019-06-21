@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)saveUserModel:(GKUserModel *)user;
 + (BOOL)alreadySelect;
 
-+ (void)reloadHomeData:(BOOL)loadData;
-+ (void)reloadHomeDataNeed:(void(^)(BOOL loadData))completion;
++ (void)reloadHomeData:(GKLoadDataState)option;
++ (void)reloadHomeDataNeed:(void(^)(GKLoadDataState option))completion;
 @end
 
 NS_ASSUME_NONNULL_END

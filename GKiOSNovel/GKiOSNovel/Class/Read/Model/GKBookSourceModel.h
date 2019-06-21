@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GKBookSourceInfo : BaseModel;
 
 @property (copy, nonatomic) NSString *bookSourceId;
+@property (assign, nonatomic) NSInteger sourceIndex;
+
 @property (strong, nonatomic) NSArray <GKBookSourceModel*>*listData;
 
 @end

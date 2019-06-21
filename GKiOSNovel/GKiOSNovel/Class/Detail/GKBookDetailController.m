@@ -17,6 +17,7 @@
 #import "GKBookDetailController.h"
 @interface GKBookDetailController ()
 @property (copy, nonatomic) NSString *bookId;
+@property (strong, nonatomic) UILabel *tipLab;
 @property (strong, nonatomic) GKBookDetailTabbar *tabbar;
 @property (strong, nonatomic) GKBookDetailView *detailView;
 @property (strong, nonatomic) GKBookDetailInfo *bookDetail;
@@ -29,7 +30,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadUI];
+    
+}
+- (void)loadUI{
     [self showNavTitle:@"书籍详情"];
+    [self.view addSubview:self.tipLab];
+    [self.tipLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.tipLab.superview);
+    }];
     [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
     [self.view addSubview:self.tabbar];
@@ -39,7 +48,8 @@
         make.bottom.equalTo(self.tabbar.superview).offset(-TAB_BAR_ADDING);
     }];
     [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.collectionView.superview);
+        make.top.equalTo(self.tipLab.mas_bottom);
+        make.left.right.equalTo(self.collectionView.superview);
         make.bottom.equalTo(self.tabbar.mas_top);
     }];
     [GKBookCaseDataQueue getDataFromDataBase:self.bookId completion:^(GKBookDetailModel * _Nonnull bookModel) {
@@ -47,8 +57,13 @@
             [self reloadUI:YES];
         }
     }];
-    
+    [GKBookReadDataQueue getDataFromDataBase:self.bookId completion:^(GKBookReadModel * _Nonnull bookModel) {
+        if (bookModel.bookContent) {
+          self.tipLab.text = [NSString stringWithFormat:@"本书阅读到: %@\n上次阅读时间:%@",bookModel.bookChapter.title,[GKTimeTool timeStampTurnToTimesType:bookModel.updateTime]];
+        }    
+    }];
 }
+
 - (void)refreshData:(NSInteger)page{
     [GKBookDetailInfo bookDetail:self.bookId success:^(GKBookDetailInfo * _Nonnull info) {//55b37c89829afbb046b2ac82
         self.bookDetail = info;
@@ -86,7 +101,7 @@
     }
 }
 - (void)readAction{
-    [GKJumpApp jumpToReadBook:self.bookDetail.bookModel];
+    [GKJumpApp jumpToBookRead:self.bookDetail.bookModel];
 }
 #pragma mark UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -165,5 +180,15 @@
     }
     return _tabbar;
 }
-
+- (UILabel *)tipLab{
+    if (!_tipLab) {
+        _tipLab = [[UILabel alloc] init];
+        _tipLab.textAlignment = NSTextAlignmentCenter;
+        _tipLab.font = [UIFont systemFontOfSize:12];
+        _tipLab.textColor = AppColor;
+        _tipLab.backgroundColor = [UIColor colorWithRGB:0xf6f6f6];
+        _tipLab.numberOfLines = 3;
+    }
+    return _tipLab;
+}
 @end

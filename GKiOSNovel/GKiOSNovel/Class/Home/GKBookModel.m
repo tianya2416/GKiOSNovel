@@ -32,12 +32,15 @@
              @"books" : @"books"};
 }
 
-- (void)setListData:(NSArray<GKBookModel *> *)listData{
-    if (listData.count <= 6) {
-        _listData = listData;
-    }else{
-//        NSInteger index = arc4random() % (listData.count - 6);
-        _listData = [listData subarrayWithRange:NSMakeRange(0, 6)];
-    }
+//- (void)setListData:(NSArray<GKBookModel *> *)listData{
+//    if (listData.count <= 6) {
+//        _listData = listData;
+//    }else{
+////        NSInteger index = arc4random() % (listData.count - 6);
+//        _listData = [listData subarrayWithRange:NSMakeRange(0, 6)];
+//    }
+//}
+- (NSArray *)listData{
+    return (self.books.count <=6) ? self.books: [self.books subarrayWithRange:NSMakeRange(0, 6)];
 }
 @end

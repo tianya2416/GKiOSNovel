@@ -68,7 +68,7 @@
             [footer setImages:@[self.images[0]] forState:MJRefreshStateIdle];
             [footer setImages:self.images duration:0.40f forState:MJRefreshStateRefreshing];
         }
-        [footer setTitle:@"已经到底了" forState:MJRefreshStateNoMoreData];
+        [footer setTitle:@"--我是有底线的--" forState:MJRefreshStateNoMoreData];
         [footer setTitle:@"" forState:MJRefreshStatePulling];
         [footer setTitle:@"" forState:MJRefreshStateRefreshing];
         [footer setTitle:@"" forState:MJRefreshStateWillRefresh];

@@ -29,7 +29,6 @@
 #import "BaseNetManager.h"
 #import "BaseCell.h"
 
-#import "UIImageView+GKLoad.h"
 #import "GKNovelNetManager.h"
 #import "GKBookModel.h"
 #import "GKUserManager.h"
@@ -41,4 +40,6 @@
 
 #import "ATAlertView.h"
 #import "ATActionSheet.h"
+#import "GKTimeTool.h"
+#import "UIImageView+GKLoad.h"
 #endif /* GKiOSNovel_pch */

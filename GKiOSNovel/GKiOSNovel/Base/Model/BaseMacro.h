@@ -44,6 +44,13 @@ typedef NS_ENUM(NSInteger, GKUserState) {
     GKUserBoy =  1,
     GKUserGirl = 2,
 };
+
+typedef NS_ENUM(NSInteger, GKLoadDataState) {
+    GKLoadDataNone    =  0,
+    GKLoadDataNetData =  1 << 1,
+    GKLoadDataDataBase=  1 << 2,
+    GKLoadDataDefault = (GKLoadDataNetData|GKLoadDataDataBase),
+};
 @interface BaseMacro : NSObject
 + (NSArray *)hotDatas;
 @end

@@ -14,7 +14,7 @@
 
 @implementation GKBookSourceInfo
 - (NSString *)bookSourceId{
-    return self.listData.firstObject._id ?:@"";
+    return self.listData.count > self.sourceIndex ? self.listData[self.sourceIndex]._id : self.listData.firstObject._id;
 }
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"listData" : GKBookSourceModel.class

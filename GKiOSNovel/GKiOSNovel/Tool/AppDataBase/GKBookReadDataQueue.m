@@ -15,32 +15,47 @@ static NSString *primaryBookId = @"bookId";
  */
 + (void)insertDataToDataBase:(GKBookReadModel *)bookModel
                   completion:(void(^)(BOOL success))completion{
-    [BaseDataQueue insertDataToDataBase:tableBook primaryId:primaryBookId userInfo:[bookModel modelToJSONObject] completion:completion];
+    [BaseDataQueue insertDataToDataBase:tableBook primaryId:primaryBookId userInfo:[bookModel modelToJSONObject] completion:^(BOOL success) {
+        success ? [GKUserManager reloadHomeData:GKLoadDataDataBase] : nil;
+        !completion ?:completion(success);
+    }];
 }
 + (void)insertDatasDataBase:(NSString *)tableName
                   primaryId:(NSString *)primaryId
                    listData:(NSArray <GKBookReadModel *>*)listData
                  completion:(void(^)(BOOL success))completion{
-    [BaseDataQueue insertDatasDataBase:tableBook primaryId:primaryBookId listData:[listData modelToJSONObject] completion:completion];
+    [BaseDataQueue insertDatasDataBase:tableBook primaryId:primaryBookId listData:[listData modelToJSONObject] completion:^(BOOL success) {
+        success ? [GKUserManager reloadHomeData:GKLoadDataDataBase] : nil;
+        !completion ?:completion(success);
+    }];
 }
 /**
  *  @brief 数据更新
  */
 + (void)updateDataToDataBase:(GKBookReadModel *)bookModel
                   completion:(void(^)(BOOL success))completion{
-    [BaseDataQueue updateDataToDataBase:tableBook primaryId:primaryBookId userInfo:[bookModel modelToJSONObject] completion:completion];
+    [BaseDataQueue updateDataToDataBase:tableBook primaryId:primaryBookId userInfo:[bookModel modelToJSONObject] completion:^(BOOL success) {
+        success ? [GKUserManager reloadHomeData:GKLoadDataDataBase] : nil;
+        !completion ?:completion(success);
+    }];
 }
 /**
  *  @brief 删除数据
  */
 + (void)deleteDataToDataBase:(NSString *)bookId
                   completion:(void(^)(BOOL success))completion{
-    [BaseDataQueue deleteDataToDataBase:tableBook primaryId:primaryBookId primaryValue:bookId completion:completion];
+    [BaseDataQueue deleteDataToDataBase:tableBook primaryId:primaryBookId primaryValue:bookId completion:^(BOOL success) {
+        success ? [GKUserManager reloadHomeData:GKLoadDataDataBase] : nil;
+        !completion ?:completion(success);
+    }];
     
 }
 + (void)deleteDatasToDataBase:(NSArray <GKBookReadModel *>*)listData
                    completion:(void(^)(BOOL success))completion{
-    [BaseDataQueue deleteDatasToDataBase:tableBook primaryId:primaryBookId listData:[listData modelToJSONObject] completion:completion];
+    [BaseDataQueue deleteDatasToDataBase:tableBook primaryId:primaryBookId listData:[listData modelToJSONObject] completion:^(BOOL success) {
+        success ? [GKUserManager reloadHomeData:GKLoadDataDataBase] : nil;
+        !completion ?:completion(success);
+    }];
 }
 /**
  *  @brief 获取数据

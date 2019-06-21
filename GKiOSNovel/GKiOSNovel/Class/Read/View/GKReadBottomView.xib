@@ -16,22 +16,30 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWQ-Ci-F3f">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWQ-Ci-F3f" customClass="ATImageTopButton">
                     <rect key="frame" x="0.0" y="0.0" width="125" height="49"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="ESA-Rj-hlO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="Button"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="白天" image="icon_white"/>
+                    <state key="selected" title="夜间" image="icon_night">
+                        <color key="titleColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAY-of-VSL">
-                    <rect key="frame" x="125" y="11" width="125" height="27"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAY-of-VSL" customClass="ATImageTopButton">
+                    <rect key="frame" x="125" y="12.5" width="125" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="目录" image="icon_mulu">
+                        <color key="titleColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p1-xs-g8g">
-                    <rect key="frame" x="250" y="11" width="125" height="27"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p1-xs-g8g" customClass="ATImageTopButton">
+                    <rect key="frame" x="250" y="12.5" width="125" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="设置" image="icon_set">
+                        <color key="titleColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.1450980392" green="0.14901960780000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,7 +56,18 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="cataBtn" destination="GAY-of-VSL" id="UCq-yt-zLp"/>
+                <outlet property="dayBtn" destination="SWQ-Ci-F3f" id="dco-V6-PQT"/>
+                <outlet property="setBtn" destination="2p1-xs-g8g" id="PO1-8x-et3"/>
+            </connections>
             <point key="canvasLocation" x="53.600000000000001" y="65.217391304347828"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_mulu" width="24" height="24"/>
+        <image name="icon_night" width="24" height="24"/>
+        <image name="icon_set" width="24" height="24"/>
+        <image name="icon_white" width="24" height="24"/>
+    </resources>
 </document>

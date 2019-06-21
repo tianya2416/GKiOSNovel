@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)jumpToBookDetail:(NSString *)bookId;
 + (void)jumpToBookListDetail:(NSString *)bookId;
 + (void)jumpToAddSelect;
-+ (void)jumpToReadBook:(GKBookDetailModel *)model;
++ (void)jumpToBookRead:(GKBookDetailModel *)model;
++ (void)jumpToBookCase;
++ (void)jumpToBookHistory;
 @end
 NS_ASSUME_NONNULL_END

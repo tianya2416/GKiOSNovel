@@ -52,7 +52,6 @@
         make.right.equalTo(self.selectLab.superview).offset(-15);
         make.bottom.equalTo(self.selectLab.superview).offset(-TAB_BAR_ADDING-10);
     }];
-    
 }
 - (void)loadData{
 

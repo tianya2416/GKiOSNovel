@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookInfo : BaseModel
 
-@property (strong, nonatomic) NSArray <GKBookModel *>*books;//所有数据
+@property (strong, nonatomic) NSArray  *books;//所有数据 GKBookModel
 @property (assign, nonatomic) NSInteger total;//数据个数
 @property (copy, nonatomic) NSString *title;//标题
 @property (copy, nonatomic) NSString *shortTitle;//标题
