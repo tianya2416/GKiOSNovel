@@ -42,4 +42,5 @@
 #import "ATActionSheet.h"
 #import "GKTimeTool.h"
 #import "UIImageView+GKLoad.h"
+#import "GKReadManager.h"
 #endif /* GKiOSNovel_pch */

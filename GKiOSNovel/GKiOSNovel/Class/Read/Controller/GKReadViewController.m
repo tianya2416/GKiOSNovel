@@ -9,7 +9,6 @@
 #import "GKReadViewController.h"
 #import "GKReadView.h"
 @interface GKReadViewController ()
-@property (strong, nonatomic) UIImageView *mainView;
 @property (strong, nonatomic) UILabel *titleLab;
 @property (strong, nonatomic) UILabel *selectLab;
 @property (assign, nonatomic) NSInteger pageIndex;
@@ -19,10 +18,11 @@
 
 @implementation GKReadViewController
 - (void)dealloc{
-    //NSLog(@"%@ dealloc",self.class);
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
     [self loadUI];
     [self loadData];
     
@@ -31,23 +31,22 @@
     self.pageIndex = currentPage;
     self.chapterIndex = chapter;
     self.readView.content = content;
-    self.titleLab.text = title ?:@"";
+    self.titleLab.text = title ;
     currentPage = currentPage + 1 >totalPage ? totalPage : currentPage + 1;
     self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage),@(totalPage)];
+    self.selectLab.textColor = [GKReadManager shareInstance].color;
+    self.titleLab.textColor = [GKReadManager shareInstance].color;
 }
 
 - (void)loadUI{
-    [self.view addSubview:self.mainView];
-    [self.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.mainView.superview);
-    }];
-    [self.mainView addSubview:self.readView];
-    [self.mainView addSubview:self.titleLab];
+
+    [self.view addSubview:self.readView];
+    [self.view addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.titleLab.superview);
         make.top.equalTo(self.titleLab.superview).offset(STATUS_BAR_HIGHT);
     }];
-    [self.mainView addSubview:self.selectLab];
+    [self.view addSubview:self.selectLab];
     [self.selectLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.selectLab.superview).offset(-15);
         make.bottom.equalTo(self.selectLab.superview).offset(-TAB_BAR_ADDING-10);
@@ -63,16 +62,7 @@
     }
     return _readView;
 }
-- (UIImageView *)mainView{
-    if (!_mainView) {
-        _mainView = [[UIImageView alloc] init];
-        _mainView.userInteractionEnabled = YES;
-        _mainView.clipsToBounds = YES;
-        _mainView.contentMode = UIViewContentModeScaleAspectFill;
-        _mainView.image = [UIImage imageNamed:@"read_green"];
-    }
-    return _mainView;
-}
+
 - (UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = [[UILabel alloc] init];

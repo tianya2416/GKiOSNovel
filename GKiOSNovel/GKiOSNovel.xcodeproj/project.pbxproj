@@ -318,6 +318,7 @@
 			children = (
 				0F6C5FE022B37CD300A4C2BE /* App */,
 				0F22DAB422AF8A81000FC9AE /* Assets.xcassets */,
+				0F5F63B522AFA2D8009096BD /* Controller */,
 				0F5F639922AFA2D8009096BD /* Base */,
 				0F5F63F722AFB05C009096BD /* Class */,
 				0F22DAB922AF8A81000FC9AE /* Info.plist */,
@@ -389,7 +390,6 @@
 			isa = PBXGroup;
 			children = (
 				0F5F639A22AFA2D8009096BD /* Web */,
-				0F5F63B522AFA2D8009096BD /* Controller */,
 				0F5F63C022AFA2D8009096BD /* Model */,
 				0F5F63C722AFA2D8009096BD /* View */,
 				0F5F63CE22AFA2D8009096BD /* NetManager */,
@@ -430,8 +430,8 @@
 			children = (
 				0F5F63C122AFA2D8009096BD /* BaseMacro.h */,
 				0F5F63C422AFA2D8009096BD /* BaseMacro.m */,
-				0F5F63C522AFA2D8009096BD /* BaseModel.h */,
 				0F5F63C222AFA2D8009096BD /* BaseModel.m */,
+				0F5F63C522AFA2D8009096BD /* BaseModel.h */,
 				0F5F63C322AFA2D8009096BD /* BaseNetModel.h */,
 				0F5F63C622AFA2D8009096BD /* BaseNetModel.m */,
 			);

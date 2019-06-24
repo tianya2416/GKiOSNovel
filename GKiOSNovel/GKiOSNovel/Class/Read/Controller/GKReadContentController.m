@@ -19,7 +19,7 @@
 @interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-
+@property (strong, nonatomic) UIImageView *mainView;
 @property (strong, nonatomic) GKReadTopView *topView;
 @property (strong, nonatomic) GKReadBottomView *bottomView;
 
@@ -59,6 +59,10 @@
     }];
 }
 - (void)loadUI{
+    [self.view addSubview:self.mainView];
+    [self.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.mainView.superview);
+    }];
     self.topView.titleLab.text = self.model.title?:@"";
     self.fd_prefersNavigationBarHidden = YES;
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
@@ -106,33 +110,7 @@
     [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title content:[self.bookContent getContentAtt:pageIndex]];
     return vc;
 }
-//- (void)loadData:(NSInteger)sourceIndex{
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    dispatch_semaphore_t sem1 = dispatch_semaphore_create(0);
-//    dispatch_semaphore_t sem2 = dispatch_semaphore_create(0);
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    dispatch_async(queue, ^{
-//        [GKNovelNetManager bookSummary:self.model._id success:^(id  _Nonnull object) {
-//            self.bookSource.listData = [NSArray modelArrayWithClass:GKBookSourceModel.class json:object];
-//            dispatch_semaphore_signal(sem1);
-//        } failure:^(NSString * _Nonnull error) {
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        }];
-//    });
-//    dispatch_async(queue, ^{
-//        dispatch_semaphore_wait(sem1,DISPATCH_TIME_FOREVER);
-//        [GKNovelNetManager bookChapters:self.bookSource.bookSourceId success:^(id  _Nonnull object) {
-//            self.bookChapter = [GKBookChapterInfo modelWithJSON:object];
-//            dispatch_semaphore_signal(sem2);
-//        } failure:^(NSString * _Nonnull error) {
-//            [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        }];
-//    });
-//    dispatch_async(queue, ^{
-//        dispatch_semaphore_wait(sem2,DISPATCH_TIME_FOREVER);
-//        [self loadBookContent:NO chapter:self.chapter];
-//    });
-//}
+
 - (void)loadBookSummary{
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     [GKNovelNetManager bookSummary:self.model._id success:^(id  _Nonnull object) {
@@ -147,7 +125,6 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     self.bookSource.sourceIndex = sourceIndex;
     [GKNovelNetManager bookChapters:self.bookSource.bookSourceId success:^(id  _Nonnull object) {
-         [MBProgressHUD hideHUDForView:self.view animated:NO];
         self.bookChapter = [GKBookChapterInfo modelWithJSON:object];
        [self loadBookContent:NO chapter:self.chapter];
     } failure:^(NSString * _Nonnull error) {
@@ -301,7 +278,9 @@
     
 }
 - (void)dayACtion:(UIButton *)sender{
-    
+    sender.selected = !sender.selected;
+    [GKReadManager shareInstance].state = (sender.selected == NO) ? GKReadDefault : GKReadNight;
+    self.mainView.image = [GKReadManager getReadImage:[GKReadManager shareInstance].state];
 }
 - (void)cataACtion:(UIButton *)sender{
     GKBookChapterController *vc = [GKBookChapterController vcWithChapter:self.bookSource.bookSourceId chapter:self.chapter completion:^(NSInteger index) {
@@ -336,6 +315,16 @@
         _bookSource = [[GKBookSourceInfo alloc] init];
     }
     return _bookSource;
+}
+- (UIImageView *)mainView{
+    if (!_mainView) {
+        _mainView = [[UIImageView alloc] init];
+        _mainView.userInteractionEnabled = YES;
+        _mainView.clipsToBounds = YES;
+        _mainView.contentMode = UIViewContentModeScaleAspectFill;
+        _mainView.image = [UIImage imageNamed:@"icon_read_black"];
+    }
+    return _mainView;
 }
 - (BOOL)prefersStatusBarHidden{
     return self.topView.hidden;

@@ -59,7 +59,7 @@
     }];
     [GKBookReadDataQueue getDataFromDataBase:self.bookId completion:^(GKBookReadModel * _Nonnull bookModel) {
         if (bookModel.bookContent) {
-          self.tipLab.text = [NSString stringWithFormat:@"本书阅读到: %@\n上次阅读时间:%@",bookModel.bookChapter.title,[GKTimeTool timeStampTurnToTimesType:bookModel.updateTime]];
+          self.tipLab.text = [NSString stringWithFormat:@"本书阅读到: %@\n%@",bookModel.bookChapter.title,[GKTimeTool timeStampTurnToTimesType:bookModel.updateTime]];
         }    
     }];
 }

@@ -23,6 +23,7 @@
          self.window.rootViewController = [[GKNovelTabBarController alloc] init];
     }];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

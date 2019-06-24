@@ -7,12 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
-
+typedef NS_ENUM(NSInteger, GKReadState) {
+    GKReadDefault =  0,//默认
+    GKReadNight   =  1,//晚上
+    GKReadGreen   =  2,//墨绿色
+    GKReadCaffee  =  3,//咖啡色
+    GKReadPink    =  4,//咖啡色
+};
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKReadManager : NSObject
-@property (strong, nonatomic) NSDictionary *readDictionary;
+@property (assign, nonatomic) CGFloat font;//文字大小
+@property (assign, nonatomic) UIFontWeight weight;//字体类型
+@property (strong, nonatomic) UIColor *color;//文字颜色
+@property (assign, nonatomic) CGFloat lineSpacing;//段落 行间距
+@property (assign, nonatomic) CGFloat firstLineHeadIndent;//段落 行间距
+@property (assign, nonatomic) CGFloat paragraphSpacingBefore;//段间距，当前段落和上个段落之间的距离。
+@property (assign, nonatomic) CGFloat paragraphSpacing;//段间距，当前段落和下个段落之间的距离。
+@property (assign, nonatomic) GKReadState state;
 + (instancetype )shareInstance;
++ (void)startReset;
+
++ (NSDictionary *)attDictionary;
++ (UIImage *)getReadImage:(GKReadState)state;
 @end
 
 NS_ASSUME_NONNULL_END

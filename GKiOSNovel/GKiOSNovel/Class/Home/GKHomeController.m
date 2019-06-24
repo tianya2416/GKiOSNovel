@@ -47,6 +47,7 @@
     if (_option & GKLoadDataDataBase) {
         @weakify(self)
         [GKBookReadDataQueue getDatasFromDataBase:1 pageSize:10 completion:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
+            self.tipBtn.hidden =  listData.count == 0;
             if (listData.count) {
                 @strongify(self)
                 GKBookReadModel *model = listData.firstObject;
