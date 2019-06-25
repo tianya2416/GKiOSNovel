@@ -15,6 +15,7 @@
 #import "GKReadContentController.h"
 #import "GKBookHistoryController.h"
 #import "GKBooCaseController.h"
+#import "GKNovelTabBarController.h"
 @implementation GKJumpApp
 + (void)jumpToAppGuidePage:(void(^)(void))completion
 {
@@ -91,5 +92,8 @@
     {
         return [app keyWindow];
     }
+}
++ (void)jumpToAppTheme{
+    [GKJumpApp window].rootViewController =  [[GKNovelTabBarController alloc] init];
 }
 @end

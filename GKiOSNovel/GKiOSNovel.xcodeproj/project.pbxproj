@@ -103,6 +103,9 @@
 		8F1A7CBA22B536B500BB325E /* GKBookDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1A7CB822B536B500BB325E /* GKBookDetailCollectionCell.xib */; };
 		8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */; };
 		8F1A7CC022B682AC00BB325E /* GKBooCaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBF22B682AC00BB325E /* GKBooCaseController.m */; };
+		8FAD667722C245F500351019 /* GKThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD667622C245F500351019 /* GKThemeViewController.m */; };
+		8FAD667B22C2477D00351019 /* GKThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD667922C2477D00351019 /* GKThemeCell.m */; };
+		8FAD667C22C2477D00351019 /* GKThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAD667A22C2477D00351019 /* GKThemeCell.xib */; };
 		DEC0F6D1F57FDCCA48B88D01 /* libPods-GKiOSNovel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */; };
 /* End PBXBuildFile section */
 
@@ -285,6 +288,11 @@
 		8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookCaseDataQueue.m; sourceTree = "<group>"; };
 		8F1A7CBE22B682AC00BB325E /* GKBooCaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBooCaseController.h; sourceTree = "<group>"; };
 		8F1A7CBF22B682AC00BB325E /* GKBooCaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBooCaseController.m; sourceTree = "<group>"; };
+		8FAD667522C245F500351019 /* GKThemeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKThemeViewController.h; sourceTree = "<group>"; };
+		8FAD667622C245F500351019 /* GKThemeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKThemeViewController.m; sourceTree = "<group>"; };
+		8FAD667822C2477D00351019 /* GKThemeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKThemeCell.h; sourceTree = "<group>"; };
+		8FAD667922C2477D00351019 /* GKThemeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKThemeCell.m; sourceTree = "<group>"; };
+		8FAD667A22C2477D00351019 /* GKThemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKThemeCell.xib; sourceTree = "<group>"; };
 		9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GKiOSNovel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -547,6 +555,11 @@
 				8F1A7CBF22B682AC00BB325E /* GKBooCaseController.m */,
 				0FB6DB4122BB746200C48F64 /* GKBookHistoryController.h */,
 				0FB6DB4222BB746200C48F64 /* GKBookHistoryController.m */,
+				8FAD667522C245F500351019 /* GKThemeViewController.h */,
+				8FAD667622C245F500351019 /* GKThemeViewController.m */,
+				8FAD667822C2477D00351019 /* GKThemeCell.h */,
+				8FAD667922C2477D00351019 /* GKThemeCell.m */,
+				8FAD667A22C2477D00351019 /* GKThemeCell.xib */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -788,6 +801,7 @@
 				0FB445D422BCD83000ABCC55 /* GKBookChapterCell.xib in Resources */,
 				0F22DAB822AF8A81000FC9AE /* LaunchScreen.storyboard in Resources */,
 				8F1A7CB522B5195500BB325E /* GKBookDetailCell.xib in Resources */,
+				8FAD667C22C2477D00351019 /* GKThemeCell.xib in Resources */,
 				0F6C5FFC22B3ABDD00A4C2BE /* GKBookDetailTabbar.xib in Resources */,
 				0F22DAB522AF8A81000FC9AE /* Assets.xcassets in Resources */,
 				0F5DFB8622B78BC10056F8E6 /* GKReadTopView.xib in Resources */,
@@ -847,6 +861,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F5F63F222AFA2D8009096BD /* BaseDataQueue.m in Sources */,
+				8FAD667722C245F500351019 /* GKThemeViewController.m in Sources */,
 				0F5F63EF22AFA2D8009096BD /* BaseTableView.m in Sources */,
 				0F6C5FC822B34C9600A4C2BE /* GKSearchItemController.m in Sources */,
 				0F5DFB8922B78D940056F8E6 /* GKReadViewController.m in Sources */,
@@ -874,6 +889,7 @@
 				0F1B796122B87F4D00883CC9 /* GKBookSourceModel.m in Sources */,
 				0F5F63EB22AFA2D8009096BD /* BaseMacro.m in Sources */,
 				0F5DFB8422B78BB80056F8E6 /* GKReadTopView.m in Sources */,
+				8FAD667B22C2477D00351019 /* GKThemeCell.m in Sources */,
 				0FEB43BB22B0E891005FF5DF /* GKStartViewController.m in Sources */,
 				0F6C5FF722B3A9A400A4C2BE /* GKBookDetailModel.m in Sources */,
 				0F5F63E622AFA2D8009096BD /* BaseViewController.m in Sources */,
@@ -1060,7 +1076,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				DEVELOPMENT_TEAM = 84H56RC9VF;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/App/GKiOSNovel.pch";
@@ -1084,7 +1100,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				DEVELOPMENT_TEAM = 84H56RC9VF;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/App/GKiOSNovel.pch";

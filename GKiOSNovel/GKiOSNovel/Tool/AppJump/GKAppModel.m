@@ -7,13 +7,14 @@
 //
 
 #import "GKAppModel.h"
-
+static NSString *gkTheme = @"gkTheme";
 @implementation GKAppModel
 
 @end
 
 @interface GKAppTheme ()
 @property (strong, nonatomic) GKAppModel *model;
+@property (assign, nonatomic) GKThemeState themeState;
 @end
 @implementation GKAppTheme
 + (instancetype )shareInstance
@@ -46,27 +47,45 @@
         _model.icon_class_h = @"icon_class_h";
         _model.icon_class_n = @"icon_class_n";
         _model.icon_more = @"icon_more";
+        _model.icon_man = @"icon_man";
     }
     return _model;
 }
 
 - (void)setThemeState:(GKThemeState)themeState{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"App" ofType:@"plist"];
-    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSString *title = @"too_blue";
-    switch (themeState) {
+    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:gkTheme];
+    _model = data ? [BaseModel unarchiveForData:data]: nil;
+    if (!_model) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"App" ofType:@"plist"];
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:path];
+        NSString *title = @"too_blue";
+        switch (themeState) {
             case GKThemeDefault:
-            title = @"too_blue";
-            break;
+                title = @"too_blue";
+                break;
             case GKThemeTooHouse:
-            title = @"too_house";
-            break;
+                title = @"too_house";
+                break;
             case GKThemeTooGold:
-            title = @"too_gold";
-            break;
-        default:
-            break;
+                title = @"too_gold";
+                break;
+            default:
+                break;
+        }
+        _model = [GKAppModel modelWithJSON:dic[title]];
     }
-    _model = [GKAppModel modelWithJSON:dic[title]];
 }
++ (BOOL)saveAppTheme:(GKAppModel *)appModel
+{
+    [GKAppTheme shareInstance].model = appModel;
+    BOOL res = NO;
+    NSData *userData = [BaseModel archivedDataForData:appModel];
+    if (userData)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:userData forKey:gkTheme];
+        res = [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    return res;
+}
+
 @end

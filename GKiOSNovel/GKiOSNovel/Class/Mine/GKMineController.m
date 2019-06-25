@@ -11,11 +11,13 @@
 #import "GKStartViewController.h"
 #import "GKBooCaseController.h"
 #import "GKBookHistoryController.h"
+#import "GKThemeViewController.h"
 #import "GKMineCell.h"
 static NSString *rank = @"自定义首页";
 static NSString *sex = @"性别";
 static NSString *bookCase = @"我的书架";
 static NSString *readHistory = @"读书记录";
+static NSString *theme = @"主题";
 @interface GKMineController ()
 @property (strong, nonatomic) NSArray *listData;
 @end
@@ -36,8 +38,9 @@ static NSString *readHistory = @"读书记录";
     [self reloadUI];
 }
 - (void)reloadUI{
+    GKAppModel *model = [GKAppTheme shareInstance].model;
     GKUserState state = [GKUserManager shareInstance].user.state;
-    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":readHistory?:@"",@"subTitle":@""},@{@"title":bookCase?:@"",@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")}];
+    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":readHistory?:@"",@"subTitle":@""},@{@"title":bookCase?:@"",@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")},@{@"title":theme?:@"",@"subTitle":model.title?:@""}];
     [self.tableView reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -69,6 +72,8 @@ static NSString *readHistory = @"读书记录";
         vc = [[GKBooCaseController alloc] init];
     }else if ([title isEqualToString:readHistory]){
         vc = [[GKBookHistoryController alloc] init];
+    }else if ([title isEqualToString:theme]){
+        vc = [[GKThemeViewController alloc] init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

@@ -48,6 +48,8 @@
     }];
     [self setupEmpty:self.collectionView image:nil title:@""];
     [self setupRefresh:self.collectionView option:ATRefreshNone];
+    GKAppModel *model = [GKAppTheme shareInstance].model;
+    [self.boyBtn setImage:[UIImage imageNamed:model.icon_man] forState:UIControlStateNormal];
 }
 - (void)refreshData:(NSInteger)page{
     [GKNovelNetManager rankSuccess:^(id  _Nonnull object) {

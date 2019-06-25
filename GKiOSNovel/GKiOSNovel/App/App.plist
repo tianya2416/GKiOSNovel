@@ -4,6 +4,8 @@
 <dict>
 	<key>too_gold</key>
 	<dict>
+		<key>title</key>
+		<string>玫瑰金</string>
 		<key>icon_mine_h</key>
 		<string>icon_mine_h2</string>
 		<key>icon_mine_n</key>
@@ -22,11 +24,15 @@
 		<string>icon_home_h2</string>
 		<key>icon_more</key>
 		<string>icon_more2</string>
+		<key>icon_man</key>
+		<string>icon_man2</string>
 		<key>color</key>
 		<string>fbb8ac</string>
 	</dict>
 	<key>too_blue</key>
 	<dict>
+		<key>title</key>
+		<string>天空蓝</string>
 		<key>icon_mine_h</key>
 		<string>icon_mine_h</string>
 		<key>icon_mine_n</key>
@@ -45,11 +51,15 @@
 		<string>icon_home_h</string>
 		<key>icon_more</key>
 		<string>icon_more</string>
+		<key>icon_man</key>
+		<string>icon_man</string>
 		<key>color</key>
 		<string>66A2F9</string>
 	</dict>
 	<key>too_house</key>
 	<dict>
+		<key>title</key>
+		<string>土豪金</string>
 		<key>icon_mine_h</key>
 		<string>icon_mine_h1</string>
 		<key>icon_mine_n</key>
@@ -68,6 +78,8 @@
 		<string>icon_home_h1</string>
 		<key>icon_more</key>
 		<string>icon_more1</string>
+		<key>icon_man</key>
+		<string>icon_man1</string>
 		<key>color</key>
 		<string>F5DEB9</string>
 	</dict>

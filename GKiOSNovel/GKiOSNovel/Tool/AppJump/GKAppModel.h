@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, GKThemeState) {
     GKThemeTooGold  = 2,
 };
 @interface GKAppModel : BaseModel
+@property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *color;
 
 @property (copy, nonatomic) NSString *icon_case_h;
@@ -27,12 +28,13 @@ typedef NS_ENUM(NSInteger, GKThemeState) {
 @property (copy, nonatomic) NSString *icon_mine_n;
 
 @property (copy, nonatomic) NSString *icon_more;
+@property (copy, nonatomic) NSString *icon_man;
 @end
 
 @interface GKAppTheme :NSObject
 @property (strong, nonatomic,readonly) GKAppModel *model;
-@property (assign, nonatomic) GKThemeState themeState;
 + (instancetype )shareInstance;
++ (BOOL)saveAppTheme:(GKAppModel *)appModel;
 @end
 
 NS_ASSUME_NONNULL_END
