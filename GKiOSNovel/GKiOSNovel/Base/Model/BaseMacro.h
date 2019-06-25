@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define AppColor                 [UIColor colorWithRGB:0x66A2F9]
+#define AppColor                 [UIColor colorWithHexString:[GKAppTheme shareInstance].model.color]
 #define Appxdddddd               [UIColor colorWithRGB:0xDDDDDD]
 #define Appx000000               [UIColor colorWithRGB:0x000000]
 #define Appx333333               [UIColor colorWithRGB:0x333333]

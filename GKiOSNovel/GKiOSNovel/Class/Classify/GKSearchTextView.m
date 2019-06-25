@@ -19,6 +19,7 @@
     [self.textField notifyChange:^NSInteger(UITextField *textField, NSString *text) {
         return 12;
     }];
+    self.textField.tintColor = AppColor;
     
 }
 

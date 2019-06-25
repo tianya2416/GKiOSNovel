@@ -16,6 +16,9 @@
     
     [self.addBtn setTitle:@"已在书架中" forState:UIControlStateSelected];
     [self.addBtn setTitle:@"已在书架中" forState:UIControlStateSelected|UIControlStateHighlighted];
+    [self.readBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
+     [self.addBtn setTitleColor:AppColor forState:UIControlStateNormal];
+     [self.addBtn setTitleColor:Appx999999 forState:UIControlStateSelected];
 }
 - (void)setCollection:(BOOL)collection{
     if (_collection != collection) {

@@ -31,10 +31,8 @@
     self.moreBtn.layer.masksToBounds = self.stateBtn.layer.masksToBounds = YES;
     self.moreBtn.layer.cornerRadius = 10;
     self.stateBtn.layer.cornerRadius = 7.5f;
-//    self.nickNameLab.layer.masksToBounds = YES;
-//    self.nickNameLab.layer.cornerRadius = AppRadius;
-//    self.nickNameLab.layer.borderWidth = AppLineHeight;
-//    self.nickNameLab.layer.borderColor = AppColor.CGColor;
+    [self.moreBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
+    self.nickNameLab.textColor = AppColor;
     
 }
 - (void)setModel:(GKBookDetailModel *)model{

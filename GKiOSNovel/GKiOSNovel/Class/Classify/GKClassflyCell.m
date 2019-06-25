@@ -18,6 +18,7 @@
     self.stateBtn.layer.cornerRadius = 7.5f;
     [self.focusBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
     self.width.constant = SCALEW(80);
+    self.nickNameLab.textColor = AppColor;
     // Initialization code
 }
 

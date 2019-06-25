@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showNavTitle:@"修改性别"];
+    self.titleLab.textColor = AppColor;
     [self.view addSubview:self.sureBtn];
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.sureBtn.superview).offset(10);

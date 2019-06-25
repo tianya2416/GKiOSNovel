@@ -22,18 +22,18 @@
     [self loadUI];
 }
 - (void)loadUI{
-    
+    GKAppModel *model = [GKAppTheme shareInstance].model;
     self.listData = @[].mutableCopy;
     self.tabBar.translucent = NO;
     UIViewController *vc = nil;
     vc = [[GKHomeController alloc] init];
-    [self vcWithController:vc title:@"首页" normal:@"icon_home_n" select:@"icon_home_h"];
+    [self vcWithController:vc title:@"首页" normal:model.icon_home_n select:model.icon_home_h];
     vc = [[GKClassContentController alloc] init];
-    [self vcWithController:vc title:@"分类" normal:@"icon_class_n" select:@"icon_class_h"];
+    [self vcWithController:vc title:@"分类" normal:model.icon_class_n select:model.icon_class_h];
     vc = [[GKBooCaseController alloc] init];
-    [self vcWithController:vc title:@"书架" normal:@"icon_case_n" select:@"icon_case_h"];
+    [self vcWithController:vc title:@"书架" normal:model.icon_case_n select:model.icon_case_h];
     vc = [[GKMineController alloc] init];
-    [self vcWithController:vc title:@"我的" normal:@"icon_mine_n" select:@"icon_mine_h"];
+    [self vcWithController:vc title:@"我的" normal:model.icon_mine_n select:model.icon_mine_h];
     self.viewControllers = self.listData;
 }
 - (void)vcWithController:(UIViewController *)vc title:(NSString *)title normal:(NSString *)normal select:(NSString *)select{

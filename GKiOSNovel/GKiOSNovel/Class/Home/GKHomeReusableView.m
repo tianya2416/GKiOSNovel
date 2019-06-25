@@ -22,7 +22,8 @@
 - (ATImageRightButton *)moreBtn{
     if (!_moreBtn) {
         _moreBtn = [ATImageRightButton buttonWithType:UIButtonTypeCustom];
-        [_moreBtn setImage:[UIImage imageNamed:@"icon_home_more"] forState:UIControlStateNormal];
+        GKAppModel *model = [GKAppTheme shareInstance].model;
+        [_moreBtn setImage:[UIImage imageNamed:model.icon_more] forState:UIControlStateNormal];
         [_moreBtn setTitle:@"更多" forState:UIControlStateNormal];
         _moreBtn.imageMarning = 0;
         _moreBtn.titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];

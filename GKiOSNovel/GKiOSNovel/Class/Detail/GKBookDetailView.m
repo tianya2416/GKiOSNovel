@@ -20,6 +20,7 @@
     self.lvBtn.layer.masksToBounds = YES;
     self.lvBtn.layer.cornerRadius = AppRadius;
     self.lvBtn.userInteractionEnabled = NO;
+    [self.lvBtn setBackgroundColor:AppColor];
 }
 - (void)setModel:(GKBookListDetailModel *)model{
     if (_model != model) {

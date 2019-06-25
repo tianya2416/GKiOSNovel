@@ -14,6 +14,8 @@
     [super awakeFromNib];
     self.collectionBtn.layer.masksToBounds = YES;
     self.collectionBtn.layer.cornerRadius  = AppRadius;
+    self.counLab.textColor = AppColor;
+    [self.collectionBtn setBackgroundColor:AppColor];
     // Initialization code
 }
 - (void)setModel:(GKBookListModel *)model{
