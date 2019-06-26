@@ -48,8 +48,6 @@
     }];
     [self setupEmpty:self.collectionView image:nil title:@""];
     [self setupRefresh:self.collectionView option:ATRefreshNone];
-    GKAppModel *model = [GKAppTheme shareInstance].model;
-    [self.boyBtn setImage:[UIImage imageNamed:model.icon_man] forState:UIControlStateNormal];
 }
 - (void)refreshData:(NSInteger)page{
     [GKNovelNetManager rankSuccess:^(id  _Nonnull object) {
@@ -84,7 +82,7 @@
     self.girlBtn.layer.masksToBounds = YES;
     self.girlBtn.layer.cornerRadius = AppRadius;
     self.girlBtn.layer.borderWidth = 4.0f;
-    self.girlBtn.layer.borderColor = [UIColor colorWithRGB:0xe8989a].CGColor;
+    self.girlBtn.layer.borderColor = AppColor.CGColor;
     self.boyBtn.layer.borderColor = Appxffffff.CGColor;
 }
 

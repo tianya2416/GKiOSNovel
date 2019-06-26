@@ -26,11 +26,11 @@
                             <constraint firstAttribute="width" constant="60" id="r80-gK-tk2"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gZw-Kw-jC6">
-                        <rect key="frame" x="295" y="35" width="20" height="20"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_select" translatesAutoresizingMaskIntoConstraints="NO" id="gZw-Kw-jC6">
+                        <rect key="frame" x="295" y="0.0" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="3BR-rF-hes"/>
-                            <constraint firstAttribute="width" constant="20" id="tcS-DW-DyH"/>
+                            <constraint firstAttribute="height" constant="25" id="3BR-rF-hes"/>
+                            <constraint firstAttribute="width" constant="25" id="tcS-DW-DyH"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVO-LY-6ff">
@@ -48,18 +48,17 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="xVO-LY-6ff" firstAttribute="centerY" secondItem="gZw-Kw-jC6" secondAttribute="centerY" id="2Kh-cr-1qw"/>
                     <constraint firstItem="xVO-LY-6ff" firstAttribute="leading" secondItem="vfQ-kq-6nt" secondAttribute="trailing" constant="10" id="LkM-29-O0D"/>
                     <constraint firstAttribute="bottom" secondItem="GeI-i6-3P3" secondAttribute="bottom" id="OWM-Ym-GWU"/>
                     <constraint firstItem="vfQ-kq-6nt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="RdZ-qN-hOy"/>
                     <constraint firstItem="gZw-Kw-jC6" firstAttribute="leading" secondItem="xVO-LY-6ff" secondAttribute="trailing" constant="10" id="TvZ-Js-8ax"/>
                     <constraint firstItem="xVO-LY-6ff" firstAttribute="centerY" secondItem="vfQ-kq-6nt" secondAttribute="centerY" id="ZCC-sB-Qsi"/>
-                    <constraint firstItem="gZw-Kw-jC6" firstAttribute="centerY" secondItem="vfQ-kq-6nt" secondAttribute="centerY" id="fpc-LJ-dot"/>
                     <constraint firstAttribute="trailing" secondItem="GeI-i6-3P3" secondAttribute="trailing" id="k8e-Kh-bbl"/>
-                    <constraint firstAttribute="trailing" secondItem="gZw-Kw-jC6" secondAttribute="trailing" constant="5" id="mdR-AZ-3WJ"/>
+                    <constraint firstAttribute="trailing" secondItem="gZw-Kw-jC6" secondAttribute="trailing" id="mdR-AZ-3WJ"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vfQ-kq-6nt" secondAttribute="bottom" constant="15" id="sXS-74-QN3"/>
                     <constraint firstItem="GeI-i6-3P3" firstAttribute="leading" secondItem="vfQ-kq-6nt" secondAttribute="leading" id="wJS-2L-tw8"/>
                     <constraint firstItem="vfQ-kq-6nt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="wuA-Bz-YGv"/>
+                    <constraint firstItem="gZw-Kw-jC6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yXc-F2-Zt7"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -71,4 +70,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="110.15625"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_select" width="25" height="25"/>
+    </resources>
 </document>

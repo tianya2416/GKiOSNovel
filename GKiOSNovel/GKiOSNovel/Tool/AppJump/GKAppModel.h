@@ -13,6 +13,8 @@ typedef NS_ENUM(NSInteger, GKThemeState) {
     GKThemeDefault  = 0,
     GKThemeTooHouse = 1,
     GKThemeTooGold  = 2,
+    GKThemeTooZi    = 3,
+    GKThemeTooFen   = 4,
 };
 @interface GKAppModel : BaseModel
 @property (copy, nonatomic) NSString *title;

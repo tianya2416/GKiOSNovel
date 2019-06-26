@@ -24,5 +24,7 @@
     _model = model;
     self.imageV.image = [UIImage imageWithColor:[UIColor colorWithHexString:model.color]];
     self.titleLab.text = model.title ?:@"";
+    GKAppModel *modelq = [GKAppTheme shareInstance].model;
+    self.imageIcon.hidden = ![model.title isEqualToString:modelq.title];
 }
 @end

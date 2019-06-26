@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEg-FW-ocx">
-                        <rect key="frame" x="12" y="12" width="270" height="17"/>
+                        <rect key="frame" x="12" y="12" width="278" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_select" translatesAutoresizingMaskIntoConstraints="NO" id="Fj7-3p-LlT">
-                        <rect key="frame" x="287" y="8" width="25" height="25"/>
+                        <rect key="frame" x="295" y="0.0" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="8FA-uI-aQU"/>
                             <constraint firstAttribute="width" constant="25" id="zjU-Ga-Lpu"/>
@@ -41,9 +41,9 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Fj7-3p-LlT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1xF-hU-uBz"/>
                     <constraint firstAttribute="trailing" secondItem="zix-uq-FK7" secondAttribute="trailing" id="Egh-4F-CCj"/>
-                    <constraint firstItem="Fj7-3p-LlT" firstAttribute="centerY" secondItem="nEg-FW-ocx" secondAttribute="centerY" id="IXJ-9g-x54"/>
-                    <constraint firstAttribute="trailing" secondItem="Fj7-3p-LlT" secondAttribute="trailing" constant="8" id="koY-ah-D3l"/>
+                    <constraint firstAttribute="trailing" secondItem="Fj7-3p-LlT" secondAttribute="trailing" id="koY-ah-D3l"/>
                     <constraint firstItem="nEg-FW-ocx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="lNE-iV-L4i"/>
                     <constraint firstItem="nEg-FW-ocx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="qim-KW-NLM"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nEg-FW-ocx" secondAttribute="bottom" constant="12" id="rVn-f0-bSO"/>
@@ -61,6 +61,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_select" width="20" height="20"/>
+        <image name="icon_select" width="25" height="25"/>
     </resources>
 </document>

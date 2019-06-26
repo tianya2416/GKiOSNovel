@@ -60,14 +60,20 @@ static NSString *gkTheme = @"gkTheme";
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:path];
         NSString *title = @"too_blue";
         switch (themeState) {
-            case GKThemeDefault:
+                case GKThemeDefault:
                 title = @"too_blue";
                 break;
-            case GKThemeTooHouse:
+                case GKThemeTooHouse:
                 title = @"too_house";
                 break;
-            case GKThemeTooGold:
+                case GKThemeTooGold:
                 title = @"too_gold";
+                break;
+                case GKThemeTooZi:
+                title = @"too_zi";
+                break;
+                case GKThemeTooFen:
+                title = @"too_fen";
                 break;
             default:
                 break;

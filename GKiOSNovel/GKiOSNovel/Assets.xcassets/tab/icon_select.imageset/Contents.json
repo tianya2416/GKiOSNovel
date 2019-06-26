@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "xuanze-copy-universal.png",
+      "filename" : "select1-universal.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "xuanze-copy-universal@2x.png",
+      "filename" : "select1-universal@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "xuanze-copy-universal@3x.png",
+      "filename" : "select1-universal@3x.png",
       "scale" : "3x"
     }
   ],

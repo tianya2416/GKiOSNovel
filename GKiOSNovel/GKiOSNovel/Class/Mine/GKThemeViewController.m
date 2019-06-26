@@ -50,7 +50,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [GKAppTheme saveAppTheme:self.listData[indexPath.row]];
+    GKAppModel *modelq = [GKAppTheme shareInstance].model;
+    GKAppModel *model = self.listData[indexPath.row];
+    if ([modelq.title isEqualToString:model.title]) {
+        return;
+    }
+    [GKAppTheme saveAppTheme:model];
     [MBProgressHUD showWithCompletion:^(MBProgressHUD *hud) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [hud hideAnimated:YES];
