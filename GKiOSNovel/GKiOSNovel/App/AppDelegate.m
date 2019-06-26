@@ -11,14 +11,16 @@
 #import "GKStartViewController.h"
 #import "BaseNetCache.h"
 @interface AppDelegate ()
-
+//A##FFC F699F8
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [GKJumpApp jumpToAppTheme];
+    [GKJumpApp jumpToAppGuidePage:^{
+        [GKJumpApp jumpToAppTheme];
+    }];
     [self.window makeKeyAndVisible];
     return YES;
 }
