@@ -15,8 +15,8 @@ typedef NS_ENUM(NSInteger, GKReadState) {
     GKReadPink    =  4,//咖啡色
 };
 NS_ASSUME_NONNULL_BEGIN
+@interface GKReadSetModel : BaseModel
 
-@interface GKReadManager : NSObject
 @property (assign, nonatomic) CGFloat font;//文字大小
 @property (assign, nonatomic) UIFontWeight weight;//字体类型
 @property (strong, nonatomic) UIColor *color;//文字颜色
@@ -24,12 +24,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat firstLineHeadIndent;//段落 行间距
 @property (assign, nonatomic) CGFloat paragraphSpacingBefore;//段间距，当前段落和上个段落之间的距离。
 @property (assign, nonatomic) CGFloat paragraphSpacing;//段间距，当前段落和下个段落之间的距离。
-@property (assign, nonatomic) GKReadState state;
-+ (instancetype )shareInstance;
-+ (void)startReset;
+@property (assign, nonatomic) CGFloat brightness;//亮度
 
-+ (NSDictionary *)attDictionary;
-+ (UIImage *)getReadImage:(GKReadState)state;
+@property (assign, nonatomic) GKReadState state;
+
+@end
+@interface GKReadManager : NSObject
+
+@property (strong, nonatomic,readonly)GKReadSetModel *model;
+
++ (instancetype)shareInstance;
++ (BOOL)saveReadSetModel:(GKReadSetModel *)model;
+
++ (NSDictionary *)defaultAtt;
++ (UIImage *)defaultBackView;
 @end
 
 NS_ASSUME_NONNULL_END

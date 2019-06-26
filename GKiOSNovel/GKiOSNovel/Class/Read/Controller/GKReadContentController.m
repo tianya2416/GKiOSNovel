@@ -279,8 +279,11 @@
 }
 - (void)dayACtion:(UIButton *)sender{
     sender.selected = !sender.selected;
-    [GKReadManager shareInstance].state = (sender.selected == NO) ? GKReadDefault : GKReadNight;
-    self.mainView.image = [GKReadManager getReadImage:[GKReadManager shareInstance].state];
+    GKReadState state  = (sender.selected == NO) ? GKReadDefault : GKReadNight;
+    GKReadSetModel *model = [GKReadManager shareInstance].model;
+    model.state = state;
+    [GKReadManager saveReadSetModel:model];
+    self.mainView.image = [GKReadManager defaultBackView];
 }
 - (void)cataACtion:(UIButton *)sender{
     GKBookChapterController *vc = [GKBookChapterController vcWithChapter:self.bookSource.bookSourceId chapter:self.chapter completion:^(NSInteger index) {
@@ -304,6 +307,7 @@
         [_bottomView.setBtn addTarget:self action:@selector(setAction:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.dayBtn addTarget:self action:@selector(dayACtion:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.cataBtn addTarget:self action:@selector(cataACtion:) forControlEvents:UIControlEventTouchUpInside];
+        _bottomView.dayBtn.selected = [GKReadManager shareInstance].model.state == GKReadNight;
     }
     return _bottomView;
 }
@@ -322,7 +326,7 @@
         _mainView.userInteractionEnabled = YES;
         _mainView.clipsToBounds = YES;
         _mainView.contentMode = UIViewContentModeScaleAspectFill;
-        _mainView.image = [UIImage imageNamed:@"icon_read_black"];
+        _mainView.image = [GKReadManager defaultBackView];
     }
     return _mainView;
 }

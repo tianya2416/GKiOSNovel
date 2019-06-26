@@ -30,6 +30,8 @@ static NSString *gkTheme = @"gkTheme";
 }
 - (instancetype)init{
     if (self = [super init ]) {
+        NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:gkTheme];
+        _model = data ? [BaseModel unarchiveForData:data]: nil;
         self.themeState = GKThemeDefault;
     }
     return self;
@@ -53,8 +55,6 @@ static NSString *gkTheme = @"gkTheme";
 }
 
 - (void)setThemeState:(GKThemeState)themeState{
-    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:gkTheme];
-    _model = data ? [BaseModel unarchiveForData:data]: nil;
     if (!_model) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"App" ofType:@"plist"];
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:path];
