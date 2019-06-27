@@ -8,17 +8,25 @@
 
 #import <Foundation/Foundation.h>
 typedef NS_ENUM(NSInteger, GKReadState) {
-    GKReadDefault =  0,//默认
-    GKReadNight   =  1,//晚上
+    GKReadDefault =  0,//白天
+    GKReadBlack   =  1,//晚上
     GKReadGreen   =  2,//墨绿色
     GKReadCaffee  =  3,//咖啡色
-    GKReadPink    =  4,//咖啡色
+    GKReadPink    =  4,//淡粉
+    GKReadFen     =  5,//粉红色
+    GKReadZi      =  6,//紫色
+    GKReadYellow  =  7,//黄色
 };
 NS_ASSUME_NONNULL_BEGIN
+@interface GKReadSkinModel : BaseModel
+@property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *skin;
+@property (assign, nonatomic) GKReadState state;
+@end
 @interface GKReadSetModel : BaseModel
 
-@property (assign, nonatomic) CGFloat font;//文字大小
 @property (assign, nonatomic) UIFontWeight weight;//字体类型
+@property (assign, nonatomic) CGFloat font;//文字大小
 @property (strong, nonatomic) UIColor *color;//文字颜色
 @property (assign, nonatomic) CGFloat lineSpacing;//段落 行间距
 @property (assign, nonatomic) CGFloat firstLineHeadIndent;//段落 行间距
@@ -29,15 +37,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) GKReadState state;
 
 @end
-@interface GKReadManager : NSObject
-
+@interface GKReadSetManager : NSObject
 @property (strong, nonatomic,readonly)GKReadSetModel *model;
-
 + (instancetype)shareInstance;
-+ (BOOL)saveReadSetModel:(GKReadSetModel *)model;
 
-+ (NSDictionary *)defaultAtt;
-+ (UIImage *)defaultBackView;
++ (void)setReadState:(GKReadState)state;//切换皮肤
++ (void)setBrightness:(CGFloat)brightness;//切换亮度
++ (void)setFont:(CGFloat )font;//设置字体大小
+
+
++ (NSDictionary *)defaultFont;
++ (UIImage *)defaultSkin;
++ (NSArray *)defaultSkinDatas;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,7 +7,7 @@
 //
 
 #import "GKBookContentModel.h"
-#import "GKReadManager.h"
+
 @interface GKBookContentModel()
 @property (strong, nonatomic) NSMutableArray *pageArray;
 @property (strong, nonatomic) NSMutableAttributedString *attributedString;
@@ -28,7 +28,7 @@
 - (void)setPageBound:(CGRect)bounds {
     self.pageArray = @[].mutableCopy;
     NSString *content = self.content;
-    NSMutableAttributedString *attr = [[NSMutableAttributedString  alloc] initWithString:content attributes:[GKReadManager defaultAtt]];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString  alloc] initWithString:content attributes:[GKReadSetManager defaultFont]];
 
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef) attr);
     CGPathRef path = CGPathCreateWithRect(bounds, NULL);
@@ -66,7 +66,7 @@
         }
         return [_attributedString attributedSubstringFromRange:NSMakeRange(loc, len)];
     }
-    return [[NSAttributedString alloc] initWithString:@"更多精彩内容尽在追书申请\n\r\n\r数据加载中...\n\r\n\r请耐心等待" attributes:[GKReadManager defaultAtt]];
+    return [[NSAttributedString alloc] initWithString:@"更多精彩内容尽在追书申请\n\r\n\r数据加载中...\n\r\n\r请耐心等待" attributes:[GKReadSetManager defaultFont]];
 }
 
 @end

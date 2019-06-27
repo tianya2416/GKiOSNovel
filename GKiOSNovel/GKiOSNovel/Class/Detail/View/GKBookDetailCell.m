@@ -30,7 +30,7 @@
     [super awakeFromNib];
     self.moreBtn.layer.masksToBounds = self.stateBtn.layer.masksToBounds = YES;
     self.moreBtn.layer.cornerRadius = 10;
-    self.stateBtn.layer.cornerRadius = 7.5f;
+    self.stateBtn.layer.cornerRadius = 10.0f;
     [self.moreBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
     self.nickNameLab.textColor = AppColor;
     

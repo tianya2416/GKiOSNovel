@@ -6,12 +6,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "yellow_mode_bg@2x.png",
+      "filename" : "pink_mode_bg@3x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "yellow_mode_bg@3x.png",
       "scale" : "3x"
     }
   ],

@@ -15,13 +15,17 @@
 #import "GKBookReadModel.h"
 #import "GKReadTopView.h"
 #import "GKReadBottomView.h"
+#import "GKReadSetView.h"
 #import "GKReadView.h"
-@interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+#define gkSetHeight (180 + TAB_BAR_ADDING)
+
+@interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,GKReadSetDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) UIImageView *mainView;
 @property (strong, nonatomic) GKReadTopView *topView;
 @property (strong, nonatomic) GKReadBottomView *bottomView;
+@property (strong, nonatomic) GKReadSetView *setView;
 
 @property (strong, nonatomic) GKBookDetailModel *model;
 @property (strong, nonatomic) GKBookSourceInfo *bookSource;
@@ -80,7 +84,7 @@
     
     [self.pageViewController didMoveToParentViewController:self];
 
-    [self performSelector:@selector(tapAction) withObject:nil afterDelay:2];
+    [self performSelector:@selector(tapAction) withObject:nil afterDelay:0.50];
     [self.view addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.topView.superview);
@@ -94,10 +98,18 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.offset(100);
+        make.width.height.offset(SCALEW(120));
         make.center.equalTo(btn.superview);
     }];
     [btn addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.setView];
+    [self.setView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.setView.superview);
+        make.height.offset(gkSetHeight);
+        make.bottom.offset(gkSetHeight);
+    }];
+    self.setView.hidden = YES;
 }
 - (UIViewController *)viewControllerAtPage:(NSUInteger)pageIndex chapter:(NSInteger)chapterIndex
 {
@@ -185,40 +197,14 @@
         }
     }];
 }
-#pragma mark UIPageViewControllerDelegate,UIPageViewControllerDataSource
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(GKReadViewController *)viewController {
-    NSInteger pageIndex = viewController.pageIndex;
-    NSUInteger chapter = viewController.chapterIndex;
-    if (pageIndex == 0 && chapter == 0){
-        return nil;
-    }
-    if (pageIndex >= 0) {
-        pageIndex = pageIndex - 1;
-    }else{
-        chapter = chapter - 1;
-        pageIndex = self.bookContent.pageCount - 1;
-    }
-    return [self viewControllerAtPage:pageIndex chapter:chapter];
-    
-    
-}
-#pragma mark 返回下一个ViewController对象
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(GKReadViewController *)viewController {
-    NSUInteger pageIndex = viewController.pageIndex;
-    NSUInteger chapter = viewController.chapterIndex;
-    if (pageIndex >= self.bookContent.pageCount) {
-        pageIndex = 0;
-        chapter = chapter + 1;
-    }else{
-        pageIndex = pageIndex + 1;
-    }
-    return [self viewControllerAtPage:pageIndex chapter:chapter];
-}
-
 #pragma mark buttonAction
 - (void)tapAction{
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapAction) object:nil];
-    self.topView.hidden ? [self tapViewShow] : [self tapViewHidden];
+    if (!self.setView.hidden) {
+        [self setAction];
+    }else{
+        self.topView.hidden ? [self tapViewShow] : [self tapViewHidden];
+    }
 }
 - (void)tapViewShow{
     self.topView.hidden = NO;
@@ -274,22 +260,89 @@
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }
-- (void)setAction:(UIButton *)sender{
-    
+- (void)setAction{
+    if (self.setView.hidden) {
+        self.setView.hidden = NO;
+        [self.setView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.setView.superview);
+            make.height.offset(gkSetHeight);
+            make.bottom.offset(0);
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }else{
+        [self.setView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.setView.superview);
+            make.height.offset(gkSetHeight);
+            make.bottom.offset(gkSetHeight);
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            self.setView.hidden = YES;
+        }];
+    }
 }
 - (void)dayACtion:(UIButton *)sender{
     sender.selected = !sender.selected;
-    GKReadState state  = (sender.selected == NO) ? GKReadDefault : GKReadNight;
-    GKReadSetModel *model = [GKReadManager shareInstance].model;
-    model.state = state;
-    [GKReadManager saveReadSetModel:model];
-    self.mainView.image = [GKReadManager defaultBackView];
+    GKReadState state  = (sender.selected == NO) ? GKReadDefault : GKReadBlack;
+    [GKReadSetManager setReadState:state];
+    self.mainView.image = [GKReadSetManager defaultSkin];
 }
 - (void)cataACtion:(UIButton *)sender{
     GKBookChapterController *vc = [GKBookChapterController vcWithChapter:self.bookSource.bookSourceId chapter:self.chapter completion:^(NSInteger index) {
          [self loadBookContent:NO chapter:index];
     }];
     [self.navigationController pushViewController:vc animated:YES];
+}
+#pragma mark UIPageViewControllerDelegate,UIPageViewControllerDataSource
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(GKReadViewController *)viewController {
+    NSInteger pageIndex = viewController.pageIndex;
+    NSUInteger chapter = viewController.chapterIndex;
+    if (pageIndex == 0 && chapter == 0){
+        return nil;
+    }
+    if (pageIndex >= 0) {
+        pageIndex = pageIndex - 1;
+    }else{
+        chapter = chapter - 1;
+        pageIndex = self.bookContent.pageCount - 1;
+    }
+    return [self viewControllerAtPage:pageIndex chapter:chapter];
+    
+    
+}
+#pragma mark 返回下一个ViewController对象
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(GKReadViewController *)viewController {
+    NSUInteger pageIndex = viewController.pageIndex;
+    NSUInteger chapter = viewController.chapterIndex;
+    if (pageIndex >= self.bookContent.pageCount) {
+        pageIndex = 0;
+        chapter = chapter + 1;
+    }else{
+        pageIndex = pageIndex + 1;
+    }
+    return [self viewControllerAtPage:pageIndex chapter:chapter];
+}
+#pragma mark GKReadSetDelegate
+- (void)readSetView:(GKReadSetView *)setView brightness:(CGFloat)brightness{
+    
+}
+- (void)readSetView:(GKReadSetView *)setView font:(CGFloat)font{
+    [self.bookContent setContentPage];
+    self.pageIndex  = self.pageIndex < self.bookContent.pageCount ? self.pageIndex : self.bookContent.pageCount - 1;
+    [self insertDataQueue];
+    UIViewController *vc = [self viewControllerAtPage:self.pageIndex chapter:self.chapter];
+    [self.pageViewController setViewControllers:@[vc]
+                                      direction:UIPageViewControllerNavigationDirectionReverse
+                                       animated:NO
+                                     completion:nil];
+}
+- (void)readSetView:(GKReadSetView *)setView state:(GKReadState)state{
+    self.mainView.image = [GKReadSetManager defaultSkin];
 }
 #pragma mark get
 
@@ -304,14 +357,20 @@
 - (GKReadBottomView *)bottomView{
     if (!_bottomView) {
         _bottomView = [GKReadBottomView instanceView];
-        [_bottomView.setBtn addTarget:self action:@selector(setAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView.setBtn addTarget:self action:@selector(setAction) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.dayBtn addTarget:self action:@selector(dayACtion:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.cataBtn addTarget:self action:@selector(cataACtion:) forControlEvents:UIControlEventTouchUpInside];
-        _bottomView.dayBtn.selected = [GKReadManager shareInstance].model.state == GKReadNight;
+        _bottomView.dayBtn.selected = [GKReadSetManager shareInstance].model.state == GKReadBlack;
     }
     return _bottomView;
 }
-
+- (GKReadSetView *)setView{
+    if (!_setView) {
+        _setView = [GKReadSetView instanceView];
+        _setView.delegate = self;
+    }
+    return _setView;
+}
 #pragma mark get
 
 - (GKBookSourceInfo *)bookSource{
@@ -326,7 +385,7 @@
         _mainView.userInteractionEnabled = YES;
         _mainView.clipsToBounds = YES;
         _mainView.contentMode = UIViewContentModeScaleAspectFill;
-        _mainView.image = [GKReadManager defaultBackView];
+        _mainView.image = [GKReadSetManager defaultSkin];
     }
     return _mainView;
 }

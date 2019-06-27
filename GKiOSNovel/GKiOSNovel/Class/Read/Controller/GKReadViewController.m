@@ -34,8 +34,8 @@
     self.titleLab.text = title ;
     currentPage = currentPage + 1 >totalPage ? totalPage : currentPage + 1;
     self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage),@(totalPage)];
-    self.selectLab.textColor = [GKReadManager shareInstance].model.color;
-    self.titleLab.textColor = [GKReadManager shareInstance].model.color;
+    self.selectLab.textColor = [GKReadSetManager shareInstance].model.color;
+    self.titleLab.textColor = [GKReadSetManager shareInstance].model.color;
 }
 
 - (void)loadUI{

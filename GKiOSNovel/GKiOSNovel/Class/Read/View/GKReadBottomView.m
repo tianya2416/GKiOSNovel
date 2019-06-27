@@ -10,6 +10,9 @@
 
 @implementation GKReadBottomView
 
-
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.backgroundColor = Appx252631;
+}
 
 @end
