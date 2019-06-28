@@ -10,6 +10,7 @@
 		0F1016BA22B1EA50002018E7 /* GKHomeNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1016B922B1EA50002018E7 /* GKHomeNetManager.m */; };
 		0F14E1D422B2496E007FBA04 /* GKHomeMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F14E1D322B2496E007FBA04 /* GKHomeMoreController.m */; };
 		0F1B813422B095610061FD7A /* GKBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B813322B095610061FD7A /* GKBookModel.m */; };
+		0F22927B22C5AA3000279173 /* GKShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F22927A22C5AA3000279173 /* GKShareTool.m */; };
 		0F22DAB522AF8A81000FC9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F22DAB422AF8A81000FC9AE /* Assets.xcassets */; };
 		0F22DAB822AF8A81000FC9AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F22DAB622AF8A81000FC9AE /* LaunchScreen.storyboard */; };
 		0F2A18B122B8E1CF00426D5A /* BaseNetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A18B022B8E1CF00426D5A /* BaseNetCache.m */; };
@@ -97,6 +98,7 @@
 		0FAB61C722C45AB4000F8ABB /* GKReadSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB61C622C45AB4000F8ABB /* GKReadSetView.xib */; };
 		0FB445CC22BC828400ABCC55 /* GKTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB445CB22BC828400ABCC55 /* GKTimeTool.m */; };
 		0FB6DB3D22BB3B6100C48F64 /* GKBookReadDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */; };
+		0FD5A6C722C4CEE5008124FE /* GKShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD5A6C622C4CEE5008124FE /* GKShareViewController.m */; };
 		0FE8B42922B0A45B00ECAD07 /* GKHomeReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE8B42722B0A45B00ECAD07 /* GKHomeReusableView.m */; };
 		0FE8B42A22B0A45B00ECAD07 /* GKHomeReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FE8B42822B0A45B00ECAD07 /* GKHomeReusableView.xib */; };
 		0FEB43BB22B0E891005FF5DF /* GKStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43B922B0E891005FF5DF /* GKStartViewController.m */; };
@@ -107,6 +109,8 @@
 		0FEB43CC22B104E0005FF5DF /* GKCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43CA22B104DF005FF5DF /* GKCollectionViewLayout.m */; };
 		0FEB43D022B105D2005FF5DF /* GKStartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB43CE22B105D2005FF5DF /* GKStartCell.m */; };
 		0FEB43D122B105D2005FF5DF /* GKStartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB43CF22B105D2005FF5DF /* GKStartCell.xib */; };
+		0FEDE10522C5FD3400D29D02 /* GKShareViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEDE10322C5FD3400D29D02 /* GKShareViewCell.m */; };
+		0FEDE10622C5FD3400D29D02 /* GKShareViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FEDE10422C5FD3400D29D02 /* GKShareViewCell.xib */; };
 		0FF17E1122C20BD300D0FFB9 /* App.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FF17E1022C20BD300D0FFB9 /* App.plist */; };
 		0FF17E1422C2103700D0FFB9 /* GKAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF17E1322C2103700D0FFB9 /* GKAppModel.m */; };
 		8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */; };
@@ -121,6 +125,8 @@
 		0F14E1D322B2496E007FBA04 /* GKHomeMoreController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKHomeMoreController.m; sourceTree = "<group>"; };
 		0F1B813222B095610061FD7A /* GKBookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookModel.h; sourceTree = "<group>"; };
 		0F1B813322B095610061FD7A /* GKBookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookModel.m; sourceTree = "<group>"; };
+		0F22927922C5AA3000279173 /* GKShareTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKShareTool.h; sourceTree = "<group>"; };
+		0F22927A22C5AA3000279173 /* GKShareTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKShareTool.m; sourceTree = "<group>"; };
 		0F22DAA822AF8A80000FC9AE /* GKiOSNovel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKiOSNovel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F22DAB422AF8A81000FC9AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F22DAB722AF8A81000FC9AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -280,6 +286,8 @@
 		0FB445CB22BC828400ABCC55 /* GKTimeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKTimeTool.m; sourceTree = "<group>"; };
 		0FB6DB3B22BB3B6100C48F64 /* GKBookReadDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookReadDataQueue.h; sourceTree = "<group>"; };
 		0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookReadDataQueue.m; sourceTree = "<group>"; };
+		0FD5A6C522C4CEE5008124FE /* GKShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKShareViewController.h; sourceTree = "<group>"; };
+		0FD5A6C622C4CEE5008124FE /* GKShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKShareViewController.m; sourceTree = "<group>"; };
 		0FE8B42622B0A45B00ECAD07 /* GKHomeReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKHomeReusableView.h; sourceTree = "<group>"; };
 		0FE8B42722B0A45B00ECAD07 /* GKHomeReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKHomeReusableView.m; sourceTree = "<group>"; };
 		0FE8B42822B0A45B00ECAD07 /* GKHomeReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKHomeReusableView.xib; sourceTree = "<group>"; };
@@ -297,6 +305,9 @@
 		0FEB43CD22B105D2005FF5DF /* GKStartCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKStartCell.h; sourceTree = "<group>"; };
 		0FEB43CE22B105D2005FF5DF /* GKStartCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKStartCell.m; sourceTree = "<group>"; };
 		0FEB43CF22B105D2005FF5DF /* GKStartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKStartCell.xib; sourceTree = "<group>"; };
+		0FEDE10222C5FD3400D29D02 /* GKShareViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKShareViewCell.h; sourceTree = "<group>"; };
+		0FEDE10322C5FD3400D29D02 /* GKShareViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKShareViewCell.m; sourceTree = "<group>"; };
+		0FEDE10422C5FD3400D29D02 /* GKShareViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKShareViewCell.xib; sourceTree = "<group>"; };
 		0FF17E1022C20BD300D0FFB9 /* App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = App.plist; sourceTree = "<group>"; };
 		0FF17E1222C2103700D0FFB9 /* GKAppModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKAppModel.h; sourceTree = "<group>"; };
 		0FF17E1322C2103700D0FFB9 /* GKAppModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKAppModel.m; sourceTree = "<group>"; };
@@ -434,6 +445,7 @@
 		0F5F63F722AFB05C009096BD /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				0FD5A6C422C4CEA7008124FE /* Share */,
 				0F5F63F922AFB150009096BD /* Classify */,
 				0FAB615222C45720000F8ABB /* Detail */,
 				0FEB43BD22B0F922005FF5DF /* GKUser */,
@@ -598,10 +610,10 @@
 		0FAB615322C45720000F8ABB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0FAB615422C45720000F8ABB /* GKBookListDetailController.m */,
+				0FAB615722C45720000F8ABB /* GKBookDetailController.h */,
 				0FAB615522C45720000F8ABB /* GKBookDetailController.m */,
 				0FAB615622C45720000F8ABB /* GKBookListDetailController.h */,
-				0FAB615722C45720000F8ABB /* GKBookDetailController.h */,
+				0FAB615422C45720000F8ABB /* GKBookListDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -741,6 +753,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0FD5A6C422C4CEA7008124FE /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				0FD5A6C522C4CEE5008124FE /* GKShareViewController.h */,
+				0FD5A6C622C4CEE5008124FE /* GKShareViewController.m */,
+				0F22927922C5AA3000279173 /* GKShareTool.h */,
+				0F22927A22C5AA3000279173 /* GKShareTool.m */,
+				0FEDE10222C5FD3400D29D02 /* GKShareViewCell.h */,
+				0FEDE10322C5FD3400D29D02 /* GKShareViewCell.m */,
+				0FEDE10422C5FD3400D29D02 /* GKShareViewCell.xib */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		0FEB43B722B0E875005FF5DF /* Launch */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,6 +881,7 @@
 				0FAB616E22C45720000F8ABB /* GKBookDetailCell.xib in Resources */,
 				0FEB43D122B105D2005FF5DF /* GKStartCell.xib in Resources */,
 				0FAB61C222C457B5000F8ABB /* GKMineCell.xib in Resources */,
+				0FEDE10622C5FD3400D29D02 /* GKShareViewCell.xib in Resources */,
 				0FE8B42A22B0A45B00ECAD07 /* GKHomeReusableView.xib in Resources */,
 				0FAB61C722C45AB4000F8ABB /* GKReadSetView.xib in Resources */,
 				0F39F5B722C46AF600A3DDA1 /* GKReadSetCell.xib in Resources */,
@@ -928,6 +955,7 @@
 				0FAB619C22C45755000F8ABB /* GKBookChapterModel.m in Sources */,
 				0FB6DB3D22BB3B6100C48F64 /* GKBookReadDataQueue.m in Sources */,
 				0F6C5FE822B37CD600A4C2BE /* main.m in Sources */,
+				0FEDE10522C5FD3400D29D02 /* GKShareViewCell.m in Sources */,
 				0F5F63EC22AFA2D8009096BD /* BaseNetModel.m in Sources */,
 				0F8AA7DF22B0CDCD00332ECB /* GKNewNavBarView.m in Sources */,
 				0FAB616A22C45720000F8ABB /* GKBookListDetailController.m in Sources */,
@@ -943,6 +971,7 @@
 				0F5F63EE22AFA2D8009096BD /* BaseView.m in Sources */,
 				0FAB61B922C457B5000F8ABB /* GKBooCaseController.m in Sources */,
 				0FAB619822C45755000F8ABB /* GKBookSourceModel.m in Sources */,
+				0FD5A6C722C4CEE5008124FE /* GKShareViewController.m in Sources */,
 				0FAB619A22C45755000F8ABB /* GKBookReadModel.m in Sources */,
 				0F5F641122AFB7EB009096BD /* GKHomeHotCell.m in Sources */,
 				0F5F63EB22AFA2D8009096BD /* BaseMacro.m in Sources */,
@@ -968,6 +997,7 @@
 				0F6C5FDE22B37CA100A4C2BE /* ATSheetView.m in Sources */,
 				0F8AA7DA22B0CD6800332ECB /* GKClassItemController.m in Sources */,
 				0F5F63F122AFA2D8009096BD /* BaseNetTool.m in Sources */,
+				0F22927B22C5AA3000279173 /* GKShareTool.m in Sources */,
 				0FAB61BF22C457B5000F8ABB /* GKMineCell.m in Sources */,
 				0FAB619522C45755000F8ABB /* GKBookChapterController.m in Sources */,
 				0F5F640422AFB287009096BD /* GKHomeController.m in Sources */,

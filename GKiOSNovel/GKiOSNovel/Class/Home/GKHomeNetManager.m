@@ -52,15 +52,17 @@
     }
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [self.listData removeAllObjects];
-        if (self.readBook.books.count > 0) {
-            [self.listData addObject:self.readBook];
-        }
-        if (self.bookCase.books.count > 0) {
-            [self.listData addObject:self.bookCase];
-        }
-        if (self.arrayDatas.count) {
-            NSArray *datas = [GKHomeNetManager sortedArrayUsingComparator:self.arrayDatas.copy key:@"bookSort" ascending:YES];
-            [self.listData addObjectsFromArray:datas];
+        if ( [YYReachability reachability].status != YYReachabilityStatusNone) {
+            if (self.readBook.books.count > 0) {
+                [self.listData addObject:self.readBook];
+            }
+            if (self.bookCase.books.count > 0) {
+                [self.listData addObject:self.bookCase];
+            }
+            if (self.arrayDatas.count) {
+                NSArray *datas = [GKHomeNetManager sortedArrayUsingComparator:self.arrayDatas.copy key:@"bookSort" ascending:YES];
+                [self.listData addObjectsFromArray:datas];
+            }
         }
         if (self.listData.count) {
             !success ?: success(self.listData.copy);

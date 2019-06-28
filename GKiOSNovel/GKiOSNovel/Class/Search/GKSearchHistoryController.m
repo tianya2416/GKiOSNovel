@@ -144,6 +144,10 @@
     [self searchText:content];
     return YES;
 }
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//{
+//    return textField == self.searchView.textField ? NO : YES;
+//}
 - (void)searchText:(NSString *)searchText{
     GKSearchItemController *vc = [GKSearchItemController vcWithHotWord:searchText];
     [self.navigationController pushViewController:vc animated:YES];

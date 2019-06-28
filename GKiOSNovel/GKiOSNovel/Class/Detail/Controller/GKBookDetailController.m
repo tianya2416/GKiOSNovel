@@ -7,6 +7,8 @@
 //
 
 #import "GKBookDetailController.h"
+#import "GKBookDetailController.h"
+#import "GKShareViewController.h"
 #import "GKBookDetailCollectionCell.h"
 #import "GKBookDetailModel.h"
 #import "GKBookDetailTabbar.h"
@@ -14,7 +16,7 @@
 #import "GKBookDetailCell.h"
 #import "GKHomeHotCell.h"
 #import "GKHomeReusableView.h"
-#import "GKBookDetailController.h"
+
 @interface GKBookDetailController ()
 @property (copy, nonatomic) NSString *bookId;
 @property (strong, nonatomic) UILabel *tipLab;
@@ -52,6 +54,7 @@
         make.left.right.equalTo(self.collectionView.superview);
         make.bottom.equalTo(self.tabbar.mas_top);
     }];
+    [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_share"] action:@selector(shareAction)];
     [GKBookCaseDataQueue getDataFromDataBase:self.bookId completion:^(GKBookDetailModel * _Nonnull bookModel) {
         if (bookModel) {
             [self reloadUI:YES];
@@ -102,6 +105,9 @@
 }
 - (void)readAction{
     [GKJumpApp jumpToBookRead:self.bookDetail.bookModel];
+}
+- (void)shareAction{
+    [self presentPanModal:[GKShareViewController vcWithBookModel:self.bookDetail.bookModel]];
 }
 #pragma mark UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -161,6 +167,9 @@
 }
 #pragma mark delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return;
+    }
     NSArray *list = self.bookDetail.listData[indexPath.section];
     id object = list[indexPath.row];
     if ([object isKindOfClass:GKBookModel.class]){

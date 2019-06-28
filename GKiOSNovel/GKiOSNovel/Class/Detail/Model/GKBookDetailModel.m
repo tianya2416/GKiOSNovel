@@ -50,20 +50,24 @@
         dispatch_group_leave(group);
     }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        if (list || books || booklists) {
-            NSMutableArray *datas = [[NSMutableArray alloc] init];
-            if (list) {
-                [datas addObject:list];
+        if ([YYReachability reachability].status != YYReachabilityStatusNone) {
+            if (list || books || booklists) {
+                 NSMutableArray *datas = [[NSMutableArray alloc] init];
+                if (list) {
+                    [datas addObject:list];
+                }
+                if (books) {
+                    [datas addObject:books];
+                }
+                if (booklists) {
+                    [datas addObject:booklists];
+                }
+                GKBookDetailInfo *info = [GKBookDetailInfo vcWithDatas:datas.copy];
+                info.bookModel = list.firstObject;
+                !success ?: success(info);
+            }else{
+                !failure?: failure(@"");
             }
-            if (books) {
-                [datas addObject:books];
-            }
-            if (booklists) {
-                [datas addObject:booklists];
-            }
-            GKBookDetailInfo *info = [GKBookDetailInfo vcWithDatas:datas.copy];
-            info.bookModel = list.firstObject;
-            !success ?: success(info);
         }else{
             !failure?: failure(@"");
         }

@@ -9,6 +9,13 @@
 #import "GKBookModel.h"
 
 @implementation GKBookModel
+- (void)setCover:(NSString *)cover{
+    if ([cover hasPrefix:@"/agent/"]) {
+        cover = [cover stringByReplacingOccurrencesOfString:@"/agent/" withString:@""];
+    }
+    cover =  [cover stringByURLDecode];
+    _cover = cover;
+}
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"majorCate" : @[@"majorCate",@"cat"]};
 }

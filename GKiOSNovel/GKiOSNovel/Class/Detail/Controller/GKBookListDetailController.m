@@ -8,6 +8,7 @@
 
 #import "GKBookListDetailController.h"
 #import "GKBookListDetailModel.h"
+#import "GKShareViewController.h"
 #import "GKBookDetailView.h"
 #import "GKClassflyCell.h"
 @interface GKBookListDetailController ()
@@ -43,7 +44,7 @@
     }] ;
 }
 - (void)shareAction{
-    
+    [self presentPanModal:[GKShareViewController vcWithBookListModel:self.model]];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

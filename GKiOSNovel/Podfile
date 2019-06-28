@@ -20,8 +20,13 @@ target :GKiOSNovel  do
     pod 'DZNEmptyDataSet'
     pod 'KVOController'
     pod 'FDFullscreenPopGesture', '1.1'
-    pod 'HHTransition'
     pod 'SDCycleScrollView'
     pod 'KLRecycleScrollView'
+    pod 'HWPanModal'
+#---------- 分享SDK -------
+    pod 'mob_sharesdk'
+    pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
+    pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
+    pod 'mob_sharesdk/ShareSDKPlatforms/WeChat’
 end
 

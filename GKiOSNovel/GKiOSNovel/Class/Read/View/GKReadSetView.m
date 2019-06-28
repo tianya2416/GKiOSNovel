@@ -44,14 +44,12 @@
     [self.slider setThumbImage:image forState:UIControlStateHighlighted];
     [self.slider addTarget:self action:@selector(changedAction:) forControlEvents:UIControlEventValueChanged];
     [self.slider addTarget:self action:@selector(touchUpACtion:) forControlEvents:UIControlEventTouchUpInside];
-    self.slider.value = [UIScreen mainScreen].brightness;
     
     
     self.segmentControl.tintColor = AppColor;
     [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
     [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateSelected];
     [self.segmentControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-    self.segmentControl.selectedSegmentIndex = ([GKReadSetManager shareInstance].model.font - 18)/2;
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate  = self;
@@ -78,6 +76,8 @@
     }
 }
 - (void)loadData{
+    self.slider.value = [UIScreen mainScreen].brightness;
+    self.segmentControl.selectedSegmentIndex = ([GKReadSetManager shareInstance].model.font - 18)/2;
     self.listData = [GKReadSetManager defaultSkinDatas];
     [self.collectionView reloadData];
 }

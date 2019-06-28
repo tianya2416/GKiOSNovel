@@ -11,16 +11,16 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol GKReadSetDelegate <NSObject>
 
-- (void)readSetView:(GKReadSetView *)setView brightness:(CGFloat)brightness;
-- (void)readSetView:(GKReadSetView *)setView font:(CGFloat)font;
-- (void)readSetView:(GKReadSetView *)setView state:(GKReadState)state;
+- (void)readSetView:(GKReadSetView *__nullable)setView brightness:(CGFloat)brightness;
+- (void)readSetView:(GKReadSetView *__nullable)setView font:(CGFloat)font;
+- (void)readSetView:(GKReadSetView *__nullable)setView state:(GKReadState)state;
 @end
 @interface GKReadSetView : UIView
 @property (assign, nonatomic) id<GKReadSetDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+- (void)loadData;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic)   NSString *bookId;
 @property (copy, nonatomic)   NSString *updateTime;
+@property (assign, nonatomic) BOOL bookMarks;
 @property (strong, nonatomic) GKBookDetailModel *bookModel;
 @property (strong, nonatomic) GKBookSourceInfo *bookSource;//文章来源
 @property (strong, nonatomic) GKBookChapterModel *bookChapter;//文章章节

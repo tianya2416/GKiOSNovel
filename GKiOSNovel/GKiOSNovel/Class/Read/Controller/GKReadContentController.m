@@ -48,19 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadUI];
-    [GKBookReadDataQueue getDataFromDataBase:self.model._id completion:^(GKBookReadModel * _Nonnull bookModel) {
-        if (bookModel.bookSource.bookSourceId && bookModel.bookChapter.link) {
-            self.bookModel = bookModel;
-            self.bookSource = bookModel.bookSource;
-            self.chapter = bookModel.bookChapter.chapterIndex ?: 0;
-            self.pageIndex = bookModel.bookContent.pageIndex ?: 0;
-            [self loadBookContent:YES chapter:self.chapter];
-        }else{
-            self.chapter = 0;
-            self.pageIndex = 0;
-            [self loadBookSummary];
-        }
-    }];
+    [self loadData];
 }
 - (void)loadUI{
     [self.view addSubview:self.mainView];
@@ -110,6 +98,22 @@
         make.bottom.offset(gkSetHeight);
     }];
     self.setView.hidden = YES;
+}
+- (void)loadData{
+    [self readSetView:nil state:0];
+    [GKBookReadDataQueue getDataFromDataBase:self.model._id completion:^(GKBookReadModel * _Nonnull bookModel) {
+        if (bookModel.bookSource.bookSourceId && bookModel.bookChapter.link) {
+            self.bookModel = bookModel;
+            self.bookSource = bookModel.bookSource;
+            self.chapter = bookModel.bookChapter.chapterIndex ?: 0;
+            self.pageIndex = bookModel.bookContent.pageIndex ?: 0;
+            [self loadBookContent:YES chapter:self.chapter];
+        }else{
+            self.chapter = 0;
+            self.pageIndex = 0;
+            [self loadBookSummary];
+        }
+    }];
 }
 - (UIViewController *)viewControllerAtPage:(NSUInteger)pageIndex chapter:(NSInteger)chapterIndex
 {
@@ -262,6 +266,7 @@
 }
 - (void)setAction{
     if (self.setView.hidden) {
+        [self.setView loadData];
         self.setView.hidden = NO;
         [self.setView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.setView.superview);
@@ -294,7 +299,8 @@
 }
 - (void)cataACtion:(UIButton *)sender{
     GKBookChapterController *vc = [GKBookChapterController vcWithChapter:self.bookSource.bookSourceId chapter:self.chapter completion:^(NSInteger index) {
-         [self loadBookContent:NO chapter:index];
+        self.chapter = index;
+        [self loadBookContent:NO chapter:index];
     }];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -343,6 +349,7 @@
 }
 - (void)readSetView:(GKReadSetView *)setView state:(GKReadState)state{
     self.mainView.image = [GKReadSetManager defaultSkin];
+    self.bottomView.dayBtn.selected = [GKReadSetManager shareInstance].model.state == GKReadBlack;
 }
 #pragma mark get
 
@@ -360,7 +367,6 @@
         [_bottomView.setBtn addTarget:self action:@selector(setAction) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.dayBtn addTarget:self action:@selector(dayACtion:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.cataBtn addTarget:self action:@selector(cataACtion:) forControlEvents:UIControlEventTouchUpInside];
-        _bottomView.dayBtn.selected = [GKReadSetManager shareInstance].model.state == GKReadBlack;
     }
     return _bottomView;
 }
@@ -385,7 +391,6 @@
         _mainView.userInteractionEnabled = YES;
         _mainView.clipsToBounds = YES;
         _mainView.contentMode = UIViewContentModeScaleAspectFill;
-        _mainView.image = [GKReadSetManager defaultSkin];
     }
     return _mainView;
 }

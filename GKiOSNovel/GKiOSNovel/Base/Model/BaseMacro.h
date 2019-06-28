@@ -52,6 +52,10 @@ typedef NS_ENUM(NSInteger, GKLoadDataState) {
     GKLoadDataDataBase=  1 << 2,
     GKLoadDataDefault = (GKLoadDataNetData|GKLoadDataDataBase),
 };
+
+#define WChatAppKey              @"wx4105c558f6bb1bd1"//微信平台appKey
+#define QQAppKey                 @"1109550572" //设置QQ平台的appID
+
 @interface BaseMacro : NSObject
 + (NSArray *)hotDatas;
 @end
