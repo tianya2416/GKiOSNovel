@@ -10,10 +10,14 @@
 
 @implementation BaseCell
 
+/**
+ 如果使用xib创建cell 就会调用该方法
+ */
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
