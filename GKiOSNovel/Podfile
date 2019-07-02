@@ -17,6 +17,7 @@ target :GKiOSNovel  do
     pod 'MJRefresh', :git => 'https://github.com/CoderLT/MJRefresh.git'
     pod 'MBProgressHUD',:git => 'https://github.com/tianya2416/MBProgress.git'
     pod 'VTMagic',:git => 'https://github.com/tianya2416/VTMagicMacro.git'
+    pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/tianya2416/FDCacheHeightLayoutCell.git'
     pod 'DZNEmptyDataSet'
     pod 'KVOController'
     pod 'FDFullscreenPopGesture', '1.1'
@@ -28,5 +29,6 @@ target :GKiOSNovel  do
     pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
     pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
     pod 'mob_sharesdk/ShareSDKPlatforms/WeChat’
+    pod 'lottie-ios'
 end
 

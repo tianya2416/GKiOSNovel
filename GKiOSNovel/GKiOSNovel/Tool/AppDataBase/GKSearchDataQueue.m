@@ -151,7 +151,7 @@ static NSString *SearchTable = @"SearchTable";
             [GKSearchDataQueue tableExists:db];
             if ([db open]) {
                 NSString * sql = [NSString stringWithFormat:
-                                  @"select * from '%@' order by updateTime asc limit %@,%@",SearchTable,@((page-1)*pageSize),@(pageSize)];
+                                  @"select * from '%@' order by updateTime desc limit %@,%@",SearchTable,@((page-1)*pageSize),@(pageSize)];
                 FMResultSet * rs = [db executeQuery:sql];
                 NSString *name = nil;
                 NSMutableArray * array = [[NSMutableArray alloc]init];

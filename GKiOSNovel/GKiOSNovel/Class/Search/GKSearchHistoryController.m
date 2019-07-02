@@ -110,8 +110,10 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *title = self.listData[indexPath.row];;
-    return CGSizeMake([title widthForFont:[UIFont systemFontOfSize:14]] + 20, 30);
+    NSArray *listData = indexPath.section == 0 ? self.listData : self.searchDatas.copy;
+    NSString *title = listData[indexPath.row];
+    CGFloat width = [title sizeForFont:[UIFont systemFontOfSize:14] size:CGSizeMake(MAXFLOAT, MAXFLOAT) mode:NSLineBreakByTruncatingTail].width;
+    return CGSizeMake(width + 20, 30);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 10;

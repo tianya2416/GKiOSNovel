@@ -25,17 +25,6 @@
     [self loadData];
 }
 - (void)loadUI{
-    self.listData = @[].mutableCopy;
-    self.option = GKLoadDataDefault;
-    [GKUserManager reloadHomeDataNeed:^(GKLoadDataState option) {
-        self.option = option;
-        [self headerRefreshing];
-    }];
-    
-    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角进行添加"];
-    [self setupRefresh:self.collectionView option:ATRefreshDefault];
-    
-    
     [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_nav_add"] action:@selector(addAction)];
     [self.view addSubview:self.tipBtn];
     [self.tipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -47,21 +36,20 @@
     if (_option & GKLoadDataDataBase) {
         @weakify(self)
         [GKBookReadDataQueue getDatasFromDataBase:1 pageSize:10 completion:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
-            self.tipBtn.hidden =  listData.count == 0;
-            if (listData.count) {
-                @strongify(self)
-                GKBookReadModel *model = listData.firstObject;
-                NSString *title = [NSString stringWithFormat:@"最近一次阅读:%@ %@",model.bookModel.title?:@"",[GKTimeTool timeStampTurnToTimesType:model.updateTime]];
-                [self.tipBtn setTitle:title forState:UIControlStateNormal];
-                [self.tipBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-                    [GKJumpApp jumpToBookRead:model.bookModel];
-                }];
-            }
+            @strongify(self)
+            [self setTipModel:listData.firstObject];
         }];
     }
 }
 - (void)loadData{
-
+    self.listData = @[].mutableCopy;
+    self.option = GKLoadDataDefault;
+    [GKUserManager reloadHomeDataNeed:^(GKLoadDataState option) {
+        self.option = option;
+        [self headerRefreshing];
+    }];
+    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角进行添加"];
+    [self setupRefresh:self.collectionView option:ATRefreshDefault];
 }
 - (void)refreshData:(NSInteger)page{
     NSArray <GKRankModel *>*listData = [GKUserManager shareInstance].user.rankDatas;
@@ -85,6 +73,25 @@
 - (void)addAction{
     [GKJumpApp jumpToAddSelect];
 }
+- (void)setTipModel:(GKBookReadModel *)model{
+    self.tipBtn.hidden = !model;
+    NSString *title = [NSString stringWithFormat:@"最近一次阅读:%@ %@",model.bookModel.title?:@"",[GKTimeTool timeStampTurnToTimesType:model.updateTime]];
+    [self.tipBtn setTitle:title forState:UIControlStateNormal];
+    [self.tipBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        [GKJumpApp jumpToBookRead:model.bookModel];
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tipBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.tipBtn.superview);
+            make.top.offset(-25);
+        }];
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            self.tipBtn.hidden = YES;
+        }];
+    });
+}
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return self.listData.count;
 }
@@ -94,9 +101,16 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat width = (SCREEN_WIDTH)/3.0;
-    CGFloat height = width * 1.35;
-    return CGSizeMake(width, height);
+    GKBookInfo *info = self.listData[indexPath.section];
+    GKBookModel *model = info.listData[indexPath.row];
+    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop)/3 configuration:^(__kindof GKHomeHotCell *cell) {
+        if ([model isKindOfClass:GKBookModel.class]) {
+            cell.model = model;
+        }else if ([model isKindOfClass:GKBookReadModel.class]){
+            GKBookReadModel *info = (GKBookReadModel *)model;
+            cell.model = info.bookModel;
+        }
+    }];
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -114,18 +128,18 @@
     return cell;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
+    return AppTop;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
+    return AppTop;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0,0,0,0);
+    return UIEdgeInsetsMake(AppTop,AppTop,AppTop,AppTop);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     GKBookInfo *info = self.listData[section];
-    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? 60 : 0.001f);
+    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? 45 : 0.001f);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
@@ -172,7 +186,7 @@
         _tipBtn.backgroundColor = [UIColor colorWithRGB:0xf5f5f5];
         _tipBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
         [_tipBtn setTitleColor:AppColor forState:UIControlStateNormal];
-        [_tipBtn setContentEdgeInsets:UIEdgeInsetsMake(5, 5,5, 5)];
+        [_tipBtn setContentEdgeInsets:UIEdgeInsetsMake(2, 5,2, 5)];
         _tipBtn.titleLabel.numberOfLines = 0;
     }return _tipBtn;
 }

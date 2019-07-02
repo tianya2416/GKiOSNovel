@@ -55,12 +55,13 @@
     if ([modelq.title isEqualToString:model.title]) {
         return;
     }
-    [GKAppTheme saveAppTheme:model];
-    [MBProgressHUD showWithCompletion:^(MBProgressHUD *hud) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [hud hideAnimated:YES];
-            [GKJumpApp jumpToAppTheme];
-        });
+    [ATAlertView showTitle:@"提示" message:@"切换主题会重新启动程序" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
+        if (index > 0) {
+            [GKAppTheme saveAppTheme:model];
+            [GKJumpApp jumpToAppGuidePage:^{
+                [GKJumpApp jumpToAppTheme];
+            }];
+        }
     }];
 }
 @end

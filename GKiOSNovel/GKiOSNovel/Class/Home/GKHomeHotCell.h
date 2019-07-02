@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GKBookModel.h"
+#import "GKClassItemModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKHomeHotCell : UICollectionViewCell
@@ -16,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tagBtn;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
-@property (strong, nonatomic) GKBookModel *model;
+@property (strong, nonatomic) id model;
 
 @end
 

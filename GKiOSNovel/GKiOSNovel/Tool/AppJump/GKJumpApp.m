@@ -16,6 +16,7 @@
 #import "GKBookHistoryController.h"
 #import "GKBooCaseController.h"
 #import "GKNovelTabBarController.h"
+#import "GKLaunchController.h"
 @implementation GKJumpApp
 + (void)jumpToAppGuidePage:(void(^)(void))completion
 {
@@ -26,6 +27,7 @@
     {
         !completion ?: completion();
     }
+    [GKJumpApp setAppLaunchController];
 }
 + (void)jumpToBookDetail:(NSString *)bookId{
     UIViewController *nvc = [UIViewController rootTopPresentedController];
@@ -81,6 +83,12 @@
     GKBookHistoryController *vc = [[GKBookHistoryController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
      [nvc.navigationController pushViewController:vc animated:YES];
+}
++ (void)setAppLaunchController{
+    UIViewController *root = [UIViewController rootTopPresentedController];
+    GKLaunchController *launchController = [[GKLaunchController alloc]init];
+    launchController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [root presentViewController:launchController animated:NO completion:nil];
 }
 +  (UIWindow *)window
 {

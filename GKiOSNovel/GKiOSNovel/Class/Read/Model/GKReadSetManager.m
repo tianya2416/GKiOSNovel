@@ -45,6 +45,7 @@ static NSString *gkReadModel = @"gkReadModel";
 }
 #pragma mark class set
 + (void)setReadState:(GKReadState)state{
+    
     GKReadSetModel *model = [GKReadSetManager shareInstance].model;
     model.state = state;
     [GKReadSetManager saveReadSetModel:model];

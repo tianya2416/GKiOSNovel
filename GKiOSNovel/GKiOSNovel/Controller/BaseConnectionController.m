@@ -7,7 +7,6 @@
 //
 
 #import "BaseConnectionController.h"
-
 @interface BaseConnectionController ()
 
 @end
@@ -28,8 +27,8 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumLineSpacing = 10;
-        layout.minimumInteritemSpacing = 10;
+        layout.minimumLineSpacing = 0;
+        layout.minimumInteritemSpacing = 0;
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
@@ -63,7 +62,7 @@
 #pragma mark UICollectionViewDelegateFlowLayout
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0,0,0,0);
+    return UIEdgeInsetsZero;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {

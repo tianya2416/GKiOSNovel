@@ -9,17 +9,17 @@
 #ifndef GKiOSNovel_pch
 #define GKiOSNovel_pch
 
-#import "Masonry.h"
 #import "YYKit.h"
+#import "VTMagic.h"
+#import "Masonry.h"
 #import "CategoryKit.h"
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+ATAdd.h"
+#import <HWPanModal/HWPanModal.h>
 #import <SDWebImage/SDWebImageManager.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UINavigationController+FDFullscreenPopGesture.h"
-#import "VTMagic.h"
-#import "MBProgressHUD+ATAdd.h"
-#import <HWPanModal/HWPanModal.h>
-
+#import "UICollectionView+ARDynamicCacheHeightLayoutCell.h"
 
 #import "BaseMacro.h"
 #import "BaseModel.h"

@@ -31,8 +31,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupEmpty:self.collectionView];
-    [self setupRefresh:self.self.collectionView option:ATRefreshNone];
+//    [self setupEmpty:self.collectionView];
+//    [self setupRefresh:self.self.collectionView option:ATRefreshNone];
     [self.view addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.titleLab.superview);
@@ -60,10 +60,10 @@
         make.bottom.equalTo(self.cancleBtn.mas_top);
     }];
 }
-- (void)refreshData:(NSInteger)page{
-    [self.collectionView reloadData];
-    [self endRefresh:NO];
-}
+//- (void)refreshData:(NSInteger)page{
+//    [self.collectionView reloadData];
+//    [self endRefresh:NO];
+//}
 - (void)shareAction:(UIButton *)sender{
     if (self.bookModel) {
         [GKShareTool shareTo:sender.tag imageUrl:self.bookModel.cover title:self.bookModel.title subTitle:self.bookModel.longIntro completion:^(NSString * _Nonnull error) {

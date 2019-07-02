@@ -12,11 +12,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self addSubview:self.titleLab];
+    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLab.superview).offset(15);
+        make.baseline.equalTo(self.titleLab.superview).offset(-5);
+    }];
     [self addSubview:self.moreBtn];
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLab.mas_right).offset(10);
         make.right.equalTo(self.moreBtn.superview).offset(-15);
-        make.bottom.equalTo(self.titleLab.mas_bottom);
+        make.bottom.equalTo(self.titleLab.mas_baseline);
     }];
 }
 - (ATImageRightButton *)moreBtn{
@@ -30,5 +35,13 @@
         [_moreBtn setTitleColor:AppColor forState:UIControlStateNormal];
     }
     return _moreBtn;
+}
+- (UILabel *)titleLab{
+    if (!_titleLab) {
+        _titleLab = [[UILabel alloc] init];
+        _titleLab.font = [UIFont systemFontOfSize:30.0f weight:UIFontWeightHeavy];
+        _titleLab.textColor  = Appx252631;
+    }
+    return _titleLab;
 }
 @end

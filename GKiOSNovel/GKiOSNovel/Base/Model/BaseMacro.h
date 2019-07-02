@@ -19,11 +19,12 @@
 #define Appxffffff               [UIColor colorWithRGB:0xffffff]
 #define AppRadius                4.0f
 #define AppLineHeight            0.60f
+#define AppTop                   15.0f
 
 #define placeholders     [UIImage imageNamed:@"placeholder_big"]
 #define placeholdersmall [UIImage imageNamed:@"placeholder_small"]
 
-#define AppReadContent CGRectMake(15, STATUS_BAR_HIGHT + 40, SCREEN_WIDTH - 30, SCREEN_HEIGHT - STATUS_BAR_HIGHT - TAB_BAR_ADDING - 30 - 40)
+#define AppReadContent CGRectMake(AppTop, STATUS_BAR_HIGHT + 40, SCREEN_WIDTH - 30, SCREEN_HEIGHT - STATUS_BAR_HIGHT - TAB_BAR_ADDING - 30 - 40)
 
 #pragma mark login
 #define BaseUrl  @"https://api.zhuishushenqi.com/"

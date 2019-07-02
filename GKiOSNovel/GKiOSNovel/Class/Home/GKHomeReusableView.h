@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKHomeReusableView : UICollectionReusableView
-@property (weak, nonatomic) IBOutlet UILabel *titleLab;
+@property (strong, nonatomic) UILabel *titleLab;
 @property (strong, nonatomic) ATImageRightButton *moreBtn;
 
 @end
