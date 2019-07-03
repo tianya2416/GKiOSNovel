@@ -11,8 +11,8 @@
 @implementation GKBookDetailTabbar
 - (void)awakeFromNib{
     [super awakeFromNib];
-    [self.addBtn setTitle:@"放入书架" forState:UIControlStateNormal];
-    [self.addBtn setTitle:@"放入书架" forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.addBtn setTitle:@"缓存到书架" forState:UIControlStateNormal];
+    [self.addBtn setTitle:@"缓存到书架" forState:UIControlStateNormal|UIControlStateHighlighted];
     
     [self.addBtn setTitle:@"已在书架中" forState:UIControlStateSelected];
     [self.addBtn setTitle:@"已在书架中" forState:UIControlStateSelected|UIControlStateHighlighted];

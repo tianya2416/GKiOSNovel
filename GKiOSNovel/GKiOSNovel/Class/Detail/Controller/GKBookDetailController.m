@@ -16,13 +16,17 @@
 #import "GKBookDetailCell.h"
 #import "GKHomeHotCell.h"
 #import "GKHomeReusableView.h"
-
+#import "GKBookCacheTool.h"
+#import "ASProgressPopUpView.h"
 @interface GKBookDetailController ()
 @property (copy, nonatomic) NSString *bookId;
 @property (strong, nonatomic) UILabel *tipLab;
 @property (strong, nonatomic) GKBookDetailTabbar *tabbar;
 @property (strong, nonatomic) GKBookDetailView *detailView;
+@property (strong, nonatomic) ASProgressPopUpView *prpgressView;
+
 @property (strong, nonatomic) GKBookDetailInfo *bookDetail;
+@property (strong, nonatomic) GKBookCacheTool *bookCache;
 @end
 @implementation GKBookDetailController
 + (instancetype)vcWithBookId:(NSString *)bookId{
@@ -30,10 +34,19 @@
     vc.bookId = bookId;
     return vc;
 }
+- (void)goBack{
+    if (self.bookCache.download) {
+        [ATAlertView showTitle:@"提示" message:@"本书还在下载中,如果现在退出会下载失败" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
+            if (index > 0) {
+                [super goBack];
+            }
+        }];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadUI];
-    
+    [self loadData];
 }
 - (void)loadUI{
     [self showNavTitle:@"书籍详情"];
@@ -49,11 +62,19 @@
         make.height.offset(49);
         make.bottom.equalTo(self.tabbar.superview).offset(-TAB_BAR_ADDING);
     }];
+    [self.view addSubview:self.prpgressView];
+    [self.prpgressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.prpgressView.superview);
+        make.bottom.equalTo(self.tabbar.mas_top);
+    }];
     [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.collectionView.superview);
         make.bottom.equalTo(self.tabbar.mas_top);
     }];
     [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_share"] action:@selector(shareAction)];
+
+}
+- (void)loadData{
     [GKBookCaseDataQueue getDataFromDataBase:self.bookId completion:^(GKBookDetailModel * _Nonnull bookModel) {
         if (bookModel) {
             [self reloadUI:YES];
@@ -62,13 +83,7 @@
     [GKBookReadDataQueue getDataFromDataBase:self.bookId completion:^(GKBookReadModel * _Nonnull bookModel) {
         [self setTipModel:bookModel];
     }];
-    [GKNovelNetManager updateContent:self.bookId success:^(id  _Nonnull object) {
-        
-    } failure:^(NSString * _Nonnull error) {
-        
-    }];
 }
-
 - (void)refreshData:(NSInteger)page{
     [GKBookDetailInfo bookDetail:self.bookId success:^(GKBookDetailInfo * _Nonnull info) {//55b37c89829afbb046b2ac82
         self.bookDetail = info;
@@ -87,12 +102,15 @@
 - (void)addAction:(UIButton *)sender{
     
     if (sender.selected) {
-        [ATAlertView showTitle:@"确定从书架中移出吗？" message:@"" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
+        [ATAlertView showTitle:@"从书架中移除会删除本地已下载章节？" message:@"" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
             if (index > 0) {
                 [GKBookCaseDataQueue deleteDataToDataBase:self.bookDetail.bookModel._id completion:^(BOOL success) {
                     if (success) {
                         [self reloadUI:NO];
                     }
+                }];
+                [GKBookCacheDataQueue dropTableFromDataBase:self.bookDetail.bookModel._id completion:^(BOOL success) {
+                    
                 }];
             }
         }];
@@ -103,6 +121,19 @@
                 [MBProgressHUD showMessage:@"已成功放入书架" toView:self.view];
             }
         }];
+        @weakify(self)
+        [self.bookCache downloadData:self.bookDetail.bookModel._id progress:^(NSInteger index, NSInteger total) {
+            @strongify(self)
+            CGFloat da = (float)index/total;
+            self.prpgressView.hidden = NO;
+            [self.prpgressView setProgress:da animated:YES];
+        } completion:^(BOOL finish, NSString * _Nonnull error) {
+            if (finish) {
+                [MBProgressHUD showMessage:@"下载成功！" toView:self.view];
+                self.prpgressView.hidden = YES;
+            }
+        }];
+        
     }
 }
 - (void)readAction{
@@ -234,5 +265,23 @@
         _tipLab.numberOfLines = 3;
     }
     return _tipLab;
+}
+- (GKBookCacheTool *)bookCache{
+    if (!_bookCache) {
+        _bookCache = [[GKBookCacheTool alloc] init];
+    }
+    return _bookCache;
+}
+- (ASProgressPopUpView *)prpgressView{
+    if (!_prpgressView) {
+        _prpgressView = [[ASProgressPopUpView alloc] init];
+        _prpgressView.hidden = YES;
+        _prpgressView.popUpViewColor = [UIColor colorWithRGB:0xed5641];
+        _prpgressView.popUpViewCornerRadius = AppRadius;
+        _prpgressView.font = [UIFont systemFontOfSize:12.0f];
+        _prpgressView.textColor = [UIColor whiteColor];
+        [_prpgressView showPopUpViewAnimated:YES];
+    }
+    return _prpgressView;
 }
 @end

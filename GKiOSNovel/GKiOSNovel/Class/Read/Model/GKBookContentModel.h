@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookContentModel : BaseModel
 
-@property (copy, nonatomic) NSString *_id;//id
+@property (copy, nonatomic) NSString *contentId;//id
 @property (copy, nonatomic) NSString *title;//文章标题
 @property (copy, nonatomic) NSString *content;//content简体
 @property (copy, nonatomic) NSString *traditional;//content繁体
@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setContentPage;
 - (NSAttributedString *)getContentAtt:(NSInteger)page;
+
 @end
 
 

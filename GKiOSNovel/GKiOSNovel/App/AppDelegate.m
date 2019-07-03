@@ -10,6 +10,7 @@
 #import "GKNovelTabBarController.h"
 #import "GKStartViewController.h"
 #import "BaseNetCache.h"
+#import "BaseDownTask.h"
 @interface AppDelegate ()
 //A33FFC F699F8
 @end
@@ -18,6 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    NSLog(@"%@",[BaseDownTask downloadPath]);
     [self.window makeKeyAndVisible];
     [GKShareTool shareInit];
     [GKJumpApp jumpToAppGuidePage:^{

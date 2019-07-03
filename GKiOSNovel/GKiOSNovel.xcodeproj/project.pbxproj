@@ -54,6 +54,9 @@
 		0F6C5FE822B37CD600A4C2BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6C5FE522B37CD300A4C2BE /* main.m */; };
 		0F6C5FE922B37CD600A4C2BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6C5FE622B37CD300A4C2BE /* AppDelegate.m */; };
 		0F6C5FF022B38B6C00A4C2BE /* GKSearchDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6C5FEF22B38B6C00A4C2BE /* GKSearchDataQueue.m */; };
+		0F7C58D722CCBD740016EDF0 /* ASProgressPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7C58D322CCBD740016EDF0 /* ASProgressPopUpView.m */; };
+		0F7C58D822CCBD740016EDF0 /* ASPopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F7C58D622CCBD740016EDF0 /* ASPopUpView.m */; };
+		0F89CC8922CC7C9C001A400F /* GKBookCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F89CC8822CC7C9C001A400F /* GKBookCacheTool.m */; };
 		0F8AA7DA22B0CD6800332ECB /* GKClassItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7D922B0CD6800332ECB /* GKClassItemController.m */; };
 		0F8AA7DE22B0CDCD00332ECB /* GKNewNavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AA7DB22B0CDCD00332ECB /* GKNewNavBarView.xib */; };
 		0F8AA7DF22B0CDCD00332ECB /* GKNewNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AA7DC22B0CDCD00332ECB /* GKNewNavBarView.m */; };
@@ -102,6 +105,8 @@
 		0FAB61C722C45AB4000F8ABB /* GKReadSetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB61C622C45AB4000F8ABB /* GKReadSetView.xib */; };
 		0FB445CC22BC828400ABCC55 /* GKTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB445CB22BC828400ABCC55 /* GKTimeTool.m */; };
 		0FB6DB3D22BB3B6100C48F64 /* GKBookReadDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */; };
+		0FD423AE22CC4A8E00507C14 /* BaseDownTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD423AD22CC4A8E00507C14 /* BaseDownTask.m */; };
+		0FD423B122CC5E7700507C14 /* GKBookCacheDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD423B022CC5E7700507C14 /* GKBookCacheDataQueue.m */; };
 		0FD5A6C722C4CEE5008124FE /* GKShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD5A6C622C4CEE5008124FE /* GKShareViewController.m */; };
 		0FE8B42922B0A45B00ECAD07 /* GKHomeReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE8B42722B0A45B00ECAD07 /* GKHomeReusableView.m */; };
 		0FE8B42A22B0A45B00ECAD07 /* GKHomeReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FE8B42822B0A45B00ECAD07 /* GKHomeReusableView.xib */; };
@@ -212,6 +217,12 @@
 		0F6C5FE622B37CD300A4C2BE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0F6C5FEE22B38B6C00A4C2BE /* GKSearchDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKSearchDataQueue.h; sourceTree = "<group>"; };
 		0F6C5FEF22B38B6C00A4C2BE /* GKSearchDataQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKSearchDataQueue.m; sourceTree = "<group>"; };
+		0F7C58D322CCBD740016EDF0 /* ASProgressPopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASProgressPopUpView.m; sourceTree = "<group>"; };
+		0F7C58D422CCBD740016EDF0 /* ASPopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASPopUpView.h; sourceTree = "<group>"; };
+		0F7C58D522CCBD740016EDF0 /* ASProgressPopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASProgressPopUpView.h; sourceTree = "<group>"; };
+		0F7C58D622CCBD740016EDF0 /* ASPopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASPopUpView.m; sourceTree = "<group>"; };
+		0F89CC8722CC7C9C001A400F /* GKBookCacheTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookCacheTool.h; sourceTree = "<group>"; };
+		0F89CC8822CC7C9C001A400F /* GKBookCacheTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookCacheTool.m; sourceTree = "<group>"; };
 		0F8AA7D822B0CD6800332ECB /* GKClassItemController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassItemController.h; sourceTree = "<group>"; };
 		0F8AA7D922B0CD6800332ECB /* GKClassItemController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassItemController.m; sourceTree = "<group>"; };
 		0F8AA7DB22B0CDCD00332ECB /* GKNewNavBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GKNewNavBarView.xib; sourceTree = "<group>"; };
@@ -296,6 +307,10 @@
 		0FB445CB22BC828400ABCC55 /* GKTimeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKTimeTool.m; sourceTree = "<group>"; };
 		0FB6DB3B22BB3B6100C48F64 /* GKBookReadDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookReadDataQueue.h; sourceTree = "<group>"; };
 		0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookReadDataQueue.m; sourceTree = "<group>"; };
+		0FD423AC22CC4A8E00507C14 /* BaseDownTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDownTask.h; sourceTree = "<group>"; };
+		0FD423AD22CC4A8E00507C14 /* BaseDownTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDownTask.m; sourceTree = "<group>"; };
+		0FD423AF22CC5E7700507C14 /* GKBookCacheDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookCacheDataQueue.h; sourceTree = "<group>"; };
+		0FD423B022CC5E7700507C14 /* GKBookCacheDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookCacheDataQueue.m; sourceTree = "<group>"; };
 		0FD5A6C522C4CEE5008124FE /* GKShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKShareViewController.h; sourceTree = "<group>"; };
 		0FD5A6C622C4CEE5008124FE /* GKShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKShareViewController.m; sourceTree = "<group>"; };
 		0FE8B42622B0A45B00ECAD07 /* GKHomeReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKHomeReusableView.h; sourceTree = "<group>"; };
@@ -527,11 +542,13 @@
 		0F6C5FC922B37CA100A4C2BE /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				0F7C58D222CCBD740016EDF0 /* ASProgressPopUpView */,
+				0FD423AB22CC4A1200507C14 /* AppDownTask */,
 				0F6C5FEA22B37DEF00A4C2BE /* AppDataBase */,
 				0F6C5FCA22B37CA100A4C2BE /* AppJump */,
-				0F6C5FCD22B37CA100A4C2BE /* NetTool */,
-				0F6C5FD022B37CA100A4C2BE /* Category */,
-				0F6C5FD322B37CA100A4C2BE /* ATAlertView */,
+				0F6C5FCD22B37CA100A4C2BE /* AppNetTool */,
+				0F6C5FD022B37CA100A4C2BE /* AppCategory */,
+				0F6C5FD322B37CA100A4C2BE /* AppATAlertView */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -547,25 +564,25 @@
 			path = AppJump;
 			sourceTree = "<group>";
 		};
-		0F6C5FCD22B37CA100A4C2BE /* NetTool */ = {
+		0F6C5FCD22B37CA100A4C2BE /* AppNetTool */ = {
 			isa = PBXGroup;
 			children = (
 				0F6C5FCF22B37CA100A4C2BE /* GKNovelNetManager.h */,
 				0F6C5FCE22B37CA100A4C2BE /* GKNovelNetManager.m */,
 			);
-			path = NetTool;
+			path = AppNetTool;
 			sourceTree = "<group>";
 		};
-		0F6C5FD022B37CA100A4C2BE /* Category */ = {
+		0F6C5FD022B37CA100A4C2BE /* AppCategory */ = {
 			isa = PBXGroup;
 			children = (
 				0F6C5FD122B37CA100A4C2BE /* UIImageView+GKLoad.h */,
 				0F6C5FD222B37CA100A4C2BE /* UIImageView+GKLoad.m */,
 			);
-			path = Category;
+			path = AppCategory;
 			sourceTree = "<group>";
 		};
-		0F6C5FD322B37CA100A4C2BE /* ATAlertView */ = {
+		0F6C5FD322B37CA100A4C2BE /* AppATAlertView */ = {
 			isa = PBXGroup;
 			children = (
 				0F6C5FD422B37CA100A4C2BE /* ATActionSheet.m */,
@@ -575,7 +592,7 @@
 				0F6C5FD822B37CA100A4C2BE /* ATAlertView.h */,
 				0F6C5FD922B37CA100A4C2BE /* ATSheetView.h */,
 			);
-			path = ATAlertView;
+			path = AppATAlertView;
 			sourceTree = "<group>";
 		};
 		0F6C5FE022B37CD300A4C2BE /* App */ = {
@@ -604,8 +621,21 @@
 				0F6C5FEF22B38B6C00A4C2BE /* GKSearchDataQueue.m */,
 				0FB445CA22BC828400ABCC55 /* GKTimeTool.h */,
 				0FB445CB22BC828400ABCC55 /* GKTimeTool.m */,
+				0FD423AF22CC5E7700507C14 /* GKBookCacheDataQueue.h */,
+				0FD423B022CC5E7700507C14 /* GKBookCacheDataQueue.m */,
 			);
 			path = AppDataBase;
+			sourceTree = "<group>";
+		};
+		0F7C58D222CCBD740016EDF0 /* ASProgressPopUpView */ = {
+			isa = PBXGroup;
+			children = (
+				0F7C58D422CCBD740016EDF0 /* ASPopUpView.h */,
+				0F7C58D622CCBD740016EDF0 /* ASPopUpView.m */,
+				0F7C58D522CCBD740016EDF0 /* ASProgressPopUpView.h */,
+				0F7C58D322CCBD740016EDF0 /* ASProgressPopUpView.m */,
+			);
+			path = ASProgressPopUpView;
 			sourceTree = "<group>";
 		};
 		0FAB615222C45720000F8ABB /* Detail */ = {
@@ -695,6 +725,8 @@
 				0FAB618022C45755000F8ABB /* GKBookSourceModel.m */,
 				0FAB618222C45755000F8ABB /* GKReadSetManager.h */,
 				0FAB618722C45755000F8ABB /* GKReadSetManager.m */,
+				0F89CC8722CC7C9C001A400F /* GKBookCacheTool.h */,
+				0F89CC8822CC7C9C001A400F /* GKBookCacheTool.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -762,6 +794,15 @@
 				0FAB61B822C457B5000F8ABB /* GKThemeCell.h */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0FD423AB22CC4A1200507C14 /* AppDownTask */ = {
+			isa = PBXGroup;
+			children = (
+				0FD423AC22CC4A8E00507C14 /* BaseDownTask.h */,
+				0FD423AD22CC4A8E00507C14 /* BaseDownTask.m */,
+			);
+			path = AppDownTask;
 			sourceTree = "<group>";
 		};
 		0FD5A6C422C4CEA7008124FE /* Share */ = {
@@ -978,6 +1019,7 @@
 				0F5F63EC22AFA2D8009096BD /* BaseNetModel.m in Sources */,
 				0F8AA7DF22B0CDCD00332ECB /* GKNewNavBarView.m in Sources */,
 				0FAB616A22C45720000F8ABB /* GKBookListDetailController.m in Sources */,
+				0FD423AE22CC4A8E00507C14 /* BaseDownTask.m in Sources */,
 				0FAB619F22C45755000F8ABB /* GKReadView.m in Sources */,
 				0FF17E1422C2103700D0FFB9 /* GKAppModel.m in Sources */,
 				0F14E1D422B2496E007FBA04 /* GKHomeMoreController.m in Sources */,
@@ -1001,6 +1043,8 @@
 				0FAB61BD22C457B5000F8ABB /* GKBookHistoryController.m in Sources */,
 				0F5F63E622AFA2D8009096BD /* BaseViewController.m in Sources */,
 				0FAB617022C45720000F8ABB /* GKBookDetailTabbar.m in Sources */,
+				0F7C58D822CCBD740016EDF0 /* ASPopUpView.m in Sources */,
+				0F7C58D722CCBD740016EDF0 /* ASProgressPopUpView.m in Sources */,
 				0FEB43C022B0F934005FF5DF /* GKUserManager.m in Sources */,
 				0FAB619922C45755000F8ABB /* GKBookContentModel.m in Sources */,
 				0FAB61C522C4591E000F8ABB /* GKReadSetView.m in Sources */,
@@ -1015,6 +1059,7 @@
 				0F5F640722AFB2D1009096BD /* GKClassContentController.m in Sources */,
 				0F5F63F022AFA2D8009096BD /* BaseNetManager.m in Sources */,
 				0F6C5FDE22B37CA100A4C2BE /* ATSheetView.m in Sources */,
+				0FD423B122CC5E7700507C14 /* GKBookCacheDataQueue.m in Sources */,
 				0F8AA7DA22B0CD6800332ECB /* GKClassItemController.m in Sources */,
 				0F5F63F122AFA2D8009096BD /* BaseNetTool.m in Sources */,
 				0F22927B22C5AA3000279173 /* GKShareTool.m in Sources */,
@@ -1046,6 +1091,7 @@
 				0F6C5FDC22B37CA100A4C2BE /* UIImageView+GKLoad.m in Sources */,
 				0FAB619E22C45755000F8ABB /* GKBookChapterCell.m in Sources */,
 				0F8AA7E922B0DDFF00332ECB /* GKClassflyCell.m in Sources */,
+				0F89CC8922CC7C9C001A400F /* GKBookCacheTool.m in Sources */,
 				0F8AA7E522B0D65D00332ECB /* GKClassflyController.m in Sources */,
 				0FAB61A022C45755000F8ABB /* GKReadBottomView.m in Sources */,
 				0FAB61BE22C457B5000F8ABB /* GKThemeViewController.m in Sources */,

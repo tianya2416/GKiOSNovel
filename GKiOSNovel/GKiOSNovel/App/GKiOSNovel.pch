@@ -46,4 +46,5 @@
 #import "GKReadSetManager.h"
 #import "GKAppModel.h"
 #import "GKShareTool.h"
+#import "GKBookCacheDataQueue.h"
 #endif /* GKiOSNovel_pch */

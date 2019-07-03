@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
+//
+//NS_ASSUME_NONNULL_BEGIN
 
 @interface GKNovelNetManager : NSObject
 
@@ -38,4 +38,4 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 @end
 
-NS_ASSUME_NONNULL_END
+//NS_ASSUME_NONNULL_END

@@ -15,7 +15,7 @@
 
 @implementation GKBookContentModel
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
-    return @{@"_id":@[@"id",@"_id"],@"content":@[@"cpContent",@"body",@"content"]};
+    return @{@"contentId":@[@"contentId",@"id"],@"content":@[@"cpContent",@"body",@"content"]};
 }
 - (void)setContent:(NSString *)content{
     _content = content;

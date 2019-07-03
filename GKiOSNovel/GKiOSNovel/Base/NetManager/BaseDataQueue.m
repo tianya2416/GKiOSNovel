@@ -45,6 +45,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = userInfo[primaryId];
+        assert(userId);
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase * db) {
                 [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
@@ -77,6 +78,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                 [db beginTransaction];
                 for (NSDictionary * userInfo in listData) {
                     NSString *userId = userInfo[primaryId];
+                    assert(userId);
                     if (userId) {
                         NSData * data = [BaseDataQueue archivedDataForData:userInfo];
                         NSString * v5TableSql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?:@"",primaryId?:@""];
@@ -103,6 +105,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = userInfo[primaryId];
+        assert(userId);
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase * db) {
                 [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
@@ -131,6 +134,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = primaryValue ?:@"";
+        assert(userId);
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase *db) {
                  [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
@@ -253,7 +257,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
             [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
             if ([db open]) {
                 NSString * sql = [NSString stringWithFormat:
-                                  @"select * from %@ where %@ ='%@'",tableName ?:@"",primaryId ?:@"",primaryValue ?:@""];
+                                  @"select * from '%@' where %@ ='%@'",tableName ?:@"",primaryId ?:@"",primaryValue ?:@""];
                 FMResultSet * rs = [db executeQuery:sql];
                 NSData * data;
                 NSMutableArray * array = [[NSMutableArray alloc]init];
@@ -323,7 +327,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
 - (FMDatabaseQueue *)dataQueue
 {
     if (!_dataQueue) {
-        NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/Sqlite"];
+        NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Library/Caches/Sqlite"];
         if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath]) {
             BOOL res = [[NSFileManager defaultManager]createDirectoryAtPath:stringPath withIntermediateDirectories:YES attributes:nil error:nil];
             if (res) {

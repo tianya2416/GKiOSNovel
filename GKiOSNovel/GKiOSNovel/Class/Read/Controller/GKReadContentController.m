@@ -17,6 +17,7 @@
 #import "GKReadBottomView.h"
 #import "GKReadSetView.h"
 #import "GKReadView.h"
+#import "GKBookCacheTool.h"
 #define gkSetHeight (180 + TAB_BAR_ADDING)
 
 @interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,GKReadSetDelegate>
@@ -126,7 +127,7 @@
     [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title content:[self.bookContent getContentAtt:pageIndex]];
     return vc;
 }
-
+//获取源
 - (void)loadBookSummary{
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     [GKNovelNetManager bookSummary:self.model._id success:^(id  _Nonnull object) {
@@ -137,6 +138,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:NO];
     }];
 }
+//获取章节列表
 - (void)loadBookChapters:(NSInteger)sourceIndex{
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     self.bookSource.sourceIndex = sourceIndex;
@@ -147,6 +149,7 @@
         [MBProgressHUD hideHUDForView:self.view animated:NO];
     }];
 }
+//获取章节内容
 - (void)loadBookContent:(BOOL)history chapter:(NSInteger)chapterIndex{
     GKBookChapterModel *model = nil;
     if (history) {
@@ -165,14 +168,22 @@
     }
     model.chapterIndex = chapterIndex;
     BOOL maxIndex = (self.pageIndex+1 == self.bookContent.pageCount) ? YES : NO;
-    [GKNovelNetManager bookContent:model.link success:^(id  _Nonnull object) {
-        self.bookContent = [GKBookContentModel modelWithJSON:object[@"chapter"]];
+    [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id success:^(GKBookContentModel * _Nonnull model) {
+        self.bookContent = model;
         [self.bookContent setContentPage];
         [self reloadUI:history maxIndex:maxIndex];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSString * _Nonnull error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
+//    [GKNovelNetManager bookContent:model.link success:^(id  _Nonnull object) {
+//        self.bookContent = [GKBookContentModel modelWithJSON:object[@"chapter"]];
+//        [self.bookContent setContentPage];
+//        [self reloadUI:history maxIndex:maxIndex];
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    } failure:^(NSString * _Nonnull error) {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    }];
 }
 - (void)reloadUI:(BOOL)history maxIndex:(BOOL)maxIndex
 {
