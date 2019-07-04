@@ -41,7 +41,10 @@
                 [super goBack];
             }
         }];
+    }else{
+        [super goBack];
     }
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -118,7 +121,7 @@
         [GKBookCaseDataQueue insertDataToDataBase:self.bookDetail.bookModel completion:^(BOOL success) {
             if (success) {
                 [self reloadUI:YES];
-                [MBProgressHUD showMessage:@"已成功放入书架" toView:self.view];
+                //[MBProgressHUD showMessage:@"已成功放入书架" toView:self.view];
             }
         }];
         @weakify(self)
@@ -128,6 +131,7 @@
             self.prpgressView.hidden = NO;
             [self.prpgressView setProgress:da animated:YES];
         } completion:^(BOOL finish, NSString * _Nonnull error) {
+            @strongify(self)
             if (finish) {
                 [MBProgressHUD showMessage:@"下载成功！" toView:self.view];
                 self.prpgressView.hidden = YES;

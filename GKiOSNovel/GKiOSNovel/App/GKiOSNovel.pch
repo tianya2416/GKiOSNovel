@@ -28,7 +28,6 @@
 #import "BaseConnectionController.h"
 #import "BaseNavigationController.h"
 #import "BaseNetManager.h"
-#import "BaseCell.h"
 
 #import "GKNovelNetManager.h"
 #import "GKBookModel.h"

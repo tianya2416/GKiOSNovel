@@ -29,7 +29,7 @@
     return tast;
 }
 + (NSString *)downloadPath{
-    NSString * path = [NSHomeDirectory() stringByAppendingString:@"/Library/Caches/Download"];
+    NSString * path = [NSHomeDirectory() stringByAppendingString:@"/Documents/Caches/Download"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         BOOL res = [[NSFileManager defaultManager]createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
         if (res) {

@@ -163,12 +163,13 @@
         model = self.bookChapter.chapters[chapterIndex];
     }
     else if (self.bookChapter.chapters.count <= chapterIndex){
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
         [MBProgressHUD showMessage:@"没有下一章了"];
         return;
     }
     model.chapterIndex = chapterIndex;
     BOOL maxIndex = (self.pageIndex+1 == self.bookContent.pageCount) ? YES : NO;
-    [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id success:^(GKBookContentModel * _Nonnull model) {
+    [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id sameSource:self.bookSource.sourceIndex success:^(GKBookContentModel * _Nonnull model) {
         self.bookContent = model;
         [self.bookContent setContentPage];
         [self reloadUI:history maxIndex:maxIndex];
@@ -176,14 +177,6 @@
     } failure:^(NSString * _Nonnull error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
-//    [GKNovelNetManager bookContent:model.link success:^(id  _Nonnull object) {
-//        self.bookContent = [GKBookContentModel modelWithJSON:object[@"chapter"]];
-//        [self.bookContent setContentPage];
-//        [self reloadUI:history maxIndex:maxIndex];
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//    } failure:^(NSString * _Nonnull error) {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//    }];
 }
 - (void)reloadUI:(BOOL)history maxIndex:(BOOL)maxIndex
 {

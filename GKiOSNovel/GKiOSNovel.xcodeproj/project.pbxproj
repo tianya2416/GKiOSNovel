@@ -18,15 +18,15 @@
 		0F22DAB522AF8A81000FC9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F22DAB422AF8A81000FC9AE /* Assets.xcassets */; };
 		0F22DAB822AF8A81000FC9AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F22DAB622AF8A81000FC9AE /* LaunchScreen.storyboard */; };
 		0F2A18B122B8E1CF00426D5A /* BaseNetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A18B022B8E1CF00426D5A /* BaseNetCache.m */; };
+		0F2BB0A022CDAB6E0067E1B3 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BB09622CDAB6E0067E1B3 /* BaseTableViewController.m */; };
+		0F2BB0A122CDAB6E0067E1B3 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BB09822CDAB6E0067E1B3 /* BaseViewController.m */; };
+		0F2BB0A222CDAB6E0067E1B3 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BB09922CDAB6E0067E1B3 /* BaseNavigationController.m */; };
+		0F2BB0A322CDAB6E0067E1B3 /* BaseConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BB09A22CDAB6E0067E1B3 /* BaseConnectionController.m */; };
+		0F2BB0A422CDAB6E0067E1B3 /* BaseRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BB09E22CDAB6E0067E1B3 /* BaseRefreshController.m */; };
 		0F39F5B622C46AF600A3DDA1 /* GKReadSetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F39F5B422C46AF600A3DDA1 /* GKReadSetCell.m */; };
 		0F39F5B722C46AF600A3DDA1 /* GKReadSetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F39F5B522C46AF600A3DDA1 /* GKReadSetCell.xib */; };
 		0F5F63D722AFA2D8009096BD /* ProgressWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */; };
 		0F5F63E422AFA2D8009096BD /* BaseWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B222AFA2D8009096BD /* BaseWebController.m */; };
-		0F5F63E522AFA2D8009096BD /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B622AFA2D8009096BD /* BaseTableViewController.m */; };
-		0F5F63E622AFA2D8009096BD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B822AFA2D8009096BD /* BaseViewController.m */; };
-		0F5F63E722AFA2D8009096BD /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B922AFA2D8009096BD /* BaseNavigationController.m */; };
-		0F5F63E822AFA2D8009096BD /* BaseConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63BA22AFA2D8009096BD /* BaseConnectionController.m */; };
-		0F5F63E922AFA2D8009096BD /* BaseRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63BE22AFA2D8009096BD /* BaseRefreshController.m */; };
 		0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C222AFA2D8009096BD /* BaseModel.m */; };
 		0F5F63EB22AFA2D8009096BD /* BaseMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C422AFA2D8009096BD /* BaseMacro.m */; };
 		0F5F63EC22AFA2D8009096BD /* BaseNetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C622AFA2D8009096BD /* BaseNetModel.m */; };
@@ -148,6 +148,16 @@
 		0F22DAB922AF8A81000FC9AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F2A18AF22B8E1CF00426D5A /* BaseNetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNetCache.h; sourceTree = "<group>"; };
 		0F2A18B022B8E1CF00426D5A /* BaseNetCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNetCache.m; sourceTree = "<group>"; };
+		0F2BB09622CDAB6E0067E1B3 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		0F2BB09722CDAB6E0067E1B3 /* BaseRefreshController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshController.h; sourceTree = "<group>"; };
+		0F2BB09822CDAB6E0067E1B3 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		0F2BB09922CDAB6E0067E1B3 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		0F2BB09A22CDAB6E0067E1B3 /* BaseConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseConnectionController.m; sourceTree = "<group>"; };
+		0F2BB09B22CDAB6E0067E1B3 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		0F2BB09C22CDAB6E0067E1B3 /* BaseConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseConnectionController.h; sourceTree = "<group>"; };
+		0F2BB09D22CDAB6E0067E1B3 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		0F2BB09E22CDAB6E0067E1B3 /* BaseRefreshController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshController.m; sourceTree = "<group>"; };
+		0F2BB09F22CDAB6E0067E1B3 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		0F39F5B322C46AF600A3DDA1 /* GKReadSetCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKReadSetCell.h; sourceTree = "<group>"; };
 		0F39F5B422C46AF600A3DDA1 /* GKReadSetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKReadSetCell.m; sourceTree = "<group>"; };
 		0F39F5B522C46AF600A3DDA1 /* GKReadSetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKReadSetCell.xib; sourceTree = "<group>"; };
@@ -155,16 +165,6 @@
 		0F5F63B222AFA2D8009096BD /* BaseWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebController.m; sourceTree = "<group>"; };
 		0F5F63B322AFA2D8009096BD /* ProgressWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressWKWebView.h; sourceTree = "<group>"; };
 		0F5F63B422AFA2D8009096BD /* BaseWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebController.h; sourceTree = "<group>"; };
-		0F5F63B622AFA2D8009096BD /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		0F5F63B722AFA2D8009096BD /* BaseRefreshController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRefreshController.h; sourceTree = "<group>"; };
-		0F5F63B822AFA2D8009096BD /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		0F5F63B922AFA2D8009096BD /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		0F5F63BA22AFA2D8009096BD /* BaseConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseConnectionController.m; sourceTree = "<group>"; };
-		0F5F63BB22AFA2D8009096BD /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
-		0F5F63BC22AFA2D8009096BD /* BaseConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseConnectionController.h; sourceTree = "<group>"; };
-		0F5F63BD22AFA2D8009096BD /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
-		0F5F63BE22AFA2D8009096BD /* BaseRefreshController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRefreshController.m; sourceTree = "<group>"; };
-		0F5F63BF22AFA2D8009096BD /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		0F5F63C122AFA2D8009096BD /* BaseMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMacro.h; sourceTree = "<group>"; };
 		0F5F63C222AFA2D8009096BD /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		0F5F63C322AFA2D8009096BD /* BaseNetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNetModel.h; sourceTree = "<group>"; };
@@ -377,7 +377,6 @@
 			children = (
 				0F6C5FE022B37CD300A4C2BE /* App */,
 				0F22DAB422AF8A81000FC9AE /* Assets.xcassets */,
-				0F5F63B522AFA2D8009096BD /* Controller */,
 				0F5F639922AFA2D8009096BD /* Base */,
 				0F5F63F722AFB05C009096BD /* Class */,
 				0F22DAB922AF8A81000FC9AE /* Info.plist */,
@@ -387,9 +386,27 @@
 			path = GKiOSNovel;
 			sourceTree = "<group>";
 		};
+		0F2BB09522CDAB6E0067E1B3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F2BB09C22CDAB6E0067E1B3 /* BaseConnectionController.h */,
+				0F2BB09A22CDAB6E0067E1B3 /* BaseConnectionController.m */,
+				0F2BB09D22CDAB6E0067E1B3 /* BaseNavigationController.h */,
+				0F2BB09922CDAB6E0067E1B3 /* BaseNavigationController.m */,
+				0F2BB09722CDAB6E0067E1B3 /* BaseRefreshController.h */,
+				0F2BB09E22CDAB6E0067E1B3 /* BaseRefreshController.m */,
+				0F2BB09B22CDAB6E0067E1B3 /* BaseTableViewController.h */,
+				0F2BB09622CDAB6E0067E1B3 /* BaseTableViewController.m */,
+				0F2BB09F22CDAB6E0067E1B3 /* BaseViewController.h */,
+				0F2BB09822CDAB6E0067E1B3 /* BaseViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		0F5F639922AFA2D8009096BD /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				0F2BB09522CDAB6E0067E1B3 /* Controller */,
 				0F5F639A22AFA2D8009096BD /* Web */,
 				0F5F63C022AFA2D8009096BD /* Model */,
 				0F5F63C722AFA2D8009096BD /* View */,
@@ -407,23 +424,6 @@
 				0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */,
 			);
 			path = Web;
-			sourceTree = "<group>";
-		};
-		0F5F63B522AFA2D8009096BD /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0F5F63BC22AFA2D8009096BD /* BaseConnectionController.h */,
-				0F5F63BA22AFA2D8009096BD /* BaseConnectionController.m */,
-				0F5F63BD22AFA2D8009096BD /* BaseNavigationController.h */,
-				0F5F63B922AFA2D8009096BD /* BaseNavigationController.m */,
-				0F5F63B722AFA2D8009096BD /* BaseRefreshController.h */,
-				0F5F63BE22AFA2D8009096BD /* BaseRefreshController.m */,
-				0F5F63BB22AFA2D8009096BD /* BaseTableViewController.h */,
-				0F5F63B622AFA2D8009096BD /* BaseTableViewController.m */,
-				0F5F63BF22AFA2D8009096BD /* BaseViewController.h */,
-				0F5F63B822AFA2D8009096BD /* BaseViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		0F5F63C022AFA2D8009096BD /* Model */ = {
@@ -1004,12 +1004,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2BB0A322CDAB6E0067E1B3 /* BaseConnectionController.m in Sources */,
 				0F17FF7A22CB31A7007E5C43 /* GKLaunchController.m in Sources */,
 				0F5F63F222AFA2D8009096BD /* BaseDataQueue.m in Sources */,
 				0F5F63EF22AFA2D8009096BD /* BaseTableView.m in Sources */,
 				0FAB617422C45720000F8ABB /* GKBookDetailCollectionCell.m in Sources */,
 				0F6C5FC822B34C9600A4C2BE /* GKSearchItemController.m in Sources */,
 				0FEB43C322B0F94C005FF5DF /* GKUserModel.m in Sources */,
+				0F2BB0A022CDAB6E0067E1B3 /* BaseTableViewController.m in Sources */,
 				0FAB616B22C45720000F8ABB /* GKBookDetailController.m in Sources */,
 				0F5F63ED22AFA2D8009096BD /* BaseCell.m in Sources */,
 				0FAB619C22C45755000F8ABB /* GKBookChapterModel.m in Sources */,
@@ -1017,6 +1019,7 @@
 				0F6C5FE822B37CD600A4C2BE /* main.m in Sources */,
 				0FEDE10522C5FD3400D29D02 /* GKShareViewCell.m in Sources */,
 				0F5F63EC22AFA2D8009096BD /* BaseNetModel.m in Sources */,
+				0F2BB0A222CDAB6E0067E1B3 /* BaseNavigationController.m in Sources */,
 				0F8AA7DF22B0CDCD00332ECB /* GKNewNavBarView.m in Sources */,
 				0FAB616A22C45720000F8ABB /* GKBookListDetailController.m in Sources */,
 				0FD423AE22CC4A8E00507C14 /* BaseDownTask.m in Sources */,
@@ -1024,11 +1027,9 @@
 				0FF17E1422C2103700D0FFB9 /* GKAppModel.m in Sources */,
 				0F14E1D422B2496E007FBA04 /* GKHomeMoreController.m in Sources */,
 				0F6C5FDF22B37CA100A4C2BE /* ATAlertView.m in Sources */,
-				0F5F63E522AFA2D8009096BD /* BaseTableViewController.m in Sources */,
 				0FAB61BA22C457B5000F8ABB /* GKMineRankController.m in Sources */,
 				0F6C5FE722B37CD600A4C2BE /* GKNovelTabBarController.m in Sources */,
 				0FAB616C22C45720000F8ABB /* GKBookDetailModel.m in Sources */,
-				0F5F63E822AFA2D8009096BD /* BaseConnectionController.m in Sources */,
 				0F5F63EE22AFA2D8009096BD /* BaseView.m in Sources */,
 				0FAB61B922C457B5000F8ABB /* GKBooCaseController.m in Sources */,
 				0FAB619822C45755000F8ABB /* GKBookSourceModel.m in Sources */,
@@ -1041,7 +1042,6 @@
 				0FAB617122C45720000F8ABB /* GKBookDetailCell.m in Sources */,
 				0FEB43BB22B0E891005FF5DF /* GKStartViewController.m in Sources */,
 				0FAB61BD22C457B5000F8ABB /* GKBookHistoryController.m in Sources */,
-				0F5F63E622AFA2D8009096BD /* BaseViewController.m in Sources */,
 				0FAB617022C45720000F8ABB /* GKBookDetailTabbar.m in Sources */,
 				0F7C58D822CCBD740016EDF0 /* ASPopUpView.m in Sources */,
 				0F7C58D722CCBD740016EDF0 /* ASProgressPopUpView.m in Sources */,
@@ -1049,10 +1049,10 @@
 				0FAB619922C45755000F8ABB /* GKBookContentModel.m in Sources */,
 				0FAB61C522C4591E000F8ABB /* GKReadSetView.m in Sources */,
 				0F39F5B622C46AF600A3DDA1 /* GKReadSetCell.m in Sources */,
-				0F5F63E722AFA2D8009096BD /* BaseNavigationController.m in Sources */,
 				0FE8B42922B0A45B00ECAD07 /* GKHomeReusableView.m in Sources */,
 				0F1016BA22B1EA50002018E7 /* GKHomeNetManager.m in Sources */,
 				0F17FF7D22CB31BA007E5C43 /* GKLaunchView.m in Sources */,
+				0F2BB0A422CDAB6E0067E1B3 /* BaseRefreshController.m in Sources */,
 				0FAB61A322C45755000F8ABB /* GKReadTopView.m in Sources */,
 				0F8AA7E222B0D32300332ECB /* GKClassItemModel.m in Sources */,
 				0F6C5FF022B38B6C00A4C2BE /* GKSearchDataQueue.m in Sources */,
@@ -1080,6 +1080,7 @@
 				0F1B813422B095610061FD7A /* GKBookModel.m in Sources */,
 				0F2A18B122B8E1CF00426D5A /* BaseNetCache.m in Sources */,
 				8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */,
+				0F2BB0A122CDAB6E0067E1B3 /* BaseViewController.m in Sources */,
 				0FB445CC22BC828400ABCC55 /* GKTimeTool.m in Sources */,
 				0FAB61BB22C457B5000F8ABB /* GKMineController.m in Sources */,
 				0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */,
@@ -1087,7 +1088,6 @@
 				0FAB619B22C45755000F8ABB /* GKReadSetManager.m in Sources */,
 				0F6C5FE922B37CD600A4C2BE /* AppDelegate.m in Sources */,
 				0FAB619722C45755000F8ABB /* GKReadContentController.m in Sources */,
-				0F5F63E922AFA2D8009096BD /* BaseRefreshController.m in Sources */,
 				0F6C5FDC22B37CA100A4C2BE /* UIImageView+GKLoad.m in Sources */,
 				0FAB619E22C45755000F8ABB /* GKBookChapterCell.m in Sources */,
 				0F8AA7E922B0DDFF00332ECB /* GKClassflyCell.m in Sources */,

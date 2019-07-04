@@ -51,8 +51,8 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                 [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
                 if ([db open]) {
                     NSData * data = [BaseDataQueue archivedDataForData:userInfo];
-                    NSString * v5TableSql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?: @"",primaryId ?: @""];
-                    BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
+                    NSString * sql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?: @"",primaryId ?: @""];
+                    BOOL res = [db executeUpdate:sql withArgumentsInArray:@[data,userId]];
                     if (res) {
                         NSLog(@"insert or replace into success");
                     }
@@ -76,23 +76,45 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
             [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
             if ([db open]) {
                 [db beginTransaction];
-                for (NSDictionary * userInfo in listData) {
-                    NSString *userId = userInfo[primaryId];
-                    assert(userId);
-                    if (userId) {
+                BOOL isRollBack = NO;
+                @try {
+                    [listData enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull userInfo, NSUInteger idx, BOOL * _Nonnull stop) {
+                        NSString *userId = userInfo[primaryId];
+                        assert(userId);
                         NSData * data = [BaseDataQueue archivedDataForData:userInfo];
-                        NSString * v5TableSql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?:@"",primaryId?:@""];
-                        BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
+                        NSString *sql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?:@"",primaryId?:@""];
+                        BOOL res = [db executeUpdate:sql withArgumentsInArray:@[data,userId]];
                         if (res) {
                             NSLog(@"insert or replace into success");
                         }
-                    }
+                    }];
                 }
-                BOOL success = [db commit];
-                [db close];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    !completion ?: completion(success);
-                });
+                @catch (NSException *exception) {
+                    NSLog(@"%s,%d,%@", __FUNCTION__, __LINE__, exception.description);
+                    isRollBack = YES;
+                    [db rollback];
+                }
+                @finally {
+                    BOOL success = [db commit];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        !completion ?: completion(success);
+                    });
+                    [db close];
+                }
+//                for (NSDictionary * userInfo in listData) {
+//                    NSString *userId = userInfo[primaryId];
+//                    assert(userId);
+//                    if (userId) {
+//                        NSData * data = [BaseDataQueue archivedDataForData:userInfo];
+//                        NSString * v5TableSql = [NSString stringWithFormat:@"insert or replace into '%@' (data,'%@') values (?,?)",tableName ?:@"",primaryId?:@""];
+//                        BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
+//                        if (res) {
+//                            NSLog(@"insert or replace into success");
+//                        }
+//                    }
+//                }
+//                BOOL success = [db commit];
+//                [db close];
             }
         }];
     });
@@ -112,8 +134,8 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                 if ([db open]) {
                     NSData * data = [BaseDataQueue archivedDataForData:userInfo];
                     // NSString * v5TableSql = [NSString stringWithFormat:@"replace into '%@' (data,'%@') values (?,?)",tableName ?: @"",primaryId ?: @""];
-                    NSString * v5TableSql = [NSString stringWithFormat:@"update %@ set data = ? where %@ = '%@'",tableName?:@"",primaryId?:@"",userId?:@""];
-                    BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data]];
+                    NSString * sql = [NSString stringWithFormat:@"update %@ set data = ? where %@ = '%@'",tableName?:@"",primaryId?:@"",userId?:@""];
+                    BOOL res = [db executeUpdate:sql withArgumentsInArray:@[data]];
                     if (res) {//update 'defaultTableManager' set data = ? where 'identy' = ?
                         NSLog(@"update success");
                     }
@@ -140,8 +162,8 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                  [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
                 if ([db open]) {
                     [db beginTransaction];
-                    NSString * v5TableSql = [NSString stringWithFormat:@"delete from '%@' where %@ = '%@'",tableName,primaryId,userId ?: @""];
-                    BOOL res = [db executeUpdate:v5TableSql];
+                    NSString * sql = [NSString stringWithFormat:@"delete from '%@' where %@ = '%@'",tableName,primaryId,userId ?: @""];
+                    BOOL res = [db executeUpdate:sql];
                     if (res) {
                         [db commit];
                         NSLog(@"success to delete db table data");
@@ -173,8 +195,8 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
                     NSString *userId = userInfo[primaryId];
                     if (userId) {
                         NSData * data = [BaseDataQueue archivedDataForData:userInfo];
-                        NSString * v5TableSql = [NSString stringWithFormat:@"delete from '%@' where %@ = '%@'",tableName ?:@"",primaryId?:@"",userId ?: @""];
-                        BOOL res = [db executeUpdate:v5TableSql withArgumentsInArray:@[data,userId]];
+                        NSString * sql = [NSString stringWithFormat:@"delete from '%@' where %@ = '%@'",tableName ?:@"",primaryId?:@"",userId ?: @""];
+                        BOOL res = [db executeUpdate:sql withArgumentsInArray:@[data,userId]];
                         if (res) {
                             NSLog(@"insert or replace into success");
                         }
@@ -280,7 +302,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
     FMDatabaseQueue *dataQueue = [BaseDataQueue shareInstance].dataQueue;
     [dataQueue inDatabase:^(FMDatabase *db) {
         if ([db open]) {
-            NSString * sqlstr = [NSString stringWithFormat:@"drop table '%@'",tableName?:@""];
+            NSString * sqlstr = [NSString stringWithFormat:@"drop table if exists '%@'",tableName?:@""];
             BOOL res =  [db executeUpdate:sqlstr];
             if (res) {
                 NSLog(@"drop table successful");
@@ -327,7 +349,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
 - (FMDatabaseQueue *)dataQueue
 {
     if (!_dataQueue) {
-        NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Library/Caches/Sqlite"];
+        NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/Caches/Sqlite"];
         if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath]) {
             BOOL res = [[NSFileManager defaultManager]createDirectoryAtPath:stringPath withIntermediateDirectories:YES attributes:nil error:nil];
             if (res) {

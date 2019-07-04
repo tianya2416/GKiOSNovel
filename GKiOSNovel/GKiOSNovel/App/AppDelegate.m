@@ -19,7 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    NSLog(@"%@",[BaseDownTask downloadPath]);
     [self.window makeKeyAndVisible];
     [GKShareTool shareInit];
     [GKJumpApp jumpToAppGuidePage:^{

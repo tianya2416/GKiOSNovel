@@ -83,7 +83,7 @@
 + (void)bookContent:(NSString *)url success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
    url = [url stringByURLEncode];
    NSString * urlStr = [NSString stringWithFormat:@"https://chapter2.zhuishushenqi.com/chapter/%@",url];
-   [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil cache:YES success:success failure:failure];
+   [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil cache:NO success:success failure:failure];
 }
 + (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{@"id":bookId?:@"",

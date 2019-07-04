@@ -19,7 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
             progress:(void (^)(NSInteger index,NSInteger total))progress
           completion:(void (^)(BOOL finish,NSString *error))completion;
 //先从已下载中读取数据
-+ (void)bookContent:(NSString *)url contentId:(NSString *)contentId bookId:(NSString *)bookId success:(void(^)(GKBookContentModel *model))success failure:(void(^)(NSString *error))failure;
++ (void)bookContent:(NSString *)url
+          contentId:(NSString *)contentId
+             bookId:(NSString *)bookId
+         sameSource:(NSInteger )sameSource
+            success:(void(^)(GKBookContentModel *model))success
+            failure:(void(^)(NSString *error))failure;
 
 @end
 
