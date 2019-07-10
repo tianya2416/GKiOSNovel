@@ -12,6 +12,7 @@
 #import "GKBooCaseController.h"
 #import "GKBookHistoryController.h"
 #import "GKThemeViewController.h"
+#import "GKMineSelectController.h"
 #import "GKMineCell.h"
 static NSString *rank = @"自定义首页";
 static NSString *sex = @"性别";
@@ -65,7 +66,7 @@ static NSString *theme = @"主题";
     NSString *title = dic[@"title"];
     UIViewController *vc = nil;
     if ([title isEqualToString:rank]) {
-        vc = [[GKMineRankController alloc] init];
+        vc = [[GKMineSelectController alloc] init];
     }else if ([title isEqualToString:sex]){
         vc = [[GKStartViewController alloc] init];
     }else if([title isEqualToString:bookCase]){

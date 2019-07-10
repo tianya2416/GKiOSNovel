@@ -48,6 +48,11 @@
 //    }
 //}
 - (NSArray *)listData{
-    return (self.books.count <=6) ? self.books: [self.books subarrayWithRange:NSMakeRange(0, 6)];
+    CGFloat count = self.state == GKBookInfoStateDefault ? 6 : 3;
+    return (self.books.count <=count) ? self.books: [self.books subarrayWithRange:NSMakeRange(0,count)];
+}
+- (BOOL)moreData{
+    CGFloat count = self.state == GKBookInfoStateDefault ? 6 : 3;
+    return self.books.count > count;
 }
 @end

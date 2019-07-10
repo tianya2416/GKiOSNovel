@@ -39,7 +39,7 @@
 - (UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = [[UILabel alloc] init];
-        _titleLab.font = [UIFont systemFontOfSize:30.0f weight:UIFontWeightHeavy];
+        _titleLab.font = [UIFont systemFontOfSize:28.0f weight:UIFontWeightHeavy];
         _titleLab.textColor  = Appx252631;
     }
     return _titleLab;

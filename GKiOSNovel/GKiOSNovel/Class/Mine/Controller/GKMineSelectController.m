@@ -7,17 +7,19 @@
 //
 
 #import "GKMineSelectController.h"
+#import "GKHomeReusableView.h"
 #import "GKStartCell.h"
 @interface GKMineSelectController ()
 @property (strong, nonatomic) UIButton *sureBtn;
 @property (strong, nonatomic) GKRankInfo *rankInfo;
+@property (strong, nonatomic) NSArray *listData;
 @end
 
 @implementation GKMineSelectController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self showNavTitle:@"选择一项或者多项做为首页数据"];
+    [self showNavTitle:@"首页数据"];
     [self.view addSubview:self.sureBtn];
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.sureBtn.superview).offset(10);
@@ -64,19 +66,29 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat width = (SCREEN_WIDTH - 4*25)/3.0;
+    CGFloat width = (SCREEN_WIDTH - 4*20)/3.0;
     CGFloat height = 40;
     return CGSizeMake(width, height);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 25;
+    return 20;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 25;
+    return 20;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(25,25,25,25);
+    return UIEdgeInsetsMake(20,20,20,20);
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(SCREEN_WIDTH,45);
+}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
+    res.moreBtn.hidden = YES;
+    res.titleLab.font = [UIFont systemFontOfSize:20 weight:UIFontWeightHeavy];
+    res.titleLab.text = @"选择几个项目作为首页数据";
+    return res;
 }
 //设置海报图片
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

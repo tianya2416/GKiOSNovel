@@ -139,14 +139,14 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     GKBookInfo *info = self.listData[section];
-    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? 45 : 0.001f);
+    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? (section == 0 ?50 :30 ) : 0.001f);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
     GKBookInfo *info =  self.listData[indexPath.section];
     if ([info isKindOfClass:GKBookInfo.class]) {
         res.titleLab.text = info.shortTitle ?:@"";
-        res.moreBtn.hidden = info.books.count <=6;
+        res.moreBtn.hidden = !info.moreData;
         @weakify(self)
         [res.moreBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             @strongify(self)

@@ -38,6 +38,7 @@
         dispatch_group_enter(group);
         [GKBookReadDataQueue getDatasFromDataBase:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
             self.readBook = [[GKBookInfo alloc] init];
+            self.readBook.state = GKBookInfoStateDataQueue;
             self.readBook.shortTitle = @"读书记录";
             self.readBook.books = listData;
             dispatch_group_leave(group);
@@ -45,6 +46,7 @@
         dispatch_group_enter(group);
         [GKBookCaseDataQueue getDatasFromDataBase:^(NSArray<GKBookDetailModel *> * _Nonnull listData) {
             self.bookCase = [[GKBookInfo alloc] init];
+            self.bookCase.state = GKBookInfoStateDataQueue;
             self.bookCase.shortTitle = @"我的书架";
             self.bookCase.books = listData;
             dispatch_group_leave(group);

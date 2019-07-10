@@ -9,7 +9,10 @@
 #import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef NS_ENUM(NSInteger, GKBookInfoState) {
+    GKBookInfoStateDefault   =  0,//网络数据
+    GKBookInfoStateDataQueue =  1,//本地数据 = 2,
+};
 @interface GKBookModel : BaseModel
 
 @property (copy, nonatomic) NSString *_id;
@@ -46,6 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *_id;//Id
 
 @property (assign, nonatomic) NSInteger bookSort;//用于排序
+@property (assign, nonatomic) GKBookInfoState state;//区分本地还是服务端数据
+@property (assign, nonatomic) BOOL moreData;//是否有更多数据
+
 @property (strong, nonatomic) NSArray <GKBookModel *>*listData;//首页用于显示 一般下6个
 @end
 NS_ASSUME_NONNULL_END
