@@ -10,6 +10,7 @@
 #import "GKReadView.h"
 @interface GKReadViewController ()
 @property (strong, nonatomic) UILabel *titleLab;
+@property (strong, nonatomic) UILabel *bookNameLab;
 @property (strong, nonatomic) UILabel *selectLab;
 @property (assign, nonatomic) NSInteger pageIndex;
 @property (assign, nonatomic) NSInteger chapterIndex;
@@ -27,11 +28,12 @@
     [self loadData];
     
 }
-- (void)setCurrentPage:(NSInteger)currentPage totalPage:(NSInteger)totalPage chapter:(NSInteger)chapter title:(NSString *)title content:(NSAttributedString *)content{
+- (void)setCurrentPage:(NSInteger)currentPage totalPage:(NSInteger)totalPage chapter:(NSInteger)chapter title:(NSString *)title bookName:(NSString *)bookName content:(NSAttributedString *)content{
     self.pageIndex = currentPage;
     self.chapterIndex = chapter;
     self.readView.content = content;
     self.titleLab.text = title ;
+    self.bookNameLab.text = bookName ?:@"";
     currentPage = currentPage + 1 >totalPage ? totalPage : currentPage + 1;
     self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage),@(totalPage)];
     self.selectLab.textColor = [GKReadSetManager shareInstance].model.color;
@@ -42,10 +44,19 @@
 
     [self.view addSubview:self.readView];
     [self.view addSubview:self.titleLab];
+    [self.view addSubview:self.bookNameLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.titleLab.superview);
+        make.left.equalTo(self.titleLab.superview).offset(AppTop);
         make.top.equalTo(self.titleLab.superview).offset(STATUS_BAR_HIGHT);
     }];
+    [self.bookNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.bookNameLab.superview).offset(-AppTop);
+        make.centerY.equalTo(self.titleLab);
+        make.left.equalTo(self.titleLab.mas_right).offset(10);
+    }];
+    [self.titleLab setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    [self.titleLab setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    
     [self.view addSubview:self.selectLab];
     [self.selectLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.selectLab.superview).offset(-15);
@@ -66,11 +77,20 @@
 - (UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = [[UILabel alloc] init];
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        _titleLab.textColor = Appx666666;
-        _titleLab.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
+        _titleLab.textAlignment = NSTextAlignmentLeft;
+        _titleLab.textColor = Appx999999;
+        _titleLab.font = [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
     }
     return _titleLab;
+}
+- (UILabel *)bookNameLab{
+    if (!_bookNameLab) {
+        _bookNameLab = [[UILabel alloc] init];
+        _bookNameLab.textAlignment = NSTextAlignmentRight;
+        _bookNameLab.textColor = Appx999999;
+        _bookNameLab.font = [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
+    }
+    return _bookNameLab;
 }
 - (UILabel *)selectLab{
     if (!_selectLab) {

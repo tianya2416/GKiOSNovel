@@ -10,7 +10,6 @@
 #import "GKBookSourceModel.h"
 #import "GKBookChapterModel.h"
 #import "GKBookContentModel.h"
-NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookCacheTool : NSObject
 @property (assign, nonatomic) BOOL download;//f是否正在下载
@@ -28,4 +27,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
+

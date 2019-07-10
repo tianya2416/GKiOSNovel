@@ -124,19 +124,25 @@
         self.chapter = chapterIndex;
         [self loadBookContent:NO chapter:self.chapter];
     }
-    [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title content:[self.bookContent getContentAtt:pageIndex]];
+    [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title bookName:self.model.title content:[self.bookContent getContentAtt:pageIndex]];
+    //预加载数据
+    if (self.bookContent.pageCount > pageIndex && pageIndex == 0 && self.bookChapter.chapters.count > chapterIndex + 1) {
+         GKBookChapterModel *model = self.bookChapter.chapters[chapterIndex + 1];
+        [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id sameSource:self.bookSource.sourceIndex success:nil failure:nil];
+    }
     return vc;
 }
 //获取源
 - (void)loadBookSummary{
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     [GKNovelNetManager bookSummary:self.model._id success:^(id  _Nonnull object) {
-         [MBProgressHUD hideHUDForView:self.view animated:NO];
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
         self.bookSource.listData = [NSArray modelArrayWithClass:GKBookSourceModel.class json:object];
         [self loadBookChapters:0];
     } failure:^(NSString * _Nonnull error) {
         [MBProgressHUD hideHUDForView:self.view animated:NO];
     }];
+
 }
 //获取章节列表
 - (void)loadBookChapters:(NSInteger)sourceIndex{
@@ -322,8 +328,6 @@
         pageIndex = self.bookContent.pageCount - 1;
     }
     return [self viewControllerAtPage:pageIndex chapter:chapter];
-    
-    
 }
 #pragma mark 返回下一个ViewController对象
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(GKReadViewController *)viewController {
