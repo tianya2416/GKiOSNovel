@@ -7,6 +7,7 @@
 //
 
 #import "GKReadContentController.h"
+#import "UIViewController+Tool.h"
 #import "GKReadViewController.h"
 #import "GKBookChapterController.h"
 #import "GKBookSourceModel.h"
@@ -18,15 +19,20 @@
 #import "GKReadSetView.h"
 #import "GKReadView.h"
 #import "GKBookCacheTool.h"
+#import "AppDelegate.h"
+#import "GKMoreSetView.h"
 #define gkSetHeight (180 + TAB_BAR_ADDING)
 
-@interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,GKReadSetDelegate>
+#define gkMoreSetHeight (200 + TAB_BAR_ADDING)
+
+@interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,GKReadSetDelegate,GKMoreSetDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) UIImageView *mainView;
 @property (strong, nonatomic) GKReadTopView *topView;
 @property (strong, nonatomic) GKReadBottomView *bottomView;
 @property (strong, nonatomic) GKReadSetView *setView;
+@property (strong, nonatomic) GKMoreSetView *moreSetView;
 
 @property (strong, nonatomic) GKBookDetailModel *model;
 @property (strong, nonatomic) GKBookSourceInfo *bookSource;
@@ -37,6 +43,9 @@
 
 @property (assign, nonatomic) NSInteger chapter;
 @property (assign, nonatomic) NSInteger pageIndex;
+
+@property (assign, nonatomic) BOOL landscape;
+@property (assign, nonatomic) BOOL pagecurl;
 @end
 
 @implementation GKReadContentController
@@ -58,47 +67,84 @@
     }];
     self.topView.titleLab.text = self.model.title?:@"";
     self.fd_prefersNavigationBarHidden = YES;
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    self.pageViewController.doubleSided = YES;
-    
-    
-    self.pageViewController.dataSource = self;
-    self.pageViewController.delegate = self;
-    [self addChildViewController:self.pageViewController];
-    [self.view addSubview:self.pageViewController.view];
-    
-    [self.pageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.pageViewController.view.superview);
-    }];
-    
-    [self.pageViewController didMoveToParentViewController:self];
 
     [self performSelector:@selector(tapAction) withObject:nil afterDelay:0.50];
-    [self.view addSubview:self.topView];
+    [self.mainView addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.topView.superview);
         make.height.offset(NAVI_BAR_HIGHT);
     }];
-    [self.view addSubview:self.bottomView];
+    [self.mainView addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.bottomView.superview);
         make.height.offset(TAB_BAR_ADDING + 49);
     }];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:btn];
+    [self.mainView addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.offset(SCALEW(120));
+        make.width.offset(SCALEW(150));
+        make.height.offset(SCALEW(150));
         make.center.equalTo(btn.superview);
     }];
     [btn addTarget:self action:@selector(tapAction) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.setView];
+    [self.mainView addSubview:self.setView];
     [self.setView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.setView.superview);
         make.height.offset(gkSetHeight);
         make.bottom.offset(gkSetHeight);
     }];
     self.setView.hidden = YES;
+    
+    [self.mainView addSubview:self.moreSetView];
+    [self.moreSetView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.setView.superview);
+        make.height.offset(gkSetHeight);
+        make.bottom.offset(gkSetHeight);
+    }];
+    self.moreSetView.hidden = YES;
+    [self setUpPageView];
+}
+- (void)setUpPageView{
+    if (_pageViewController) {
+        [_pageViewController.view removeFromSuperview];
+        [_pageViewController removeFromParentViewController];
+        _pageViewController.dataSource = nil;
+        _pageViewController.delegate = nil;
+        _pageViewController = nil;
+    }
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    UIPageViewControllerTransitionStyle style = 0;
+    UIPageViewControllerNavigationOrientation orien = 0;
+    switch (model.browseState) {
+        case GKBrowseDefault:
+            style = UIPageViewControllerTransitionStyleScroll;
+            orien = UIPageViewControllerNavigationOrientationHorizontal;
+            break;
+        case GKBrowsePageCurl:
+            style = UIPageViewControllerTransitionStylePageCurl;
+            orien = UIPageViewControllerNavigationOrientationHorizontal;
+            break;
+        default:
+            style = UIPageViewControllerTransitionStyleScroll;
+            orien = UIPageViewControllerNavigationOrientationVertical;
+            break;
+    }
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:style navigationOrientation:orien options:nil];
+    UIViewController *vc = [[GKReadViewController alloc] init];
+    [self.pageViewController setViewControllers:@[vc]
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
+    self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
+    [self addChildViewController:self.pageViewController];
+    [self.mainView addSubview:self.pageViewController.view];
+    [self.mainView sendSubviewToBack:self.pageViewController.view];
+    [self.pageViewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.pageViewController.view.superview);
+    }];
+    [self.pageViewController didMoveToParentViewController:self];
 }
 - (void)loadData{
     [self readSetView:nil state:0];
@@ -125,6 +171,7 @@
         [self loadBookContent:NO chapter:self.chapter];
     }
     [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title bookName:self.model.title content:[self.bookContent getContentAtt:pageIndex]];
+    [self insertDataQueue];
     //预加载数据
     if (self.bookContent.pageCount > pageIndex && pageIndex == 0 && self.bookChapter.chapters.count > chapterIndex + 1) {
          GKBookChapterModel *model = self.bookChapter.chapters[chapterIndex + 1];
@@ -177,7 +224,6 @@
     BOOL maxIndex = (self.pageIndex+1 == self.bookContent.pageCount) ? YES : NO;
     [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id sameSource:self.bookSource.sourceIndex success:^(GKBookContentModel * _Nonnull model) {
         self.bookContent = model;
-        [self.bookContent setContentPage];
         [self reloadUI:history maxIndex:maxIndex];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSString * _Nonnull error) {
@@ -186,16 +232,27 @@
 }
 - (void)reloadUI:(BOOL)history maxIndex:(BOOL)maxIndex
 {
+    [self.bookContent setContentPage];
     if (!history) {
         self.pageIndex = maxIndex ? self.bookContent.pageCount - 1 : 0;
     }
-    [self insertDataQueue];
+    if ([GKReadSetManager shareInstance].model.landscape) {
+        [self readSetView:nil screen:self.landscape];
+    }else{
+        [self reloadPageView];
+    }
+}
+- (void)resetDataView{
+    [self.bookContent setContentPage];
+    self.pageIndex  = self.pageIndex < self.bookContent.pageCount ? self.pageIndex : self.bookContent.pageCount - 1;
+    [self reloadPageView];
+}
+- (void)reloadPageView{
     UIViewController *vc = [self viewControllerAtPage:self.pageIndex chapter:self.chapter];
     [self.pageViewController setViewControllers:@[vc]
-                                      direction:UIPageViewControllerNavigationDirectionReverse
+                                      direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
-
 }
 - (void)insertDataQueue{
     GKBookChapterModel *chapterModel = [self.bookChapter.chapters objectSafeAtIndex:self.chapter] ? : self.bookModel.bookChapter;
@@ -214,7 +271,10 @@
 #pragma mark buttonAction
 - (void)tapAction{
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapAction) object:nil];
-    if (!self.setView.hidden) {
+    if (!self.moreSetView.hidden) {
+        [self setMoreAction];
+    }
+    else if (!self.setView.hidden) {
         [self setAction];
     }else{
         self.topView.hidden ? [self tapViewShow] : [self tapViewHidden];
@@ -265,8 +325,13 @@
     }];
 }
 - (void)goBack{
-    [self insertDataQueue];
-    [self goBack:NO];
+//    if (self.landscape) {
+//        self.setView.switchBtn.on = NO;
+//        [self readSetView:self.setView screen:self.setView.switchBtn.on];
+//    }else
+    {
+        [super goBack:NO];;
+    }
 }
 - (void)moreAction{
     GKBookSourceController *vc = [GKBookSourceController vcWithChapter:self.model._id sourceId:self.bookSource.bookSourceId completion:^(NSInteger index) {
@@ -276,6 +341,7 @@
 }
 - (void)setAction{
     if (self.setView.hidden) {
+        [self tapViewHidden];
         [self.setView loadData];
         self.setView.hidden = NO;
         [self.setView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -301,9 +367,36 @@
         }];
     }
 }
+- (void)setMoreAction{
+    if (self.moreSetView.hidden) {
+        [self setAction];
+        self.moreSetView.hidden = NO;
+        [self.moreSetView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.setView.superview);
+            make.height.offset(gkMoreSetHeight);
+            make.bottom.offset(0);
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }else{
+        [self.moreSetView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.moreSetView.superview);
+            make.height.offset(gkMoreSetHeight);
+            make.bottom.offset(gkMoreSetHeight);
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            self.moreSetView.hidden = YES;
+        }];
+    }
+}
 - (void)dayACtion:(UIButton *)sender{
     sender.selected = !sender.selected;
-    GKReadState state  = (sender.selected == NO) ? GKReadDefault : GKReadBlack;
+    GKReadThemeState state  = (sender.selected == NO) ? GKReadDefault : GKReadBlack;
     [GKReadSetManager setReadState:state];
     self.mainView.image = [GKReadSetManager defaultSkin];
 }
@@ -341,23 +434,48 @@
     }
     return [self viewControllerAtPage:pageIndex chapter:chapter];
 }
+- (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    UIViewController *currentViewController = pageViewController.viewControllers.firstObject;
+    if (currentViewController) {
+        NSArray *viewControllers = @[currentViewController];
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        self.pageViewController.doubleSided = NO;
+        return UIPageViewControllerSpineLocationMin;
+    }
+    return UIPageViewControllerSpineLocationNone;
+}
 #pragma mark GKReadSetDelegate
-- (void)readSetView:(GKReadSetView *)setView brightness:(CGFloat)brightness{
-    
-}
 - (void)readSetView:(GKReadSetView *)setView font:(CGFloat)font{
-    [self.bookContent setContentPage];
-    self.pageIndex  = self.pageIndex < self.bookContent.pageCount ? self.pageIndex : self.bookContent.pageCount - 1;
-    [self insertDataQueue];
-    UIViewController *vc = [self viewControllerAtPage:self.pageIndex chapter:self.chapter];
-    [self.pageViewController setViewControllers:@[vc]
-                                      direction:UIPageViewControllerNavigationDirectionReverse
-                                       animated:NO
-                                     completion:nil];
+    [self resetDataView];
 }
-- (void)readSetView:(GKReadSetView *)setView state:(GKReadState)state{
+- (void)readSetView:(GKReadSetView *)setView state:(GKReadThemeState)state{
     self.mainView.image = [GKReadSetManager defaultSkin];
     self.bottomView.dayBtn.selected = [GKReadSetManager shareInstance].model.state == GKReadBlack;
+}
+- (void)readSetView:(GKReadSetView *)setView screen:(BOOL)screen{
+    UIInterfaceOrientation orientation = screen? UIInterfaceOrientationLandscapeRight: UIInterfaceOrientationPortrait;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    app.makeOrientation = orientation;
+    [self setOrientations:orientation];
+    self.fd_interactivePopDisabled = self.landscape;
+    [self resetDataView];
+}
+- (void)readSetView:(GKReadSetView * _Nullable)setView brightness:(CGFloat)brightness {
+    
+}
+- (void)readSetView:(GKReadSetView *__nullable)setView moreSet:(BOOL)moreSet{
+    [self setMoreAction];
+}
+#pragma mark GKMoreSetDelegate
+- (void)moreSetView:(GKMoreSetView *__nullable)moreView traditional:(BOOL)traditional{
+     [self resetDataView];
+}
+- (void)moreSetView:(GKMoreSetView *__nullable)moreView fontName:(NSString *)fontName{
+    [self resetDataView];
+}
+- (void)moreSetView:(GKMoreSetView *)moreView browState:(GKBrowseState)browState{
+    [self setUpPageView];
+    [self loadData];
 }
 #pragma mark get
 
@@ -385,6 +503,14 @@
     }
     return _setView;
 }
+- (GKMoreSetView *)moreSetView{
+    if (!_moreSetView) {
+        _moreSetView = [GKMoreSetView instanceView];
+        _moreSetView.delegate = self;
+        _moreSetView.hidden = YES;
+    }
+    return _moreSetView;
+}
 #pragma mark get
 
 - (GKBookSourceInfo *)bookSource{
@@ -402,8 +528,27 @@
     }
     return _mainView;
 }
-- (BOOL)prefersStatusBarHidden{
-    return self.topView.hidden;
+- (BOOL)landscape{
+    UIInterfaceOrientation state= [UIApplication sharedApplication].statusBarOrientation;
+    return state == UIInterfaceOrientationLandscapeLeft || state == UIInterfaceOrientationLandscapeRight;
 }
+- (BOOL)prefersStatusBarHidden{
+    return !self.landscape ? self.topView.hidden : YES;
+}
+- (BOOL)pagecurl{
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    return model.browseState == GKBrowsePageCurl;
+}
+#pragma mark base
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return  UIInterfaceOrientationMaskAll;
+}
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
 
 @end

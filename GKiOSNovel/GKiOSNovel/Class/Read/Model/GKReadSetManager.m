@@ -7,10 +7,12 @@
 //
 
 #import "GKReadSetManager.h"
+#import "BaseDownFont.h"
+
 static NSString *gkReadModel = @"gkReadModel";
 
 @implementation GKReadSkinModel
-+ (instancetype)vcWithTitle:(NSString *)title skin:(NSString *)skin state:(GKReadState)state{
++ (instancetype)vcWithTitle:(NSString *)title skin:(NSString *)skin state:(GKReadThemeState)state{
     GKReadSkinModel *vc = [[[self class] alloc] init];
     vc.title = title;
     vc.skin = skin;
@@ -19,10 +21,41 @@ static NSString *gkReadModel = @"gkReadModel";
 }
 @end
 @implementation GKReadSetModel
-
+- (NSString *)color{
+    return _color ?: @"999999";
+}
+- (NSString *)fontName{
+    return _fontName ?: [BaseMacro fontName];
+}
+- (CGFloat)font{
+    return _font ?: 20;
+}
+- (CGFloat)lineSpacing{
+    return _lineSpacing ?: 10;
+}
+- (CGFloat)firstLineHeadIndent{
+    return _firstLineHeadIndent ?: 30;
+}
+- (CGFloat)paragraphSpacingBefore{
+    return _paragraphSpacingBefore ?: 10;
+}
+- (CGFloat)paragraphSpacing{
+    return _paragraphSpacing ?: 10;
+}
+- (GKReadThemeState)state{
+    return _state ?: GKReadDefault;
+}
+- (GKBrowseState )browseState{
+    return _browseState ?: GKBrowseDefault;
+}
+- (CGFloat)brightness{
+    return [[UIScreen mainScreen] brightness];
+}
 @end
 @interface GKReadSetManager()
-@property (strong, nonatomic)GKReadSetModel *model;
+@property (strong, nonatomic) GKReadSetModel *model;
+@property (strong, nonatomic) NSString *simplifiedStr;
+@property (strong, nonatomic) NSString *traditionalStr;
 @end
 @implementation GKReadSetManager
 - (instancetype)init{
@@ -44,22 +77,57 @@ static NSString *gkReadModel = @"gkReadModel";
     return dataBase;
 }
 #pragma mark class set
-+ (void)setReadState:(GKReadState)state{
+
++ (void)setLandscape:(BOOL)landscape{
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    if (model.landscape != landscape) {
+        model.landscape = landscape;
+        [GKReadSetManager saveReadSetModel:model];
+    }
+}
+
++ (void)setTraditiona:(BOOL)traditiona{
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    if (model.traditiona != traditiona) {
+        model.traditiona = traditiona;
+        [GKReadSetManager saveReadSetModel:model];
+    }
+}
++ (void)setBrowseState:(GKBrowseState)browseState{
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    if (model.browseState != browseState) {
+        model.browseState = browseState;
+        [GKReadSetManager saveReadSetModel:model];
+    }
+}
++ (void)setReadState:(GKReadThemeState)state{
     
     GKReadSetModel *model = [GKReadSetManager shareInstance].model;
-    model.state = state;
-    [GKReadSetManager saveReadSetModel:model];
+    if (model.state != state) {
+        model.state = state;
+        [GKReadSetManager saveReadSetModel:model];
+    }
 }
 + (void)setBrightness:(CGFloat)brightness{
     GKReadSetModel *model = [GKReadSetManager shareInstance].model;
-    model.brightness = brightness;
-    [GKReadSetManager saveReadSetModel:model];
+    if (model.brightness != brightness) {
+        model.brightness = brightness;
+        [GKReadSetManager saveReadSetModel:model];
+    }
 }
 + (void)setFont:(CGFloat )font{
     GKReadSetModel *model = [GKReadSetManager shareInstance].model;
-    model.font = font;
-    model.weight = UIFontWeightLight;
-    [GKReadSetManager saveReadSetModel:model];
+    if (model.font != font) {
+        model.font = font;
+        [GKReadSetManager saveReadSetModel:model];
+    }
+}
++ (void)setFontName:(NSString *)fontName{
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    if (![model.fontName isEqualToString:fontName]) {
+        model.fontName = fontName;
+        [GKReadSetManager saveReadSetModel:model];
+    }
 }
 + (BOOL)saveReadSetModel:(GKReadSetModel *)model{
     [GKReadSetManager shareInstance].model = model;
@@ -72,9 +140,52 @@ static NSString *gkReadModel = @"gkReadModel";
     }
     return res;
 }
++ (NSString *)convertToTraditional:(NSString *)simpString{
+    if (simpString.length == 0) {
+        return nil;
+    }
+    NSString *sim = [GKReadSetManager shareInstance].simplifiedStr;
+    NSString *tra = [GKReadSetManager shareInstance].traditionalStr;
+    NSMutableString *resultString = [[NSMutableString alloc] init];
+    // 遍历字符串中的字符
+    NSInteger length = [simpString length];
+    for (NSInteger i = 0; i < length; i++)
+    {
+        // 在简体中文中查找字符位置，如果存在则取出对应的繁体中文
+        NSString *simCharString = [simpString substringWithRange:NSMakeRange(i, 1)];
+        NSRange charRange = [sim rangeOfString:simCharString];
+        if(charRange.location != NSNotFound) {
+            NSString *tradCharString = [tra substringWithRange:charRange];
+            tradCharString ? [resultString appendString:tradCharString] : nil;
+        }else{
+            simCharString ? [resultString appendString:simCharString] : nil;
+        }
+    }
+    return resultString;
+}
 #pragma mark class get
+- (NSString *)simplifiedStr {
+    if (!_simplifiedStr) {
+        _simplifiedStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"SimplifiedCode" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+    }
+    return _simplifiedStr;
+}
+
+- (NSString *)traditionalStr {
+    if (!_traditionalStr) {
+        _traditionalStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"TraditionalCode" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+    }
+    return _traditionalStr;
+}
 + (NSDictionary *)defaultFont{
     GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+//    NSArray *fonts = [UIFont familyNames];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self like %@",model.fontName];
+//    NSArray *filterdArray = [fonts filteredArrayUsingPredicate:predicate];
+//    if (filterdArray.count == 0) {
+//        model.fontName = [BaseMacro fontName];
+//        [GKReadSetManager setFontName:[BaseMacro fontName]];
+//    }
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     [paragraphStyle setLineSpacing:model.lineSpacing];//段落 行间距
     paragraphStyle.firstLineHeadIndent  = model.firstLineHeadIndent;//首行缩进
@@ -82,14 +193,14 @@ static NSString *gkReadModel = @"gkReadModel";
     paragraphStyle.paragraphSpacing = model.paragraphSpacing; //段间距，当前段落和下个段落之间的距离。
     paragraphStyle.alignment = NSTextAlignmentJustified;//两边对齐
     paragraphStyle.allowsDefaultTighteningForTruncation = YES;
-    NSDictionary *dic =  @{NSForegroundColorAttributeName:model.color,
-                           NSFontAttributeName:[UIFont systemFontOfSize:model.font weight:model.weight],
+    NSDictionary *dic =  @{NSForegroundColorAttributeName:[UIColor colorWithHexString:model.color ?:@"999999"],
+                           NSFontAttributeName:[UIFont fontWithName:model.fontName ?: @"PingFangSC-Light" size:model.font ?: 20],
                            NSParagraphStyleAttributeName:paragraphStyle
                            };
     return dic;
 }
 + (UIImage *)defaultSkin{
-    GKReadState state = [GKReadSetManager shareInstance].model.state;
+    GKReadThemeState state = [GKReadSetManager shareInstance].model.state;
     NSArray *listData = [GKReadSetManager defaultSkinDatas];
     GKReadSkinModel *model = [listData objectSafeAtIndex:state];
     return [UIImage imageNamed:model.skin] ;
@@ -106,19 +217,21 @@ static NSString *gkReadModel = @"gkReadModel";
     GKReadSkinModel *model7 = [GKReadSkinModel vcWithTitle:@"黄色" skin:@"icon_read_yellow" state:GKReadYellow];
     return @[model,model1,model2,model3,model4,model5,model6,model7];
 }
++ (BOOL)registerFontName{
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    if (![model.fontName isEqualToString:[BaseMacro fontName]]) {
+        [BaseDownFont downFontName:model.fontName progress:^(CGFloat progress) {
+            
+        } completion:^(NSURL * _Nonnull filePath, NSError * _Nonnull error) {
+            
+        }];
+    }
+    return YES;
+}
 #pragma mark get
 - (GKReadSetModel *)model{
     if (!_model) {
         _model = [[GKReadSetModel alloc] init];
-        _model.font = 20;
-        _model.lineSpacing = 10;
-        _model.firstLineHeadIndent = 30;
-        _model.paragraphSpacingBefore = 10;
-        _model.paragraphSpacing = 10;
-        _model.color = Appx999999;
-        _model.weight = UIFontWeightLight;
-        _model.state = GKReadDefault;
-        _model.brightness = [[UIScreen mainScreen] brightness];
     }
     return _model;
 }

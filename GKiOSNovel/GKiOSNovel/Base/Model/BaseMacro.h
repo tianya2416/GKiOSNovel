@@ -25,6 +25,7 @@
 #define placeholdersmall [UIImage imageNamed:@"placeholder_small"]
 
 #define AppReadContent CGRectMake(AppTop, STATUS_BAR_HIGHT + 40, SCREEN_WIDTH - 30, SCREEN_HEIGHT - STATUS_BAR_HIGHT - TAB_BAR_ADDING - 30 - 40)
+#define AppLansContent CGRectMake(AppTop, 40, SCREEN_HEIGHT - 30, SCREEN_WIDTH - 30 - 40)
 
 #pragma mark login
 #define BaseUrl  @"https://api.zhuishushenqi.com/"
@@ -33,13 +34,16 @@
 #define kBaseUrl(url)  [NSString stringWithFormat:@"%@%@", BaseUrl, url]
 #define kBaseUrlIcon(url)  [NSString stringWithFormat:@"%@%@", BaseUrlIcon, url]
 
+#define BaseAssert(url) assert(url)
+
 #define RefreshPageStart (1)
 #define RefreshPageSize (35)
 
 #ifdef DEBUG
-#ifndef NSLog
-//#   define NSLog(...)
+    #ifndef NSLog
+    #define NSLog(...)
 #endif
+
 #endif
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, GKUserState) {
@@ -59,5 +63,7 @@ typedef NS_ENUM(NSInteger, GKLoadDataState) {
 
 @interface BaseMacro : NSObject
 + (NSArray *)hotDatas;
++ (CGRect)appFrame;
++ (NSString *)fontName;
 @end
 NS_ASSUME_NONNULL_END

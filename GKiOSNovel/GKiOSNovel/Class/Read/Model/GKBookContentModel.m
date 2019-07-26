@@ -23,13 +23,11 @@
     _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
 }
 - (void)setContentPage {
-    [self setPageBound:AppReadContent];
+    [self setPageBound:[BaseMacro appFrame]];
 }
 - (void)setPageBound:(CGRect)bounds {
     self.pageArray = @[].mutableCopy;
-    NSString *content = self.content;
-    NSMutableAttributedString *attr = [[NSMutableAttributedString  alloc] initWithString:content attributes:[GKReadSetManager defaultFont]];
-
+    NSMutableAttributedString *attr = [[NSMutableAttributedString  alloc] initWithString:self.content attributes:[GKReadSetManager defaultFont]];
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef) attr);
     CGPathRef path = CGPathCreateWithRect(bounds, NULL);
     CFRange range = CFRangeMake(0, 0);
@@ -64,7 +62,9 @@
         } else {
             len = [self.pageArray[page + 1] integerValue] - loc;
         }
-        return [_attributedString attributedSubstringFromRange:NSMakeRange(loc, len)];
+        NSAttributedString *att = [_attributedString attributedSubstringFromRange:NSMakeRange(loc, len)];
+        GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+        return model.traditiona ? [[NSAttributedString alloc] initWithString:[GKReadSetManager convertToTraditional:att.string] attributes:att.attributes] : att;
     }
     return [[NSAttributedString alloc] initWithString:@"更多精彩内容尽在追书申请\n\r\n\r数据加载中...\n\r\n\r请耐心等待" attributes:[GKReadSetManager defaultFont]];
 }

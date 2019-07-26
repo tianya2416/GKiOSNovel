@@ -35,6 +35,8 @@
 }
 
 - (void)loadUI{
+    [self.moreSet setTitleColor:AppColor forState:UIControlStateNormal];
+    self.switchBtn.onTintColor = AppColor;
     self.backgroundColor = Appx252631;
     self.slider.thumbTintColor = AppColor;
     self.slider.minimumTrackTintColor = AppColor;
@@ -55,6 +57,9 @@
     self.collectionView.delegate  = self;
     
     self.collectionView.backgroundColor = self.collectionView.backgroundView.backgroundColor = Appx252631;
+    
+    [self.switchBtn addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.moreSet addTarget:self action:@selector(moreSetActon) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)changedAction:(UISlider *)slder{
     CGFloat brightness = slder.value;
@@ -63,7 +68,6 @@
 - (void)touchUpACtion:(UISlider *)slder{
     CGFloat brightness = slder.value;
     NSLog(@"%@",@(brightness));
-//    [GKReadSetManager setBrightness:brightness];
     if ([self.delegate respondsToSelector:@selector(readSetView:brightness:)]) {
         [self.delegate readSetView:self brightness:brightness];
     }
@@ -75,10 +79,23 @@
         [self.delegate readSetView:self font:font];
     }
 }
+- (void)switchAction:(UISwitch *)sender{
+     [GKReadSetManager setLandscape:sender.on];
+    if ([self.delegate respondsToSelector:@selector(readSetView:screen:)]) {
+        [self.delegate readSetView:self screen:sender.on];
+    }
+}
+- (void)moreSetActon{
+    if ([self.delegate respondsToSelector:@selector(readSetView:moreSet:)]) {
+        [self.delegate readSetView:self moreSet:YES];
+    }
+}
 - (void)loadData{
+    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
     self.slider.value = [UIScreen mainScreen].brightness;
-    self.segmentControl.selectedSegmentIndex = ([GKReadSetManager shareInstance].model.font - 18)/2;
+    self.segmentControl.selectedSegmentIndex = (model.font - 18)/2;
     self.listData = [GKReadSetManager defaultSkinDatas];
+    self.switchBtn.on = model.landscape;
     [self.collectionView reloadData];
 }
 

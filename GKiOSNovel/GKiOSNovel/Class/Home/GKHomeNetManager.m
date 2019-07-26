@@ -43,14 +43,14 @@
             self.readBook.books = listData;
             dispatch_group_leave(group);
         }];
-        dispatch_group_enter(group);
-        [GKBookCaseDataQueue getDatasFromDataBase:^(NSArray<GKBookDetailModel *> * _Nonnull listData) {
-            self.bookCase = [[GKBookInfo alloc] init];
-            self.bookCase.state = GKBookInfoStateDataQueue;
-            self.bookCase.shortTitle = @"我的书架";
-            self.bookCase.books = listData;
-            dispatch_group_leave(group);
-        }];
+//        dispatch_group_enter(group);
+//        [GKBookCaseDataQueue getDatasFromDataBase:^(NSArray<GKBookDetailModel *> * _Nonnull listData) {
+//            self.bookCase = [[GKBookInfo alloc] init];
+//            self.bookCase.state = GKBookInfoStateDataQueue;
+//            self.bookCase.shortTitle = @"我的书架";
+//            self.bookCase.books = listData;
+//            dispatch_group_leave(group);
+//        }];
     }
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [self.listData removeAllObjects];

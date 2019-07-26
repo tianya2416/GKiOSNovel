@@ -45,7 +45,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = userInfo[primaryId];
-        assert(userId);
+        BaseAssert(userId);
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase * db) {
                 [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
@@ -127,7 +127,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = userInfo[primaryId];
-        assert(userId);
+        BaseAssert(userId);
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase * db) {
                 [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];
@@ -156,7 +156,7 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
         BaseDataQueue *dataBase = [BaseDataQueue shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         NSString *userId = primaryValue ?:@"";
-        assert(userId);
+        BaseAssert(userId);
         if (userId) {
             [dataQueue inDatabase:^(FMDatabase *db) {
                  [BaseDataQueue tableExists:db tableName:tableName primaryId:primaryId];

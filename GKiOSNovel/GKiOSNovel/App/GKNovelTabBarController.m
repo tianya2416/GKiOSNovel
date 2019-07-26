@@ -46,4 +46,19 @@
     [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:AppColor} forState:UIControlStateSelected];
     [self.listData addObject:nv];
 }
+////是否自动旋转,返回YES可以自动旋转
+- (BOOL)shouldAutorotate {
+    return [self.selectedViewController shouldAutorotate];
+}
+//返回支持的方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return [self.selectedViewController supportedInterfaceOrientations];
+}
+//这个是返回优先方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [self.selectedViewController preferredInterfaceOrientationForPresentation];
+}
+- (BOOL)prefersStatusBarHidden {
+    return [self.selectedViewController prefersStatusBarHidden];
+}
 @end

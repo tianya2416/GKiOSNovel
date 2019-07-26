@@ -237,12 +237,12 @@
 }
 #pragma mark delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return;
-    }
     NSArray *list = self.bookDetail.listData[indexPath.section];
     id object = list[indexPath.row];
-    if ([object isKindOfClass:GKBookModel.class]){
+    if ([object isKindOfClass:GKBookDetailModel.class]) {
+        return;
+    }
+    else if ([object isKindOfClass:GKBookModel.class]){
         GKBookModel *model = object;
         [GKJumpApp jumpToBookDetail:model._id];
     }else if ([object isKindOfClass:GKBookListModel.class]){
@@ -287,5 +287,8 @@
         [_prpgressView showPopUpViewAnimated:YES];
     }
     return _prpgressView;
+}
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 @end

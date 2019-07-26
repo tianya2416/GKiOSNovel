@@ -13,13 +13,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)readSetView:(GKReadSetView *__nullable)setView brightness:(CGFloat)brightness;
 - (void)readSetView:(GKReadSetView *__nullable)setView font:(CGFloat)font;
-- (void)readSetView:(GKReadSetView *__nullable)setView state:(GKReadState)state;
+- (void)readSetView:(GKReadSetView *__nullable)setView state:(GKReadThemeState)state;
+- (void)readSetView:(GKReadSetView *__nullable)setView screen:(BOOL)screen;
+- (void)readSetView:(GKReadSetView *__nullable)setView moreSet:(BOOL)moreSet;
 @end
 @interface GKReadSetView : UIView
 @property (assign, nonatomic) id<GKReadSetDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+@property (weak, nonatomic) IBOutlet UIButton *moreSet;
+
+
 - (void)loadData;
 @end
 

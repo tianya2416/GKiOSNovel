@@ -9,10 +9,8 @@
 #import "AppDelegate.h"
 #import "GKNovelTabBarController.h"
 #import "GKStartViewController.h"
-#import "BaseNetCache.h"
-#import "BaseDownTask.h"
 @interface AppDelegate ()
-//A33FFC F699F8
+
 @end
 
 @implementation AppDelegate
@@ -20,13 +18,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [UIApplication sharedApplication].statusBarOrientation = UIInterfaceOrientationPortrait;
+#pragma clang diagnostic pop
+
     [GKShareTool shareInit];
     [GKJumpApp jumpToAppGuidePage:^{
         [GKJumpApp jumpToAppTheme];
     }];
     return YES;
 }
-
+- (UIInterfaceOrientationMask)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return self.makeOrientation == UIInterfaceOrientationLandscapeRight ? UIInterfaceOrientationMaskLandscapeRight:UIInterfaceOrientationMaskPortrait;;
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

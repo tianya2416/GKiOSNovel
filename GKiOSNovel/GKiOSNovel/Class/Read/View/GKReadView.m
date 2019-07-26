@@ -19,7 +19,12 @@
 - (void)setContent:(NSAttributedString *)content {
     _content = content;
 //    NSLog(@"content : %@",_content);
-    CTFramesetterRef setterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)content);
+
+    [self setNeedsDisplay];
+}
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    CTFramesetterRef setterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.content);
     CGPathRef pathRef = CGPathCreateWithRect(self.bounds, NULL);
     CTFrameRef frameRef = CTFramesetterCreateFrame(setterRef, CFRangeMake(0, 0), pathRef, NULL);
     if (setterRef) {
@@ -29,9 +34,7 @@
         CFRelease(pathRef);
     }
     self.contentFrame = frameRef;
-    [self setNeedsDisplay];
 }
-
 - (void)drawRect:(CGRect)rect {
     if (!_contentFrame) {
         return;

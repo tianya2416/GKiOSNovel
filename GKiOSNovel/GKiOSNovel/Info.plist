@@ -68,6 +68,11 @@
 	</dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>存储图片需要app访问您的相册</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>font1.ttf</string>
+		<string>PingFang Bold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
