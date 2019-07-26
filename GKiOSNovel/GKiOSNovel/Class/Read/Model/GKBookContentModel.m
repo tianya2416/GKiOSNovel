@@ -53,7 +53,7 @@
     return self.pageArray.count;
 }
 - (NSAttributedString *)getContentAtt:(NSInteger)page {
-    page = page >= self.pageArray.count ? self.pageArray.count - 1 : page;
+    page = (page >= self.pageArray.count) ? self.pageArray.count - 1 : page;
     if (page < self.pageArray.count) {
         NSUInteger loc = [self.pageArray[page] integerValue];
         NSUInteger len = 0;

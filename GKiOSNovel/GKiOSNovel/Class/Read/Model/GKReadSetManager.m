@@ -8,63 +8,15 @@
 
 #import "GKReadSetManager.h"
 #import "BaseDownFont.h"
-
 static NSString *gkReadModel = @"gkReadModel";
 
-@implementation GKReadSkinModel
-+ (instancetype)vcWithTitle:(NSString *)title skin:(NSString *)skin state:(GKReadThemeState)state{
-    GKReadSkinModel *vc = [[[self class] alloc] init];
-    vc.title = title;
-    vc.skin = skin;
-    vc.state = state;
-    return vc;
-}
-@end
-@implementation GKReadSetModel
-- (NSString *)color{
-    return _color ?: @"999999";
-}
-- (NSString *)fontName{
-    return _fontName ?: [BaseMacro fontName];
-}
-- (CGFloat)font{
-    return _font ?: 20;
-}
-- (CGFloat)lineSpacing{
-    return _lineSpacing ?: 10;
-}
-- (CGFloat)firstLineHeadIndent{
-    return _firstLineHeadIndent ?: 30;
-}
-- (CGFloat)paragraphSpacingBefore{
-    return _paragraphSpacingBefore ?: 10;
-}
-- (CGFloat)paragraphSpacing{
-    return _paragraphSpacing ?: 10;
-}
-- (GKReadThemeState)state{
-    return _state ?: GKReadDefault;
-}
-- (GKBrowseState )browseState{
-    return _browseState ?: GKBrowseDefault;
-}
-- (CGFloat)brightness{
-    return [[UIScreen mainScreen] brightness];
-}
-@end
 @interface GKReadSetManager()
 @property (strong, nonatomic) GKReadSetModel *model;
 @property (strong, nonatomic) NSString *simplifiedStr;
 @property (strong, nonatomic) NSString *traditionalStr;
 @end
 @implementation GKReadSetManager
-- (instancetype)init{
-    if (self = [super init]) {
-        NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:gkReadModel];
-        _model = data ? [BaseModel unarchiveForData:data]: nil;
-    }
-    return self;
-}
+
 + (instancetype )shareInstance
 {
     static GKReadSetManager * dataBase = nil;
@@ -217,22 +169,11 @@ static NSString *gkReadModel = @"gkReadModel";
     GKReadSkinModel *model7 = [GKReadSkinModel vcWithTitle:@"黄色" skin:@"icon_read_yellow" state:GKReadYellow];
     return @[model,model1,model2,model3,model4,model5,model6,model7];
 }
-+ (BOOL)registerFontName{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
-    if (![model.fontName isEqualToString:[BaseMacro fontName]]) {
-        [BaseDownFont downFontName:model.fontName progress:^(CGFloat progress) {
-            
-        } completion:^(NSURL * _Nonnull filePath, NSError * _Nonnull error) {
-            
-        }];
-    }
-    return YES;
-}
 #pragma mark get
 - (GKReadSetModel *)model{
-    if (!_model) {
-        _model = [[GKReadSetModel alloc] init];
-    }
+    NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:gkReadModel];
+    _model = data ? [BaseModel unarchiveForData:data]: [GKReadSetModel new];
     return _model;
 }
+
 @end
