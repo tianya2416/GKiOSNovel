@@ -237,7 +237,7 @@
         self.pageIndex = maxIndex ? self.bookContent.pageCount - 1 : 0;
     }
     if ([GKReadSetManager shareInstance].model.landscape) {
-        [self readSetView:nil screen:self.landscape];
+        [self readSetView:nil screen:[GKReadSetManager shareInstance].model.landscape];
     }else{
         [self reloadPageView];
     }
