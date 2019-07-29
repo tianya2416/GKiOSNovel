@@ -41,7 +41,7 @@
 
 #ifdef DEBUG
     #ifndef NSLog
-    #define NSLog(...)
+//    #define NSLog(...)
 #endif
 
 #endif

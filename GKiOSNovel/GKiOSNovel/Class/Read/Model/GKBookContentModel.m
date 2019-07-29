@@ -10,7 +10,7 @@
 
 @interface GKBookContentModel()
 @property (strong, nonatomic) NSMutableArray *pageArray;
-@property (strong, nonatomic) NSMutableAttributedString *attributedString;
+@property (strong, nonatomic) NSAttributedString *attributedString;
 @end
 
 @implementation GKBookContentModel
@@ -27,7 +27,7 @@
 }
 - (void)setPageBound:(CGRect)bounds {
     self.pageArray = @[].mutableCopy;
-    NSMutableAttributedString *attr = [[NSMutableAttributedString  alloc] initWithString:self.content attributes:[GKReadSetManager defaultFont]];
+    NSAttributedString *attr = [[NSAttributedString  alloc] initWithString:self.content attributes:[GKReadSetManager defaultFont]];
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef) attr);
     CGPathRef path = CGPathCreateWithRect(bounds, NULL);
     CFRange range = CFRangeMake(0, 0);
@@ -68,6 +68,22 @@
     }
     return [[NSAttributedString alloc] initWithString:@"更多精彩内容尽在追书申请\n\r\n\r数据加载中...\n\r\n\r请耐心等待" attributes:[GKReadSetManager defaultFont]];
 }
-
+- (NSArray *)positionDatas{
+    return self.pageArray;
+}
+- (NSInteger)getChangeIndex:(NSNumber *)position{
+    
+    if (position.integerValue <= 0) {
+        return 0;
+    }
+    __block NSInteger index = 0;
+    [self.pageArray enumerateObjectsUsingBlock:^(NSNumber*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.integerValue >= position.integerValue - 30) {
+            index = idx;
+            *stop = YES;
+        }
+    }];
+    return index;
+}
 @end
 
