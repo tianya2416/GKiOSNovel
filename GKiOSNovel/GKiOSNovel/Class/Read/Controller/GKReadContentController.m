@@ -406,7 +406,8 @@
     sender.selected = !sender.selected;
     GKReadThemeState state  = (sender.selected == NO) ? GKReadDefault : GKReadBlack;
     [GKReadSetManager setReadState:state];
-    self.mainView.image = [GKReadSetManager defaultSkin];
+    [self resetDataView:NO];
+//    self.mainView.image = [GKReadSetManager defaultSkin];
 }
 - (void)cataACtion:(UIButton *)sender{
     GKBookChapterController *vc = [GKBookChapterController vcWithChapter:self.bookSource.bookSourceId chapter:self.chapter completion:^(NSInteger index) {
@@ -422,11 +423,20 @@
     if (pageIndex == 0 && chapter == 0){
         return nil;
     }
-    if (pageIndex >= 0) {
-        pageIndex = pageIndex - 1;
+    if (self.pagecurl) {
+        if (pageIndex > 0) {
+            pageIndex = pageIndex - 1;
+        }else{
+            chapter = chapter - 1;
+            pageIndex = self.bookContent.pageCount - 1;
+        }
     }else{
-        chapter = chapter - 1;
-        pageIndex = self.bookContent.pageCount - 1;
+        if (pageIndex >= 0) {
+            pageIndex = pageIndex - 1;
+        }else{
+            chapter = chapter - 1;
+            pageIndex = self.bookContent.pageCount - 1;
+        }
     }
     return [self viewControllerAtPage:pageIndex chapter:chapter];
 }
@@ -434,11 +444,20 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(GKReadViewController *)viewController {
     NSUInteger pageIndex = viewController.pageIndex;
     NSUInteger chapter = viewController.chapterIndex;
-    if (pageIndex >= self.bookContent.pageCount) {
-        pageIndex = 0;
-        chapter = chapter + 1;
+    if (self.pagecurl) {
+        if (pageIndex >= self.bookContent.pageCount - 1) {
+            pageIndex = 0;
+            chapter = chapter + 1;
+        }else{
+            pageIndex = pageIndex + 1;
+        }
     }else{
-        pageIndex = pageIndex + 1;
+        if (pageIndex >= self.bookContent.pageCount) {
+            pageIndex = 0;
+            chapter = chapter + 1;
+        }else{
+            pageIndex = pageIndex + 1;
+        }
     }
     return [self viewControllerAtPage:pageIndex chapter:chapter];
 }
@@ -457,8 +476,8 @@
     [self resetDataView:NO];
 }
 - (void)readSetView:(GKReadSetView *)setView state:(GKReadThemeState)state{
-    self.mainView.image = [GKReadSetManager defaultSkin];
     self.bottomView.dayBtn.selected = [GKReadSetManager shareInstance].model.state == GKReadBlack;
+    [self resetDataView:NO];
 }
 - (void)readSetView:(GKReadSetView *)setView screen:(BOOL)screen{
     UIInterfaceOrientation orientation = screen? UIInterfaceOrientationLandscapeRight: UIInterfaceOrientationPortrait;

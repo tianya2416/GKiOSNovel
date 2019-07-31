@@ -9,6 +9,7 @@
 #import "GKReadViewController.h"
 #import "GKReadView.h"
 @interface GKReadViewController ()
+@property (strong, nonatomic) UIImageView *mainView;
 @property (strong, nonatomic) UILabel *titleLab;
 @property (strong, nonatomic) UILabel *bookNameLab;
 @property (strong, nonatomic) UILabel *selectLab;
@@ -50,6 +51,10 @@
 
 - (void)loadUI{
 
+    [self.view addSubview:self.mainView];
+    [self.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.mainView.superview);
+    }];
     [self.view addSubview:self.readView];
     [self.view addSubview:self.titleLab];
     [self.view addSubview:self.bookNameLab];
@@ -97,7 +102,7 @@
     }];
 }
 - (void)loadData{
-
+    self.mainView.image = [GKReadSetManager defaultSkin];
 }
 - (GKReadView *)readView{
     if (!_readView) {
@@ -133,6 +138,15 @@
         _selectLab.font = [UIFont systemFontOfSize:14 weight:UIFontWeightRegular];
     }
     return _selectLab;
+}
+- (UIImageView *)mainView{
+    if (!_mainView) {
+        _mainView = [[UIImageView alloc] init];
+        _mainView.userInteractionEnabled = YES;
+        _mainView.clipsToBounds = YES;
+        _mainView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return _mainView;
 }
 - (BOOL)landscape{
     UIInterfaceOrientation state= [UIApplication sharedApplication].statusBarOrientation;
