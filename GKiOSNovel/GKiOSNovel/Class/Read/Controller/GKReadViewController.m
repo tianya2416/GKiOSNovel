@@ -37,6 +37,12 @@
     [self loadData];
     
 }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([self.delegate respondsToSelector:@selector(viewDidAppear:animated:)]) {
+        [self.delegate viewDidAppear:self animated:animated];
+    }
+}
 - (void)setCurrentPage:(NSInteger)currentPage totalPage:(NSInteger)totalPage chapter:(NSInteger)chapter title:(NSString *)title bookName:(NSString *)bookName content:(NSAttributedString *)content{
     self.pageIndex = currentPage;
     self.chapterIndex = chapter;

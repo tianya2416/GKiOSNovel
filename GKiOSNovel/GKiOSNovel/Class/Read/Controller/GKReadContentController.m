@@ -22,10 +22,9 @@
 #import "AppDelegate.h"
 #import "GKMoreSetView.h"
 #define gkSetHeight (180 + TAB_BAR_ADDING)
-
 #define gkMoreSetHeight (200 + TAB_BAR_ADDING)
 
-@interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,GKReadSetDelegate,GKMoreSetDelegate>
+@interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,GKReadSetDelegate,GKMoreSetDelegate,GKReadViewDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) UIImageView *mainView;
@@ -163,22 +162,6 @@
         }
     }];
 }
-- (UIViewController *)viewControllerAtPage:(NSUInteger)pageIndex chapter:(NSInteger)chapterIndex
-{
-    GKReadViewController *vc = [[GKReadViewController alloc] init];
-    self.pageIndex = pageIndex;
-    if (self.chapter != chapterIndex) {
-        self.chapter = chapterIndex;
-        [self loadBookContent:NO chapter:self.chapter];
-    }
-    [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title bookName:self.model.title content:[self.bookContent getContentAtt:pageIndex]];
-    //预加载数据
-    if (self.bookContent.pageCount > pageIndex && pageIndex == 0 && self.bookChapter.chapters.count > chapterIndex + 1) {
-         GKBookChapterModel *model = self.bookChapter.chapters[chapterIndex + 1];
-        [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id sameSource:self.bookSource.sourceIndex success:nil failure:nil];
-    }
-    return vc;
-}
 //获取源
 - (void)loadBookSummary{
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
@@ -243,10 +226,10 @@
     }
 }
 - (void)resetDataView:(BOOL)fullscreen{
-     GKReadViewController *vc = self.pageViewController.viewControllers.firstObject;
+    GKReadViewController *vc = self.pageViewController.viewControllers.firstObject;
     NSArray *datas = [self.bookContent positionDatas];
     NSNumber *position= @(0);
-    if (datas.count > vc.pageIndex) {
+    if (vc&&datas.count > vc.pageIndex) {
         position = [[self.bookContent positionDatas] objectAtIndex:vc.pageIndex];
     }
     [self.bookContent setContentPage];
@@ -254,29 +237,49 @@
     self.pageIndex = self.pageIndex < self.bookContent.pageCount ? self.pageIndex : self.bookContent.pageCount - 1;
     [self reloadPageView];
 }
+- (UIViewController *)vCtrlPageIndex:(NSUInteger)pageIndex chapter:(NSInteger)chapterIndex
+{
+    GKReadViewController *vc = [[GKReadViewController alloc] init];
+    vc.delegate = self;
+    self.pageIndex = pageIndex;
+    if (self.chapter != chapterIndex) {
+        self.chapter = chapterIndex;
+        [self loadBookContent:NO chapter:self.chapter];
+    }
+    [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title bookName:self.model.title content:[self.bookContent getContentAtt:pageIndex]];
+    //预加载数据
+    if (self.bookContent.pageCount > pageIndex && pageIndex == 0 && self.bookChapter.chapters.count > chapterIndex + 1) {
+        GKBookChapterModel *model = self.bookChapter.chapters[chapterIndex + 1];
+        [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id sameSource:self.bookSource.sourceIndex success:nil failure:nil];
+    }
+    return vc;
+}
 - (void)reloadPageView{
-    UIViewController *vc = [self viewControllerAtPage:self.pageIndex chapter:self.chapter];
+    UIViewController *vc = [self vCtrlPageIndex:self.pageIndex chapter:self.chapter];
     [self.pageViewController setViewControllers:@[vc]
                                       direction:UIPageViewControllerNavigationDirectionForward
                                        animated:NO
                                      completion:nil];
-    [self insertDataQueue];
 }
 - (void)insertDataQueue{
-    GKBookChapterModel *chapterModel = [self.bookChapter.chapters objectSafeAtIndex:self.chapter] ? : self.bookModel.bookChapter;
     GKBookSourceInfo *souceInfo = self.bookSource.bookSourceId ?self.bookSource: self.bookModel.bookSource;
-    GKBookContentModel *contentModel = self.bookContent ?: self.bookModel.bookContent;
-    chapterModel.chapterIndex = self.chapter;
+    GKBookChapterModel *chapter = [self.bookChapter.chapters objectSafeAtIndex:self.chapter] ? : self.bookModel.bookChapter;
+    GKBookContentModel *content = self.bookContent ?: self.bookModel.bookContent;
+    chapter.chapterIndex = self.chapter;
     GKReadViewController *vc = self.pageViewController.viewControllers.firstObject;
-    contentModel.pageIndex = vc ? vc.pageIndex : self.pageIndex;
-    GKBookReadModel *readModel = [GKBookReadModel vcWithBookId:self.model._id bookSource:souceInfo bookChapter:chapterModel bookContent:contentModel bookModel:self.model];
-    [GKBookReadDataQueue insertDataToDataBase:readModel completion:^(BOOL success) {
+    content.pageIndex = vc ? vc.pageIndex : self.pageIndex;
+    GKBookReadModel *read = [GKBookReadModel vcWithBookId:self.model._id bookSource:souceInfo bookChapter:chapter bookContent:content bookModel:self.model];
+    [GKBookReadDataQueue insertDataToDataBase:read completion:^(BOOL success) {
         if (success) {
             NSLog(@"insert successful");
         }
     }];
 }
 #pragma mark buttonAction
+- (void)goBack{
+    [super goBack:NO];
+}
+
 - (void)tapAction{
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapAction) object:nil];
     if (!self.moreSetView.hidden) {
@@ -331,15 +334,6 @@
             [self setNeedsStatusBarAppearanceUpdate];
         }
     }];
-}
-- (void)goBack{
-//    if (self.landscape) {
-//        self.setView.switchBtn.on = NO;
-//        [self readSetView:self.setView screen:self.setView.switchBtn.on];
-//    }else
-    {
-        [super goBack:NO];;
-    }
 }
 - (void)moreAction{
     GKBookSourceController *vc = [GKBookSourceController vcWithChapter:self.model._id sourceId:self.bookSource.bookSourceId completion:^(NSInteger index) {
@@ -438,9 +432,8 @@
             pageIndex = self.bookContent.pageCount - 1;
         }
     }
-    return [self viewControllerAtPage:pageIndex chapter:chapter];
+    return [self vCtrlPageIndex:pageIndex chapter:chapter];
 }
-#pragma mark 返回下一个ViewController对象
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(GKReadViewController *)viewController {
     NSUInteger pageIndex = viewController.pageIndex;
     NSUInteger chapter = viewController.chapterIndex;
@@ -459,7 +452,7 @@
             pageIndex = pageIndex + 1;
         }
     }
-    return [self viewControllerAtPage:pageIndex chapter:chapter];
+    return [self vCtrlPageIndex:pageIndex chapter:chapter];
 }
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
     UIViewController *currentViewController = pageViewController.viewControllers.firstObject;
@@ -503,6 +496,10 @@
 - (void)moreSetView:(GKMoreSetView *)moreView browState:(GKBrowseState)browState{
     [self setUpPageView];
     [self loadData];
+}
+#pragma mark GKReadViewDelegate
+- (void)viewDidAppear:(GKReadViewController *)ctrl animated:(BOOL)animated{
+    [self insertDataQueue];
 }
 #pragma mark get
 
