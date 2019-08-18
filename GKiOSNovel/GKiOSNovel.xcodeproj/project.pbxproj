@@ -136,6 +136,7 @@
 		0FF17E1422C2103700D0FFB9 /* GKAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF17E1322C2103700D0FFB9 /* GKAppModel.m */; };
 		0FFB903422EACDA000F105F0 /* GKReadSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB903322EACDA000F105F0 /* GKReadSetModel.m */; };
 		8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */; };
+		8F3B073C2306F861004521F3 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3B073B2306F861004521F3 /* DZMCoverController.m */; };
 		DEC0F6D1F57FDCCA48B88D01 /* libPods-GKiOSNovel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */; };
 /* End PBXBuildFile section */
 
@@ -370,6 +371,8 @@
 		8980FBFCE4E375292C7A93A9 /* Pods-GKiOSNovel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GKiOSNovel.debug.xcconfig"; path = "Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel.debug.xcconfig"; sourceTree = "<group>"; };
 		8F1A7CBB22B64DF700BB325E /* GKBookCaseDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookCaseDataQueue.h; sourceTree = "<group>"; };
 		8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookCaseDataQueue.m; sourceTree = "<group>"; };
+		8F3B073A2306F861004521F3 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
+		8F3B073B2306F861004521F3 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
 		9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GKiOSNovel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -608,6 +611,8 @@
 		0F6C5FD022B37CA100A4C2BE /* AppCategory */ = {
 			isa = PBXGroup;
 			children = (
+				8F3B073A2306F861004521F3 /* DZMCoverController.h */,
+				8F3B073B2306F861004521F3 /* DZMCoverController.m */,
 				0FAD109622E861A5004B3410 /* UIViewController+Tool.h */,
 				0FAD109522E861A5004B3410 /* UIViewController+Tool.m */,
 				0F6C5FD122B37CA100A4C2BE /* UIImageView+GKLoad.h */,
@@ -1106,6 +1111,7 @@
 				0F5F63EB22AFA2D8009096BD /* BaseMacro.m in Sources */,
 				0FAB619622C45755000F8ABB /* GKReadViewController.m in Sources */,
 				0FAB61C022C457B5000F8ABB /* GKThemeCell.m in Sources */,
+				8F3B073C2306F861004521F3 /* DZMCoverController.m in Sources */,
 				0FAB617122C45720000F8ABB /* GKBookDetailCell.m in Sources */,
 				0FEB43BB22B0E891005FF5DF /* GKStartViewController.m in Sources */,
 				0FAB61BD22C457B5000F8ABB /* GKBookHistoryController.m in Sources */,
@@ -1302,7 +1308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				DEVELOPMENT_TEAM = 4CTWA68AMZ;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/App/GKiOSNovel.pch";
@@ -1312,7 +1318,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.3733SDK.sdk;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zy-com.024";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1326,7 +1332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AH5A6D2MR2;
+				DEVELOPMENT_TEAM = 4CTWA68AMZ;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GKiOSNovel/App/GKiOSNovel.pch";
@@ -1336,7 +1342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.3733SDK.sdk;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zy-com.024";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

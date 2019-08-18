@@ -17,13 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic)   NSString *bookId;
 @property (copy, nonatomic)   NSString *updateTime;
+@property (assign, nonatomic)   NSInteger chapter;
+@property (assign, nonatomic)   NSInteger pageIndex;
 @property (assign, nonatomic) BOOL bookMarks;
 @property (strong, nonatomic) GKBookDetailModel *bookModel;
-@property (strong, nonatomic) GKBookSourceInfo *bookSource;//文章来源
-@property (strong, nonatomic) GKBookChapterModel *bookChapter;//文章章节
 @property (strong, nonatomic) GKBookContentModel *bookContent;//文章内容
-
-+ (instancetype)vcWithBookId:(NSString *)bookId bookSource:(GKBookSourceInfo *)bookSource bookChapter:(GKBookChapterModel *)bookChapter bookContent:(GKBookContentModel *)bookContent bookModel:(GKBookDetailModel *)bookModel;
++ (instancetype)vcWithContent:(GKBookContentModel *)model bookId:(NSString *)bookId chapter:(NSInteger)chapter pageIndex:(NSInteger)pageIndex;
+//+ (instancetype)vcWithBookId:(NSString *)bookId bookSource:(GKBookSourceInfo *)bookSource bookChapter:(GKBookChapterModel *)bookChapter bookContent:(GKBookContentModel *)bookContent bookModel:(GKBookDetailModel *)bookModel;
 @end
 
 NS_ASSUME_NONNULL_END

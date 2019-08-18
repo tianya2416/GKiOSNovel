@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseNetCache : NSObject
 @property (strong, nonatomic,readonly) YYDiskCache *diskCache;
@@ -18,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeObjectForKey:(NSString *)key completion:(void(^)(NSString *key))completion;
 + (void)removeDiskCache;
 + (CGFloat)diskCacheSize;
-
++ (id)objectForKey:(NSString *)key;
 @end
 
-NS_ASSUME_NONNULL_END

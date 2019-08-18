@@ -148,7 +148,7 @@
 }
 - (void)setTipModel:(GKBookReadModel *)bookModel{
     self.tipLab.hidden = !bookModel;
-    self.tipLab.text = [NSString stringWithFormat:@"本书阅读到: %@\n%@",bookModel.bookChapter.title,[GKTimeTool timeStampTurnToTimesType:bookModel.updateTime]];
+    self.tipLab.text = [NSString stringWithFormat:@"本书阅读到: %@\n%@",bookModel.bookContent.title,[GKTimeTool timeStampTurnToTimesType:bookModel.updateTime]];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tipLab mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.tipLab.superview);

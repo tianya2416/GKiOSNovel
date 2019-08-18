@@ -9,14 +9,22 @@
 #import "GKBookReadModel.h"
 
 @implementation GKBookReadModel
-+ (instancetype)vcWithBookId:(NSString *)bookId bookSource:(GKBookSourceInfo *)bookSource bookChapter:(GKBookChapterModel *)bookChapter bookContent:(GKBookContentModel *)bookContent bookModel:(GKBookDetailModel *)bookModel{
+//+ (instancetype)vcWithBookId:(NSString *)bookId bookSource:(GKBookSourceInfo *)bookSource bookChapter:(GKBookChapterModel *)bookChapter bookContent:(GKBookContentModel *)bookContent bookModel:(GKBookDetailModel *)bookModel{
+//    GKBookReadModel *vc = [[[self class] alloc]init];
+//    vc.bookId = bookId;
+//    vc.bookChapter = bookChapter;
+//    vc.bookSource = bookSource;
+//    vc.bookContent = bookContent;
+//    vc.bookModel = bookModel;
+//    vc.updateTime = @"";
+//    return vc;
+//}
++ (instancetype)vcWithContent:(GKBookContentModel *)model bookId:(NSString *)bookId chapter:(NSInteger)chapter pageIndex:(NSInteger)pageIndex{
     GKBookReadModel *vc = [[[self class] alloc]init];
     vc.bookId = bookId;
-    vc.bookChapter = bookChapter;
-    vc.bookSource = bookSource;
-    vc.bookContent = bookContent;
-    vc.bookModel = bookModel;
-    vc.updateTime = @"";
+    vc.bookContent = model;
+    vc.chapter= chapter;
+    vc.pageIndex = pageIndex;
     return vc;
 }
 - (void)setUpdateTime:(NSString *)updateTime{

@@ -7,10 +7,18 @@
 //
 
 #import "GKBookChapterModel.h"
-
+#import "BaseNetCache.h"
 @implementation GKBookChapterModel
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
     return @{@"_id":@[@"id",@"_id"]};
+}
+- (GKBookContentModel *)bookContent{
+    GKBookContentModel *model = [BaseNetCache objectForKey:self.link];
+    if ([model isKindOfClass:GKBookContentModel.class]) {
+        [model setContentPage];
+        return model;
+    }
+    return nil;
 }
 @end
 
@@ -19,4 +27,5 @@
     return @{@"chapters" : GKBookChapterModel.class
              };
 }
+
 @end

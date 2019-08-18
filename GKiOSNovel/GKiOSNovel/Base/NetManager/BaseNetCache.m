@@ -67,4 +67,10 @@ static YYDiskCache *_diskCache = nil;
     }
     return _diskCache;
 }
++ (id)objectForKey:(NSString *)key{
+    if (!key) {
+        return nil;
+    }
+   return [BaseNetCache.diskCache objectForKey:key];
+}
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "BaseModel.h"
-
+#import "GKBookContentModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookChapterModel : BaseModel
@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) NSInteger partsize;
 @property (assign, nonatomic) NSInteger totalpage;
 @property (assign, nonatomic) NSInteger currency;
+
+- (GKBookContentModel *)bookContent;
 @end
 
 @interface GKBookChapterInfo : BaseModel
@@ -38,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *host;
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray <GKBookChapterModel *>*chapters;
+
 
 @end
 

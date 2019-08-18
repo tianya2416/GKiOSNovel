@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, GKReadThemeState) {
 typedef NS_ENUM(NSInteger, GKBrowseState) {
     GKBrowseDefault    = 0,//默认
     GKBrowsePageCurl   = 1,//仿真
-    GKBrowseVertical   = 2,//上下
+    GKBrowseVertical   = 2,//无动画
 };
 NS_ASSUME_NONNULL_BEGIN
 

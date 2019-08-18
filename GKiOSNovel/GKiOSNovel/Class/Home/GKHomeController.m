@@ -75,10 +75,10 @@
 }
 - (void)setTipModel:(GKBookReadModel *)model{
     self.tipBtn.hidden = !model;
-    NSString *title = [NSString stringWithFormat:@"最近一次阅读:%@ %@",model.bookModel.title?:@"",[GKTimeTool timeStampTurnToTimesType:model.updateTime]];
+    NSString *title = [NSString stringWithFormat:@"最近一次阅读:%@ %@",model.bookContent.title?:@"",[GKTimeTool timeStampTurnToTimesType:model.updateTime]];
     [self.tipBtn setTitle:title forState:UIControlStateNormal];
     [self.tipBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        [GKJumpApp jumpToBookRead:model.bookModel];
+       // [GKJumpApp jumpToBookRead:model.bookModel];
     }];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tipBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
