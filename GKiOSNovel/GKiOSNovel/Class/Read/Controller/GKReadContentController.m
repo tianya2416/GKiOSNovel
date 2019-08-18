@@ -23,8 +23,8 @@
 #import "GKMoreSetView.h"
 #import "DZMCoverController.h"
 #define gkSetHeight (180 + TAB_BAR_ADDING)
-
 #define gkMoreSetHeight (200 + TAB_BAR_ADDING)
+
 
 @interface GKReadContentController ()<UIPageViewControllerDelegate,UIPageViewControllerDataSource,GKReadSetDelegate,GKMoreSetDelegate,DZMCoverControllerDelegate>
 
@@ -197,22 +197,6 @@
         }
     }];
 }
-- (UIViewController *)viewControllerAtPage:(NSUInteger)pageIndex chapter:(NSInteger)chapterIndex
-{
-    GKReadViewController *vc = [[GKReadViewController alloc] init];
-    self.pageIndex = pageIndex;
-    if (self.chapter != chapterIndex) {
-        self.chapter = chapterIndex;
-        [self loadBookContent:NO chapter:self.chapter];
-    }
-    [vc setCurrentPage:pageIndex totalPage:self.bookContent.pageCount chapter:self.chapter title:self.bookContent.title bookName:self.model.title content:[self.bookContent getContentAtt:pageIndex]];
-    //预加载数据
-    if (self.bookContent.pageCount > pageIndex && pageIndex == 0 && self.bookChapter.chapters.count > chapterIndex + 1) {
-         GKBookChapterModel *model = self.bookChapter.chapters[chapterIndex + 1];
-        [GKBookCacheTool bookContent:model.link contentId:model._id bookId:self.model._id sameSource:self.bookSource.sourceIndex success:nil failure:nil];
-    }
-    return vc;
-}
 //获取源
 - (void)loadBookSummary{
     [MBProgressHUD showHUDAddedTo:self.view animated:NO];
@@ -257,10 +241,10 @@
     }
 }
 - (void)resetDataView:(BOOL)fullscreen{
-     GKReadViewController *vc = self.pageViewController.viewControllers.firstObject;
+    GKReadViewController *vc = self.pageViewController.viewControllers.firstObject;
     NSArray *datas = [self.bookContent positionDatas];
     NSNumber *position= @(0);
-    if (datas.count > vc.pageIndex) {
+    if (vc&&datas.count > vc.pageIndex) {
         position = [[self.bookContent positionDatas] objectAtIndex:vc.pageIndex];
     }
     [self.bookContent setContentPage];
@@ -293,6 +277,10 @@
     }];
 }
 #pragma mark buttonAction
+- (void)goBack{
+    [super goBack:NO];
+}
+
 - (void)tapAction{
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(tapAction) object:nil];
     if (!self.moreSetView.hidden) {
@@ -347,15 +335,6 @@
             [self setNeedsStatusBarAppearanceUpdate];
         }
     }];
-}
-- (void)goBack{
-//    if (self.landscape) {
-//        self.setView.switchBtn.on = NO;
-//        [self readSetView:self.setView screen:self.setView.switchBtn.on];
-//    }else
-    {
-        [super goBack:NO];;
-    }
 }
 - (void)moreAction{
     GKBookSourceController *vc = [GKBookSourceController vcWithChapter:self.model._id sourceId:self.bookSource.bookSourceId completion:^(NSInteger index) {
@@ -435,8 +414,8 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(GKReadViewController *)viewController {
     return [self aboveController];
 }
-#pragma mark 返回下一个ViewController对象
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(GKReadViewController *)viewController {
+
     return [self belowController];
 }
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
@@ -448,6 +427,9 @@
         return UIPageViewControllerSpineLocationMin;
     }
     return UIPageViewControllerSpineLocationNone;
+}
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
+    [self insertDataQueue];
 }
 #pragma mark GKReadSetDelegate
 - (void)readSetView:(GKReadSetView *)setView font:(CGFloat)font{
@@ -481,6 +463,10 @@
 - (void)moreSetView:(GKMoreSetView *)moreView browState:(GKBrowseState)browState{
     self.pagecurl ?     [self setUpPageView] : [self setPageCoverCtrl];
     [self loadData];
+}
+#pragma mark GKReadViewDelegate
+- (void)viewDidAppear:(GKReadViewController *)ctrl animated:(BOOL)animated{
+    [self insertDataQueue];
 }
 #pragma mark get
 
@@ -556,6 +542,7 @@
 }
 #pragma mark DZMCoverControllerDelegate
 - (void)coverController:(DZMCoverController * _Nonnull)coverController currentController:(GKReadViewController * _Nullable)currentController finish:(BOOL)isFinish{
+    [self insertDataQueue];
     NSLog(@"currentController");
 }
 - (void)coverController:(DZMCoverController * _Nonnull)coverController willTransitionToPendingController:(UIViewController * _Nullable)pendingController{
