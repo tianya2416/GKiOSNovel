@@ -123,11 +123,7 @@ GKReadViewDelegate>
     [self.managerSetView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.managerSetView.superview);
     }];
-    if (self.pagecurl) {
-        [self loadPageUI];
-    }else{
-        [self loadCoverUI];
-    }
+    self.pagecurl ? [self loadPageUI] : [self loadCoverUI];
 }
 - (void)removePageCtrl{
     if (_pageCtrl) {
@@ -183,7 +179,6 @@ GKReadViewDelegate>
         _pageCoverCtrl = nil;
     }
 }
-
 - (void)loadCoverUI{
     [self removeCoverCtrl];
     [self removePageCtrl];
@@ -204,7 +199,6 @@ GKReadViewDelegate>
 - (void)reloadUI{
     self.pagecurl ? [self reloadPageUI] : [self reloadCover];
 }
-
 - (void)reloadPageUI{
     UIViewController *vc = [self getReadCotroller];
     [self.pageCtrl setViewControllers:@[vc]
@@ -215,6 +209,13 @@ GKReadViewDelegate>
 - (void)reloadCover{
     UIViewController *vc = [self getReadCotroller];
     [self.pageCoverCtrl setController:vc];
+}
+- (void)resetDataView:(BOOL)fullscreen{
+    NSArray *datas = [self.bookContent positionDatas];
+    NSNumber *position= [datas objectSafeAtIndex:self.pageIndex];;
+    [self.bookContent setContentPage];
+    self.pageIndex = [self.bookContent getChangeIndex:position];
+    [self reloadUI];
 }
 #pragma mark buttonAction
 - (void)tapAction:(UITapGestureRecognizer *)sender{
@@ -312,15 +313,12 @@ GKReadViewDelegate>
         [self getBookContent:self.chapter];
     }
 }
-
 - (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getAboveControllerWithCurrentController:(UIViewController * _Nullable)currentController{
     return [self beforeController];
-
 }
 - (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getBelowControllerWithCurrentController:(UIViewController * _Nullable)currentController{
     return [self afterController];
 }
-
 - (GKReadViewController *)beforeController{
     if (self.pageIndex <= 0 &&self.chapter <= 0) {
         [MBProgressHUD showMessage:@"当前第一章，第一页"];
@@ -360,7 +358,6 @@ GKReadViewDelegate>
         }
     }
     return [self getReadCotroller];
-
 }
 - (GKReadViewController *)getReadCotroller{
     GKReadViewController *vc = [[GKReadViewController alloc] init];
@@ -412,10 +409,10 @@ GKReadViewDelegate>
 }
 #pragma mark GKReadSetDelegate
 - (void)readSetView:(GKReadSetView *)setView font:(CGFloat)font{
-    [self reloadData];
+    [self resetDataView:NO];
 }
 - (void)readSetView:(GKReadSetView *)setView state:(GKSkinState)state{
-    [self reloadData];
+    [self resetDataView:NO];
 }
 - (void)readSetView:(GKReadSetView *)setView screen:(BOOL)screen{
     UIInterfaceOrientation orientation = screen? UIInterfaceOrientationLandscapeRight: UIInterfaceOrientationPortrait;
@@ -423,7 +420,7 @@ GKReadViewDelegate>
     app.makeOrientation = orientation;
     [self setOrientations:orientation];
     self.fd_interactivePopDisabled = self.landscape;
-    [self reloadData];
+    [self resetDataView:YES];
 }
 - (void)setOrientations:(UIInterfaceOrientation)orientation{
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
@@ -442,7 +439,7 @@ GKReadViewDelegate>
 #pragma mark GKReadBottomDelegate
 - (void)bottomView:(GKReadBottomView *__nullable)bottomView day:(BOOL)day{
     [GKSetManager setNight:!day];
-    [self reloadData];
+    [self resetDataView:NO];
 }
 - (void)bottomView:(GKReadBottomView *__nullable)bottomView last:(BOOL)last{
     NSArray *listData = self.chapterInfo.chapters;
@@ -458,10 +455,10 @@ GKReadViewDelegate>
     self.pageIndex = 0;
     [self loadBookContent:self.chapter];
 }
-
 - (void)bottomView:(GKReadBottomView *__nullable)bottomView page:(NSInteger)page{
     self.pageIndex = page;
     [self reloadUI];
+    
 }
 #pragma mark GKReadViewDelegate
 - (void)viewDidAppear:(GKReadViewController *)ctrl animated:(BOOL)animated{
@@ -512,4 +509,6 @@ GKReadViewDelegate>
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
 }
+
+
 @end

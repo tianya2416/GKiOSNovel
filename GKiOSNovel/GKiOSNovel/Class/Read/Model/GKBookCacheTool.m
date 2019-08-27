@@ -138,7 +138,6 @@
             }else{
                 [GKNovelNetManager bookContent:url success:^(id object) {
                     GKBookContentModel *bookModel = [GKBookContentModel modelWithJSON:object[@"chapter"]];
-                    [BaseNetCache setObject:bookModel forKey:url completion:nil];
                     !success ?: success(bookModel);
                     [GKBookCacheDataQueue insertDataToDataBase:bookId model:bookModel completion:^(BOOL success) {
                         

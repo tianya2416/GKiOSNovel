@@ -108,7 +108,6 @@
 		0FAB617522C45720000F8ABB /* GKBookDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB616922C45720000F8ABB /* GKBookDetailCollectionCell.xib */; };
 		0FAB619522C45755000F8ABB /* GKBookChapterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB617922C45755000F8ABB /* GKBookChapterController.m */; };
 		0FAB619622C45755000F8ABB /* GKReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB617A22C45755000F8ABB /* GKReadViewController.m */; };
-		0FAB619722C45755000F8ABB /* GKReadContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB617D22C45755000F8ABB /* GKReadContentController.m */; };
 		0FAB619822C45755000F8ABB /* GKBookSourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB618022C45755000F8ABB /* GKBookSourceModel.m */; };
 		0FAB619922C45755000F8ABB /* GKBookContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB618122C45755000F8ABB /* GKBookContentModel.m */; };
 		0FAB619A22C45755000F8ABB /* GKBookReadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB618422C45755000F8ABB /* GKBookReadModel.m */; };
@@ -149,6 +148,7 @@
 		0FEDE10622C5FD3400D29D02 /* GKShareViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FEDE10422C5FD3400D29D02 /* GKShareViewCell.xib */; };
 		0FF17E1422C2103700D0FFB9 /* GKAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF17E1322C2103700D0FFB9 /* GKAppModel.m */; };
 		0FF2B5552314FA0900BEF991 /* GKNovelDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF2B5542314FA0800BEF991 /* GKNovelDown.m */; };
+		0FF2B559231523CE00BEF991 /* GKReadContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF2B558231523CE00BEF991 /* GKReadContentController.m */; };
 		8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */; };
 		8F3B073C2306F861004521F3 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3B073B2306F861004521F3 /* DZMCoverController.m */; };
 		DEC0F6D1F57FDCCA48B88D01 /* libPods-GKiOSNovel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */; };
@@ -337,7 +337,6 @@
 		0FAB617A22C45755000F8ABB /* GKReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKReadViewController.m; sourceTree = "<group>"; };
 		0FAB617B22C45755000F8ABB /* GKReadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKReadViewController.h; sourceTree = "<group>"; };
 		0FAB617C22C45755000F8ABB /* GKBookChapterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKBookChapterController.h; sourceTree = "<group>"; };
-		0FAB617D22C45755000F8ABB /* GKReadContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKReadContentController.m; sourceTree = "<group>"; };
 		0FAB617F22C45755000F8ABB /* GKBookReadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKBookReadModel.h; sourceTree = "<group>"; };
 		0FAB618022C45755000F8ABB /* GKBookSourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKBookSourceModel.m; sourceTree = "<group>"; };
 		0FAB618122C45755000F8ABB /* GKBookContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKBookContentModel.m; sourceTree = "<group>"; };
@@ -406,6 +405,7 @@
 		0FF17E1322C2103700D0FFB9 /* GKAppModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKAppModel.m; sourceTree = "<group>"; };
 		0FF2B5532314FA0800BEF991 /* GKNovelDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKNovelDown.h; sourceTree = "<group>"; };
 		0FF2B5542314FA0800BEF991 /* GKNovelDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKNovelDown.m; sourceTree = "<group>"; };
+		0FF2B558231523CE00BEF991 /* GKReadContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKReadContentController.m; sourceTree = "<group>"; };
 		8980FBFCE4E375292C7A93A9 /* Pods-GKiOSNovel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GKiOSNovel.debug.xcconfig"; path = "Target Support Files/Pods-GKiOSNovel/Pods-GKiOSNovel.debug.xcconfig"; sourceTree = "<group>"; };
 		8F1A7CBB22B64DF700BB325E /* GKBookCaseDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookCaseDataQueue.h; sourceTree = "<group>"; };
 		8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookCaseDataQueue.m; sourceTree = "<group>"; };
@@ -845,7 +845,7 @@
 				0FAB617C22C45755000F8ABB /* GKBookChapterController.h */,
 				0FAB617922C45755000F8ABB /* GKBookChapterController.m */,
 				0FAB617822C45755000F8ABB /* GKReadContentController.h */,
-				0FAB617D22C45755000F8ABB /* GKReadContentController.m */,
+				0FF2B558231523CE00BEF991 /* GKReadContentController.m */,
 				0FAB617B22C45755000F8ABB /* GKReadViewController.h */,
 				0FAB617A22C45755000F8ABB /* GKReadViewController.m */,
 			);
@@ -1253,9 +1253,9 @@
 				0FAB61BB22C457B5000F8ABB /* GKMineController.m in Sources */,
 				0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */,
 				0F175B672313DD5E00442BC5 /* GKSetManager.m in Sources */,
+				0FF2B559231523CE00BEF991 /* GKReadContentController.m in Sources */,
 				0F6C5FC422B33FD100A4C2BE /* GKSearchTextView.m in Sources */,
 				0F6C5FE922B37CD600A4C2BE /* AppDelegate.m in Sources */,
-				0FAB619722C45755000F8ABB /* GKReadContentController.m in Sources */,
 				0F6C5FDC22B37CA100A4C2BE /* UIImageView+GKLoad.m in Sources */,
 				0F175B582313DD4A00442BC5 /* GKReadSetCell.m in Sources */,
 				0F8AA7E922B0DDFF00332ECB /* GKClassflyCell.m in Sources */,
