@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, GKBookInfoState) {
 };
 @interface GKBookModel : BaseModel
 
-@property (copy, nonatomic) NSString *_id;
+@property (copy, nonatomic) NSString *bookId;
 @property (copy, nonatomic) NSString *updateTime;
 
 @property (copy, nonatomic) NSString *author;

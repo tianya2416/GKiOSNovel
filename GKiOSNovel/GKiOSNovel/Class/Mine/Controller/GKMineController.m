@@ -14,11 +14,13 @@
 #import "GKThemeViewController.h"
 #import "GKMineSelectController.h"
 #import "GKMineCell.h"
-static NSString *rank = @"自定义首页";
-static NSString *sex = @"性别";
+#import "GKDownViewController.h"
+static NSString *down = @"我的下载";
 static NSString *bookCase = @"我的书架";
 static NSString *readHistory = @"读书记录";
-static NSString *theme = @"主题";
+static NSString *rank = @"我的首页";
+static NSString *sex = @"我的性别";
+static NSString *theme = @"我的主题";
 @interface GKMineController ()
 @property (strong, nonatomic) NSArray *listData;
 @end
@@ -41,7 +43,7 @@ static NSString *theme = @"主题";
 - (void)reloadUI{
     GKAppModel *model = [GKAppTheme shareInstance].model;
     GKUserState state = [GKUserManager shareInstance].user.state;
-    self.listData = @[@{@"title":rank,@"subTitle":@""},@{@"title":readHistory?:@"",@"subTitle":@""},@{@"title":bookCase?:@"",@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")},@{@"title":theme?:@"",@"subTitle":model.title?:@""}];
+    self.listData = @[@{@"title":down,@"subTitle":@""},@{@"title":bookCase,@"subTitle":@""},@{@"title":readHistory?:@"",@"subTitle":@""},@{@"title":rank?:@"",@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")},@{@"title":theme?:@"",@"subTitle":model.title?:@""}];
     [self.tableView reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -75,6 +77,8 @@ static NSString *theme = @"主题";
         vc = [[GKBookHistoryController alloc] init];
     }else if ([title isEqualToString:theme]){
         vc = [[GKThemeViewController alloc] init];
+    }else if([title isEqualToString:down]){
+        vc = [[GKDownViewController alloc] init];
     }
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

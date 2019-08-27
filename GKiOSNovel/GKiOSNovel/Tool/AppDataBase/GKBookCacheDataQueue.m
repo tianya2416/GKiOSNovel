@@ -7,25 +7,25 @@
 //
 
 #import "GKBookCacheDataQueue.h"
-
+#import <FMDatabase.h>
 @implementation GKBookCacheDataQueue
 + (void)insertDataToDataBase:(NSString *)bookId
                        model:(GKBookContentModel *)model
                   completion:(void(^)(BOOL success))completion{
     NSString *table = [NSString stringWithFormat:@"book(%@)",bookId?:@""];
-    [BaseDataQueue insertDataToDataBase:table primaryId:@"contentId" userInfo:[model modelToJSONObject] completion:completion];
+    [BaseDataQueue insertDataToDataBase:table primaryId:@"chapterId" userInfo:[model modelToJSONObject] completion:completion];
 }
 + (void)insertDatasDataBase:(NSString *)bookId
                    listData:(NSArray <GKBookContentModel*>*)listData
                  completion:(void(^)(BOOL success))completion{
     NSString *table = [NSString stringWithFormat:@"book(%@)",bookId?:@""];
-    [BaseDataQueue insertDatasDataBase:table primaryId:@"contentId" listData:[listData modelToJSONObject] completion:completion];
+    [BaseDataQueue insertDatasDataBase:table primaryId:@"chapterId" listData:[listData modelToJSONObject] completion:completion];
 }
 + (void)getDataFromDataBase:(NSString *)bookId
-                  contentId:(NSString *)contentId
+                  chapterId:(NSString *)chapterId
                  completion:(void(^)(GKBookContentModel *bookModel))completion{
     NSString *table = [NSString stringWithFormat:@"book(%@)",bookId?:@""];
-    [BaseDataQueue getDataFromDataBase:table primaryId:@"contentId" primaryValue:contentId completion:^(NSDictionary * _Nonnull dictionary) {
+    [BaseDataQueue getDataFromDataBase:table primaryId:@"chapterId" primaryValue:chapterId completion:^(NSDictionary * _Nonnull dictionary) {
         GKBookContentModel *model = [GKBookContentModel modelWithJSON:dictionary];
         !completion ?: completion(model);
     }];
@@ -35,7 +35,7 @@
                     pageSize:(NSInteger)pageSize
                   completion:(void(^)(NSArray <GKBookContentModel *>*listData))completion{
     NSString *table = [NSString stringWithFormat:@"book(%@)",bookId?:@""];
-    [BaseDataQueue getDatasFromDataBase:table primaryId:@"contentId" page:page pageSize:pageSize completion:^(NSArray<NSDictionary *> * _Nonnull listData) {
+    [BaseDataQueue getDatasFromDataBase:table primaryId:@"chapterId" page:page pageSize:pageSize completion:^(NSArray<NSDictionary *> * _Nonnull listData) {
         NSArray *datas = [NSArray modelArrayWithClass:GKBookContentModel.class json:listData];
         !completion ?: completion(datas);
     }];
@@ -44,4 +44,5 @@
     NSString *table = [NSString stringWithFormat:@"book(%@)",bookId?:@""];
     [BaseDataQueue dropTableDataBase:table completion:completion];
 }
+
 @end

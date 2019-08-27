@@ -105,15 +105,12 @@
 - (void)addAction:(UIButton *)sender{
     
     if (sender.selected) {
-        [ATAlertView showTitle:@"从书架中移除会删除本地已下载章节？" message:@"" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
+        [ATAlertView showTitle:@"确定从书架中移除该小说吗？" message:@"" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
             if (index > 0) {
-                [GKBookCaseDataQueue deleteDataToDataBase:self.bookDetail.bookModel._id completion:^(BOOL success) {
+                [GKBookCaseDataQueue deleteDataToDataBase:self.bookDetail.bookModel.bookId completion:^(BOOL success) {
                     if (success) {
                         [self reloadUI:NO];
                     }
-                }];
-                [GKBookCacheDataQueue dropTableFromDataBase:self.bookDetail.bookModel._id completion:^(BOOL success) {
-                    
                 }];
             }
         }];
@@ -121,23 +118,9 @@
         [GKBookCaseDataQueue insertDataToDataBase:self.bookDetail.bookModel completion:^(BOOL success) {
             if (success) {
                 [self reloadUI:YES];
-                //[MBProgressHUD showMessage:@"已成功放入书架" toView:self.view];
+                [MBProgressHUD showMessage:@"已成功放入书架" toView:self.view];
             }
         }];
-        @weakify(self)
-        [self.bookCache downloadData:self.bookDetail.bookModel._id progress:^(NSInteger index, NSInteger total) {
-            @strongify(self)
-            CGFloat da = (float)index/total;
-            self.prpgressView.hidden = NO;
-            [self.prpgressView setProgress:da animated:YES];
-        } completion:^(BOOL finish, NSString * _Nonnull error) {
-            @strongify(self)
-            if (finish) {
-                [MBProgressHUD showMessage:@"下载成功！" toView:self.view];
-                self.prpgressView.hidden = YES;
-            }
-        }];
-        
     }
 }
 - (void)readAction{
@@ -148,7 +131,8 @@
 }
 - (void)setTipModel:(GKBookReadModel *)bookModel{
     self.tipLab.hidden = !bookModel;
-    self.tipLab.text = [NSString stringWithFormat:@"本书阅读到: %@\n%@",bookModel.bookChapter.title,[GKTimeTool timeStampTurnToTimesType:bookModel.updateTime]];
+    GKBookChapterModel *model = [bookModel.chapterInfo.chapters objectSafeAtIndex:bookModel.chapter];
+    self.tipLab.text = [NSString stringWithFormat:@"本书阅读到: %@\n%@",model.title,[GKTimeTool timeStampTurnToTimesType:bookModel.updateTime]];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tipLab mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.tipLab.superview);
@@ -244,7 +228,7 @@
     }
     else if ([object isKindOfClass:GKBookModel.class]){
         GKBookModel *model = object;
-        [GKJumpApp jumpToBookDetail:model._id];
+        [GKJumpApp jumpToBookDetail:model.bookId];
     }else if ([object isKindOfClass:GKBookListModel.class]){
         GKBookListModel *model = object;
         [GKJumpApp jumpToBookListDetail:model._id];

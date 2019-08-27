@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GKDownHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="117"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已下载" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zng-1N-3ji">
+                    <rect key="frame" x="16" y="65" width="302" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYL-he-zoh">
+                    <rect key="frame" x="328" y="61.5" width="70" height="25"/>
+                    <color key="backgroundColor" red="0.89803921568627454" green="0.94901960784313721" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Pu9-b2-kjo"/>
+                        <constraint firstAttribute="width" constant="70" id="fla-mf-5jz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" title="全部更新">
+                        <color key="titleColor" red="0.0" green="0.4941176471" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wYL-he-zoh" firstAttribute="leading" secondItem="Zng-1N-3ji" secondAttribute="trailing" constant="10" id="4KB-VJ-6xT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wYL-he-zoh" secondAttribute="trailing" constant="16" id="Kat-9l-iqN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Zng-1N-3ji" secondAttribute="bottom" id="ZCS-4y-GI8"/>
+                <constraint firstItem="Zng-1N-3ji" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="oIS-S8-ugP"/>
+                <constraint firstItem="wYL-he-zoh" firstAttribute="centerY" secondItem="Zng-1N-3ji" secondAttribute="centerY" id="xif-XK-w0F"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="moreBtn" destination="wYL-he-zoh" id="mcd-Lf-IPR"/>
+                <outlet property="titleLab" destination="Zng-1N-3ji" id="j5S-TU-2KF"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="44.53125"/>
+        </view>
+    </objects>
+</document>

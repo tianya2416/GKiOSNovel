@@ -17,7 +17,7 @@
     _cover = cover;
 }
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"majorCate" : @[@"majorCate",@"cat"]};
+    return @{@"majorCate": @[@"majorCate",@"cat"],@"bookId":@[@"bookId",@"_id"]};
 }
 - (void)setUpdateTime:(NSString *)updateTime{
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];

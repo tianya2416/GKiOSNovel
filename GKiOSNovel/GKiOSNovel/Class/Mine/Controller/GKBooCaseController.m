@@ -88,7 +88,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     GKBookModel *model = self.listData[indexPath.row];
-    [GKJumpApp jumpToBookDetail:model._id];
+    [GKJumpApp jumpToBookDetail:model.bookId];
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
     return self.editor;
@@ -103,7 +103,7 @@
 - (void)deleteAction:(GKBookModel *)model{
     [ATAlertView showTitle:[NSString stringWithFormat:@"确定将%@从书架中移除",model.title] message:nil normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
         if (index > 0) {
-            [GKBookCaseDataQueue deleteDataToDataBase:model._id completion:^(BOOL success) {
+            [GKBookCaseDataQueue deleteDataToDataBase:model.bookId completion:^(BOOL success) {
                 if (success) {
                     [self.listData removeObject:model];
                     self.editor = NO;

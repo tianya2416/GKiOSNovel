@@ -17,8 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GKReadViewController : BaseViewController
 @property (assign, nonatomic) id<GKReadViewDelegate>delegate;
 @property (assign, nonatomic,readonly)NSInteger pageIndex;
-@property (assign, nonatomic,readonly)NSInteger chapterIndex;
-- (void)setCurrentPage:(NSInteger)currentPage totalPage:(NSInteger)totalPage chapter:(NSInteger)chapter title:(NSString *)title bookName:(NSString *)bookName content:(NSAttributedString *)content;
+@property (assign, nonatomic,readonly)NSInteger chapter;
+@property (strong, nonatomic, readonly) GKBookContentModel *model;
+- (void)setModel:(GKBookContentModel *)model chapter:(NSInteger)chapter pageIndex:(NSInteger)pageIndex;
 @end
 
 NS_ASSUME_NONNULL_END

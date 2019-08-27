@@ -42,7 +42,7 @@
 #import "ATActionSheet.h"
 #import "GKTimeTool.h"
 #import "UIImageView+GKLoad.h"
-#import "GKReadSetManager.h"
+#import "GKSetManager.h"
 #import "GKAppModel.h"
 #import "GKShareTool.h"
 #import "GKBookCacheDataQueue.h"

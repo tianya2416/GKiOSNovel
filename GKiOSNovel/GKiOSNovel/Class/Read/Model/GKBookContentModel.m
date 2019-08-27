@@ -15,7 +15,7 @@
 
 @implementation GKBookContentModel
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
-    return @{@"contentId":@[@"contentId",@"id"],@"content":@[@"cpContent",@"body",@"content"]};
+    return @{@"chapterId":@[@"chapterId",@"id"],@"content":@[@"cpContent",@"body",@"content"]};
 }
 - (void)setContent:(NSString *)content{
     _content = content;
@@ -27,7 +27,7 @@
 }
 - (void)setPageBound:(CGRect)bounds {
     self.pageArray = @[].mutableCopy;
-    NSAttributedString *attr = [[NSAttributedString  alloc] initWithString:self.content attributes:[GKReadSetManager defaultFont]];
+    NSAttributedString *attr = [[NSAttributedString  alloc] initWithString:self.content attributes:[GKSetManager defaultFont]];
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef) attr);
     CGPathRef path = CGPathCreateWithRect(bounds, NULL);
     CFRange range = CFRangeMake(0, 0);
@@ -63,10 +63,10 @@
             len = [self.pageArray[page + 1] integerValue] - loc;
         }
         NSAttributedString *att = [_attributedString attributedSubstringFromRange:NSMakeRange(loc, len)];
-        GKReadSetModel *model = [GKReadSetManager shareInstance].model;
-        return model.traditiona ? [[NSAttributedString alloc] initWithString:[GKReadSetManager convertToTraditional:att.string] attributes:att.attributes] : att;
+        GKSet *model = [GKSetManager shareInstance].model;
+        return model.traditiona ? [[NSAttributedString alloc] initWithString:[GKSetManager convertToTraditional:att.string] attributes:att.attributes] : att;
     }
-    return [[NSAttributedString alloc] initWithString:@"更多精彩内容尽在追书申请\n\r\n\r数据加载中...\n\r\n\r请耐心等待" attributes:[GKReadSetManager defaultFont]];
+    return [[NSAttributedString alloc] initWithString:@"更多精彩内容尽在追书申请\n\r\n\r数据加载中...\n\r\n\r请耐心等待" attributes:[GKSetManager defaultFont]];
 }
 - (NSArray *)positionDatas{
     return self.pageArray;

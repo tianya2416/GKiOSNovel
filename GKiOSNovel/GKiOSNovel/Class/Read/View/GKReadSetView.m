@@ -10,77 +10,73 @@
 #import "GKReadSetCell.h"
 @interface GKReadSetView()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic) NSArray *listData;
+@property (weak, nonatomic) IBOutlet UIButton *scrowBtn;
+@property (weak, nonatomic) IBOutlet UIButton *scralBtn;
+@property (weak, nonatomic) IBOutlet UIButton *animaBtn;
+@property (strong, nonatomic) NSArray *buttonDatas;
+
 @end
 
 @implementation GKReadSetView
 - (void)dealloc{
     
 }
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super initWithCoder:aDecoder]) {
-        [self loadUI];
-        [self loadData];
-    }return self;
-}
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-        [self loadUI];
-        [self loadData];
-    }return self;
-}
 - (void)awakeFromNib{
     [super awakeFromNib];
     [self loadUI];
     [self loadData];
 }
-
 - (void)loadUI{
-    [self.moreSet setTitleColor:AppColor forState:UIControlStateNormal];
-    self.switchBtn.onTintColor = AppColor;
-    self.backgroundColor = Appx252631;
+    self.slider.minimumValue = 0;
+    self.slider.maximumValue = 1;
     self.slider.thumbTintColor = AppColor;
     self.slider.minimumTrackTintColor = AppColor;
-    self.slider.maximumTrackTintColor = Appxdddddd;
-    UIImage *image  = [self circleImageWithName:[self originImage:[UIImage imageWithColor:AppColor] scaleToSize:CGSizeMake(15, 15)] borderWidth:2 borderColor:Appxdddddd];
+    self.slider.maximumTrackTintColor = [UIColor colorWithRGB:0xe8e8e8];
+    UIImage *image  = [GKReadSetView circleImageWithName:[GKReadSetView originImage:[UIImage imageWithColor:AppColor] scaleToSize:CGSizeMake(5, 5)] borderWidth:6 borderColor:[UIColor colorWithRGB:0xf8f8f8]];
     [self.slider setThumbImage:image forState:UIControlStateNormal];
     [self.slider setThumbImage:image forState:UIControlStateHighlighted];
+
+    [self.slider addTarget:self action:@selector(touchUpAction:) forControlEvents:UIControlEventTouchDown];
+    [self.slider addTarget:self action:@selector(outsideAction:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchCancel | UIControlEventTouchUpOutside];
     [self.slider addTarget:self action:@selector(changedAction:) forControlEvents:UIControlEventValueChanged];
-    [self.slider addTarget:self action:@selector(touchUpACtion:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    self.segmentControl.tintColor = AppColor;
-    [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
-    [self.segmentControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} forState:UIControlStateSelected];
-    [self.segmentControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate  = self;
     
-    self.collectionView.backgroundColor = self.collectionView.backgroundView.backgroundColor = Appx252631;
+    self.collectionView.backgroundColor = self.collectionView.backgroundView.backgroundColor = Appxffffff;
     
-    [self.switchBtn addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.moreSet addTarget:self action:@selector(moreSetActon) forControlEvents:UIControlEventTouchUpInside];
+    self.downBtn.layer.masksToBounds = YES;
+    self.downBtn.layer.cornerRadius = AppRadius;
+    self.addBtn.layer.masksToBounds = YES;
+    self.addBtn.layer.cornerRadius = AppRadius;
+    self.downBtn.layer.borderWidth = self.addBtn.layer.borderWidth = 1.0f;
+    self.downBtn.layer.borderColor = self.addBtn.layer.borderColor = [UIColor colorWithRGB:0xdcdcdc].CGColor;
+    
+    self.buttonDatas = @[self.scrowBtn,self.scralBtn,self.animaBtn];
+    
+}
+- (void)touchUpAction:(UISlider *)slider{
+    
 }
 - (void)changedAction:(UISlider *)slder{
     CGFloat brightness = slder.value;
     [[UIScreen mainScreen] setBrightness:brightness];
 }
-- (void)touchUpACtion:(UISlider *)slder{
-    CGFloat brightness = slder.value;
-    NSLog(@"%@",@(brightness));
-    if ([self.delegate respondsToSelector:@selector(readSetView:brightness:)]) {
-        [self.delegate readSetView:self brightness:brightness];
-    }
+- (void)outsideAction:(UISlider *)slder{
+//    NSInteger brightness = slder.value;
+//    NSLog(@"%@",@(brightness));
+//    if ([self.delegate respondsToSelector:@selector(readSetView:chapter:)]) {
+//        [self.delegate readSetView:self chapter:brightness];
+//    }
 }
 - (void)segmentAction:(UISegmentedControl *)sender{
-    CGFloat font = 2*sender.selectedSegmentIndex + 18;
-    [GKReadSetManager setFont:font];
-    if ([self.delegate respondsToSelector:@selector(readSetView:font:)]) {
-        [self.delegate readSetView:self font:font];
+    [GKSetManager setBrowseState:sender.selectedSegmentIndex];
+    if ([self.delegate respondsToSelector:@selector(readSetView:browState:)]) {
+        [self.delegate readSetView:self browState:sender.selectedSegmentIndex];
     }
 }
 - (void)switchAction:(UISwitch *)sender{
-     [GKReadSetManager setLandscape:sender.on];
+     [GKSetManager setLandscape:sender.on];
     if ([self.delegate respondsToSelector:@selector(readSetView:screen:)]) {
         [self.delegate readSetView:self screen:sender.on];
     }
@@ -90,16 +86,89 @@
         [self.delegate readSetView:self moreSet:YES];
     }
 }
-- (void)loadData{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
-    self.slider.value = [UIScreen mainScreen].brightness;
-    self.segmentControl.selectedSegmentIndex = (model.font - 18)/2;
-    self.listData = [GKReadSetManager defaultSkinDatas];
-    self.switchBtn.on = model.landscape;
-    [self.collectionView reloadData];
+- (IBAction)downAction:(UIButton *)sender {
+    GKSet *model = [GKSetManager shareInstance].model;
+    NSInteger font = model.font - 1;
+    if (font < 10) {
+        return;
+    }
+    if (font <= 10) {
+        sender.backgroundColor = [UIColor colorWithRGB:0xdcdcdc];
+    }else{
+        sender.backgroundColor = Appxffffff;
+        self.addBtn.backgroundColor = Appxffffff;
+    }
+    self.fontLab.text = [NSString stringWithFormat:@"%@ px",@(font)];
+    [GKSetManager setFont:font];
+    if ([self.delegate respondsToSelector:@selector(readSetView:font:)]) {
+        [self.delegate readSetView:self font:font];
+    }
 }
 
-- (UIImage *)originImage:(UIImage *)image scaleToSize:(CGSize)size
+- (IBAction)addAction:(UIButton *)sender {
+    GKSet *model = [GKSetManager shareInstance].model;
+    NSInteger font = model.font + 1;
+    if (font > 30) {
+        return;
+    }
+    if (font >=30) {
+        sender.backgroundColor = [UIColor colorWithRGB:0xdcdcdc];
+    }else{
+        sender.backgroundColor = Appxffffff;
+        self.downBtn.backgroundColor = Appxffffff;
+    }
+    self.fontLab.text = [NSString stringWithFormat:@"%@ px",@(font)];
+    [GKSetManager setFont:font];
+    if ([self.delegate respondsToSelector:@selector(readSetView:font:)]) {
+        [self.delegate readSetView:self font:font];
+    }
+}
+- (IBAction)scrowAction:(UIButton *)sender {
+    [GKSetManager setBrowseState:GKBrowseDefault];
+    if ([self.delegate respondsToSelector:@selector(readSetView:browState:)]) {
+        [self.delegate readSetView:self browState:GKBrowseDefault];
+    }
+    [self changeButtonState];
+}
+- (IBAction)scralAction:(id)sender {
+    [GKSetManager setBrowseState:GKBrowsePageCurl];
+    if ([self.delegate respondsToSelector:@selector(readSetView:browState:)]) {
+        [self.delegate readSetView:self browState:GKBrowsePageCurl];
+    }
+    [self changeButtonState];
+}
+- (IBAction)animaAction:(id)sender {
+    [GKSetManager setBrowseState:GKBrowseVertical];
+    if ([self.delegate respondsToSelector:@selector(readSetView:browState:)]) {
+        [self.delegate readSetView:self browState:GKBrowseVertical];
+    }
+    [self changeButtonState];
+}
+- (void)changeButtonState{
+    GKSet *model = [GKSetManager shareInstance].model;
+    [self.buttonDatas enumerateObjectsUsingBlock:^(UIButton *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.layer.masksToBounds = YES;
+        obj.layer.cornerRadius = 3;
+        if (model.browseState == idx) {
+            [obj setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
+            [obj setTitleColor:Appxffffff forState:UIControlStateNormal];
+        }else{
+            [obj setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:0xeeeeee]] forState:UIControlStateNormal];
+            [obj setTitleColor:Appx333333 forState:UIControlStateNormal];
+        }
+    }];
+}
+- (void)loadData{
+    GKSet *model = [GKSetManager shareInstance].model;
+    NSInteger font = model.font;
+    self.fontLab.text = [NSString stringWithFormat:@"%@ px",@(font)];
+    self.listData = [GKSetManager defaultSkinDatas];
+    [self changeButtonState];
+    [self.collectionView reloadData];
+    
+}
+
++ (UIImage *)originImage:(UIImage *)image scaleToSize:(CGSize)size
 
 {
     UIGraphicsBeginImageContext(size);//size为CGSize类型，即你所需要的图片尺寸
@@ -108,7 +177,7 @@
     UIGraphicsEndImageContext();
     return scaledImage;
 }
-- (UIImage *)circleImageWithName:(UIImage *)oldImage borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor
++ (UIImage *)circleImageWithName:(UIImage *)oldImage borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor
 {
     // 2.开启上下文
     CGFloat imageW = oldImage.size.width + 2 * borderWidth;
@@ -150,7 +219,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(70, 50);
+    return CGSizeMake(50, 50);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 15;
@@ -161,18 +230,17 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GKReadSetCell * cell  = [GKReadSetCell cellForCollectionView:collectionView indexPath:indexPath];
-    GKReadSkinModel *model = self.listData[indexPath.row];
-    cell.titleLab.text = model.title;
+    GKSkin *model = self.listData[indexPath.row];
     cell.imageV.image = [UIImage imageNamed:model.skin];
-    cell.imageIcon.hidden = model.state != [GKReadSetManager shareInstance].model.state;
+    cell.imageIcon.hidden = model.state != [GKSetManager shareInstance].model.state;
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    GKReadSkinModel *model = self.listData[indexPath.row];
-    if (model.state == [GKReadSetManager shareInstance].model.state) {
+    GKSkin *model = self.listData[indexPath.row];
+    if (model.state == [GKSetManager shareInstance].model.state) {
         return;
     }
-    [GKReadSetManager setReadState:model.state];
+    [GKSetManager setReadState:model.state];
     if ([self.delegate respondsToSelector:@selector(readSetView:state:)]) {
         [self.delegate readSetView:self state:model.state];
     }

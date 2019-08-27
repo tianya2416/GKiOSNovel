@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
                    listData:(NSArray <GKBookContentModel*>*)listData
                  completion:(void(^)(BOOL success))completion;
 + (void)getDataFromDataBase:(NSString *)bookId
-                  contentId:(NSString *)contentId
+                  chapterId:(NSString *)chapterId
                  completion:(void(^)(GKBookContentModel *bookModel))completion;
 + (void)getDatasFromDataBase:(NSString *)bookId
                         page:(NSInteger)page
@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
                   completion:(void(^)(NSArray <GKBookContentModel *>*listData))completion;
 + (void)dropTableFromDataBase:(NSString *)bookId
                    completion:(void(^)(BOOL success))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,26 +17,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQx-XC-cIQ">
-                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="1"/>
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="1"/>
                     <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.80000000000000004" id="34X-aO-CfO"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1o-ka-zTJ">
-                    <rect key="frame" x="0.0" y="1" width="187.5" height="80"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <rect key="frame" x="0.0" y="1" width="125" height="80"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                     <state key="normal" title="放入书架">
-                        <color key="titleColor" red="0.40000000000000002" green="0.63137254899999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="selected" title=" 已在书架中">
                         <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bd0-T7-kd7">
-                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="81"/>
+                    <rect key="frame" x="125" y="0.0" width="250" height="81"/>
                     <color key="backgroundColor" red="0.40000000000000002" green="0.63529411759999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                     <state key="normal" title="立即阅读">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -46,7 +46,7 @@
             <constraints>
                 <constraint firstItem="bd0-T7-kd7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="8j8-3S-G5F"/>
                 <constraint firstItem="xQx-XC-cIQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="B03-Mi-TIT"/>
-                <constraint firstItem="bd0-T7-kd7" firstAttribute="width" secondItem="e1o-ka-zTJ" secondAttribute="width" id="CQ4-DQ-Rfe"/>
+                <constraint firstItem="bd0-T7-kd7" firstAttribute="width" secondItem="e1o-ka-zTJ" secondAttribute="width" multiplier="2" id="CQ4-DQ-Rfe"/>
                 <constraint firstItem="xQx-XC-cIQ" firstAttribute="trailing" secondItem="e1o-ka-zTJ" secondAttribute="trailing" id="ECM-Fq-aXR"/>
                 <constraint firstItem="xQx-XC-cIQ" firstAttribute="leading" secondItem="e1o-ka-zTJ" secondAttribute="leading" id="RaN-De-V9a"/>
                 <constraint firstItem="e1o-ka-zTJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="1" id="Zcz-zy-e75"/>

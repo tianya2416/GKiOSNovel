@@ -11,14 +11,14 @@
 @implementation GKBookDetailTabbar
 - (void)awakeFromNib{
     [super awakeFromNib];
-    [self.addBtn setTitle:@"缓存到书架" forState:UIControlStateNormal];
-    [self.addBtn setTitle:@"缓存到书架" forState:UIControlStateNormal|UIControlStateHighlighted];
+    [self.addBtn setTitle:@"收藏" forState:UIControlStateNormal];
+    [self.addBtn setTitle:@"收藏" forState:UIControlStateNormal|UIControlStateHighlighted];
     
-    [self.addBtn setTitle:@"已在书架中" forState:UIControlStateSelected];
-    [self.addBtn setTitle:@"已在书架中" forState:UIControlStateSelected|UIControlStateHighlighted];
+    [self.addBtn setTitle:@"已收藏" forState:UIControlStateSelected];
+    [self.addBtn setTitle:@"已收藏" forState:UIControlStateSelected|UIControlStateHighlighted];
     [self.readBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
-     [self.addBtn setTitleColor:AppColor forState:UIControlStateNormal];
-     [self.addBtn setTitleColor:Appx999999 forState:UIControlStateSelected];
+    [self.addBtn setTitleColor:AppColor forState:UIControlStateNormal];
+    [self.addBtn setTitleColor:Appx999999 forState:UIControlStateSelected];
 }
 - (void)setCollection:(BOOL)collection{
     if (_collection != collection) {

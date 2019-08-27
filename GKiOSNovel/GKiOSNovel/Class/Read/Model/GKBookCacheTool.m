@@ -130,13 +130,16 @@
             success:(void(^)(GKBookContentModel *model))success
             failure:(void(^)(NSString *error))failure{
     if (sameSource == 0) {//由于下载只会下载第一个源的文章 所有如果切换到其他源这时候需要重新去网络请求数据
-        [GKBookCacheDataQueue getDataFromDataBase:bookId contentId:contentId completion:^(GKBookContentModel * _Nonnull bookModel) {
+        [GKBookCacheDataQueue getDataFromDataBase:bookId chapterId:contentId completion:^(GKBookContentModel * _Nonnull bookModel) {
             if (bookModel.title && bookModel.content) {
                 !success ?: success(bookModel);
             }else{
                 [GKNovelNetManager bookContent:url success:^(id object) {
                     GKBookContentModel *bookModel = [GKBookContentModel modelWithJSON:object[@"chapter"]];
                     !success ?: success(bookModel);
+                    [GKBookCacheDataQueue insertDataToDataBase:bookId model:bookModel completion:^(BOOL success) {
+                        
+                    }];
                 } failure:failure];
             }
         }];

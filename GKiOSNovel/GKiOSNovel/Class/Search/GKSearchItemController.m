@@ -58,7 +58,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GKBookModel *model =  self.listData[indexPath.row];
-    [GKJumpApp jumpToBookDetail:model._id];
+    [GKJumpApp jumpToBookDetail:model.bookId];
     
 }
 

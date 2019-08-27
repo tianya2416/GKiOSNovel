@@ -15,15 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookReadModel : BaseModel
 
-@property (copy, nonatomic)   NSString *bookId;
-@property (copy, nonatomic)   NSString *updateTime;
-@property (assign, nonatomic) BOOL bookMarks;
-@property (strong, nonatomic) GKBookDetailModel *bookModel;
-@property (strong, nonatomic) GKBookSourceInfo *bookSource;//文章来源
-@property (strong, nonatomic) GKBookChapterModel *bookChapter;//文章章节
-@property (strong, nonatomic) GKBookContentModel *bookContent;//文章内容
+@property (copy, nonatomic)   NSString *bookId;//书本id
+@property (copy, nonatomic)   NSString *updateTime;//最近观看时间
+@property (assign, nonatomic) NSInteger chapter;//读到第几章
+@property (assign, nonatomic) NSInteger pageIndex;//读到第几页
+@property (strong, nonatomic) GKBookDetailModel *bookModel;//书本基本信息
+@property (strong, nonatomic) GKBookSourceInfo  *sourceInfo;//文章来源
+@property (strong, nonatomic) GKBookChapterInfo *chapterInfo;//文章章节列表
 
-+ (instancetype)vcWithBookId:(NSString *)bookId bookSource:(GKBookSourceInfo *)bookSource bookChapter:(GKBookChapterModel *)bookChapter bookContent:(GKBookContentModel *)bookContent bookModel:(GKBookDetailModel *)bookModel;
 @end
 
 NS_ASSUME_NONNULL_END

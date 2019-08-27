@@ -167,10 +167,10 @@
     GKBookInfo *info = self.listData[indexPath.section];
     GKBookModel *model = info.listData[indexPath.row];
     if ([model isKindOfClass:GKBookModel.class]) {
-         [GKJumpApp jumpToBookDetail:model._id];
+         [GKJumpApp jumpToBookDetail:model.bookId];
     }else if ([model isKindOfClass:GKBookReadModel.class]){
         GKBookReadModel *info = (GKBookReadModel *)model;
-         [GKJumpApp jumpToBookDetail:info.bookModel._id];
+        [GKJumpApp jumpToBookRead:info.bookModel];
     }
 }
 #pragma mark get
