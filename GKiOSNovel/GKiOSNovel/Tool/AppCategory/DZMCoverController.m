@@ -431,7 +431,6 @@
 - (UIViewController * _Nullable)GetPanControllerWithTouchPoint:(CGPoint)touchPoint
 {
     UIViewController *vc = nil;
-    
     if (touchPoint.x > 0) { // 左边
         
         self.isLeft = YES;

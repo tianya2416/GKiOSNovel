@@ -174,8 +174,8 @@
 - (void)setupEmpty:(UIScrollView *)scrollView image:(UIImage *)image title:(NSString *)title {
     scrollView.emptyDataSetSource = self;
     scrollView.emptyDataSetDelegate = self;
-    self.emptyImage = image;
-    self.emptyTitle = title;
+    self.emptyImage = image ?:defaultDataEmpty;
+    self.emptyTitle = title ?: FDMSG_Home_DataEmpty;
     
     if (_isSetKVO) {
         return;
@@ -194,7 +194,7 @@
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;
     NSString *text = self.isRefreshing ? FDMSG_Home_DataRefresh : self.emptyTitle;
-    NSDictionary* attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f],
+    NSDictionary* attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:16.0f],
                                  NSForegroundColorAttributeName :Appx999999,
                                  NSParagraphStyleAttributeName : paragraph};
     if (![self reachable]) {

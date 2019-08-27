@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class GKMoreSetView;
 
 @protocol GKMoreSetDelegate <NSObject>
-
+@optional
 - (void)moreSetView:(GKMoreSetView *__nullable)moreView traditional:(BOOL)traditional;
 - (void)moreSetView:(GKMoreSetView *__nullable)moreView fontName:(NSString *)fontName;
 - (void)moreSetView:(GKMoreSetView *__nullable)moreView browState:(GKBrowseState)browState;

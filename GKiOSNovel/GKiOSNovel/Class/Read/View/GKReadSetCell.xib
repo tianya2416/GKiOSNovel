@@ -19,16 +19,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kEu-7f-Tnv">
-                        <rect key="frame" x="0.0" y="0.0" width="131" height="58"/>
+                        <rect key="frame" x="48" y="11.5" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="PGz-VY-mOs"/>
+                            <constraint firstAttribute="height" constant="35" id="Ult-i9-Fej"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hS0-wR-zKj">
-                        <rect key="frame" x="47" y="20" width="37.5" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_select" translatesAutoresizingMaskIntoConstraints="NO" id="sN7-bE-p8i">
-                        <rect key="frame" x="111" y="0.0" width="20" height="20"/>
+                        <rect key="frame" x="55.5" y="19" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="8xT-jr-Ygq"/>
                             <constraint firstAttribute="height" constant="20" id="XrG-ay-5u3"/>
@@ -37,25 +35,20 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="kEu-7f-Tnv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2a3-VJ-uhp"/>
-                <constraint firstItem="hS0-wR-zKj" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="5eK-FK-17d"/>
-                <constraint firstItem="sN7-bE-p8i" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Fcp-dN-ylx"/>
-                <constraint firstItem="hS0-wR-zKj" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="HiJ-MN-Oqo"/>
-                <constraint firstAttribute="bottom" secondItem="kEu-7f-Tnv" secondAttribute="bottom" id="PAE-uk-aSZ"/>
-                <constraint firstAttribute="trailing" secondItem="sN7-bE-p8i" secondAttribute="trailing" id="TZi-gs-2Oq"/>
-                <constraint firstAttribute="trailing" secondItem="kEu-7f-Tnv" secondAttribute="trailing" id="mM5-rq-LFw"/>
-                <constraint firstItem="kEu-7f-Tnv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wgv-1u-oUK"/>
+                <constraint firstItem="kEu-7f-Tnv" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="El7-gR-c1U"/>
+                <constraint firstItem="sN7-bE-p8i" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Gxz-1B-3Ai"/>
+                <constraint firstItem="sN7-bE-p8i" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="fGN-gs-Xlz"/>
+                <constraint firstItem="kEu-7f-Tnv" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="kAF-Gn-8Dn"/>
             </constraints>
             <size key="customSize" width="131" height="58"/>
             <connections>
                 <outlet property="imageIcon" destination="sN7-bE-p8i" id="X2i-4o-Ltk"/>
                 <outlet property="imageV" destination="kEu-7f-Tnv" id="7Rl-rj-Eug"/>
-                <outlet property="titleLab" destination="hS0-wR-zKj" id="X7I-0q-h1T"/>
             </connections>
             <point key="canvasLocation" x="196.37681159420291" y="121.20535714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="icon_select" width="25" height="25"/>
+        <image name="icon_select" width="30" height="30"/>
     </resources>
 </document>

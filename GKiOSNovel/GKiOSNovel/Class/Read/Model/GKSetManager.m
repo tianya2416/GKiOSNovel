@@ -1,25 +1,23 @@
 //
-//  GKReadManager.m
-//  GKiOSNovel
+//  GKSetManager.m
+//  GKSeekSth
 //
-//  Created by wangws1990 on 2019/6/19.
+//  Created by wangws1990 on 2019/7/30.
 //  Copyright © 2019 wangws1990. All rights reserved.
 //
 
-#import "GKReadSetManager.h"
-#import "BaseDownFont.h"
+#import "GKSetManager.h"
 static NSString *gkReadModel = @"gkReadModel";
 
-@interface GKReadSetManager()
-@property (strong, nonatomic) GKReadSetModel *model;
+@interface GKSetManager()
+@property (strong, nonatomic) GKSet *model;
 @property (strong, nonatomic) NSString *simplifiedStr;
 @property (strong, nonatomic) NSString *traditionalStr;
 @end
-@implementation GKReadSetManager
-
+@implementation GKSetManager
 + (instancetype )shareInstance
 {
-    static GKReadSetManager * dataBase = nil;
+    static GKSetManager * dataBase = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (!dataBase) {
@@ -29,60 +27,69 @@ static NSString *gkReadModel = @"gkReadModel";
     return dataBase;
 }
 #pragma mark class set
-
++ (void)setNight:(BOOL)night{
+    GKSet *model = [GKSetManager shareInstance].model;
+    if (model.night != night) {
+        model.night = night;
+        NSString *color = (night || model.state == GKReadCaffee)?@"999999":@"333333";
+        model.color = color;
+        [GKSetManager saveSetModel:model];
+    }
+}
 + (void)setLandscape:(BOOL)landscape{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     if (model.landscape != landscape) {
         model.landscape = landscape;
-        [GKReadSetManager saveReadSetModel:model];
+        [GKSetManager saveSetModel:model];
     }
 }
 
 + (void)setTraditiona:(BOOL)traditiona{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     if (model.traditiona != traditiona) {
         model.traditiona = traditiona;
-        [GKReadSetManager saveReadSetModel:model];
+        [GKSetManager saveSetModel:model];
     }
 }
 + (void)setBrowseState:(GKBrowseState)browseState{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     if (model.browseState != browseState) {
         model.browseState = browseState;
-        [GKReadSetManager saveReadSetModel:model];
+        [GKSetManager saveSetModel:model];
     }
 }
-+ (void)setReadState:(GKReadThemeState)state{
-    
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
++ (void)setReadState:(GKSkinState)state{
+    GKSet *model = [GKSetManager shareInstance].model;
     if (model.state != state) {
         model.state = state;
-        [GKReadSetManager saveReadSetModel:model];
+        NSString *color = (state == GKReadCaffee)?@"999999":@"333333";
+        model.color = color;
+        [GKSetManager saveSetModel:model];
     }
 }
 + (void)setBrightness:(CGFloat)brightness{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     if (model.brightness != brightness) {
         model.brightness = brightness;
-        [GKReadSetManager saveReadSetModel:model];
+        [GKSetManager saveSetModel:model];
     }
 }
 + (void)setFont:(CGFloat )font{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     if (model.font != font) {
         model.font = font;
-        [GKReadSetManager saveReadSetModel:model];
+        [GKSetManager saveSetModel:model];
     }
 }
 + (void)setFontName:(NSString *)fontName{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     if (![model.fontName isEqualToString:fontName]) {
         model.fontName = fontName;
-        [GKReadSetManager saveReadSetModel:model];
+        [GKSetManager saveSetModel:model];
     }
 }
-+ (BOOL)saveReadSetModel:(GKReadSetModel *)model{
-    [GKReadSetManager shareInstance].model = model;
++ (BOOL)saveSetModel:(GKSet *)model{
+    [GKSetManager shareInstance].model = model;
     BOOL res = NO;
     NSData *userData = [BaseModel archivedDataForData:model];
     if (userData)
@@ -96,8 +103,8 @@ static NSString *gkReadModel = @"gkReadModel";
     if (simpString.length == 0) {
         return nil;
     }
-    NSString *sim = [GKReadSetManager shareInstance].simplifiedStr;
-    NSString *tra = [GKReadSetManager shareInstance].traditionalStr;
+    NSString *sim = [GKSetManager shareInstance].simplifiedStr;
+    NSString *tra = [GKSetManager shareInstance].traditionalStr;
     NSMutableString *resultString = [[NSMutableString alloc] init];
     // 遍历字符串中的字符
     NSInteger length = [simpString length];
@@ -130,14 +137,7 @@ static NSString *gkReadModel = @"gkReadModel";
     return _traditionalStr;
 }
 + (NSDictionary *)defaultFont{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
-//    NSArray *fonts = [UIFont familyNames];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self like %@",model.fontName];
-//    NSArray *filterdArray = [fonts filteredArrayUsingPredicate:predicate];
-//    if (filterdArray.count == 0) {
-//        model.fontName = [BaseMacro fontName];
-//        [GKReadSetManager setFontName:[BaseMacro fontName]];
-//    }
+    GKSet *model = [GKSetManager shareInstance].model;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     [paragraphStyle setLineSpacing:model.lineSpacing];//段落 行间距
     paragraphStyle.firstLineHeadIndent  = model.firstLineHeadIndent;//首行缩进
@@ -146,34 +146,37 @@ static NSString *gkReadModel = @"gkReadModel";
     paragraphStyle.alignment = NSTextAlignmentJustified;//两边对齐
     paragraphStyle.allowsDefaultTighteningForTruncation = YES;
     NSDictionary *dic =  @{NSForegroundColorAttributeName:[UIColor colorWithHexString:model.color ?:@"999999"],
-                           NSFontAttributeName:[UIFont fontWithName:model.fontName ?: @"PingFangSC-Light" size:model.font ?: 20],
+                           NSFontAttributeName:[UIFont fontWithName:model.fontName ?: [BaseMacro fontName] size:model.font ?: 20],
                            NSParagraphStyleAttributeName:paragraphStyle
                            };
     return dic;
 }
 + (UIImage *)defaultSkin{
-    GKReadThemeState state = [GKReadSetManager shareInstance].model.state;
-    NSArray *listData = [GKReadSetManager defaultSkinDatas];
-    GKReadSkinModel *model = [listData objectSafeAtIndex:state];
-    return [UIImage imageNamed:model.skin] ;
+    GKSet *model = [GKSetManager shareInstance].model;
+    if (model.night) {
+        return [UIImage imageNamed:@"icon_read_black"] ;
+    }else{
+        GKSkinState state = model.state;
+        NSArray *listData = [GKSetManager defaultSkinDatas];
+        GKSkin *model = [listData objectSafeAtIndex:state];
+        return [UIImage imageNamed:model.skin] ;
+    }
 }
 
 + (NSArray *)defaultSkinDatas{
-    GKReadSkinModel *model = [GKReadSkinModel vcWithTitle:@"粉白色" skin:@"icon_read_white" state:GKReadDefault];
-    GKReadSkinModel *model1 = [GKReadSkinModel vcWithTitle:@"黑色" skin:@"icon_read_black" state:GKReadBlack];
-    GKReadSkinModel *model2 = [GKReadSkinModel vcWithTitle:@"翠绿色" skin:@"icon_read_green" state:GKReadGreen];
-    GKReadSkinModel *model3 = [GKReadSkinModel vcWithTitle:@"咖啡色" skin:@"icon_read_coffee" state:GKReadCaffee];
-    GKReadSkinModel *model4 = [GKReadSkinModel vcWithTitle:@"淡粉色" skin:@"icon_read_fenweak" state:GKReadPink];
-    GKReadSkinModel *model5 = [GKReadSkinModel vcWithTitle:@"粉红色" skin:@"icon_read_fen" state:GKReadFen];
-    GKReadSkinModel *model6 = [GKReadSkinModel vcWithTitle:@"紫色" skin:@"icon_read_zi" state:GKReadZi];
-    GKReadSkinModel *model7 = [GKReadSkinModel vcWithTitle:@"黄色" skin:@"icon_read_yellow" state:GKReadYellow];
-    return @[model,model1,model2,model3,model4,model5,model6,model7];
+    GKSkin *model = [GKSkin vcWithTitle:@"默认" skin:@"icon_read_yellow" state:GKReadDefault];
+    GKSkin *model2 = [GKSkin vcWithTitle:@"翠绿色" skin:@"icon_read_green" state:GKReadGreen];
+    GKSkin *model3 = [GKSkin vcWithTitle:@"咖啡色" skin:@"icon_read_coffee" state:GKReadCaffee];
+    GKSkin *model4 = [GKSkin vcWithTitle:@"淡粉色" skin:@"icon_read_fenweak" state:GKReadPink];
+    GKSkin *model5 = [GKSkin vcWithTitle:@"粉红色" skin:@"icon_read_fen" state:GKReadFen];
+    GKSkin *model6 = [GKSkin vcWithTitle:@"紫色" skin:@"icon_read_zi" state:GKReadZi];
+    //GKSkin *model7 = [GKSkin vcWithTitle:@"黄色" skin:@"icon_read_yellow" state:GKReadYellow];
+    return @[model,model2,model3,model4,model5,model6];
 }
 #pragma mark get
-- (GKReadSetModel *)model{
+- (GKSet *)model{
     NSData * data = [[NSUserDefaults standardUserDefaults] objectForKey:gkReadModel];
-    _model = data ? [BaseModel unarchiveForData:data]: [GKReadSetModel new];
+    _model = data ? [BaseModel unarchiveForData:data]: [GKSet new];
     return _model;
 }
-
 @end

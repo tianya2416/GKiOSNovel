@@ -8,8 +8,10 @@
 
 #import "BaseNetCache.h"
 static YYDiskCache *_diskCache = nil;
+static YYMemoryCache *_memoryCache = nil;
 @interface BaseNetCache()
 @property (strong, nonatomic) YYDiskCache *diskCache;
+@property (strong, nonatomic) YYMemoryCache *memoryCache;
 @end
 @implementation BaseNetCache
 + (void)setObject:(id<NSCoding>)object forKey:(NSString *)key completion:(void (^)(void))completion{
@@ -21,6 +23,12 @@ static YYDiskCache *_diskCache = nil;
             !completion ?: completion();
         });
     }];
+}
++ (id)objectForKey:(NSString *)key{
+    if (!key) {
+        return nil;
+    }
+    return [BaseNetCache.diskCache objectForKey:key];
 }
 + (void)objectForKey:(NSString *)key completion:(void (^)(NSString * _Nonnull, id<NSCoding> _Nullable))completion{
     if (!key) {
@@ -67,10 +75,25 @@ static YYDiskCache *_diskCache = nil;
     }
     return _diskCache;
 }
-+ (id)objectForKey:(NSString *)key{
-    if (!key) {
-        return nil;
+
++ (YYMemoryCache *)memoryCache{
+    if (!_memoryCache) {
+        _memoryCache = [[YYMemoryCache alloc] init];
+        _memoryCache.name = @"bookName";
     }
-   return [BaseNetCache.diskCache objectForKey:key];
+    return _memoryCache;
+}
+
++ (void)setMemoryObject:(id)object forkey:(NSString *)key{
+    if (![BaseNetCache.memoryCache containsObjectForKey:key]) {
+        [BaseNetCache.memoryCache setObject:object forKey:key];
+    }
+}
++ (id)memoryObjectForKey:(NSString *)key{
+    return [BaseNetCache.memoryCache objectForKey:key];
+}
++ (void)removeMemory{
+    [BaseNetCache.memoryCache removeAllObjects];
+
 }
 @end

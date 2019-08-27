@@ -8,7 +8,7 @@
 
 #import "GKMoreSetView.h"
 #import "GKMoreSetCell.h"
-#import "BaseDownFont.h"
+
 @interface GKMoreSetView()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) NSArray *listData;
 @property (strong, nonatomic) MBProgressHUD *hud;
@@ -34,7 +34,7 @@
     [self loadData];
 }
 - (void)loadData{
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     self.switchBtn.on = model.traditiona;
     
     self.segement.selectedSegmentIndex = model.browseState;
@@ -43,13 +43,13 @@
     [self.tableView reloadData];
 }
 - (void)switchAction:(UISwitch *)sender{
-    [GKReadSetManager setTraditiona:sender.on];
+    [GKSetManager setTraditiona:sender.on];
     if ([self.delegate respondsToSelector:@selector(moreSetView:traditional:)]) {
         [self.delegate moreSetView:self traditional:sender.on];
     }
 }
 - (void)segmentAction:(UISegmentedControl *)sender{
-    [GKReadSetManager setBrowseState:sender.selectedSegmentIndex];
+    [GKSetManager setBrowseState:sender.selectedSegmentIndex];
     if ([self.delegate respondsToSelector:@selector(moreSetView:browState:)]) {
         [self.delegate moreSetView:self browState:sender.selectedSegmentIndex];
     }
@@ -66,7 +66,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GKMoreSetCell *cell = [GKMoreSetCell cellForTableView:tableView indexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     NSString* fontName = self.listData[indexPath.row];
     cell.subTitleLab.text = fontName;
     cell.imageV.hidden = ![fontName isEqualToString:model.fontName];
@@ -77,31 +77,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString* title = self.listData[indexPath.row];
-    GKReadSetModel *model = [GKReadSetManager shareInstance].model;
+    GKSet *model = [GKSetManager shareInstance].model;
     if ([title isEqualToString:model.fontName]) {
         return;
     }
-    [GKReadSetManager setFontName:title];
+    [GKSetManager setFontName:title];
     if ([self.delegate respondsToSelector:@selector(moreSetView:fontName:)]) {
         [self.delegate moreSetView:self fontName:title];
     }
     [self.tableView reloadData];
-
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-//    [BaseDownFont downFontName:title progress:^(CGFloat progress) {
-//        hud.progress = progress;
-//    } completion:^(NSURL * _Nonnull filePath, NSError * _Nonnull error) {
-//        [hud hideAnimated:YES];
-//        if (!error) {
-//            [GKReadSetManager setFontName:title];
-//            if ([self.delegate respondsToSelector:@selector(moreSetView:fontName:)]) {
-//                [self.delegate moreSetView:self fontName:title];
-//            }
-//        }else{
-//            [MBProgressHUD showMessage:@"下载失败"];
-//        }
-//    }];
-
 }
 - (MBProgressHUD *)hud{
     if (!_hud) {

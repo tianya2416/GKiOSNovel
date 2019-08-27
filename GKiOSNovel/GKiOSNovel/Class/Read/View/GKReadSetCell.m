@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.imageV.layer.masksToBounds = YES;
+    self.imageV.layer.cornerRadius = 17.5;
     // Initialization code
 }
 

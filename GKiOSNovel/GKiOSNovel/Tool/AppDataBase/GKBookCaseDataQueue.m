@@ -8,7 +8,7 @@
 
 #import "GKBookCaseDataQueue.h"
 static NSString *table = @"bookCase";
-static NSString *primaryId = @"_id";
+static NSString *primaryId = @"bookId";
 @implementation GKBookCaseDataQueue
 /**
  *  @brief 插入数据

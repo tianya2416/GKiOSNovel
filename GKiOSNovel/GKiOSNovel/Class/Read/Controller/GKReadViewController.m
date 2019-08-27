@@ -14,7 +14,8 @@
 @property (strong, nonatomic) UILabel *bookNameLab;
 @property (strong, nonatomic) UILabel *selectLab;
 @property (assign, nonatomic) NSInteger pageIndex;
-@property (assign, nonatomic) NSInteger chapterIndex;
+@property (assign, nonatomic) NSInteger chapter;
+@property (strong, nonatomic) GKBookContentModel *model;
 @property (strong, nonatomic)GKReadView *readView;
 @end
 
@@ -43,18 +44,33 @@
         [self.delegate viewDidAppear:self animated:animated];
     }
 }
-- (void)setCurrentPage:(NSInteger)currentPage totalPage:(NSInteger)totalPage chapter:(NSInteger)chapter title:(NSString *)title bookName:(NSString *)bookName content:(NSAttributedString *)content{
-    self.pageIndex = currentPage;
-    self.chapterIndex = chapter;
-    self.readView.content = content;
-    self.titleLab.text = title ;
-    self.bookNameLab.text = bookName ?:@"";
-    currentPage = currentPage + 1 >totalPage ? totalPage : currentPage + 1;
-    self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage),@(totalPage)];
-    self.selectLab.textColor = [UIColor colorWithHexString:[GKReadSetManager shareInstance].model.color];
-    self.titleLab.textColor = [UIColor colorWithHexString:[GKReadSetManager shareInstance].model.color];
+//- (void)setCurrentPage:(NSInteger)currentPage totalPage:(NSInteger)totalPage chapter:(NSInteger)chapter title:(NSString *)title bookName:(NSString *)bookName content:(NSAttributedString *)content{
+//    self.pageIndex = currentPage;
+//    self.chapterIndex = chapter;
+//    self.readView.content = content;
+//    self.titleLab.text = title ;
+//    self.bookNameLab.text = bookName ?:@"";
+//    currentPage = currentPage + 1 >totalPage ? totalPage : currentPage + 1;
+//    self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage),@(totalPage)];
+//    self.selectLab.textColor = [UIColor colorWithHexString:[GKSetManager shareInstance].model.color];
+//    self.titleLab.textColor = [UIColor colorWithHexString:[GKSetManager shareInstance].model.color];
+//}
+- (void)setModel:(GKBookContentModel *)model
+         chapter:(NSInteger)chapter
+       pageIndex:(NSInteger)pageIndex{
+    self.model = model;
+    self.chapter = chapter;
+    self.pageIndex = pageIndex;
+    self.readView.content = [self.model getContentAtt:pageIndex];
+    self.titleLab.text = self.model.title ?:@"" ;
+    self.bookNameLab.text = @"";
+    NSInteger totalPage = self.model.pageCount;
+    pageIndex = pageIndex + 1 >totalPage ? totalPage : pageIndex + 1;
+    self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(pageIndex),@(totalPage)];
+    self.selectLab.textColor = [UIColor colorWithHexString:[GKSetManager shareInstance].model.color];
+    self.titleLab.textColor = [UIColor colorWithHexString:[GKSetManager shareInstance].model.color];
+    [self loadData];
 }
-
 - (void)loadUI{
 
     [self.view addSubview:self.mainView];
@@ -108,7 +124,7 @@
     }];
 }
 - (void)loadData{
-    self.mainView.image = [GKReadSetManager defaultSkin];
+    self.mainView.image = [GKSetManager defaultSkin];
 }
 - (GKReadView *)readView{
     if (!_readView) {

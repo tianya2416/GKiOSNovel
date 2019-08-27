@@ -75,22 +75,22 @@
 }
 - (void)setTipModel:(GKBookReadModel *)model{
     self.tipBtn.hidden = !model;
-    NSString *title = [NSString stringWithFormat:@"最近一次阅读:%@ %@",model.bookContent.title?:@"",[GKTimeTool timeStampTurnToTimesType:model.updateTime]];
-    [self.tipBtn setTitle:title forState:UIControlStateNormal];
-    [self.tipBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-       // [GKJumpApp jumpToBookRead:model.bookModel];
-    }];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tipBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.tipBtn.superview);
-            make.top.offset(-25);
-        }];
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            self.tipBtn.hidden = YES;
-        }];
-    });
+//    NSString *title = [NSString stringWithFormat:@"最近一次阅读:%@ %@",model.bookContent.title?:@"",[GKTimeTool timeStampTurnToTimesType:model.updateTime]];
+//    [self.tipBtn setTitle:title forState:UIControlStateNormal];
+//    [self.tipBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+//       // [GKJumpApp jumpToBookRead:model.bookModel];
+//    }];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self.tipBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.equalTo(self.tipBtn.superview);
+//            make.top.offset(-25);
+//        }];
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self.view layoutIfNeeded];
+//        } completion:^(BOOL finished) {
+//            self.tipBtn.hidden = YES;
+//        }];
+//    });
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return self.listData.count;
@@ -167,10 +167,10 @@
     GKBookInfo *info = self.listData[indexPath.section];
     GKBookModel *model = info.listData[indexPath.row];
     if ([model isKindOfClass:GKBookModel.class]) {
-         [GKJumpApp jumpToBookDetail:model._id];
+         [GKJumpApp jumpToBookDetail:model.bookId];
     }else if ([model isKindOfClass:GKBookReadModel.class]){
         GKBookReadModel *info = (GKBookReadModel *)model;
-         [GKJumpApp jumpToBookDetail:info.bookModel._id];
+        [GKJumpApp jumpToBookRead:info.bookModel];
     }
 }
 #pragma mark get

@@ -1,73 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GKReadBottomView">
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="GKReadBottomView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWQ-Ci-F3f" customClass="ATImageTopButton">
-                    <rect key="frame" x="0.0" y="0.0" width="125" height="49"/>
+                    <rect key="frame" x="0.0" y="40" width="125" height="49"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="49" id="ESA-Rj-hlO"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <state key="normal" title="白天" image="icon_white"/>
-                    <state key="selected" title="夜间" image="icon_night">
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" image="icon_read_day"/>
+                    <state key="selected" image="icon_read_night">
                         <color key="titleColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAY-of-VSL" customClass="ATImageTopButton">
-                    <rect key="frame" x="125" y="12.5" width="125" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <state key="normal" title="目录" image="icon_mulu">
-                        <color key="titleColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="125" y="54.5" width="125" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" image="icon_read_mu">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p1-xs-g8g" customClass="ATImageTopButton">
-                    <rect key="frame" x="250" y="12.5" width="125" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <state key="normal" title="设置" image="icon_set">
-                        <color key="titleColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="250" y="54.5" width="125" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" image="icon_read_set">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvE-ft-ntM">
+                    <rect key="frame" x="0.0" y="5" width="76" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="kTZ-R1-8a8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                    <state key="normal" title="上一章">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qY-r0-u9S">
+                    <rect key="frame" x="299" y="11" width="76" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                    <state key="normal" title="下一章">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Iqc-sI-Rzz">
+                    <rect key="frame" x="74" y="5" width="227" height="31"/>
+                </slider>
             </subviews>
-            <color key="backgroundColor" red="0.1450980392" green="0.14901960780000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="GAY-of-VSL" firstAttribute="width" secondItem="2p1-xs-g8g" secondAttribute="width" id="4FR-iM-7HW"/>
-                <constraint firstItem="SWQ-Ci-F3f" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="9Mr-MT-zQd"/>
+                <constraint firstItem="1qY-r0-u9S" firstAttribute="centerY" secondItem="Iqc-sI-Rzz" secondAttribute="centerY" id="5Ue-mX-Ops"/>
+                <constraint firstAttribute="trailing" secondItem="1qY-r0-u9S" secondAttribute="trailing" id="AWV-eW-wAc"/>
+                <constraint firstItem="SWQ-Ci-F3f" firstAttribute="top" secondItem="ZvE-ft-ntM" secondAttribute="bottom" constant="5" id="DNV-HD-QJ2"/>
                 <constraint firstItem="GAY-of-VSL" firstAttribute="centerY" secondItem="SWQ-Ci-F3f" secondAttribute="centerY" id="F90-wu-ORX"/>
+                <constraint firstItem="ZvE-ft-ntM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H70-7w-s21"/>
                 <constraint firstItem="GAY-of-VSL" firstAttribute="width" secondItem="SWQ-Ci-F3f" secondAttribute="width" id="O6d-m1-0Cu"/>
+                <constraint firstItem="ZvE-ft-ntM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="PXF-xf-fY2"/>
                 <constraint firstItem="2p1-xs-g8g" firstAttribute="centerY" secondItem="GAY-of-VSL" secondAttribute="centerY" id="Ubb-tQ-4Wa"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2p1-xs-g8g" secondAttribute="trailing" id="Z8M-Sd-p5L"/>
+                <constraint firstItem="1qY-r0-u9S" firstAttribute="leading" secondItem="Iqc-sI-Rzz" secondAttribute="trailing" id="WvV-0Y-CrF"/>
+                <constraint firstItem="Iqc-sI-Rzz" firstAttribute="leading" secondItem="ZvE-ft-ntM" secondAttribute="trailing" id="YdY-K4-DhE"/>
+                <constraint firstAttribute="trailing" secondItem="2p1-xs-g8g" secondAttribute="trailing" id="Z8M-Sd-p5L"/>
                 <constraint firstItem="2p1-xs-g8g" firstAttribute="leading" secondItem="GAY-of-VSL" secondAttribute="trailing" id="iyv-c5-v97"/>
-                <constraint firstItem="SWQ-Ci-F3f" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="oAD-eq-Ko8"/>
+                <constraint firstItem="SWQ-Ci-F3f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oAD-eq-Ko8"/>
                 <constraint firstItem="GAY-of-VSL" firstAttribute="leading" secondItem="SWQ-Ci-F3f" secondAttribute="trailing" id="qUe-rg-VOX"/>
+                <constraint firstItem="Iqc-sI-Rzz" firstAttribute="centerY" secondItem="ZvE-ft-ntM" secondAttribute="centerY" id="tLA-SL-Int"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="cataBtn" destination="GAY-of-VSL" id="UCq-yt-zLp"/>
                 <outlet property="dayBtn" destination="SWQ-Ci-F3f" id="dco-V6-PQT"/>
+                <outlet property="lastBtn" destination="ZvE-ft-ntM" id="G80-YO-Jne"/>
+                <outlet property="nextBtn" destination="1qY-r0-u9S" id="K3E-Tu-4dL"/>
                 <outlet property="setBtn" destination="2p1-xs-g8g" id="PO1-8x-et3"/>
+                <outlet property="slider" destination="Iqc-sI-Rzz" id="COL-ZY-svC"/>
             </connections>
             <point key="canvasLocation" x="53.600000000000001" y="65.217391304347828"/>
         </view>
     </objects>
     <resources>
-        <image name="icon_mulu" width="24" height="24"/>
-        <image name="icon_night" width="24" height="24"/>
-        <image name="icon_set" width="24" height="24"/>
-        <image name="icon_white" width="24" height="24"/>
+        <image name="icon_read_day" width="20" height="20"/>
+        <image name="icon_read_mu" width="25" height="20"/>
+        <image name="icon_read_night" width="14" height="20"/>
+        <image name="icon_read_set" width="21" height="20"/>
     </resources>
 </document>

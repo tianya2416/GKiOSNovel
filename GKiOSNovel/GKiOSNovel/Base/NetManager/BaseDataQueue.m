@@ -349,17 +349,21 @@ static NSString * DataBase = @"DataBase.sqlite";//数据库名称
 - (FMDatabaseQueue *)dataQueue
 {
     if (!_dataQueue) {
-        NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/Caches/Sqlite"];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath]) {
-            BOOL res = [[NSFileManager defaultManager]createDirectoryAtPath:stringPath withIntermediateDirectories:YES attributes:nil error:nil];
-            if (res) {
-                NSLog(@"create successful");
-            }
-        }
-        //NSString *stringPath =[[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.todayClock"] absoluteString];
-        NSString * path = [stringPath stringByAppendingPathComponent:DataBase];
+        NSString * path = [BaseDataQueue path];
         _dataQueue = [FMDatabaseQueue databaseQueueWithPath:path];
     }
     return _dataQueue;
+}
++ (NSString *)path{
+    NSString * stringPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/Caches/Sqlite"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:stringPath]) {
+        BOOL res = [[NSFileManager defaultManager]createDirectoryAtPath:stringPath withIntermediateDirectories:YES attributes:nil error:nil];
+        if (res) {
+            NSLog(@"create successful");
+        }
+    }
+    //NSString *stringPath =[[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.todayClock"] absoluteString];
+    NSString * path = [stringPath stringByAppendingPathComponent:DataBase];
+    return path;
 }
 @end
