@@ -304,7 +304,6 @@ GKReadViewDelegate>
 }
 #pragma mark DZMCoverControllerDelegate
 - (void)coverController:(DZMCoverController * _Nonnull)coverController currentController:(GKReadViewController * _Nullable)currentController finish:(BOOL)isFinish{
-     NSLog(@"currentController %@ %@",@(self.chapter),@(currentController.chapter));
     if (self.pageIndex != currentController.pageIndex) {
         self.pageIndex = currentController.pageIndex;
     }
@@ -315,13 +314,10 @@ GKReadViewDelegate>
 }
 
 - (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getAboveControllerWithCurrentController:(UIViewController * _Nullable)currentController{
-     NSLog(@"getAboveControllerWithCurrentController");
     return [self beforeController];
 
 }
 - (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getBelowControllerWithCurrentController:(UIViewController * _Nullable)currentController{
-
-    NSLog(@"getBelowControllerWithCurrentController");
     return [self afterController];
 }
 
