@@ -33,30 +33,31 @@
     UIViewController *nvc = [UIViewController rootTopPresentedController];
     GKBookDetailController *vc = [GKBookDetailController vcWithBookId:bookId];
     vc.hidesBottomBarWhenPushed = YES;
-    NSArray <UIViewController *>*list =  nvc.navigationController.viewControllers;
-    NSMutableArray *vcs = @[].mutableCopy;
-    [list enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![obj isKindOfClass:GKBookDetailController.class]) {
-            [vcs addObject:obj];
-        }
-    }];
-    [vcs addObject:vc];
-    [nvc.navigationController setViewControllers:vcs animated:YES];
-   // [nvc.navigationController pushViewController:vc animated:YES];
+//    NSArray <UIViewController *>*list =  nvc.navigationController.viewControllers;
+//    NSMutableArray *vcs = @[].mutableCopy;
+//    [list enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (![obj isKindOfClass:GKBookDetailController.class]) {
+//            [vcs addObject:obj];
+//        }
+//    }];
+//    [vcs addObject:vc];
+//    [nvc.navigationController setViewControllers:vcs animated:YES];
+    [nvc.navigationController pushViewController:vc animated:YES];
 }
 + (void)jumpToBookListDetail:(NSString *)bookId{
     UIViewController *nvc = [UIViewController rootTopPresentedController];
     GKBookListDetailController *vc = [GKBookListDetailController vcWithBookId:bookId];
     vc.hidesBottomBarWhenPushed = YES;
-    NSArray <UIViewController *>*list =  nvc.navigationController.viewControllers;
-    NSMutableArray *vcs = @[].mutableCopy;
-    [list enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![obj isKindOfClass:GKBookListDetailController.class]) {
-            [vcs addObject:obj];
-        }
-    }];
-    [vcs addObject:vc];
-    [nvc.navigationController setViewControllers:vcs animated:YES];
+//    NSArray <UIViewController *>*list =  nvc.navigationController.viewControllers;
+//    NSMutableArray *vcs = @[].mutableCopy;
+//    [list enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (![obj isKindOfClass:GKBookListDetailController.class]) {
+//            [vcs addObject:obj];
+//        }
+//    }];
+//    [vcs addObject:vc];
+//    [nvc.navigationController setViewControllers:vcs animated:YES];
+    [nvc.navigationController pushViewController:vc animated:YES];
 }
 + (void)jumpToAddSelect{
     UIViewController *nvc = [UIViewController rootTopPresentedController];

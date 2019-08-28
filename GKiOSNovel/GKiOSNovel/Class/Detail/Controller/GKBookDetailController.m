@@ -23,10 +23,8 @@
 @property (strong, nonatomic) UILabel *tipLab;
 @property (strong, nonatomic) GKBookDetailTabbar *tabbar;
 @property (strong, nonatomic) GKBookDetailView *detailView;
-@property (strong, nonatomic) ASProgressPopUpView *prpgressView;
 
 @property (strong, nonatomic) GKBookDetailInfo *bookDetail;
-@property (strong, nonatomic) GKBookCacheTool *bookCache;
 @end
 @implementation GKBookDetailController
 + (instancetype)vcWithBookId:(NSString *)bookId{
@@ -34,25 +32,17 @@
     vc.bookId = bookId;
     return vc;
 }
-- (void)goBack{
-    if (self.bookCache.download) {
-        [ATAlertView showTitle:@"提示" message:@"本书还在下载中,如果现在退出会下载失败" normalButtons:@[@"取消"] highlightButtons:@[@"确定"] completion:^(NSUInteger index, NSString *buttonTitle) {
-            if (index > 0) {
-                [super goBack];
-            }
-        }];
-    }else{
-        [super goBack];
-    }
-    
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (@available(iOS 11.0, *)) {
+        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    self.fd_prefersNavigationBarHidden = YES;
     [self loadUI];
     [self loadData];
 }
 - (void)loadUI{
-    [self showNavTitle:@"书籍详情"];
+    //[self showNavTitle:@"书籍详情"];
     [self.view addSubview:self.tipLab];
     [self.tipLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.tipLab.superview);
@@ -65,16 +55,30 @@
         make.height.offset(49);
         make.bottom.equalTo(self.tabbar.superview).offset(-TAB_BAR_ADDING);
     }];
-    [self.view addSubview:self.prpgressView];
-    [self.prpgressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.prpgressView.superview);
-        make.bottom.equalTo(self.tabbar.mas_top);
-    }];
     [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.collectionView.superview);
         make.bottom.equalTo(self.tabbar.mas_top);
     }];
-    [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_share"] action:@selector(shareAction)];
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:backBtn];
+    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.offset(44);
+        make.top.equalTo(backBtn.superview).offset(STATUS_BAR_HIGHT);
+        make.left.equalTo(backBtn.superview).offset(10);
+    }];
+    [backBtn setImage:[UIImage imageNamed:@"icon_nav_back"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:shareBtn];
+    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.offset(44);
+        make.top.equalTo(shareBtn.superview).offset(STATUS_BAR_HIGHT);
+        make.right.equalTo(shareBtn.superview).offset(-5);
+    }];
+    [shareBtn setImage:[UIImage imageNamed:@"icon_share"] forState:UIControlStateNormal];
+    [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
+  //  [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_share"] action:@selector(shareAction)];
 
 }
 - (void)loadData{
@@ -254,24 +258,6 @@
         _tipLab.numberOfLines = 3;
     }
     return _tipLab;
-}
-- (GKBookCacheTool *)bookCache{
-    if (!_bookCache) {
-        _bookCache = [[GKBookCacheTool alloc] init];
-    }
-    return _bookCache;
-}
-- (ASProgressPopUpView *)prpgressView{
-    if (!_prpgressView) {
-        _prpgressView = [[ASProgressPopUpView alloc] init];
-        _prpgressView.hidden = YES;
-        _prpgressView.popUpViewColor = [UIColor colorWithRGB:0xed5641];
-        _prpgressView.popUpViewCornerRadius = AppRadius;
-        _prpgressView.font = [UIFont systemFontOfSize:12.0f];
-        _prpgressView.textColor = [UIColor whiteColor];
-        [_prpgressView showPopUpViewAnimated:YES];
-    }
-    return _prpgressView;
 }
 - (BOOL)shouldAutorotate {
     return NO;

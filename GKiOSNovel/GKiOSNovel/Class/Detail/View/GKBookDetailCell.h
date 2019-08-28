@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookDetailCell : UICollectionViewCell
+@property (strong, nonatomic) UIImageView *backImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *contentLab;
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *wordLab;
 
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top;
 
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLab;
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;

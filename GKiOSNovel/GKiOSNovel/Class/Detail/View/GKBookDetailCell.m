@@ -33,12 +33,25 @@
     self.stateBtn.layer.cornerRadius = 10.0f;
     [self.moreBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
     self.nickNameLab.textColor = AppColor;
-    
+    _backImageView = [[UIImageView alloc] init];
+    _backImageView.clipsToBounds = YES;
+    _backImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _backImageView.layer.masksToBounds = YES;
+  //  [self.contentView addSubview:self.backImageView];
+    [self.contentView insertSubview:self.backImageView atIndex:0];
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    [self.backImageView addSubview:effectView];
+    [effectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(effectView.superview);
+    }];
+    self.top.constant = 44 + STATUS_BAR_HIGHT;
 }
 - (void)setModel:(GKBookDetailModel *)model{
     if (_model != model) {
         _model = model;
         [self.imageV setGkImageWithURL:model.cover];
+        [self.backImageView setGkImageWithURL:model.cover];
         self.contentLab.text = model.longIntro ?:@"";
         self.titleLab.text = [NSString stringWithFormat:@"%@(%@)",model.title ?:@"",!model.isSerial?@"完结":@"连载"];
         self.nickNameLab.text = model.author ?:@"";
@@ -49,5 +62,9 @@
         [self.moreBtn setTitle:[NSString stringWithFormat:@"关注度:%.2f%@",model.retentionRatio,@"%"] forState:UIControlStateNormal];
         [self.stateBtn setTitle:model.majorCate forState:UIControlStateNormal];
     }
+}
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [self.backImageView setFrame:self.frame];
 }
 @end
