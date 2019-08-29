@@ -18,15 +18,13 @@
 @end
 
 @implementation GKDownViewController
-//- (void)goBack{
-//    [GKNovelDown pause:[GKNovelDown shareInstance].downInfo];
-//    [super goBack];
-//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadUI];
 }
 - (void)loadUI{
+    [GKNovelDown shareInstance];
     self.finishDatas = @[].mutableCopy;
     self.listDatas = @[].mutableCopy;
     self.view.backgroundColor = Appxf8f8f8;
@@ -54,33 +52,65 @@
              [self endRefreshFailure];
         }else{
             [self.tableView reloadData];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self reloadData];
-            });
+            [self reStart];
             [self endRefresh:NO];
         }
     });
 }
-- (void)reloadData{
+- (void)downCompletion{
     __block NSInteger row = 0;
     __block BOOL res = NO;
-    GKDownBookInfo *downInfo =  [GKNovelDown shareInstance].downInfo;
+    GKNovelDown *down = [GKNovelDown shareInstance];
+    [down.downTasks removeAllObjects];
+    [self.listDatas enumerateObjectsUsingBlock:^(GKDownBookInfo *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [down.downTasks addObject:obj];
+    }];
+    GKDownBookInfo *downInfo =  down.downInfo;
     if (!downInfo) {
         return;
     }
-    [self.listDatas enumerateObjectsUsingBlock:^(GKDownBookInfo *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [down.downTasks enumerateObjectsUsingBlock:^(GKDownBookInfo *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([downInfo.bookId isEqualToString:obj.bookId]) {
             row = idx;
             res = YES;
-            *stop = YES;
         }
     }];
     if (res) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        [self pause:indexPath];
-        [self start:indexPath];
+        __block GKDownLoadCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        GKDownBookInfo *model = cell.info;
+        [GKNovelDown shareInstance].completion = ^(NSInteger index, NSInteger total, GKDownTaskState state) {
+            GKDownLoadCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            if (cell.state != state) {
+                cell.state = state;
+            }
+            cell.progress = index;
+            if (state == GKDownTaskFinish) {
+                model.state = GKDownTaskFinish;
+                if (![self.finishDatas containsObject:model]) {
+                    [self.finishDatas addObject:model];
+                }
+                if ([self.listDatas containsObject:model]) {
+                    [self.listDatas removeObject:model];
+                }
+                [self.tableView reloadData];
+                [self reStart];
+            }
+        };
     }
-
+    
+}
+- (void)reStart{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self downCompletion];
+        [self startDown];
+    });
+}
+- (void)startDown{
+    GKDownBookInfo *info = [GKNovelDown shareInstance].downInfo;
+    if (info.state != GKDownTaskLoading) {
+        [GKNovelDown startDown];
+    }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -107,12 +137,16 @@
         @weakify(cell)
         [cell.downBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             @strongify(cell)
-            if (cell.info.state == GKDownTaskDefault) {
-                [self start:indexPath];
-            }else if (cell.info.state == GKDownTaskPause){
-                [self start:indexPath];
-            }else if (cell.info.state == GKDownTaskLoading){
+            if (cell.info.state == GKDownTaskDefault) {//等待
                 [self pause:indexPath];
+            }else if (cell.info.state == GKDownTaskPause){//暂停
+                [self start:indexPath];
+            }else if (cell.info.state == GKDownTaskLoading){//下载中
+                [self pause:indexPath];
+                //如果有等待中 则等待中需要马上下载
+                if ([GKNovelDown waitDownDatas].count > 0) {
+                    [self reStart];
+                }
             }
         }];
         return cell;
@@ -158,24 +192,17 @@
     if (model.state == GKDownTaskLoading) {
         return;
     }
+    GKDownBookInfo *info = [GKNovelDown shareInstance].downInfo;
+    if (info && ![model.bookId isEqualToString:info.bookId]) {
+        cell.state = GKDownTaskDefault;
+        [GKNovelDown wait:model];
+        [self.tableView reloadData];
+        return;
+    }
+    cell = [self.tableView cellForRowAtIndexPath:indexPath];
     cell.state = GKDownTaskLoading;
-    [GKNovelDown start:model completion:^(NSInteger index, NSInteger total, GKDownTaskState state) {
-        cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        cell.state = state;
-        cell.progress = index;
-        if (state == GKDownTaskFinish) {
-            model.state = GKDownTaskFinish;
-            if (![self.finishDatas containsObject:model]) {
-                [self.finishDatas addObject:model];
-            }
-            if ([self.listDatas containsObject:model]) {
-                [self.listDatas removeObject:model];
-            }
-            [self.tableView reloadData];
-            [GKNovelDown startDown];
-            [self reloadData];
-        }
-    }];
+    [self downCompletion];
+    [GKNovelDown start:model];
 }
 
 - (void)pause:(NSIndexPath *)indexPath{
@@ -186,5 +213,6 @@
     }
     cell.state = GKDownTaskPause;
     [GKNovelDown pause:model];
+    [self.tableView reloadData];
 }
 @end

@@ -82,7 +82,9 @@
 
 }
 - (void)loadData{
+    NSLog(@"=========================");
     [GKBookCaseDataQueue getDataFromDataBase:self.bookId completion:^(GKBookDetailModel * _Nonnull bookModel) {
+        NSLog(@"=========================");
         if (bookModel) {
             [self reloadUI:YES];
         }

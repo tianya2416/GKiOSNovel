@@ -33,13 +33,13 @@ static NSString *tableId = @"bookId";
                   completion:(void(^)(NSArray <GKDownBookInfo *>*listData))completion{
     [GKDownDataQueue getDatasFromDataBase:tableBrowse primaryId:tableId page:page pageSize:pageSize completion:^(NSArray<NSDictionary *> * _Nonnull listData) {
         NSArray *datas = [NSArray modelArrayWithClass:GKDownBookInfo.class json:listData];
-        !completion ?: completion([GKDownDataQueue sortedArrayUsingComparator:datas key:@"state" ascending:NO]);
+        !completion ?: completion([GKDownDataQueue sortedArrayUsingComparator:datas key:@"updateTime" ascending:NO]);
     }];
 }
 + (void)getDatasFromDataBase:(void(^)(NSArray <GKDownBookInfo *>*listData))completion{
     [GKDownDataQueue getDatasFromDataBase:tableBrowse primaryId:tableId completion:^(NSArray<NSDictionary *> * _Nonnull listData) {
         NSArray *datas = [NSArray modelArrayWithClass:GKDownBookInfo.class json:listData];
-        !completion ?: completion([GKDownDataQueue sortedArrayUsingComparator:datas key:@"state" ascending:NO]);
+        !completion ?: completion([GKDownDataQueue sortedArrayUsingComparator:datas key:@"updateTime" ascending:NO]);
     }];
 }
 + (void)getDatasFinish:(void (^)(NSArray<GKDownBookInfo *> * _Nonnull))completion{
@@ -61,12 +61,12 @@ static NSString *tableId = @"bookId";
                 [arrayData addObject:obj];
             }
         }];
-        !completion ?: completion([GKDownDataQueue sortedArrayUsingComparator:arrayData.copy key:@"state" ascending:NO]);
+        !completion ?: completion([GKDownDataQueue sortedArrayUsingComparator:arrayData.copy key:@"updateTime" ascending:NO]);
     }];
 }
 + (NSArray *)sortedArrayUsingComparator:(NSArray <GKDownBookInfo *>*)listData key:(NSString *)key ascending:(BOOL)ascending
 {
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key?:@"state" ascending:ascending];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key?:@"updateTime" ascending:ascending];
     return [listData sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 }
 + (void)getDataFromDataBase:(NSString *)primaryId

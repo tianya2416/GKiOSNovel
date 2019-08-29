@@ -11,10 +11,6 @@
 #import "GKBookCacheDataQueue.h"
 @interface GKNovelDown ()
 @property (strong, nonatomic) GKDownBookInfo *downInfo;//当前正在下载的小数
-@property (strong, nonatomic) NSMutableArray *downTasks;//数组中要下载的小说
-@property (assign, nonatomic) NSInteger downIndex;//当前小说下载到第几章节
-@property (assign, nonatomic) BOOL pause;//当前是否暂停
-@property (assign, nonatomic) BOOL delete;//当前是否删除
 @end
 
 @implementation GKNovelDown
@@ -39,35 +35,66 @@
     });
     return dataBase;
 }
-+ (void)addDownTask:(GKBookDetailModel *)bookInfo chapters:(NSArray <GKBookChapterModel *>*)chapters{
-    if (!bookInfo) {
+- (GKDownBookInfo *)downInfo{
+    if (!_downInfo) {
+        GKDownBookInfo *info = [GKNovelDown getInfo:GKDownTaskLoading];
+        if (!info) {
+            info = [GKNovelDown getInfo:GKDownTaskDefault];
+        }
+        _downInfo = info;
+    }
+    return _downInfo;
+}
++ (GKDownBookInfo *)getInfo:(GKDownTaskState )state{
+    __block GKDownBookInfo *info = nil;
+    NSArray *datas = [GKNovelDown shareInstance].downTasks;
+    [datas enumerateObjectsUsingBlock:^(GKDownBookInfo *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.state == state) {
+            info = obj;
+            *stop = YES;
+        }
+    }];
+    return info;
+}
++ (BOOL)haveBookInfo:(GKDownBookInfo *)bookInfo{
+    GKNovelDown *down = [GKNovelDown shareInstance];
+    NSPredicate *pre1 = [NSPredicate predicateWithFormat:@"bookId CONTAINS %@",bookInfo.bookId];
+    NSArray *array  = [down.downTasks filteredArrayUsingPredicate:pre1];
+    return array.count > 0;
+}
++ (void)addDownTask:(GKBookDetailModel *)model chapters:(NSArray *)chapters{
+    if (!model) {
         return;
     }
-    [GKDownDataQueue getDataFromDataBase:bookInfo.bookId completion:^(GKDownBookInfo * _Nonnull model) {
-        if (!model) {//开始下载
+    [GKDownDataQueue getDataFromDataBase:model.bookId completion:^(GKDownBookInfo * _Nonnull bookInfo) {
+        if (!bookInfo) {//开始下载
             [MBProgressHUD showMessage:@"成功加入下载队列中"];
             GKNovelDown *down = [GKNovelDown shareInstance];
             GKDownBookInfo *info = nil;
             if (down.downInfo) {
-                info = [GKDownBookInfo vcWithModel:bookInfo chapters:chapters state:GKDownTaskDefault];
-                [down.downTasks addObject:info];
+                info = [GKDownBookInfo vcWithModel:model chapters:chapters state:GKDownTaskDefault];
+                if (![GKNovelDown haveBookInfo:info]) {
+                    [down.downTasks addObject:info];
+                }
             }else{
-                info = [GKDownBookInfo vcWithModel:bookInfo chapters:chapters state:GKDownTaskLoading];
-                [down.downTasks insertObject:info atIndex:0];
+                info = [GKDownBookInfo vcWithModel:model chapters:chapters state:GKDownTaskLoading];
+                if (![GKNovelDown haveBookInfo:info]) {
+                    [down.downTasks insertObject:info atIndex:0];
+                }
                 [GKNovelDown startDown];
             }
             [GKNovelDown insertDataToDataBase:info];
-        }else if (model.state == GKDownTaskFinish) {
+        }else if (bookInfo.state == GKDownTaskFinish) {
             [MBProgressHUD showMessage:@"该小说已经下载过了"];
-        }else if (model.state == GKDownTaskLoading){
+        }else if (bookInfo.state == GKDownTaskLoading){
             [MBProgressHUD showMessage:@"该小说正在下载中"];
-        }else if (model.state == GKDownTaskDefault){
+        }else if (bookInfo.state == GKDownTaskDefault){
             [MBProgressHUD showMessage:@"该小说正等待下载"];
-        }else if (model.state == GKDownTaskPause){
+        }else if (bookInfo.state == GKDownTaskPause){
             GKNovelDown *down = [GKNovelDown shareInstance];
             if (!down.downInfo) {
-                GKDownBookInfo *info = [GKDownBookInfo vcWithModel:bookInfo chapters:chapters state:GKDownTaskLoading];
-                [GKNovelDown start:info completion:nil];
+                GKDownBookInfo *info = [GKDownBookInfo vcWithModel:model chapters:chapters state:GKDownTaskLoading];
+                [GKNovelDown start:info];
                 [MBProgressHUD showMessage:@"成功加入下载队列中"];
             }else{
                 [MBProgressHUD showMessage:@"该小说正等待下载"];
@@ -76,19 +103,10 @@
     }];
 }
 + (void)startDown{
-    __block GKDownBookInfo *info = nil;
-    NSArray *datas = [GKNovelDown shareInstance].downTasks;
-    [datas enumerateObjectsUsingBlock:^(GKDownBookInfo *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.state == GKDownTaskLoading) {
-            info = obj;
-            *stop = YES;
-        }else if (obj.state == GKDownTaskDefault){
-            info = obj;
-            *stop = YES;
-        }
-    }];
+    GKDownBookInfo *info = [GKNovelDown shareInstance].downInfo;
+    
     if (info) {
-        [GKNovelDown start:info completion:nil];
+        [GKNovelDown start:info];
     }
 }
 + (void)deletes:(GKDownBookInfo *)bookInfo{
@@ -96,10 +114,10 @@
         return;
     }
     if (bookInfo.state == GKDownTaskLoading) {
-        [GKNovelDown pause:bookInfo delete:YES];
+        [GKNovelDown pause:bookInfo];
     }
     NSMutableArray *datas = [GKNovelDown shareInstance].downTasks;
-    if ([datas containsObject:bookInfo]) {
+    if ([GKNovelDown haveBookInfo:bookInfo]) {
         [datas removeObject:bookInfo];
     }
     [GKDownDataQueue deleteDataToDataBase:bookInfo.bookId completion:^(BOOL success) {
@@ -108,39 +126,51 @@
     [GKBookCacheDataQueue dropTableFromDataBase:bookInfo.bookId completion:^(BOOL success) {
         
     }];
+    
 }
-+ (void)start:(GKDownBookInfo *)bookInfo completion:(void(^)(NSInteger index,NSInteger total,GKDownTaskState state))completion{
++ (void)wait:(GKDownBookInfo *)bookInfo{
     if (!bookInfo) {
         return;
+    }
+    bookInfo.state = GKDownTaskDefault;
+    [GKNovelDown insertDataToDataBase:bookInfo];
+}
++ (void)start:(GKDownBookInfo *)bookInfo{
+    if (!bookInfo) {
+        return;
+    }
+    GKNovelDown *down = [GKNovelDown shareInstance];
+    if (![GKNovelDown haveBookInfo:bookInfo]) {
+        [down.downTasks addObject:bookInfo];
     }
     bookInfo.state = GKDownTaskLoading;
-    [GKNovelDown shareInstance].downInfo = bookInfo;
-    [GKNovelDown shareInstance].downIndex = bookInfo.downIndex;
-    [GKNovelDown shareInstance].pause = NO;
+    down.downInfo = bookInfo;
     [GKNovelDown insertDataToDataBase:bookInfo];
-    [GKNovelDown downData:bookInfo completion:completion];
+    [GKNovelDown downData:bookInfo];
 }
 + (void)pause:(GKDownBookInfo *)bookInfo{
-    [GKNovelDown pause:bookInfo delete:NO];
-}
-+ (void)pause:(GKDownBookInfo *)bookInfo delete:(BOOL)delete{
-    if (!bookInfo) {
+    if (!bookInfo.bookId) {
         return;
     }
+    GKNovelDown *down = [GKNovelDown shareInstance];
     bookInfo.state = GKDownTaskPause;
-    [GKNovelDown shareInstance].downInfo = nil;
-    [GKNovelDown shareInstance].pause = YES;
-    [GKNovelDown shareInstance].delete = delete;
+    if ([bookInfo.bookId isEqualToString:down.downInfo.bookId]) {
+        bookInfo.state = GKDownTaskPause;
+        [GKNovelDown shareInstance].downInfo = nil;
+    }
     [GKNovelDown insertDataToDataBase:bookInfo];
 }
 + (void)finish:(GKDownBookInfo *)bookInfo{
     if (!bookInfo) {
         return;
     }
+    GKNovelDown *down = [GKNovelDown shareInstance];
     bookInfo.state = GKDownTaskFinish;
     [GKNovelDown insertDataToDataBase:bookInfo];
-    [[GKNovelDown shareInstance].downTasks removeObject:bookInfo];
-    [GKNovelDown shareInstance].downInfo = nil;
+    if ([down.downTasks containsObject:bookInfo]) {
+        [down.downTasks removeObject:bookInfo];
+    }
+    down.downInfo = nil;
 }
 + (void)insertDataToDataBase:(GKDownBookInfo *)bookInfo{
     if (!bookInfo.bookId) {
@@ -148,51 +178,48 @@
     }
     [GKDownDataQueue insertDataToDataBase:bookInfo completion:nil];
 }
-+ (void)downData:(GKDownBookInfo *)bookInfo completion:(void(^)(NSInteger index,NSInteger total,GKDownTaskState state))completion{
++ (void)downData:(GKDownBookInfo *)bookInfo
+{
+    GKNovelDown *down = [GKNovelDown shareInstance];
     NSArray *chapters = bookInfo.chapters;
     if (chapters.count == 0) {
         return;
     }
-    if ([GKNovelDown shareInstance].delete) {
+    if (!down.downInfo) {
         return;
     }
-    if ([GKNovelDown shareInstance].pause) {
-        [GKNovelDown pause:bookInfo];
-        !completion ?: completion(bookInfo.downIndex,bookInfo.chapters.count,GKDownTaskPause);
+    if (bookInfo.state == GKDownTaskPause) {
         return;
     }
-    if (chapters.count > [GKNovelDown shareInstance].downIndex) {
-        GKBookChapterModel *chapter = [chapters objectSafeAtIndex:[GKNovelDown shareInstance].downIndex];
+    if (chapters.count > bookInfo.downIndex) {
+        GKBookChapterModel *chapter = [chapters objectSafeAtIndex:bookInfo.downIndex];
         void(^netManager)(void) = ^{
-            [GKNovelDown shareInstance].downIndex ++;
-            bookInfo.downIndex = [GKNovelDown shareInstance].downIndex;
-            !completion ?: completion(bookInfo.downIndex,bookInfo.chapters.count,GKDownTaskLoading);
-            [GKNovelDown downData:bookInfo completion:completion];
-
+            bookInfo.downIndex ++;
+            down.downInfo.downIndex = bookInfo.downIndex;
+            !down.completion ?: down.completion(bookInfo.downIndex,bookInfo.chapters.count,GKDownTaskLoading);
+            [GKNovelDown downData:bookInfo];
         };
-        
-        [GKBookCacheDataQueue getDataFromDataBase:bookInfo.bookId chapterId:chapter.chapterId completion:^(GKBookContentModel * _Nonnull bookModel) {
-            if (bookModel) {
-                netManager();
-            }else{
-                [GKNovelNetManager bookContent:chapter.link success:^(id object) {
-                    netManager();
-                    GKBookContentModel *bookModel = [GKBookContentModel modelWithJSON:object[@"chapter"]];
-                    [GKBookCacheDataQueue insertDataToDataBase:bookInfo.bookId model:bookModel completion:^(BOOL success) {
-                        
-                    }];
-                } failure:^(NSString *error) {
-                    netManager();
-                }];
+        [GKNovelNetManager bookContent:chapter.link success:^(id object) {
+            if (bookInfo.state == GKDownTaskPause || !down.downInfo) {
+                return;
             }
+            netManager();
+            GKBookContentModel *bookModel = [GKBookContentModel modelWithJSON:object[@"chapter"]];
+            [GKBookCacheDataQueue insertDataToDataBase:bookInfo.bookId model:bookModel completion:^(BOOL success) {
+                
+            }];
+        } failure:^(NSString *error) {
+            netManager();
         }];
     }else{
         [GKNovelDown finish:bookInfo];
-        if (completion) {
-            !completion ?: completion(bookInfo.downIndex,bookInfo.chapters.count,GKDownTaskFinish);
-        }else{
-            [GKNovelDown startDown];
-        }
+        !down.completion ?: down.completion(bookInfo.downIndex,bookInfo.chapters.count,GKDownTaskFinish);
     }
+}
++ (NSArray *)waitDownDatas{
+    GKNovelDown *down = [GKNovelDown shareInstance];
+    NSPredicate *pre1 = [NSPredicate predicateWithFormat:@"state = 0"];
+    NSArray *array  = [down.downTasks filteredArrayUsingPredicate:pre1];
+    return array;
 }
 @end
