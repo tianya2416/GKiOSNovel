@@ -11,11 +11,18 @@
 #import "GKHomeReusableView.h"
 #import "GKHomeHotCell.h"
 #import "GKHomeNetManager.h"
-@interface GKHomeController()
+#import "KLRecycleScrollView.h"
+#import "GKNewNavBarView.h"
+#import "GKStartViewController.h"
+#import "GKSearchHistoryController.h"
+@interface GKHomeController()<KLRecycleScrollViewDelegate>
 @property (strong, nonatomic) GKHomeNetManager *homeManager;
 @property (strong, nonatomic) NSArray <GKBookInfo *>*listData;
 @property (assign, nonatomic) GKLoadDataState option;
-@property (strong, nonatomic) UIButton *tipBtn;
+
+@property (strong, nonatomic) NSArray *listHotWords;
+@property (strong, nonatomic) GKNewNavBarView *navBarView;
+@property (nonatomic, strong) KLRecycleScrollView *vmessage;
 @end
 
 @implementation GKHomeController
@@ -24,20 +31,34 @@
     [self loadUI];
     [self loadData];
 }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navBarView.state = [GKUserManager shareInstance].user.state;
+}
 - (void)loadUI{
-    [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_nav_add"] action:@selector(addAction)];
-    [self.view addSubview:self.tipBtn];
-    [self.tipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.tipBtn.superview);
+    
+    self.fd_prefersNavigationBarHidden = YES;
+    [self.view addSubview:self.navBarView];
+    [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.navBarView.superview);
+        make.height.offset(NAVI_BAR_HIGHT);
     }];
+    [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.collectionView.superview);
+        make.top.equalTo(self.navBarView.mas_bottom).offset(0);
+    }];
+    [self.navBarView.mainView addSubview:self.vmessage];
+    UIScrollView *scrow = [self.vmessage valueForKey:@"scrollView"];
+    if (scrow) {
+        scrow.scrollsToTop = NO;
+    }
 }
 - (void)setOption:(GKLoadDataState)option{
     _option = option;
     if (_option & GKLoadDataDataBase) {
-        @weakify(self)
         [GKBookReadDataQueue getDatasFromDataBase:1 pageSize:10 completion:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
-            @strongify(self)
-            [self setTipModel:listData.firstObject];
+
+
         }];
     }
 }
@@ -50,6 +71,8 @@
     }];
     [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角进行添加"];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
+    self.listHotWords = [BaseMacro hotDatas];
+    [self.vmessage reloadData:self.listHotWords.count];
 }
 - (void)refreshData:(NSInteger)page{
     NSArray <GKRankModel *>*listData = [GKUserManager shareInstance].user.rankDatas;
@@ -69,29 +92,6 @@
             [self endRefresh:NO];
         }
     }];
-}
-- (void)addAction{
-    [GKJumpApp jumpToAddSelect];
-}
-- (void)setTipModel:(GKBookReadModel *)model{
-    self.tipBtn.hidden = !model;
-    GKBookChapterModel *chapter = [model.chapterInfo.chapters objectSafeAtIndex:model.chapter];
-    NSString *title = [NSString stringWithFormat:@"最近一次阅读:%@ %@",chapter.title?:@"",[GKTimeTool timeStampTurnToTimesType:model.updateTime]];
-    [self.tipBtn setTitle:title forState:UIControlStateNormal];
-    [self.tipBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-       // [GKJumpApp jumpToBookRead:model.bookModel];
-    }];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tipBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.tipBtn.superview);
-            make.top.offset(-25);
-        }];
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            self.tipBtn.hidden = YES;
-        }];
-    });
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return self.listData.count;
@@ -174,6 +174,28 @@
         [GKJumpApp jumpToBookRead:info.bookModel];
     }
 }
+#pragma mark KLRecycleScrollViewDelegate
+- (UIView *)recycleScrollView:(KLRecycleScrollView *)recycleScrollView viewForItemAtIndex:(NSInteger)index {
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = Appx333333;
+    label.text = self.listHotWords[index];
+    label.textAlignment = NSTextAlignmentLeft;
+    return label;
+}
+- (void)recycleScrollView:(KLRecycleScrollView *)recycleScrollView didSelectView:(UIView *)view forItemAtIndex:(NSInteger)index{
+    [self searchAction];
+}
+- (void)addStartAction{
+    GKStartViewController *vc = [[GKStartViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)searchAction{
+    GKSearchHistoryController *vc = [[GKSearchHistoryController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark get
 - (GKHomeNetManager *)homeManager{
     if (!_homeManager) {
@@ -181,14 +203,23 @@
     }
     return _homeManager;
 }
-- (UIButton *)tipBtn{
-    if (!_tipBtn) {
-        _tipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _tipBtn.backgroundColor = [UIColor colorWithRGB:0xf5f5f5];
-        _tipBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
-        [_tipBtn setTitleColor:AppColor forState:UIControlStateNormal];
-        [_tipBtn setContentEdgeInsets:UIEdgeInsetsMake(2, 5,2, 5)];
-        _tipBtn.titleLabel.numberOfLines = 0;
-    }return _tipBtn;
+- (KLRecycleScrollView *)vmessage{
+    if (!_vmessage) {
+        _vmessage = [[KLRecycleScrollView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH - 100, 35)];
+        _vmessage.delegate = self;
+        _vmessage.direction = KLRecycleScrollViewDirectionTop;
+        _vmessage.pagingEnabled = NO;
+        _vmessage.timerEnabled = YES;
+        _vmessage.scrollInterval = 5;
+        _vmessage.backgroundColor = [UIColor whiteColor];
+    }
+    return _vmessage;
+}
+- (GKNewNavBarView *)navBarView{
+    if (!_navBarView) {
+        _navBarView = [GKNewNavBarView instanceView];
+        [_navBarView.moreBtn addTarget:self action:@selector(addStartAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _navBarView;
 }
 @end
