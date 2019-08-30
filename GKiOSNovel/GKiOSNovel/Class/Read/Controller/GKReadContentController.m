@@ -281,6 +281,7 @@ GKReadViewDelegate>
 #pragma mark buttonAction
 - (void)goBack{
     [super goBack:NO];
+    [self insertDataQueue];
     [BaseNetCache removeMemory];
 }
 #pragma mark UIPageViewControllerDelegate,UIPageViewControllerDataSource
@@ -301,10 +302,20 @@ GKReadViewDelegate>
     return UIPageViewControllerSpineLocationNone;
 }
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
-    
+    [self currentController:(GKReadViewController *)self.pageCtrl.viewControllers.firstObject];
+    NSLog(@"didFinishAnimating");
 }
 #pragma mark DZMCoverControllerDelegate
 - (void)coverController:(DZMCoverController * _Nonnull)coverController currentController:(GKReadViewController * _Nullable)currentController finish:(BOOL)isFinish{
+    [self currentController:currentController];
+}
+- (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getAboveControllerWithCurrentController:(UIViewController * _Nullable)currentController{
+    return [self beforeController];
+}
+- (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getBelowControllerWithCurrentController:(UIViewController * _Nullable)currentController{
+    return [self afterController];
+}
+- (void)currentController:(GKReadViewController *)currentController{
     if (self.pageIndex != currentController.pageIndex) {
         self.pageIndex = currentController.pageIndex;
     }
@@ -312,12 +323,6 @@ GKReadViewDelegate>
         self.chapter = currentController.chapter;
         [self getBookContent:self.chapter];
     }
-}
-- (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getAboveControllerWithCurrentController:(UIViewController * _Nullable)currentController{
-    return [self beforeController];
-}
-- (UIViewController * _Nullable)coverController:(DZMCoverController * _Nonnull)coverController getBelowControllerWithCurrentController:(UIViewController * _Nullable)currentController{
-    return [self afterController];
 }
 - (GKReadViewController *)beforeController{
     if (self.pageIndex <= 0 &&self.chapter <= 0) {
@@ -433,6 +438,7 @@ GKReadViewDelegate>
     }
 }
 - (void)readSetView:(GKReadSetView *__nullable)moreView browState:(GKBrowseState)browState{
+    [self insertDataQueue];
     self.pagecurl ? [self loadPageUI] : [self loadCoverUI];
     [self loadData];
 }
@@ -462,7 +468,7 @@ GKReadViewDelegate>
 }
 #pragma mark GKReadViewDelegate
 - (void)viewDidAppear:(GKReadViewController *)ctrl animated:(BOOL)animated{
-    [self insertDataQueue];
+    
 }
 -(BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     return [touch.view isKindOfClass:GKReadView.class];

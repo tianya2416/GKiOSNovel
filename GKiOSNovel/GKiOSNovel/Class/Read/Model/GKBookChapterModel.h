@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GKBookChapterModel : BaseModel
 @property (copy, nonatomic) NSString *chapterCover;
 @property (copy, nonatomic) NSString *chapterId;
-@property (copy, nonatomic) NSString *isVip;
+@property (assign, nonatomic) BOOL isVip;
 @property (copy, nonatomic) NSString *link;
 @property (copy, nonatomic) NSString *time;
 @property (copy, nonatomic) NSString *title;

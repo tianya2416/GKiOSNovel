@@ -15,10 +15,12 @@ static NSString *primaryBookId = @"bookId";
  */
 + (void)insertDataToDataBase:(GKBookReadModel *)bookModel
                   completion:(void(^)(BOOL success))completion{
-    [BaseDataQueue insertDataToDataBase:tableBook primaryId:primaryBookId userInfo:[bookModel modelToJSONObject] completion:^(BOOL success) {
-        success ? [GKUserManager reloadHomeData:GKLoadDataDataBase] : nil;
-        !completion ?:completion(success);
-    }];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [BaseDataQueue insertDataToDataBase:tableBook primaryId:primaryBookId userInfo:[bookModel modelToJSONObject] completion:^(BOOL success) {
+            success ? [GKUserManager reloadHomeData:GKLoadDataDataBase] : nil;
+            !completion ?:completion(success);
+        }];
+    });
 }
 + (void)insertDatasDataBase:(NSString *)tableName
                   primaryId:(NSString *)primaryId

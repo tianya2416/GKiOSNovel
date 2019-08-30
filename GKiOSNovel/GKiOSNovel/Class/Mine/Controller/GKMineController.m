@@ -15,9 +15,10 @@
 #import "GKMineSelectController.h"
 #import "GKMineCell.h"
 #import "GKDownViewController.h"
+#import "GKMineModel.h"
 static NSString *down = @"我的下载";
 static NSString *bookCase = @"我的书架";
-static NSString *readHistory = @"读书记录";
+static NSString *readHistory = @"浏览记录";
 static NSString *rank = @"我的首页";
 static NSString *sex = @"我的性别";
 static NSString *theme = @"我的主题";
@@ -43,7 +44,15 @@ static NSString *theme = @"我的主题";
 - (void)reloadUI{
     GKAppModel *model = [GKAppTheme shareInstance].model;
     GKUserState state = [GKUserManager shareInstance].user.state;
-    self.listData = @[@{@"title":down,@"subTitle":@""},@{@"title":bookCase,@"subTitle":@""},@{@"title":readHistory?:@"",@"subTitle":@""},@{@"title":rank?:@"",@"subTitle":@""},@{@"title":sex,@"subTitle":(state == GKUserBoy ?@"小哥哥":@"小姐姐")},@{@"title":theme?:@"",@"subTitle":model.title?:@""}];
+    
+    GKMineModel *model1 = [GKMineModel vcWithTitle:down subTitle:@"" iCon:@"icon_down"];
+    GKMineModel *model2 = [GKMineModel vcWithTitle:bookCase subTitle:@"" iCon:@"icon_fav"];
+    GKMineModel *model3 = [GKMineModel vcWithTitle:readHistory subTitle:@"" iCon:@"icon_historys"];
+    
+    GKMineModel *model4 = [GKMineModel vcWithTitle:rank subTitle:@"" iCon:@"icon_option"];
+    GKMineModel *model5 = [GKMineModel vcWithTitle:sex subTitle:(state == GKUserBoy ?@"小哥哥":@"小姐姐") iCon:@"icon_safe"];
+    GKMineModel *model6 = [GKMineModel vcWithTitle:theme subTitle:model.title?:@"" iCon:@"icon_set"];
+    self.listData = @[model1,model2,model3,model4,model5,model6];
     [self.tableView reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -57,15 +66,16 @@ static NSString *theme = @"我的主题";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GKMineCell *cell = [GKMineCell cellForTableView:tableView indexPath:indexPath];
-    NSDictionary *dic = self.listData[indexPath.row];
-    cell.titlaLab.text = dic[@"title"]?:@"";
-    cell.subTitleLab.text = dic[@"subTitle"]?:@"";
+    GKMineModel *model = self.listData[indexPath.row];
+    cell.titlaLab.text = model.title ?:@"";
+    cell.subTitleLab.text = model.subTitle ?:@"";
+    cell.iConImageV.image = [UIImage imageNamed:model.iCon];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     NSDictionary *dic = self.listData[indexPath.row];
-    NSString *title = dic[@"title"];
+     GKMineModel *model = self.listData[indexPath.row];
+    NSString *title = model.title;
     UIViewController *vc = nil;
     if ([title isEqualToString:rank]) {
         vc = [[GKMineSelectController alloc] init];

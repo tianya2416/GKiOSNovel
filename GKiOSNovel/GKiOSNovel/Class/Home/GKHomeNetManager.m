@@ -39,7 +39,7 @@
         [GKBookReadDataQueue getDatasFromDataBase:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
             self.readBook = [[GKBookInfo alloc] init];
             self.readBook.state = GKBookInfoStateDataQueue;
-            self.readBook.shortTitle = @"读书记录";
+            self.readBook.shortTitle = @"浏览记录";
             self.readBook.books = listData;
             dispatch_group_leave(group);
         }];

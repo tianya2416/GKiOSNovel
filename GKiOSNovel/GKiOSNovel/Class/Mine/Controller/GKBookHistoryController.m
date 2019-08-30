@@ -30,7 +30,7 @@
     self.needRequesst = YES;
 }
 - (void)loadUI{
-    [self showNavTitle:@"读书记录"];
+    [self showNavTitle:@"浏览记录"];
     self.listData = @[].mutableCopy;
     [self setupEmpty:self.tableView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到书籍详情页观看你喜欢的书籍吧"];
     [self setupRefresh:self.tableView option:ATRefreshDefault];

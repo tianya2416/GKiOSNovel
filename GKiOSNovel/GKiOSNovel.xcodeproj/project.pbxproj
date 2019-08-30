@@ -55,6 +55,7 @@
 		0F2F6B0522E958FD00E18C65 /* SimplifiedCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F6B0322E958FD00E18C65 /* SimplifiedCode.txt */; };
 		0F2F6B0622E958FD00E18C65 /* TraditionalCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F6B0422E958FD00E18C65 /* TraditionalCode.txt */; };
 		0F2F6B0A22E97BAE00E18C65 /* BaseDownFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2F6B0922E97BAE00E18C65 /* BaseDownFont.m */; };
+		0F3E074E2318B1EE004C68FB /* GKMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E074D2318B1EE004C68FB /* GKMineModel.m */; };
 		0F5F63D722AFA2D8009096BD /* ProgressWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */; };
 		0F5F63E422AFA2D8009096BD /* BaseWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B222AFA2D8009096BD /* BaseWebController.m */; };
 		0F5F63EA22AFA2D8009096BD /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63C222AFA2D8009096BD /* BaseModel.m */; };
@@ -238,6 +239,8 @@
 		0F2F6B0422E958FD00E18C65 /* TraditionalCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TraditionalCode.txt; sourceTree = "<group>"; };
 		0F2F6B0822E97BAE00E18C65 /* BaseDownFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDownFont.h; sourceTree = "<group>"; };
 		0F2F6B0922E97BAE00E18C65 /* BaseDownFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDownFont.m; sourceTree = "<group>"; };
+		0F3E074C2318B1EE004C68FB /* GKMineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKMineModel.h; sourceTree = "<group>"; };
+		0F3E074D2318B1EE004C68FB /* GKMineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKMineModel.m; sourceTree = "<group>"; };
 		0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressWKWebView.m; sourceTree = "<group>"; };
 		0F5F63B222AFA2D8009096BD /* BaseWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebController.m; sourceTree = "<group>"; };
 		0F5F63B322AFA2D8009096BD /* ProgressWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressWKWebView.h; sourceTree = "<group>"; };
@@ -910,6 +913,8 @@
 				0FAB61B622C457B5000F8ABB /* GKMineCell.h */,
 				0FAB61B722C457B5000F8ABB /* GKMineCell.xib */,
 				0FAB61B822C457B5000F8ABB /* GKThemeCell.h */,
+				0F3E074C2318B1EE004C68FB /* GKMineModel.h */,
+				0F3E074D2318B1EE004C68FB /* GKMineModel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1222,6 +1227,7 @@
 				0FD423B122CC5E7700507C14 /* GKBookCacheDataQueue.m in Sources */,
 				0F2669242314E14000A8DE26 /* GKDownLoadCell.m in Sources */,
 				0F8AA7DA22B0CD6800332ECB /* GKClassItemController.m in Sources */,
+				0F3E074E2318B1EE004C68FB /* GKMineModel.m in Sources */,
 				0F5F63F122AFA2D8009096BD /* BaseNetTool.m in Sources */,
 				0F22927B22C5AA3000279173 /* GKShareTool.m in Sources */,
 				0FAB61BF22C457B5000F8ABB /* GKMineCell.m in Sources */,

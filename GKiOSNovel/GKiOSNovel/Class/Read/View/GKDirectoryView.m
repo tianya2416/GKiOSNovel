@@ -48,6 +48,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GKDirectoryCell *cell = [GKDirectoryCell cellForTableView:tableView indexPath:indexPath];
     GKBookChapterModel *chapter = self.listData[indexPath.row];
+    cell.iconV.hidden =  !chapter.isVip;
     cell.titleLab.text = chapter.title ?:@"";
     cell.select = (chapter == self.model);
     return cell;

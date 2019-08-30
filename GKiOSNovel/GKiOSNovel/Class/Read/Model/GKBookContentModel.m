@@ -20,6 +20,12 @@
 - (void)setContent:(NSString *)content{
     _content = content;
     _content = [_content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\n\r" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\t\n" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\t\t" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\r\r" withString:@"\n"];
     _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
 }
 - (void)setContentPage {

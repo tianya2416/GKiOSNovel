@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GKDirectoryCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 @property (assign, nonatomic) BOOL select;
+@property (weak, nonatomic) IBOutlet UIImageView *iconV;
 
 @end
 

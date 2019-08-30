@@ -37,7 +37,7 @@
 #define BaseAssert(url) assert(url)
 
 #define RefreshPageStart (1)
-#define RefreshPageSize (35)
+#define RefreshPageSize (20)
 
 #ifdef DEBUG
     #ifndef NSLog

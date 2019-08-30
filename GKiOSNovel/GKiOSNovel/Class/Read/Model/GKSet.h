@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *fontName;//字体名称
 @property (assign, nonatomic) CGFloat font;//文字大小
 @property (assign, nonatomic) CGFloat lineSpacing;//段落 行间距
-@property (assign, nonatomic) CGFloat firstLineHeadIndent;//段落 行间距
+@property (assign, nonatomic) CGFloat firstLineHeadIndent;//每段 段首空格
 @property (assign, nonatomic) CGFloat paragraphSpacingBefore;//段间距，当前段落和上个段落之间的距离。
 @property (assign, nonatomic) CGFloat paragraphSpacing;//段间距，当前段落和下个段落之间的距离。
 @property (assign, nonatomic) CGFloat brightness;//亮度

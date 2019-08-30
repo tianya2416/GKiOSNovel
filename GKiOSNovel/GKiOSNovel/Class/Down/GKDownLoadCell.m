@@ -19,6 +19,8 @@
     self.progressView.layer.cornerRadius = 1.5;
     self.downBtn.layer.masksToBounds = YES;
     self.downBtn.layer.cornerRadius = 12.5;
+    self.downBtn.backgroundColor = AppColor;
+    self.progressView.progressTintColor = AppColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
