@@ -66,7 +66,7 @@ GKReadViewDelegate>
 - (void)loadData{
     self.chapter = 0;
     self.pageIndex = 0;
-    [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+   // [MBProgressHUD showHUDAddedTo:self.view animated:NO];
     [GKBookReadDataQueue getDataFromDataBase:self.bookModel.bookId completion:^(GKBookReadModel * _Nonnull readModel) {
         if (readModel.chapter > 0 ||readModel.pageIndex > 0) {
             self.readModel = readModel;
@@ -86,7 +86,7 @@ GKReadViewDelegate>
         self.sourceInfo.listData = [NSArray modelArrayWithClass:GKBookSourceModel.class json:object];
         [self loadBookChapters:0];
     } failure:^(NSString * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
+       // [MBProgressHUD hideHUDForView:self.view animated:NO];
         [MBProgressHUD showMessage:error];
     }];
 }
@@ -97,7 +97,7 @@ GKReadViewDelegate>
         self.chapterInfo = [GKBookChapterInfo modelWithJSON:object];
         [self loadBookContent:0];
     } failure:^(NSString * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
+       // [MBProgressHUD hideHUDForView:self.view animated:NO];
         [MBProgressHUD showMessage:error];
     }];
 }
@@ -108,9 +108,9 @@ GKReadViewDelegate>
         self.bookContent = model;
         [self.bookContent setContentPage];
         [self reloadData];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+       // [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSString * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //[MBProgressHUD hideHUDForView:self.view animated:YES];
         [MBProgressHUD showMessage:error];
     }];
 }
@@ -254,6 +254,9 @@ GKReadViewDelegate>
     }else{
         [self reloadUI];
     }
+    if (self.chapter + 1 >= self.chapterInfo.chapters.count) {
+        self.chapter = self.chapterInfo.chapters.count - 1;
+    }
     self.managerSetView.bookContent = self.bookContent;
     self.managerSetView.chapterInfo = self.chapterInfo;
     self.managerSetView.chapterModel =  [self.chapterInfo.chapters objectSafeAtIndex:self.chapter];
@@ -376,6 +379,11 @@ GKReadViewDelegate>
     NSArray *chapters = self.chapterInfo.chapters;
     GKBookChapterModel *info = [chapters objectSafeAtIndex:chapter];
     self.bookContent = info.bookContent;
+    if (!info) {
+        GKBookContentModel *lastContent = [[GKBookContentModel alloc] init];
+        lastContent.content = @"已无最新内容啦！请您关注我官网更新...";
+        self.bookContent = lastContent;
+    }
     [self.bookContent setContentPage];
 }
 - (void)getBeforeData{
@@ -440,7 +448,7 @@ GKReadViewDelegate>
 - (void)readSetView:(GKReadSetView *__nullable)moreView browState:(GKBrowseState)browState{
     [self insertDataQueue];
     self.pagecurl ? [self loadPageUI] : [self loadCoverUI];
-    [self loadData];
+    [self reloadData];
 }
 #pragma mark GKReadBottomDelegate
 - (void)bottomView:(GKReadBottomView *__nullable)bottomView day:(BOOL)day{

@@ -907,14 +907,14 @@
 		0FAB61B222C457B5000F8ABB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0FAB61B322C457B5000F8ABB /* GKMineCell.m */,
-				0FAB61B422C457B5000F8ABB /* GKThemeCell.m */,
-				0FAB61B522C457B5000F8ABB /* GKThemeCell.xib */,
 				0FAB61B622C457B5000F8ABB /* GKMineCell.h */,
+				0FAB61B322C457B5000F8ABB /* GKMineCell.m */,
 				0FAB61B722C457B5000F8ABB /* GKMineCell.xib */,
-				0FAB61B822C457B5000F8ABB /* GKThemeCell.h */,
 				0F3E074C2318B1EE004C68FB /* GKMineModel.h */,
 				0F3E074D2318B1EE004C68FB /* GKMineModel.m */,
+				0FAB61B822C457B5000F8ABB /* GKThemeCell.h */,
+				0FAB61B422C457B5000F8ABB /* GKThemeCell.m */,
+				0FAB61B522C457B5000F8ABB /* GKThemeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
