@@ -12,7 +12,7 @@
     10、有任何问题欢迎随时联系我wangws1990@163.com
     11、小说资源来自追书神器、只供学习、不得商用。
     12、如果出现乱码说名该章节需要VIP才能阅读。
-    13、Swift版本https://gitee.com/tianya24/SwiftObject.git
+    13、[Swift版本](https://gitee.com/tianya24/SwiftObject.git)
     效果图1、
     
 ![image](https://github.com/tianya2416/GKiOSNovel/blob/master/GKiOSNovel/GKiOSNovel/Class/Resource/1.png)
