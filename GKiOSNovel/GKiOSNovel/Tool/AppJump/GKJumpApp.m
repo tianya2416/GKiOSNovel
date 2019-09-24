@@ -71,6 +71,7 @@
     GKReadContentController *vc = [GKReadContentController vcWithBookDetailModel:model];
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
     vc.hidesBottomBarWhenPushed = YES;
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [root presentViewController:nav animated:NO completion:nil];
 }
 + (void)jumpToBookCase{
@@ -88,7 +89,7 @@
 + (void)setAppLaunchController{
     UIViewController *root = [UIViewController rootTopPresentedController];
     GKLaunchController *launchController = [[GKLaunchController alloc]init];
-    launchController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    launchController.modalPresentationStyle = UIModalPresentationFullScreen;
     [root presentViewController:launchController animated:NO completion:nil];
 }
 +  (UIWindow *)window

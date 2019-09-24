@@ -31,8 +31,9 @@
     }];
     [self.view addSubview:self.skipBtn];
     [self.skipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.offset(44);
-        make.top.equalTo(self.skipBtn.superview).offset(STATUS_BAR_HIGHT);
+        make.width.offset(70);
+        make.height.offset(30);
+        make.top.equalTo(self.skipBtn.superview).offset(STATUS_BAR_HIGHT+10);
         make.left.equalTo(self.skipBtn.superview).offset(20);
     }];
     [self.skipBtn addTarget:self action:@selector(skipAction) forControlEvents:UIControlEventTouchUpInside];
@@ -67,7 +68,7 @@
 - (void)startTimer{
     self.skipBtn.hidden = NO;
     __block NSInteger time = 5 - 1;
-    [self.skipBtn setTitle:[NSString stringWithFormat:@"%@S",@(time)] forState:UIControlStateNormal];
+    [self.skipBtn setTitle:[NSString stringWithFormat:@"%@S跳过",@(time)] forState:UIControlStateNormal];
     @weakify(self)
     self.timer = [NSTimer timerWithTimeInterval:1.0f block:^(NSTimer * _Nonnull timer) {
         @strongify(self)
@@ -75,7 +76,7 @@
             [self skipAction];
         }
         time = time - 1;
-        [self.skipBtn setTitle:[NSString stringWithFormat:@"%@S",@(time < 0 ? 0 : time)] forState:UIControlStateNormal];
+        [self.skipBtn setTitle:[NSString stringWithFormat:@"%@S跳过",@(time < 0 ? 0 : time)] forState:UIControlStateNormal];
     } repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     
@@ -88,11 +89,12 @@
 }
 - (void)dismissController
 {
-    [UIView animateWithDuration:0.35 delay:0.2 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.view.alpha = 0.0;
-    } completion:^(BOOL finished) {
-         [self goBack:NO];
-    }];
+    [self goBack:false];
+//    [UIView animateWithDuration:0.35 delay:0.2 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//        self.view.alpha = 0.0;
+//    } completion:^(BOOL finished) {
+//         [self goBack:NO];
+//    }];
 }
 - (GKLaunchView *)launchView{
     if (!_launchView) {
@@ -103,22 +105,24 @@
 - (UIButton *)skipBtn{
     if (!_skipBtn) {
         _skipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _skipBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        _skipBtn.titleLabel.font = [UIFont monospacedSystemFontOfSize:14 weight:UIFontWeightMedium];
         [_skipBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _skipBtn.backgroundColor = Appx999999;
         _skipBtn.layer.masksToBounds = YES;
-        _skipBtn.layer.cornerRadius = 22;
+        _skipBtn.layer.cornerRadius = 5;
     }
     return _skipBtn;
 }
 - (LOTAnimationView *)playView{
     if (!_playView) {
-        //        NSString *url = [[NSBundle mainBundle] pathForResource:@"servishero_loading" ofType:@"json"];
         _playView = [LOTAnimationView animationNamed:@"Launch.json"];
         _playView.loopAnimation = NO;
         _playView.animationSpeed = 1.0f;
     }
     return _playView;
+}
+- (BOOL)prefersStatusBarHidden{
+    return NO;
 }
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleDefault;
