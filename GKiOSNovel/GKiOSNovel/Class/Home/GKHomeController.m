@@ -222,4 +222,7 @@
     }
     return _navBarView;
 }
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 @end
