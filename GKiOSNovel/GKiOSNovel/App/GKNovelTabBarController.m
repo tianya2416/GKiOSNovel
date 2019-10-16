@@ -46,9 +46,16 @@
     nv.tabBarItem.selectedImage = [[UIImage imageNamed:select] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:Appx999999} forState:UIControlStateNormal];
     [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:AppColor} forState:UIControlStateSelected];
+    self.tabBar.tintColor = AppColor;
+    if (@available(iOS 10.0, *)) {
+        self.tabBar.unselectedItemTintColor = Appx999999;
+    } else {
+        // Fallback on earlier versions
+    }
     if (nv) {
         [self.listData addObject:nv];
     }
+    
 }
 ////是否自动旋转,返回YES可以自动旋转
 - (BOOL)shouldAutorotate {
