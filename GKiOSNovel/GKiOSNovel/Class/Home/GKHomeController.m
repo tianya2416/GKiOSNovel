@@ -140,7 +140,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     GKBookInfo *info = self.listData[section];
-    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? (section == 0 ?50 :30 ) : 0.001f);
+    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? (section == 0 ?45 :30 ) : 0.001f);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
