@@ -17,23 +17,29 @@
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
     return @{@"chapterId":@[@"chapterId",@"id"],@"content":@[@"cpContent",@"body",@"content"]};
 }
-- (void)setContent:(NSString *)content{
-    _content = content;
-    _content = [_content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\n\r" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\t\n" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\t\t" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\r\r" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
+//- (void)setContent:(NSString *)content{
+//    _content = content;
+//    _content = [_content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\n\r" withString:@"\n"];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\t\n" withString:@"\n"];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\t\t" withString:@"\n"];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\r\r" withString:@"\n"];
+//    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
+//}
+- (NSString *)newContent{
+    _content = [_content stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\t" withString:@"\n"];
+    _content = [self removeMorenNewline:_content];
+    return _content;
 }
 - (void)setContentPage {
     [self setPageBound:[BaseMacro appFrame]];
 }
 - (void)setPageBound:(CGRect)bounds {
     self.pageArray = @[].mutableCopy;
-    NSAttributedString *attr = [[NSAttributedString  alloc] initWithString:self.content attributes:[GKSetManager defaultFont]];
+    NSAttributedString *attr = [[NSAttributedString  alloc] initWithString:[self newContent] attributes:[GKSetManager defaultFont]];
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef) attr);
     CGPathRef path = CGPathCreateWithRect(bounds, NULL);
     CFRange range = CFRangeMake(0, 0);
@@ -90,6 +96,23 @@
         }
     }];
     return index;
+}
+- (NSString *)removeMorenNewline:(NSString *)content{
+    if (content.length == 0) {
+        return @"";
+    }
+    NSArray *datas = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self <> ''"];
+    datas = [datas filteredArrayUsingPredicate:predicate];
+    NSMutableArray *listData = @[].mutableCopy;
+    [datas enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *str = [obj stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (str.length > 0) {
+            [listData addObject:str];
+        }
+    }];
+    content = [listData componentsJoinedByString:@"\n"];
+    return content;
 }
 @end
 

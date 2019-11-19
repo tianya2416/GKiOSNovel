@@ -105,7 +105,7 @@
 - (UIButton *)skipBtn{
     if (!_skipBtn) {
         _skipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _skipBtn.titleLabel.font = [UIFont monospacedSystemFontOfSize:14 weight:UIFontWeightMedium];
+        _skipBtn.titleLabel.font = [UIFont monospacedDigitSystemFontOfSize:14 weight:UIFontWeightMedium];
         [_skipBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _skipBtn.backgroundColor = Appx999999;
         _skipBtn.layer.masksToBounds = YES;
