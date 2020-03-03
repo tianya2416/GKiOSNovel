@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "coffee_mode_bg@2x.png",
+      "filename" : "pic_theme_green_375x667_@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "pic_theme_green_375x667_@3x.png",
       "scale" : "3x"
     }
   ],
