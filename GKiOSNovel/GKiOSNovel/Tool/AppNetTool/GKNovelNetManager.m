@@ -8,6 +8,7 @@
 
 #import "GKNovelNetManager.h"
 #import "BaseNetManager.h"
+#import "NSString+Tool.h"
 @implementation GKNovelNetManager
 + (void)rankSuccess:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
      [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"ranking/gender") params:nil success:success failure:failure];
@@ -81,10 +82,14 @@
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:params cache:NO success:success failure:failure];
 }
 + (void)bookContent:(NSString *)url success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-   url = [url stringByURLEncode];
-   NSString * urlStr = [NSString stringWithFormat:@"https://chapter2.zhuishushenqi.com/chapter/%@",url];
+   url = [url stringURLEncode];
+   NSString * urlStr = [NSString stringWithFormat:@"http://chapterup.zhuishushenqi.com/chapter/%@",url];
    [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil cache:NO success:success failure:failure];
 }
+//http://chapterup.zhuishushenqi.com/chapter/http%3A%2F%2Fvip.zhuishushenqi.com%2Fchapter%2F5885ddbb3bf8ae96650b4feb%3Fcv%3D1555925116209
+//http://chapterup.zhuishushenqi.com/chapter/http%3A//vip.zhuishushenqi.com/chapter/5885ddbb3bf8ae96650b4feb?cv%3D1555925116209
+//http://vip.zhuishushenqi.com/chapter/5885ddbb3bf8ae96650b4feb?cv=1555925116209
+//http://vip.zhuishushenqi.com/chapter/5885ddbb3bf8ae96650b4feb?cv=1555925116209
 + (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
     NSDictionary *params = @{@"id":bookId?:@"",
                              @"view":@"updated",

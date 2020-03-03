@@ -126,6 +126,7 @@
 		0FAD109722E861A5004B3410 /* UIViewController+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD109522E861A5004B3410 /* UIViewController+Tool.m */; };
 		0FB445CC22BC828400ABCC55 /* GKTimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB445CB22BC828400ABCC55 /* GKTimeTool.m */; };
 		0FB6DB3D22BB3B6100C48F64 /* GKBookReadDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */; };
+		0FC439FA240E31830034D9E6 /* NSString+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC439F9240E31830034D9E6 /* NSString+Tool.m */; };
 		0FD423AE22CC4A8E00507C14 /* BaseDownTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD423AD22CC4A8E00507C14 /* BaseDownTask.m */; };
 		0FD423B122CC5E7700507C14 /* GKBookCacheDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD423B022CC5E7700507C14 /* GKBookCacheDataQueue.m */; };
 		0FD5A6C722C4CEE5008124FE /* GKShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD5A6C622C4CEE5008124FE /* GKShareViewController.m */; };
@@ -372,6 +373,8 @@
 		0FB445CB22BC828400ABCC55 /* GKTimeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKTimeTool.m; sourceTree = "<group>"; };
 		0FB6DB3B22BB3B6100C48F64 /* GKBookReadDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookReadDataQueue.h; sourceTree = "<group>"; };
 		0FB6DB3C22BB3B6100C48F64 /* GKBookReadDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookReadDataQueue.m; sourceTree = "<group>"; };
+		0FC439F8240E31830034D9E6 /* NSString+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Tool.h"; sourceTree = "<group>"; };
+		0FC439F9240E31830034D9E6 /* NSString+Tool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tool.m"; sourceTree = "<group>"; };
 		0FD423AC22CC4A8E00507C14 /* BaseDownTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDownTask.h; sourceTree = "<group>"; };
 		0FD423AD22CC4A8E00507C14 /* BaseDownTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDownTask.m; sourceTree = "<group>"; };
 		0FD423AF22CC5E7700507C14 /* GKBookCacheDataQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKBookCacheDataQueue.h; sourceTree = "<group>"; };
@@ -697,6 +700,8 @@
 				0F6C5FCC22B37CA100A4C2BE /* GKJumpApp.m */,
 				0FF17E1222C2103700D0FFB9 /* GKAppModel.h */,
 				0FF17E1322C2103700D0FFB9 /* GKAppModel.m */,
+				0FC439F8240E31830034D9E6 /* NSString+Tool.h */,
+				0FC439F9240E31830034D9E6 /* NSString+Tool.m */,
 			);
 			path = AppJump;
 			sourceTree = "<group>";
@@ -1252,6 +1257,7 @@
 				0F1B813422B095610061FD7A /* GKBookModel.m in Sources */,
 				0F2A18B122B8E1CF00426D5A /* BaseNetCache.m in Sources */,
 				8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */,
+				0FC439FA240E31830034D9E6 /* NSString+Tool.m in Sources */,
 				0F26691E2314E14000A8DE26 /* GKDownCell.m in Sources */,
 				0F2BB0A122CDAB6E0067E1B3 /* BaseViewController.m in Sources */,
 				0F26692A2314E1E400A8DE26 /* GKDownBookInfo.m in Sources */,
