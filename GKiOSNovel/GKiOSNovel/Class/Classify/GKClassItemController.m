@@ -28,7 +28,7 @@
     }
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager homeClass:self.titleName success:^(id  _Nonnull object) {
+    [GKNovelNet homeClass:self.titleName success:^(id  _Nonnull object) {
         self.listData = [NSArray modelArrayWithClass:GKClassItemModel.class json:object];
         [self.collectionView reloadData];
         [self endRefresh:NO];
@@ -45,7 +45,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop)/3 configuration:^(__kindof GKHomeHotCell *cell) {
+    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 configuration:^(__kindof GKHomeHotCell *cell) {
         cell.model = self.listData[indexPath.row];
     }];
 }

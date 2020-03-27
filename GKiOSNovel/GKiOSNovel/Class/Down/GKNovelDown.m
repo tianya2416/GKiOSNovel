@@ -199,7 +199,7 @@
             !down.completion ?: down.completion(bookInfo.downIndex,bookInfo.chapters.count,GKDownTaskLoading);
             [GKNovelDown downData:bookInfo];
         };
-        [GKNovelNetManager bookContent:chapter.link success:^(id object) {
+        [GKNovelNet bookContent:chapter.link success:^(id object) {
             if (bookInfo.state == GKDownTaskPause || !down.downInfo) {
                 return;
             }

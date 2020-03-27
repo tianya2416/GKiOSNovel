@@ -27,7 +27,7 @@
     
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager homeHot:self.bookInfo._id success:^(id  _Nonnull object) {
+    [GKNovelNet homeHot:self.bookInfo._id success:^(id  _Nonnull object) {
         self.bookInfo = [GKBookInfo modelWithJSON:object];
         [self showNavTitle:[NSString stringWithFormat:@"%@(%@)",self.bookInfo.shortTitle,@(self.bookInfo.total)]];
         [self.tableView reloadData];

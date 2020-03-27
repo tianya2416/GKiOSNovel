@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="128.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vfQ-kq-6nt">
@@ -27,20 +25,20 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_select" translatesAutoresizingMaskIntoConstraints="NO" id="gZw-Kw-jC6">
-                        <rect key="frame" x="295" y="0.0" width="25" height="25"/>
+                        <rect key="frame" x="280" y="32.5" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="3BR-rF-hes"/>
                             <constraint firstAttribute="width" constant="25" id="tcS-DW-DyH"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVO-LY-6ff">
-                        <rect key="frame" x="85" y="35.5" width="200" height="19.5"/>
+                        <rect key="frame" x="85" y="35.5" width="185" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-i6-3P3">
-                        <rect key="frame" x="15" y="128" width="305" height="0.5"/>
+                        <rect key="frame" x="15" y="128.5" width="305" height="0.5"/>
                         <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.59999999999999998" id="d5Y-rB-GBA"/>
@@ -54,11 +52,11 @@
                     <constraint firstItem="gZw-Kw-jC6" firstAttribute="leading" secondItem="xVO-LY-6ff" secondAttribute="trailing" constant="10" id="TvZ-Js-8ax"/>
                     <constraint firstItem="xVO-LY-6ff" firstAttribute="centerY" secondItem="vfQ-kq-6nt" secondAttribute="centerY" id="ZCC-sB-Qsi"/>
                     <constraint firstAttribute="trailing" secondItem="GeI-i6-3P3" secondAttribute="trailing" id="k8e-Kh-bbl"/>
-                    <constraint firstAttribute="trailing" secondItem="gZw-Kw-jC6" secondAttribute="trailing" id="mdR-AZ-3WJ"/>
+                    <constraint firstAttribute="trailing" secondItem="gZw-Kw-jC6" secondAttribute="trailing" constant="15" id="mdR-AZ-3WJ"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vfQ-kq-6nt" secondAttribute="bottom" constant="15" id="sXS-74-QN3"/>
                     <constraint firstItem="GeI-i6-3P3" firstAttribute="leading" secondItem="vfQ-kq-6nt" secondAttribute="leading" id="wJS-2L-tw8"/>
                     <constraint firstItem="vfQ-kq-6nt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="wuA-Bz-YGv"/>
-                    <constraint firstItem="gZw-Kw-jC6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yXc-F2-Zt7"/>
+                    <constraint firstItem="gZw-Kw-jC6" firstAttribute="centerY" secondItem="xVO-LY-6ff" secondAttribute="centerY" id="x0a-O7-1f9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -71,6 +69,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_select" width="25" height="25"/>
+        <image name="icon_select" width="30" height="30"/>
     </resources>
 </document>

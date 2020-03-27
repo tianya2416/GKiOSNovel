@@ -68,7 +68,7 @@
 }
 - (NSString *)subTitle:(GKBookReadModel *)model{
     GKBookChapterModel *chapter = [model.chapterInfo.chapters objectSafeAtIndex:model.chapter];
-    NSString *title = [NSString stringWithFormat:@"最近阅读: %@\n\r",chapter.title];
+    NSString *title = [NSString stringWithFormat:@"最近阅读: %@\n\r%@",chapter.title,chapter.bookContent.content?:@""];
     return title;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

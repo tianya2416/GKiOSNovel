@@ -34,7 +34,7 @@
     
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager homeClssItem:self.group major:self.name page:page success:^(id  _Nonnull object) {
+    [GKNovelNet homeClssItem:self.group major:self.name page:page success:^(id  _Nonnull object) {
          GKBookInfo *info = [GKBookInfo modelWithJSON:object];
         if (page == RefreshPageStart) {
             [self.listData removeAllObjects];

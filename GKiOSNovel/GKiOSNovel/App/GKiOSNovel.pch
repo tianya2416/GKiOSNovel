@@ -29,7 +29,7 @@
 #import "BaseNavigationController.h"
 #import "BaseNetManager.h"
 
-#import "GKNovelNetManager.h"
+#import "GKNovelNet.h"
 #import "GKBookModel.h"
 #import "GKUserManager.h"
 #import "GKJumpApp.h"

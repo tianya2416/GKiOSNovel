@@ -37,7 +37,7 @@
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager bookChapters:self.bookSourceId success:^(id  _Nonnull object) {
+    [GKNovelNet bookChapters:self.bookSourceId success:^(id  _Nonnull object) {
         self.chapterInfo = [GKBookChapterInfo modelWithJSON:object];
         [self.tableView reloadData];
         [self endRefresh:NO];
@@ -89,7 +89,7 @@
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager bookSummary:self.bookId success:^(id  _Nonnull object) {
+    [GKNovelNet bookSummary:self.bookId success:^(id  _Nonnull object) {
         self.listData = [NSArray modelArrayWithClass:GKBookSourceModel.class json:object];
         [self.tableView reloadData];
         [self endRefresh:NO];

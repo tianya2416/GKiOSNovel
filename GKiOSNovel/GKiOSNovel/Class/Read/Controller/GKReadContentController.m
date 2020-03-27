@@ -82,7 +82,7 @@ GKReadViewDelegate>
 }
 //获取源
 - (void)loadBookSummary{
-    [GKNovelNetManager bookSummary:self.bookModel.bookId success:^(id  _Nonnull object) {
+    [GKNovelNet bookSummary:self.bookModel.bookId success:^(id  _Nonnull object) {
         self.sourceInfo.listData = [NSArray modelArrayWithClass:GKBookSourceModel.class json:object];
         [self loadBookChapters:0];
     } failure:^(NSString * _Nonnull error) {
@@ -93,7 +93,7 @@ GKReadViewDelegate>
 //获取章节列表
 - (void)loadBookChapters:(NSInteger)sourceIndex{
     self.sourceInfo.sourceIndex = sourceIndex;
-    [GKNovelNetManager bookChapters:self.sourceInfo.bookSourceId success:^(id  _Nonnull object) {
+    [GKNovelNet bookChapters:self.sourceInfo.bookSourceId success:^(id  _Nonnull object) {
         self.chapterInfo = [GKBookChapterInfo modelWithJSON:object];
         [self loadBookContent:0];
     } failure:^(NSString * _Nonnull error) {

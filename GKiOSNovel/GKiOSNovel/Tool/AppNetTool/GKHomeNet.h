@@ -1,5 +1,5 @@
 //
-//  GKHomeNetManager.h
+//  GKHomeNet.h
 //  GKiOSNovel
 //
 //  Created by wangws1990 on 2019/6/13.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GKHomeNetManager : NSObject
+@interface GKHomeNet : NSObject
 
 - (void)homeNet:(NSArray <GKRankModel *>*)listData loadData:(GKLoadDataState)loadData success:(void(^)(NSArray <GKBookInfo *>*datas))success failure:(void(^)(NSString *error))failure;
 @end
