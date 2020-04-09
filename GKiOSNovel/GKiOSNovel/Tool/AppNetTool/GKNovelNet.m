@@ -74,7 +74,7 @@
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"toc") params:params cache:NO success:success failure:failure];
 }
 + (void)bookChapters:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-    NSDictionary *params = @{
+    NSDictionary *params = @{//"https://api.zhuishushenqi.com/toc/595ce4a9d6da39c156adc97f"
                              @"view":@"chapters",
                              };
     

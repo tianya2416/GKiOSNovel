@@ -67,18 +67,19 @@ GKReadViewDelegate>
     self.chapter = 0;
     self.pageIndex = 0;
    // [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-    [GKBookReadDataQueue getDataFromDataBase:self.bookModel.bookId completion:^(GKBookReadModel * _Nonnull readModel) {
-        if (readModel.chapter > 0 ||readModel.pageIndex > 0) {
-            self.readModel = readModel;
-            self.chapter = readModel.chapter;
-            self.pageIndex = readModel.pageIndex;
-            self.sourceInfo = readModel.sourceInfo;
-            self.chapterInfo = readModel.chapterInfo;
-            [self loadBookContent:self.chapter];
-        }else{
-            [self loadBookSummary];
-        }
-    }];
+//    [GKBookReadDataQueue getDataFromDataBase:self.bookModel.bookId completion:^(GKBookReadModel * _Nonnull readModel) {
+//        if (readModel.chapter > 0 ||readModel.pageIndex > 0) {
+//            self.readModel = readModel;
+//            self.chapter = readModel.chapter;
+//            self.pageIndex = readModel.pageIndex;
+//            self.sourceInfo = readModel.sourceInfo;
+//            self.chapterInfo = readModel.chapterInfo;
+//            [self loadBookContent:self.chapter];
+//        }else{
+//            [self loadBookSummary];
+//        }
+//    }];
+    [self loadBookSummary];
 }
 //获取源
 - (void)loadBookSummary{

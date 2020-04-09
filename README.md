@@ -17,7 +17,7 @@
 
     效果图1、
     
-![image](https://github.com/tianya2416/GKiOSNovel/blob/master/GKiOSNovel/GKiOSNovel/Class/Resource/1.png)
+![image](https://github.com/tianya2416/GKiOSNovel/GKiOSNovel/GKiOSNovel/Class/Resource/1.png)
 
     效果图2、
 
