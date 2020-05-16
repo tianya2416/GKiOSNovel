@@ -12,7 +12,7 @@
 #import "YYKit.h"
 #import "VTMagic.h"
 #import "Masonry.h"
-#import "CategoryKit.h"
+#import <ATKit_ObjectC/ATKit.h>
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+ATAdd.h"
 #import <HWPanModal/HWPanModal.h>
@@ -42,6 +42,8 @@
 #import "ATActionSheet.h"
 #import "GKTimeTool.h"
 #import "UIImageView+GKLoad.h"
+#import "NSNumber+ATKit.h"
+#import "UITextField+ATKit.h"
 #import "GKSetManager.h"
 #import "GKAppModel.h"
 #import "GKShareTool.h"

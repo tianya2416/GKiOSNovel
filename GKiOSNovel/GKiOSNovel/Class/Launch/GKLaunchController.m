@@ -8,11 +8,11 @@
 
 #import "GKLaunchController.h"
 #import "GKLaunchView.h"
-#import <Lottie/Lottie.h>
+//#import <Lottie/lottie-ios-umbrella.h>
 
 @interface GKLaunchController ()
 @property (strong, nonatomic) GKLaunchView *launchView;
-@property (strong, nonatomic) LOTAnimationView *playView;
+//@property (strong, nonatomic) Lotti *playView;
 @property (strong, nonatomic) UIButton *skipBtn;
 @property (strong, nonatomic) NSTimer *timer;
 @end
@@ -21,6 +21,7 @@
 - (void)dealloc{
     
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.launchView];
@@ -38,27 +39,27 @@
     }];
     [self.skipBtn addTarget:self action:@selector(skipAction) forControlEvents:UIControlEventTouchUpInside];
     [self startTimer];
-    
-    [self.view addSubview:self.playView];
-    [self.playView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.playView.superview);
-        make.width.height.offset(SCALEW(250));
-    }];
-    NSLog(@"=====");
-    @weakify(self)
-    [self.playView playFromProgress:0.0 toProgress:1.0 withCompletion:^(BOOL animationFinished) {
-        @strongify(self)
-        if (animationFinished) {
-            self.playView.alpha = 1.0f;
-            [UIView animateWithDuration:0.25 animations:^{
-                self.playView.alpha = 0.0f;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    [self.playView removeFromSuperview];
-                }
-            }];
-        }
-    }];
+
+//    [self.view addSubview:self.playView];
+//    [self.playView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(self.playView.superview);
+//        make.width.height.offset(SCALEW(250));
+//    }];
+//    NSLog(@"=====");
+//    @weakify(self)
+//    [self.playView playFromProgress:0.0 toProgress:1.0 withCompletion:^(BOOL animationFinished) {
+//        @strongify(self)
+//        if (animationFinished) {
+//            self.playView.alpha = 1.0f;
+//            [UIView animateWithDuration:0.25 animations:^{
+//                self.playView.alpha = 0.0f;
+//            } completion:^(BOOL finished) {
+//                if (finished) {
+//                    [self.playView removeFromSuperview];
+//                }
+//            }];
+//        }
+//    }];
 }
 - (void)skipAction{
     [self stopTimer];
@@ -67,7 +68,7 @@
 
 - (void)startTimer{
     self.skipBtn.hidden = NO;
-    __block NSInteger time = 5 - 1;
+    __block NSInteger time = 3 - 1;
     [self.skipBtn setTitle:[NSString stringWithFormat:@"%@S跳过",@(time)] forState:UIControlStateNormal];
     @weakify(self)
     self.timer = [NSTimer timerWithTimeInterval:1.0f block:^(NSTimer * _Nonnull timer) {
@@ -79,7 +80,7 @@
         [self.skipBtn setTitle:[NSString stringWithFormat:@"%@S跳过",@(time < 0 ? 0 : time)] forState:UIControlStateNormal];
     } repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-    
+
 }
 - (void)stopTimer{
     if ([self.timer isValid]) {
@@ -113,14 +114,14 @@
     }
     return _skipBtn;
 }
-- (LOTAnimationView *)playView{
-    if (!_playView) {
-        _playView = [LOTAnimationView animationNamed:@"Launch.json"];
-        _playView.loopAnimation = NO;
-        _playView.animationSpeed = 1.0f;
-    }
-    return _playView;
-}
+//- (LOTAnimationView *)playView{
+//    if (!_playView) {
+//        _playView = [LOTAnimationView animationNamed:@"Launch.json"];
+//        _playView.loopAnimation = NO;
+//        _playView.animationSpeed = 1.0f;
+//    }
+//    return _playView;
+//}
 - (BOOL)prefersStatusBarHidden{
     return NO;
 }

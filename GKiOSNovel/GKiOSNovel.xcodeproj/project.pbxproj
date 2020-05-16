@@ -153,6 +153,8 @@
 		0FF2B559231523CE00BEF991 /* GKReadContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF2B558231523CE00BEF991 /* GKReadContentController.m */; };
 		8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */; };
 		8F3B073C2306F861004521F3 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3B073B2306F861004521F3 /* DZMCoverController.m */; };
+		8F600230246D7F9900A82FAF /* NSNumber+ATKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F60022E246D7F9800A82FAF /* NSNumber+ATKit.m */; };
+		8F600231246D7F9900A82FAF /* UITextField+ATKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F60022F246D7F9900A82FAF /* UITextField+ATKit.m */; };
 		DEC0F6D1F57FDCCA48B88D01 /* libPods-GKiOSNovel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */; };
 /* End PBXBuildFile section */
 
@@ -417,6 +419,10 @@
 		8F1A7CBC22B64DF700BB325E /* GKBookCaseDataQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKBookCaseDataQueue.m; sourceTree = "<group>"; };
 		8F3B073A2306F861004521F3 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
 		8F3B073B2306F861004521F3 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
+		8F60022C246D7F9800A82FAF /* UITextField+ATKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ATKit.h"; sourceTree = "<group>"; };
+		8F60022D246D7F9800A82FAF /* NSNumber+ATKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+ATKit.h"; sourceTree = "<group>"; };
+		8F60022E246D7F9800A82FAF /* NSNumber+ATKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+ATKit.m"; sourceTree = "<group>"; };
+		8F60022F246D7F9900A82FAF /* UITextField+ATKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ATKit.m"; sourceTree = "<group>"; };
 		9E7873986CCCF318E962227D /* libPods-GKiOSNovel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GKiOSNovel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -718,6 +724,10 @@
 		0F6C5FD022B37CA100A4C2BE /* AppCategory */ = {
 			isa = PBXGroup;
 			children = (
+				8F60022D246D7F9800A82FAF /* NSNumber+ATKit.h */,
+				8F60022E246D7F9800A82FAF /* NSNumber+ATKit.m */,
+				8F60022C246D7F9800A82FAF /* UITextField+ATKit.h */,
+				8F60022F246D7F9900A82FAF /* UITextField+ATKit.m */,
 				8F3B073A2306F861004521F3 /* DZMCoverController.h */,
 				8F3B073B2306F861004521F3 /* DZMCoverController.m */,
 				0F6C5FD122B37CA100A4C2BE /* UIImageView+GKLoad.h */,
@@ -1030,7 +1040,7 @@
 				0F22DAA422AF8A80000FC9AE /* Sources */,
 				0F22DAA522AF8A80000FC9AE /* Frameworks */,
 				0F22DAA622AF8A80000FC9AE /* Resources */,
-				B1E209384D6F2612AEC7D44F /* [CP] Copy Pods Resources */,
+				90ACC07010173647708DAECE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1120,7 +1130,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B1E209384D6F2612AEC7D44F /* [CP] Copy Pods Resources */ = {
+		90ACC07010173647708DAECE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1195,6 +1205,7 @@
 				0F2669272314E16E00A8DE26 /* GKDownDataQueue.m in Sources */,
 				0FAB61BA22C457B5000F8ABB /* GKMineRankController.m in Sources */,
 				0F6C5FE722B37CD600A4C2BE /* GKNovelTabBarController.m in Sources */,
+				8F600231246D7F9900A82FAF /* UITextField+ATKit.m in Sources */,
 				0FAB616C22C45720000F8ABB /* GKBookDetailModel.m in Sources */,
 				0F5F63EE22AFA2D8009096BD /* BaseView.m in Sources */,
 				0FAB61B922C457B5000F8ABB /* GKBooCaseController.m in Sources */,
@@ -1211,6 +1222,7 @@
 				0FAB61C022C457B5000F8ABB /* GKThemeCell.m in Sources */,
 				8F3B073C2306F861004521F3 /* DZMCoverController.m in Sources */,
 				0FAB617122C45720000F8ABB /* GKBookDetailCell.m in Sources */,
+				8F600230246D7F9900A82FAF /* NSNumber+ATKit.m in Sources */,
 				0F175B682313DD5E00442BC5 /* GKSet.m in Sources */,
 				0FEB43BB22B0E891005FF5DF /* GKStartViewController.m in Sources */,
 				0FAB61BD22C457B5000F8ABB /* GKBookHistoryController.m in Sources */,
