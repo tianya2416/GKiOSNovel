@@ -6,9 +6,10 @@
 //  Copyright © 2019 王炜圣. All rights reserved.
 //
 
-#import "GKNovelNetManager.h"
+#import "GKNovelNet.h"
 #import "BaseNetManager.h"
-@implementation GKNovelNetManager
+#import "NSString+Tool.h"
+@implementation GKNovelNet
 + (void)rankSuccess:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
      [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"ranking/gender") params:nil success:success failure:failure];
 }
@@ -73,7 +74,7 @@
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(@"toc") params:params cache:NO success:success failure:failure];
 }
 + (void)bookChapters:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-    NSDictionary *params = @{
+    NSDictionary *params = @{//"https://api.zhuishushenqi.com/toc/595ce4a9d6da39c156adc97f"
                              @"view":@"chapters",
                              };
     
@@ -81,8 +82,8 @@
     [BaseNetManager method:HttpMethodGet urlString:kBaseUrl(url) params:params cache:NO success:success failure:failure];
 }
 + (void)bookContent:(NSString *)url success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{
-   url = [url stringByURLEncode];
-   NSString * urlStr = [NSString stringWithFormat:@"https://chapter2.zhuishushenqi.com/chapter/%@",url];
+   url = [url stringURLEncode];
+   NSString * urlStr = [NSString stringWithFormat:@"http://chapterup.zhuishushenqi.com/chapter/%@",url];
    [BaseNetManager method:HttpMethodGet urlString:urlStr params:nil cache:NO success:success failure:failure];
 }
 + (void)updateContent:(NSString *)bookId success:(void(^)(id object))success failure:(void(^)(NSString *error))failure{

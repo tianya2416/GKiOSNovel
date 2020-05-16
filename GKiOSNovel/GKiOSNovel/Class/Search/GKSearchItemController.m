@@ -28,7 +28,7 @@
     [self setupRefresh:self.tableView option:ATRefreshDefault];
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager homeSearch:self.hotWord page:page success:^(id  _Nonnull object) {
+    [GKNovelNet homeSearch:self.hotWord page:page success:^(id  _Nonnull object) {
         self.bookInfo = [GKBookInfo modelWithJSON:object];
         [self showNavTitle:[NSString stringWithFormat:@"%@(%@)",self.hotWord,@(self.bookInfo.total)]];
         if (page == RefreshPageStart) {

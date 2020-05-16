@@ -50,7 +50,7 @@
     [self setupRefresh:self.collectionView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager rankSuccess:^(id  _Nonnull object) {
+    [GKNovelNet rankSuccess:^(id  _Nonnull object) {
         self.rankInfo = [GKRankInfo modelWithJSON:object];
         self.userState = [GKUserManager shareInstance].user.state ?: GKUserBoy;
         [self endRefresh:NO];

@@ -25,26 +25,37 @@
     GKAppModel *model = [GKAppTheme shareInstance].model;
     self.listData = @[].mutableCopy;
     self.tabBar.translucent = NO;
-    UIViewController *vc = nil;
-    vc = [[GKHomeController alloc] init];
-    [self vcWithController:vc title:@"首页" normal:model.icon_home_n select:model.icon_home_h];
-    vc = [[GKClassContentController alloc] init];
-    [self vcWithController:vc title:@"分类" normal:model.icon_class_n select:model.icon_class_h];
-    vc = [[GKBooCaseController alloc] init];
-    [self vcWithController:vc title:@"书架" normal:model.icon_case_n select:model.icon_case_h];
-    vc = [[GKMineController alloc] init];
-    [self vcWithController:vc title:@"我的" normal:model.icon_mine_n select:model.icon_mine_h];
+    GKHomeController *home = [[GKHomeController alloc] init];
+    [self vcWithController:home title:@"首页" normal:model.icon_home_n select:model.icon_home_h];
+    GKClassContentController *class = [[GKClassContentController alloc] init];
+    [self vcWithController:class title:@"分类" normal:model.icon_class_n select:model.icon_class_h];
+    GKBooCaseController *book   = [[GKBooCaseController alloc] init];
+    [self vcWithController:book title:@"书架" normal:model.icon_case_n select:model.icon_case_h];
+    GKMineController *mine = [[GKMineController alloc] init];
+    [self vcWithController:mine title:@"我的" normal:model.icon_mine_n select:model.icon_mine_h];
     self.viewControllers = self.listData;
 }
-- (void)vcWithController:(UIViewController *)vc title:(NSString *)title normal:(NSString *)normal select:(NSString *)select{
+- (void)vcWithController:(UIViewController *)vc
+                   title:(NSString *)title
+                  normal:(NSString *)normal
+                  select:(NSString *)select{
     BaseNavigationController *nv = [[BaseNavigationController alloc] initWithRootViewController:vc];
     [vc showNavTitle:title backItem:NO];
     nv.tabBarItem.title = title;
     nv.tabBarItem.image = [[UIImage imageNamed:normal] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     nv.tabBarItem.selectedImage = [[UIImage imageNamed:select] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGB:0x888888]} forState:UIControlStateNormal];
+    [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:Appx999999} forState:UIControlStateNormal];
     [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:AppColor} forState:UIControlStateSelected];
-    [self.listData addObject:nv];
+    self.tabBar.tintColor = AppColor;
+    if (@available(iOS 10.0, *)) {
+        self.tabBar.unselectedItemTintColor = Appx999999;
+    } else {
+        // Fallback on earlier versions
+    }
+    if (nv) {
+        [self.listData addObject:nv];
+    }
+    
 }
 ////是否自动旋转,返回YES可以自动旋转
 - (BOOL)shouldAutorotate {

@@ -42,7 +42,7 @@ static GKShareTool *_instance;
     return [WeiboSDK isWeiboAppInstalled];
 }
 + (void)shareInit {
-    [WXApi registerApp:WChatAppKey];
+    [WXApi registerApp:WChatAppKey universalLink:@""];
     TencentOAuth * a = [[TencentOAuth alloc] initWithAppId:QQAppKey
                                                andDelegate:[GKShareTool sharedInstance]];
     NSLog(@"%@",a.accessToken);
@@ -132,7 +132,10 @@ static GKShareTool *_instance;
             //指定发送到会话(聊天界面)
             req.scene = type == GKShareTypeWechat ? WXSceneSession : WXSceneTimeline;;
             //发送请求到微信,等待微信返回onResp
-            [WXApi sendReq:req];
+//            [WXApi sendReq:req];
+            [WXApi sendReq:req completion:^(BOOL success) {
+                
+            }];
         }break;
         case GKShareTypeQQ:
         case GKShareTypeQQZone: {
@@ -187,7 +190,9 @@ static GKShareTool *_instance;
             req.bText = NO;
             req.message = message;
             req.scene = type == GKShareTypeWechat ? WXSceneSession : WXSceneTimeline;
-            [WXApi sendReq:req];
+            [WXApi sendReq:req completion:^(BOOL success) {
+                
+            }];
             
             break;
         }

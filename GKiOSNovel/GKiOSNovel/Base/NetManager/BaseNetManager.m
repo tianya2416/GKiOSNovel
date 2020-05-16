@@ -8,7 +8,7 @@
 
 #import "BaseNetManager.h"
 #import "BaseNetCache.h"
-static BOOL AFRequest = YES;
+static BOOL AFRequest = NO;
 @implementation BaseNetManager
 - (void)dealloc
 {
@@ -29,34 +29,22 @@ static BOOL AFRequest = YES;
                          failure:(void(^)(NSString *error))failure{
     NSString *key = [NSString stringWithFormat:@"%@%@%@",urlString,params ?@"?":@"",AFQueryStringFromParameters(params)];
     __block NSURLSessionDataTask * task = nil;
-    void(^netManager)(void) = ^{
-        task = [BaseNetManager method:method serializer:HttpSerializeDefault urlString:urlString params:params success:^(id object) {
-            BaseNetModel *model = [BaseNetModel successModel:object urlString:urlString params:params headParams:nil];
-            if ([model isDataSuccess]) {
-                if (cache) {
-                    [BaseNetCache setObject:model.resultset forKey:key completion:^{
-                        
-                    }];
-                }
-                !success ?: success(model.resultset);
-            }else{
-                !failure ?: failure(model.msg);
+    task = [BaseNetManager method:method serializer:HttpSerializeDefault urlString:urlString params:params success:^(id object) {
+        BaseNetModel *model = [BaseNetModel successModel:object urlString:urlString params:params headParams:nil];
+        if ([model isDataSuccess]) {
+            if (cache) {
+                [BaseNetCache setObject:model.resultset forKey:key completion:^{
+                    
+                }];
             }
-        } failure:^(NSString *error) {
-            !failure ?: failure(error);
-        }];
-    };
-    if (cache) {
-        [BaseNetCache objectForKey:key completion:^(NSString * _Nonnull key, id<NSCoding>  _Nullable object) {
-            if (object) {
-                !success ?: success(object);
-            }else{
-                netManager();
-            }
-        }];
-    }else{
-        netManager();
-    }
+            NSLog(@"%@",model.resultset);
+            !success ?: success(model.resultset);
+        }else{
+            !failure ?: failure(model.msg);
+        }
+    } failure:^(NSString *error) {
+        !failure ?: failure(error);
+    }];
     return task;
 }
 + (NSURLSessionDataTask *)method:(HttpMethod)method

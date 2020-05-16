@@ -22,7 +22,7 @@
     __block NSArray *booklists = nil;
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
-    [GKNovelNetManager bookDetail:bookId success:^(id  _Nonnull object) {
+    [GKNovelNet bookDetail:bookId success:^(id  _Nonnull object) {
         GKBookDetailModel *model = [GKBookDetailModel modelWithJSON:object];
         if (model) {
             list = @[model];
@@ -32,7 +32,7 @@
         dispatch_group_leave(group);
     }];
     dispatch_group_enter(group);
-    [GKNovelNetManager bookCommend:bookId success:^(id  _Nonnull object) {
+    [GKNovelNet bookCommend:bookId success:^(id  _Nonnull object) {
         books = [NSArray modelArrayWithClass:GKBookModel.class json:object[@"books"]];
         if (books.count > 6) {
             NSInteger index = arc4random() % (books.count - 6);
@@ -43,7 +43,7 @@
         dispatch_group_leave(group);
     }];
     dispatch_group_enter(group);
-    [GKNovelNetManager bookListCommend:bookId success:^(id  _Nonnull object) {
+    [GKNovelNet bookListCommend:bookId success:^(id  _Nonnull object) {
         booklists = [NSArray modelArrayWithClass:GKBookListModel.class json:object[@"booklists"]];
         dispatch_group_leave(group);
     } failure:^(NSString * _Nonnull error) {

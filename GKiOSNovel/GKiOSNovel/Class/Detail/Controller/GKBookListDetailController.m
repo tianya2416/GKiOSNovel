@@ -31,7 +31,7 @@
     [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_share"] action:@selector(shareAction)];
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNetManager bookListDetail:self.bookId success:^(id  _Nonnull object) {
+    [GKNovelNet bookListDetail:self.bookId success:^(id  _Nonnull object) {
         self.model = [GKBookListDetailModel modelWithJSON:object[@"bookList"]];
         self.detailView.model = self.model;
         CGFloat height = [self.detailView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;

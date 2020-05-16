@@ -44,17 +44,6 @@
         [self.delegate viewDidAppear:self animated:animated];
     }
 }
-//- (void)setCurrentPage:(NSInteger)currentPage totalPage:(NSInteger)totalPage chapter:(NSInteger)chapter title:(NSString *)title bookName:(NSString *)bookName content:(NSAttributedString *)content{
-//    self.pageIndex = currentPage;
-//    self.chapterIndex = chapter;
-//    self.readView.content = content;
-//    self.titleLab.text = title ;
-//    self.bookNameLab.text = bookName ?:@"";
-//    currentPage = currentPage + 1 >totalPage ? totalPage : currentPage + 1;
-//    self.selectLab.text = [NSString stringWithFormat:@"%@/%@",@(currentPage),@(totalPage)];
-//    self.selectLab.textColor = [UIColor colorWithHexString:[GKSetManager shareInstance].model.color];
-//    self.titleLab.textColor = [UIColor colorWithHexString:[GKSetManager shareInstance].model.color];
-//}
 - (void)setModel:(GKBookContentModel *)model
          chapter:(NSInteger)chapter
        pageIndex:(NSInteger)pageIndex{
@@ -92,7 +81,11 @@
     if (@available(iOS 11.0, *)) {
         insets = self.view.safeAreaInsets;
     }
-    [self.readView setFrame:[BaseMacro appFrame]];
+    if(self.model){
+         [self.readView setFrame:[BaseMacro appFrame]];
+    }else{
+        [self.readView setFrame:CGRectMake(0, SCREEN_WIDTH/2-30, SCREEN_HEIGHT, 40)];
+    }
     [self.titleLab mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLab.superview).offset(insets.left+AppTop);
         make.top.equalTo(self.titleLab.superview).offset(10+insets.top);
@@ -108,7 +101,11 @@
     }];
 }
 - (void)portraitFrame{
-    [self.readView setFrame:[BaseMacro appFrame]];
+    if(self.model){
+        [self.readView setFrame:[BaseMacro appFrame]];
+    }else{
+        [self.readView setFrame:CGRectMake(0, SCREEN_HEIGHT/2-30, SCREEN_WIDTH, 40)];
+    }
     [self.titleLab mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLab.superview).offset(AppTop);
         make.top.equalTo(self.titleLab.superview).offset(STATUS_BAR_HIGHT);
@@ -130,6 +127,7 @@
     if (!_readView) {
         _readView = [[GKReadView alloc] initWithFrame:AppReadContent];
         _readView.backgroundColor = [UIColor clearColor];
+        [_readView setContent:[self attContent]];
     }
     return _readView;
 }
@@ -186,5 +184,20 @@
 }
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
     
+}
+
+- (NSAttributedString *)attContent{
+    NSAttributedString *att = [[NSAttributedString alloc]initWithString:@"数据加载中..." attributes:[self defaultFont]];
+    return att;
+}
+- (NSDictionary *)defaultFont{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    paragraphStyle.allowsDefaultTighteningForTruncation = YES;
+    NSDictionary *dic =  @{NSForegroundColorAttributeName:Appx666666,
+                           NSFontAttributeName:[UIFont systemFontOfSize:18],
+                           NSParagraphStyleAttributeName:paragraphStyle
+                           };
+    return dic;
 }
 @end

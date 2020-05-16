@@ -10,21 +10,21 @@
 
 
 @interface BaseNetCache : NSObject
-@property (strong, nonatomic,readonly) YYDiskCache *diskCache;
+@property (strong, nonatomic,readonly) YYDiskCache * _Nonnull diskCache;
 
-@property (strong, nonatomic,readonly) YYMemoryCache *memoryCache;
+@property (strong, nonatomic,readonly) YYMemoryCache * _Nonnull memoryCache;
 
-+ (void)setObject:(nullable id<NSCoding>)object forKey:(NSString *)key completion:(void(^)(void))completion;
-+ (id)objectForKey:(NSString *)key ;
-+ (void)objectForKey:(NSString *)key completion:(void(^)(NSString *key, id<NSCoding> _Nullable object))completion;
-+ (void)removeObjectForKey:(NSString *)key completion:(void(^)(NSString *key))completion;
++ (void)setObject:(nullable id<NSCoding>)object forKey:(NSString *_Nonnull)key completion:(void(^_Nonnull)(void))completion;
++ (id _Nonnull )objectForKey:(NSString *_Nonnull)key ;
++ (void)objectForKey:(NSString *_Nonnull)key completion:(void(^)(NSString * _Nonnull key, id<NSCoding> _Nullable object))completion;
++ (void)removeObjectForKey:(NSString *_Nonnull)key completion:(void(^_Nonnull)(NSString * _Nonnull key))completion;
 + (void)removeDiskCache;
 + (CGFloat)diskCacheSize;
 
 
 
-+ (void)setMemoryObject:(id)object forkey:(NSString *)key;
-+ (id)memoryObjectForKey:(NSString *)key;
++ (void)setMemoryObject:(id _Nonnull )object forkey:(NSString *_Nonnull)key;
++ (id _Nonnull )memoryObjectForKey:(NSString *_Nonnull)key;
 + (void)removeMemory;
 
 @end

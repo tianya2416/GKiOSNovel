@@ -1,20 +1,20 @@
 //
-//  GKHomeNetManager.m
+//  GKHomeNet.m
 //  GKiOSNovel
 //
 //  Created by wangws1990 on 2019/6/13.
 //  Copyright © 2019 wangws1990. All rights reserved.
 //
 
-#import "GKHomeNetManager.h"
-@interface GKHomeNetManager()
+#import "GKHomeNet.h"
+@interface GKHomeNet()
 @property (strong, nonatomic)NSMutableArray <GKBookInfo *>*arrayDatas;
 @property (strong, nonatomic)NSMutableArray <GKBookInfo *>*listData;
 @property (strong, nonatomic)GKBookInfo *bookCase;
 @property (strong, nonatomic)GKBookInfo *readBook;
 @end
 
-@implementation GKHomeNetManager
+@implementation GKHomeNet
 - (void)homeNet:(NSArray <GKRankModel *>*)listData loadData:(GKLoadDataState)loadData success:(void(^)(NSArray <GKBookInfo *>*datas))success failure:(void(^)(NSString *error))failure{
     dispatch_group_t group = dispatch_group_create();
     if (loadData & GKLoadDataNetData) {
@@ -22,7 +22,7 @@
         [listData enumerateObjectsUsingBlock:^(GKRankModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.rankSort = idx;
             dispatch_group_enter(group);
-            [GKNovelNetManager homeHot:obj._id success:^(id  _Nonnull object) {
+            [GKNovelNet homeHot:obj._id success:^(id  _Nonnull object) {
                 GKBookInfo *info= [GKBookInfo modelWithJSON:object];
                 if (info) {
                     info.bookSort = obj.rankSort;
@@ -62,7 +62,7 @@
                 [self.listData addObject:self.bookCase];
             }
             if (self.arrayDatas.count) {
-                NSArray *datas = [GKHomeNetManager sortedArrayUsingComparator:self.arrayDatas.copy key:@"bookSort" ascending:YES];
+                NSArray *datas = [GKHomeNet sortedArrayUsingComparator:self.arrayDatas.copy key:@"bookSort" ascending:YES];
                 [self.listData addObjectsFromArray:datas];
             }
         }

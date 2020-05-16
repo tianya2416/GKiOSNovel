@@ -10,13 +10,13 @@
 #import "GKHomeMoreController.h"
 #import "GKHomeReusableView.h"
 #import "GKHomeHotCell.h"
-#import "GKHomeNetManager.h"
+#import "GKHomeNet.h"
 #import "KLRecycleScrollView.h"
 #import "GKNewNavBarView.h"
 #import "GKStartViewController.h"
 #import "GKSearchHistoryController.h"
 @interface GKHomeController()<KLRecycleScrollViewDelegate>
-@property (strong, nonatomic) GKHomeNetManager *homeManager;
+@property (strong, nonatomic) GKHomeNet *homeManager;
 @property (strong, nonatomic) NSArray <GKBookInfo *>*listData;
 @property (assign, nonatomic) GKLoadDataState option;
 
@@ -104,7 +104,7 @@
 {
     GKBookInfo *info = self.listData[indexPath.section];
     GKBookModel *model = info.listData[indexPath.row];
-    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop)/3 configuration:^(__kindof GKHomeHotCell *cell) {
+    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 configuration:^(__kindof GKHomeHotCell *cell) {
         if ([model isKindOfClass:GKBookModel.class]) {
             cell.model = model;
         }else if ([model isKindOfClass:GKBookReadModel.class]){
@@ -140,7 +140,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     GKBookInfo *info = self.listData[section];
-    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? (section == 0 ?50 :30 ) : 0.001f);
+    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? (section == 0 ?45 :30 ) : 0.001f);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
@@ -197,9 +197,9 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark get
-- (GKHomeNetManager *)homeManager{
+- (GKHomeNet *)homeManager{
     if (!_homeManager) {
-        _homeManager = [[GKHomeNetManager alloc] init];
+        _homeManager = [[GKHomeNet alloc] init];
     }
     return _homeManager;
 }
@@ -221,5 +221,8 @@
         [_navBarView.moreBtn addTarget:self action:@selector(addStartAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _navBarView;
+}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 @end

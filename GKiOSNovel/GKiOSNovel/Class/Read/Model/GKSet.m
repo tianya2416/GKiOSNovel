@@ -19,16 +19,16 @@
     return _font ?: 20;
 }
 - (CGFloat)lineSpacing{
-    return 10;
+    return _lineSpacing ?: 6;
 }
 - (CGFloat)firstLineHeadIndent{
-    return 25;
+    return _firstLineHeadIndent ?: 25;
 }
 - (CGFloat)paragraphSpacingBefore{
-    return 10;
+    return _paragraphSpacingBefore ?: 6;
 }
 - (CGFloat)paragraphSpacing{
-    return 10;
+    return _paragraphSpacing ?: 6;
 }
 - (GKSkinState)state{
     return _state ?: GKReadDefault;

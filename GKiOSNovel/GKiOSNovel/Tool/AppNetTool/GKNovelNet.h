@@ -10,7 +10,7 @@
 //
 //NS_ASSUME_NONNULL_BEGIN
 
-@interface GKNovelNetManager : NSObject
+@interface GKNovelNet : NSObject
 
 + (void)rankSuccess:(void(^)(id object))success failure:(void(^)(NSString *error))failure;
 

@@ -71,9 +71,9 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
     }
     [menuItem setTitle:self.listTitles[itemIndex] forState:UIControlStateNormal];
-    [menuItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [menuItem setTitleColor:[UIColor colorWithRGB:0xf4f4f4] forState:UIControlStateSelected];
-    menuItem.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightHeavy];
+    [menuItem setTitleColor:Appx666666 forState:UIControlStateNormal];
+    [menuItem setTitleColor:AppColor forState:UIControlStateSelected];
+    menuItem.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightHeavy];
     return menuItem;
 }
 /**
@@ -106,12 +106,12 @@
         _magicController = [[VTMagicController alloc] init];
         _magicController.magicView.separatorHeight = 0.50f;
         _magicController.magicView.separatorColor = [UIColor clearColor];
-        _magicController.magicView.backgroundColor = AppColor;
+        _magicController.magicView.backgroundColor = [UIColor whiteColor];
         _magicController.magicView.navigationInset = UIEdgeInsetsMake(0,5, 0,5);
-        _magicController.magicView.navigationColor = AppColor;
+        _magicController.magicView.navigationColor = [UIColor whiteColor];
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         
-        _magicController.magicView.sliderColor = [UIColor whiteColor];
+        _magicController.magicView.sliderColor = AppColor;
         _magicController.magicView.sliderExtension = 1;
         _magicController.magicView.bubbleRadius = 2.5;
         _magicController.magicView.sliderWidth = 5;
@@ -124,12 +124,14 @@
         _magicController.magicView.againstStatusBar = YES;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
-        _magicController.magicView.itemScale = 1.5f;
+        _magicController.magicView.itemScale = 1.15f;
         _magicController.magicView.needPreloading = true;
         _magicController.magicView.bounces = false;
         
     }
     return _magicController;
 }
-
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
 @end

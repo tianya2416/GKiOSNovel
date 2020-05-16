@@ -42,7 +42,7 @@
     dispatch_semaphore_t sem2 = dispatch_semaphore_create(0);
     dispatch_async(queue, ^{
         @strongify(self)
-        [GKNovelNetManager bookSummary:bookId success:^(id  _Nonnull object) {
+        [GKNovelNet bookSummary:bookId success:^(id  _Nonnull object) {
             @strongify(self)
             self.bookSource.listData = [NSArray modelArrayWithClass:GKBookSourceModel.class json:object];
             dispatch_semaphore_signal(sem);
@@ -53,7 +53,7 @@
     dispatch_async(queue, ^{
         @strongify(self)
         dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-        [GKNovelNetManager bookChapters:self.bookSource.bookSourceId success:^(id object) {
+        [GKNovelNet bookChapters:self.bookSource.bookSourceId success:^(id object) {
             @strongify(self)
             self.bookChapter = [GKBookChapterInfo modelWithJSON:object];
             dispatch_semaphore_signal(sem2);
@@ -102,7 +102,7 @@
     [chaptersDatas enumerateObjectsUsingBlock:^(GKBookChapterModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         @strongify(self)
         dispatch_group_enter(group);
-        [GKNovelNetManager bookContent:obj.link success:^(id object) {
+        [GKNovelNet bookContent:obj.link success:^(id object) {
             @strongify(self)
             GKBookContentModel *content = [GKBookContentModel modelWithJSON:object[@"chapter"]];
             [datas addObject:content];
@@ -136,7 +136,7 @@
                 [BaseNetCache setObject:bookModel forKey:url completion:nil];
                 !success ?: success(bookModel);
             }else{
-                [GKNovelNetManager bookContent:url success:^(id object) {
+                [GKNovelNet bookContent:url success:^(id object) {
                     GKBookContentModel *bookModel = [GKBookContentModel modelWithJSON:object[@"chapter"]];
                     !success ?: success(bookModel);
                     [GKBookCacheDataQueue insertDataToDataBase:bookId model:bookModel completion:^(BOOL success) {
@@ -146,7 +146,7 @@
             }
         }];
     }else{
-        [GKNovelNetManager bookContent:url success:^(id object) {
+        [GKNovelNet bookContent:url success:^(id object) {
             GKBookContentModel *bookModel = [GKBookContentModel modelWithJSON:object[@"chapter"]];
             [BaseNetCache setObject:bookModel forKey:url completion:nil];
             !success ?: success(bookModel);
