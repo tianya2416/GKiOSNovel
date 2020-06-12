@@ -194,7 +194,7 @@
 - (void)searchAction{
     GKSearchHistoryController *vc = [[GKSearchHistoryController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:false];
 }
 #pragma mark get
 - (GKHomeNet *)homeManager{

@@ -88,9 +88,10 @@
     NSArray *listData = indexPath.section == 0 ? self.listData : self.searchDatas.copy;
     res.titleLab.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
     res.hidden = listData.count == 0;
+    [res.moreBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     if (indexPath.section == 0) {
         res.titleLab.text = @"热门词语";
-        res.titleLab.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
+        res.titleLab.font = [UIFont systemFontOfSize:16 weight:UIFontWeightMedium];
         [res.moreBtn setTitle:@"换一换" forState:UIControlStateNormal];
     }else{
         res.titleLab.text = @"历史记录";
@@ -161,6 +162,9 @@
         [_searchView.cancleBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     }
     return _searchView;
+}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 //- (void)goBack{
 //    [self goBack:NO];

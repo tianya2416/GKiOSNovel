@@ -35,7 +35,7 @@
 }
 - (void)refreshData:(NSInteger)page{
     [GKNovelNet homeClssItem:self.group major:self.name page:page success:^(id  _Nonnull object) {
-         GKBookInfo *info = [GKBookInfo modelWithJSON:object];
+        GKBookInfo *info = [GKBookInfo modelWithJSON:object];
         if (page == RefreshPageStart) {
             [self.listData removeAllObjects];
             [self showNavTitle:[NSString stringWithFormat:@"%@(%@)",self.name,@(info.total)]];

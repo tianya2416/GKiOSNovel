@@ -65,8 +65,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - ATKit_ObjectC
-  - ATRefresh_ObjectC
+  - ATKit_ObjectC (from `https://github.com/tianya2416/ATKit_ObjectC.git`)
+  - ATRefresh_ObjectC (from `https://github.com/tianya2416/ATRefresh_ObjectC.git`)
   - EAIntroView
   - FDFullscreenPopGesture (= 1.1)
   - FMDB
@@ -88,8 +88,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
-    - ATKit_ObjectC
-    - ATRefresh_ObjectC
     - DZNEmptyDataSet
     - EAIntroView
     - EARestrictedScrollView
@@ -107,6 +105,10 @@ SPEC REPOS:
     - YYKit
 
 EXTERNAL SOURCES:
+  ATKit_ObjectC:
+    :git: https://github.com/tianya2416/ATKit_ObjectC.git
+  ATRefresh_ObjectC:
+    :git: https://github.com/tianya2416/ATRefresh_ObjectC.git
   MBProgressHUD:
     :git: https://github.com/tianya2416/MBProgress.git
   MMPopupView:
@@ -117,6 +119,12 @@ EXTERNAL SOURCES:
     :git: https://github.com/tianya2416/VTMagicMacro.git
 
 CHECKOUT OPTIONS:
+  ATKit_ObjectC:
+    :commit: 708a893977aa4dbd30a5338f54a2091d4d5ffbfd
+    :git: https://github.com/tianya2416/ATKit_ObjectC.git
+  ATRefresh_ObjectC:
+    :commit: f7b2bc99c17ca63fdde03b9dd6114737052f5820
+    :git: https://github.com/tianya2416/ATRefresh_ObjectC.git
   MBProgressHUD:
     :commit: 9454198b351732bd4eb8cbd7658b6dd73e1e43c8
     :git: https://github.com/tianya2416/MBProgress.git
@@ -154,6 +162,6 @@ SPEC CHECKSUMS:
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 4c0e3c5edc98e57157e9612e54d15c756d5e36bb
+PODFILE CHECKSUM: 936c3e26dfd8509b58af38b7c84f27790eae7308
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.8.4

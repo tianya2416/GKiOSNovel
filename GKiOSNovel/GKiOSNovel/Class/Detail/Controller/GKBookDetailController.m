@@ -165,7 +165,7 @@
 {
     NSArray *list = self.bookDetail.listData[section];
     CGFloat top = [list.firstObject isKindOfClass:GKBookModel.class] && section != 0 ? AppTop : 0.0f;
-    return UIEdgeInsetsMake(top,top,top,top);
+    return UIEdgeInsetsMake(0,top,top,top);
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -183,7 +183,6 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
     res.moreBtn.hidden = YES;
-    res.titleLab.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
     res.titleLab.textColor = AppColor;
     res.titleLab.text = indexPath.section == 1 ?@"推荐书籍":@"推荐书单";
     return res;

@@ -7,7 +7,6 @@
 //
 
 #import "GKClassContentController.h"
-#import "GKSearchHistoryController.h"
 #import "GKStartViewController.h"
 #import "GKClassItemController.h"
 
