@@ -125,7 +125,7 @@
 }
 - (GKReadView *)readView{
     if (!_readView) {
-        _readView = [[GKReadView alloc] initWithFrame:AppReadContent];
+        _readView = [[GKReadView alloc] initWithFrame:[BaseMacro appFrame]];
         _readView.backgroundColor = [UIColor clearColor];
         [_readView setContent:[self attContent]];
     }

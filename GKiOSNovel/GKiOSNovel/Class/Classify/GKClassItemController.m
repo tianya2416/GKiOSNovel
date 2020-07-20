@@ -15,16 +15,21 @@
 @end
 
 @implementation GKClassItemController
-
+- (void)vtm_prepareForReuse{
+    if ([AFNetworkReachabilityManager manager].networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
+        self.listData = @[];
+        [self.collectionView reloadData];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
-    // Do any additional setup after loading the view.
 }
 - (void)setTitleName:(NSString *)titleName{
     if (![_titleName isEqualToString:titleName]) {
         _titleName = titleName;
+        [self refreshData:1];
     }
 }
 - (void)refreshData:(NSInteger)page{

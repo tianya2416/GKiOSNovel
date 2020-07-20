@@ -14,7 +14,7 @@
     [super awakeFromNib];
     [self addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleLab.superview).offset(15);
+        make.left.equalTo(self.titleLab.superview).offset(12);
         make.centerY.equalTo(self.titleLab.superview);
     }];
     [self addSubview:self.moreBtn];
