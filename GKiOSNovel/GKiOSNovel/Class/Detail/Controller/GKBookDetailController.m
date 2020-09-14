@@ -43,6 +43,7 @@
 }
 - (void)loadUI{
     //[self showNavTitle:@"书籍详情"];
+    self.collectionView.backgroundColor = Appxffffff;
     [self.view addSubview:self.tipLab];
     [self.tipLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.tipLab.superview);
@@ -155,17 +156,21 @@
 #pragma mark UICollectionViewDataSource
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     NSArray *list = self.bookDetail.listData[section];
-    return section == [list.firstObject isKindOfClass:GKBookModel.class] && section != 0? AppTop : 0.0f;
+    id object = list.firstObject;
+    return  [object isKindOfClass:GKBookModel.class] ? 0 : AppTop;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     NSArray *list = self.bookDetail.listData[section];
-    return section == [list.firstObject isKindOfClass:GKBookModel.class] && section != 0? AppTop : 0.0f;
+    id object = list.firstObject;
+    return  [object isKindOfClass:GKBookModel.class] ? 0 : AppTop;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     NSArray *list = self.bookDetail.listData[section];
-    CGFloat top = [list.firstObject isKindOfClass:GKBookModel.class] && section != 0 ? AppTop : 0.0f;
-    return UIEdgeInsetsMake(0,top,top,top);
+    CGFloat top = section == 0 ? 0 : AppTop;
+    id object = list.firstObject;
+    top = [object isKindOfClass:GKBookModel.class] ? 0 : top;
+    return UIEdgeInsetsMake(top,top,top,top);
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -177,14 +182,17 @@
     return list.count;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    NSArray *list = self.bookDetail.listData[section];
-    return CGSizeMake(SCREEN_WIDTH, (list.count > 0 && section >0) ? (section > 1 ? 25 : 40) : 0);
+    return CGSizeMake(SCREEN_WIDTH, section == 0? 0 : 40);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    NSArray *list = self.bookDetail.listData[indexPath.section];
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
     res.moreBtn.hidden = YES;
     res.titleLab.textColor = AppColor;
+    res.lineView.hidden = NO;
     res.titleLab.text = indexPath.section == 1 ?@"推荐书籍":@"推荐书单";
+    res.hidden = (indexPath.section == 0 || list.count == 0);
+    
     return res;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -194,11 +202,11 @@
         return [collectionView ar_sizeForCellWithClassCell:GKBookDetailCell.class indexPath:indexPath fixedValue:SCREEN_WIDTH configuration:^(__kindof GKBookDetailCell *cell) {
             cell.model = object;
         }];
-    }else if ([object isKindOfClass:GKBookModel.class]){
+    }else if ([object isKindOfClass:GKBookListModel.class]){
         return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3.0f configuration:^(__kindof GKHomeHotCell *cell) {
             cell.model = object;
         }];
-    }else if ([object isKindOfClass:GKBookListModel.class]){
+    }else if ([object isKindOfClass:GKBookModel.class]){
         return [collectionView ar_sizeForCellWithClassCell:GKBookDetailCollectionCell.class indexPath:indexPath fixedValue:SCREEN_WIDTH configuration:^(__kindof GKBookDetailCollectionCell * cell) {
             cell.model = object;
         }];
@@ -214,11 +222,11 @@
         GKBookDetailCell *cell = [GKBookDetailCell cellForCollectionView:collectionView indexPath:indexPath];
         cell.model = object;
         return cell;
-    }else if ([object isKindOfClass:GKBookModel.class]){
+    }else if ([object isKindOfClass:GKBookListModel.class]){
         GKHomeHotCell *cell = [GKHomeHotCell cellForCollectionView:collectionView indexPath:indexPath];
         cell.model = object;
         return cell;
-    }else if ([object isKindOfClass:GKBookListModel.class]){
+    }else if ([object isKindOfClass:GKBookModel.class]){
         GKBookDetailCollectionCell *cell = [GKBookDetailCollectionCell cellForCollectionView:collectionView indexPath:indexPath];
         cell.model = object;
         return cell;
@@ -262,5 +270,8 @@
 }
 - (BOOL)shouldAutorotate {
     return NO;
+}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 @end

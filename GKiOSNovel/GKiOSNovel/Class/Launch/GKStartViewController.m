@@ -21,6 +21,7 @@
 @property (strong, nonatomic) GKRankInfo *rankInfo;
 @property (strong, nonatomic) GKCollectionViewLayout *layout;
 @property (assign, nonatomic) GKUserState userState;
+@property (strong, nonatomic) NSMutableArray *tags;
 @end
 
 @implementation GKStartViewController
@@ -46,8 +47,9 @@
         make.bottom.equalTo(self.sureBtn.mas_top).offset(-10);
         make.top.equalTo(self.collectionView.superview).offset(SCREEN_HEIGHT/2);
     }];
-    [self setupEmpty:self.collectionView image:nil title:@""];
+    [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshNone];
+    self.collectionView.backgroundColor = Appxffffff;
 }
 - (void)refreshData:(NSInteger)page{
     [GKNovelNet rankSuccess:^(id  _Nonnull object) {
@@ -64,9 +66,16 @@
         _userState == GKUserBoy ? [self boyAction] : [self girlAction];
         self.titleLab.text = _userState == GKUserBoy ? @"我是小哥哥":@"我是小姐姐";
         self.rankInfo.state = _userState;
-        self.layout.dataArr = self.rankInfo.listData;
+        self.layout.dataArr = self.tags;
         [self.collectionView reloadData];
     }
+}
+- (NSMutableArray *)tags{
+    _tags = @[].mutableCopy;
+    [self.rankInfo.listData enumerateObjectsUsingBlock:^(GKRankModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_tags addObject:obj.shortTitle];
+    }];
+    return _tags;
 }
 
 - (void)boyAction{
@@ -128,11 +137,11 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(SCREEN_WIDTH, self.rankInfo.listData.count ? 40 : 0.001f);
 }
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
-    res.titleLab.text = @"选择2-4项做为首页推荐吧!";
-    res.titleLab.font = [UIFont systemFontOfSize:20 weight:UIFontWeightBold];
-    return res;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return AppTop;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return AppTop;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

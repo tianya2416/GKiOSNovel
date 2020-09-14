@@ -19,7 +19,7 @@
 #define Appxffffff               [UIColor colorWithRGB:0xffffff]
 #define AppRadius                2.50f
 #define AppLineHeight            0.60f
-#define AppTop                   10.0f
+#define AppTop                   15.0f
 
 #define placeholders     [UIImage imageNamed:@"placeholder_big"]
 #define placeholdersmall [UIImage imageNamed:@"placeholder_small"]

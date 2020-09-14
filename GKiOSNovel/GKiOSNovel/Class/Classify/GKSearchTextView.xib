@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,30 +14,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKC-sz-U76">
-                    <rect key="frame" x="314" y="27" width="61" height="44"/>
+                    <rect key="frame" x="315" y="27" width="60" height="44"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="60" id="oZl-Jv-tL0"/>
                         <constraint firstAttribute="height" constant="44" id="zpj-6n-DgF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                     <state key="normal" title="取消"/>
                 </button>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="244" translatesAutoresizingMaskIntoConstraints="NO" id="lF0-rS-6jj">
-                    <rect key="frame" x="15" y="31.5" width="299" height="35"/>
+                    <rect key="frame" x="15" y="33" width="300" height="32"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_strategy_search" translatesAutoresizingMaskIntoConstraints="NO" id="Yib-xa-rNx">
-                            <rect key="frame" x="10" y="11" width="12" height="13"/>
+                            <rect key="frame" x="10" y="9.5" width="12" height="13"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="12" id="3Ti-Ga-Tej"/>
                                 <constraint firstAttribute="height" constant="13" id="gju-ED-YwI"/>
                             </constraints>
                         </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zjD-ay-IYX">
-                            <rect key="frame" x="32" y="4.5" width="267" height="30"/>
+                            <rect key="frame" x="32" y="0.0" width="268" height="32"/>
                             <color key="tintColor" red="0.40000000000000002" green="0.63529411759999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="p9J-ff-aUs"/>
-                            </constraints>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -51,8 +46,9 @@
                         <constraint firstAttribute="trailing" secondItem="zjD-ay-IYX" secondAttribute="trailing" id="6of-KC-XxY"/>
                         <constraint firstItem="Yib-xa-rNx" firstAttribute="centerY" secondItem="lF0-rS-6jj" secondAttribute="centerY" id="SNE-p2-T0r"/>
                         <constraint firstItem="zjD-ay-IYX" firstAttribute="leading" secondItem="Yib-xa-rNx" secondAttribute="trailing" constant="10" id="VEo-MZ-aqR"/>
-                        <constraint firstItem="zjD-ay-IYX" firstAttribute="centerY" secondItem="Yib-xa-rNx" secondAttribute="centerY" constant="2" id="aGg-gJ-iNS"/>
-                        <constraint firstAttribute="height" constant="35" id="dLU-sE-lOF"/>
+                        <constraint firstAttribute="height" constant="32" id="dLU-sE-lOF"/>
+                        <constraint firstAttribute="bottom" secondItem="zjD-ay-IYX" secondAttribute="bottom" id="oPY-xc-0lj"/>
+                        <constraint firstItem="zjD-ay-IYX" firstAttribute="top" secondItem="lF0-rS-6jj" secondAttribute="top" id="xGN-Zc-Uns"/>
                     </constraints>
                 </view>
             </subviews>

@@ -18,14 +18,20 @@
     [self.collectionBtn setBackgroundColor:AppColor];
     // Initialization code
 }
-- (void)setModel:(GKBookListModel *)model{
+- (void)setModel:(GKBookModel *)model{
     if (_model != model) {
         _model = model;
         [self.imageV setGkImageWithURL:model.cover];
         self.titleLab.text = model.title ?:@"";
-        self.subTitleLab.text = model.desc ?:@"";
-        self.counLab.text = [NSString stringWithFormat:@"%@本书",@(model.bookCount)];
-        [self.collectionBtn setTitle:[NSString stringWithFormat:@"%@人收藏",@(model.collectorCount)] forState:UIControlStateNormal];
+        self.counLab.text = model.author ?: @"";
+        
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:model.shortIntro ?:@""];
+        text.lineSpacing = 3;
+        text.alignment = NSTextAlignmentLeft;
+        self.subTitleLab.attributedText = text;
+        
+//        self.counLab.text = [NSString stringWithFormat:@"%@本书",@(model.bookCount)];
+//        [self.collectionBtn setTitle:[NSString stringWithFormat:@"%@人收藏",@(model.collectorCount)] forState:UIControlStateNormal];
     }
 }
 @end

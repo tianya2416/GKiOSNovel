@@ -23,7 +23,7 @@
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
     self.navigationController.navigationBar.translucent = NO;
-    self.view.backgroundColor = Appxffffff;
+    self.view.backgroundColor = Appxf8f8f8;
     self.navigationController.interactivePopGestureRecognizer.delegate=(id)self;
     self.fd_interactivePopDisabled = NO;
     self.fd_prefersNavigationBarHidden = NO;

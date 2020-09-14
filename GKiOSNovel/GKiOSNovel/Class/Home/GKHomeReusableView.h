@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UILabel *titleLab;
 @property (strong, nonatomic) UIButton *moreBtn;
 
+@property (strong, nonatomic) UIView *lineView;
+
 @end
 
 NS_ASSUME_NONNULL_END

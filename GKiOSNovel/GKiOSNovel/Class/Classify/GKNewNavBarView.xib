@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,24 +23,24 @@
                     <state key="normal" image="icon_boy_h"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mqc-t4-Sm6">
-                    <rect key="frame" x="15" y="60.5" width="300" height="35"/>
+                    <rect key="frame" x="15" y="62" width="300" height="32"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_strategy_search" translatesAutoresizingMaskIntoConstraints="NO" id="Tqg-2S-V1t">
-                            <rect key="frame" x="10" y="11" width="12" height="13"/>
+                            <rect key="frame" x="10" y="9.5" width="12" height="13"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="12" id="ssG-lK-Ji0"/>
                                 <constraint firstAttribute="height" constant="13" id="zUK-UO-XPM"/>
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytv-Vf-gSu">
-                            <rect key="frame" x="30" y="0.0" width="270" height="35"/>
+                            <rect key="frame" x="30" y="0.0" width="270" height="32"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Tqg-2S-V1t" firstAttribute="centerY" secondItem="Mqc-t4-Sm6" secondAttribute="centerY" id="PGA-F8-WgE"/>
-                        <constraint firstAttribute="height" constant="35" id="QZX-iI-lFt"/>
+                        <constraint firstAttribute="height" constant="32" id="QZX-iI-lFt"/>
                         <constraint firstItem="ytv-Vf-gSu" firstAttribute="top" secondItem="Mqc-t4-Sm6" secondAttribute="top" id="RR2-Vp-mcH"/>
                         <constraint firstItem="Tqg-2S-V1t" firstAttribute="leading" secondItem="Mqc-t4-Sm6" secondAttribute="leading" constant="10" id="gFg-kP-lvk"/>
                         <constraint firstAttribute="bottom" secondItem="ytv-Vf-gSu" secondAttribute="bottom" id="hEP-tA-xYd"/>
@@ -54,8 +52,8 @@
             <color key="backgroundColor" red="0.40000000000000002" green="0.63137254899999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Mqc-t4-Sm6" firstAttribute="centerY" secondItem="MSl-Cb-I7Q" secondAttribute="centerY" id="0KC-g3-eTF"/>
+                <constraint firstAttribute="trailing" secondItem="Mqc-t4-Sm6" secondAttribute="trailing" constant="60" id="378-ar-ZCM"/>
                 <constraint firstItem="MSl-Cb-I7Q" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="NfQ-ts-cRA"/>
-                <constraint firstItem="MSl-Cb-I7Q" firstAttribute="leading" secondItem="Mqc-t4-Sm6" secondAttribute="trailing" constant="8" id="Xeb-hY-pT6"/>
                 <constraint firstAttribute="trailing" secondItem="MSl-Cb-I7Q" secondAttribute="trailing" constant="8" id="dDo-RZ-Tb8"/>
                 <constraint firstItem="Mqc-t4-Sm6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="mWF-MN-go5"/>
             </constraints>

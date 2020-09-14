@@ -8,8 +8,8 @@
 
 #import "GKClassItemController.h"
 #import "GKClassflyController.h"
-#import "GKHomeHotCell.h"
 #import "GKClassItemModel.h"
+#import "GKClassifyHotCell.h"
 @interface GKClassItemController ()
 @property (strong, nonatomic) NSArray *listData;
 @end
@@ -50,13 +50,13 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 configuration:^(__kindof GKHomeHotCell *cell) {
+    return [collectionView ar_sizeForCellWithClassCell:GKClassifyHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 configuration:^(__kindof GKClassifyHotCell *cell) {
         cell.model = self.listData[indexPath.row];
     }];
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GKHomeHotCell *cell = [GKHomeHotCell cellForCollectionView:collectionView indexPath:indexPath];
+    GKClassifyHotCell *cell = [GKClassifyHotCell cellForCollectionView:collectionView indexPath:indexPath];
     cell.model = self.listData[indexPath.row];
 
     return cell;

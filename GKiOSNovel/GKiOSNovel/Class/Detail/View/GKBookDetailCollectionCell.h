@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *counLab;
 @property (weak, nonatomic) IBOutlet UIButton *collectionBtn;
 
-@property (strong, nonatomic) GKBookListModel *model;
+@property (strong, nonatomic)GKBookModel *model;
 
 @end
 

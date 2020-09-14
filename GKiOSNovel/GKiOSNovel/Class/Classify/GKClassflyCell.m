@@ -16,9 +16,14 @@
     self.focusBtn.layer.cornerRadius = 10;
     self.stateBtn.layer.masksToBounds = YES;
     self.stateBtn.layer.cornerRadius = 7.5f;
-    [self.focusBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
-    self.width.constant = SCALEW(80);
+    self.focusBtn.layer.borderWidth = 0.6;
+    self.focusBtn.layer.borderColor = Appxdddddd.CGColor;
+    [self.focusBtn setTitleColor:Appx999999 forState:UIControlStateNormal];
+   // [self.focusBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
+//    self.width.constant = SCALEW(80);
     self.nickNameLab.textColor = AppColor;
+    self.imagV.layer.masksToBounds = YES;
+    self.imagV.layer.cornerRadius = AppRadius;
     // Initialization code
 }
 
@@ -32,11 +37,16 @@
         _model = model;
         [self.imagV setGkImageWithURL:model.cover];
         self.titleLab.text = model.title ?:@"";
-        self.subTitleLab.text = model.shortIntro ?:@"";
         self.nickNameLab.text = model.author ?:@"";
         self.monthLab.text = [NSString stringWithFormat:@"%@",[@(model.latelyFollower) decimalString]];
         [self.focusBtn setTitle:[NSString stringWithFormat:@"关注度:%.2f%@",model.retentionRatio,@"%"] forState:UIControlStateNormal];
         [self.stateBtn setTitle:model.majorCate forState:UIControlStateNormal];
+
+        
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:model.shortIntro ?:@""];
+        text.lineSpacing = 3;
+        text.alignment = NSTextAlignmentLeft;
+        self.subTitleLab.attributedText = text;
     }
 }
 @end

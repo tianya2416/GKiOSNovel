@@ -36,12 +36,12 @@
     self.layoutAttrArr = @[].mutableCopy;
     __block CGFloat x = self.minimumInteritemSpacing;
     __block CGFloat y = self.minimumLineSpacing;
-    [self.dataArr enumerateObjectsUsingBlock:^(GKRankModel * _Nonnull obj, NSUInteger i, BOOL * _Nonnull stop) {
+    [self.dataArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger i, BOOL * _Nonnull stop) {
         UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-        NSString *tag = obj.shortTitle;
+        NSString *tag = obj;
         CGSize size = [tag boundingRectWithSize:CGSizeMake(1000, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
-        size.width += 18;
-        size.height += 5;
+        size.width += 30;
+        size.height += 10;
         if (x + size.width + self.minimumInteritemSpacing > self.collectionView.width) {
             x = self.minimumInteritemSpacing;
             y += size.height + self.minimumLineSpacing;
@@ -65,7 +65,7 @@
     CGFloat y = self.headerReferenceSize.height;
     for (NSInteger i = 0; i < MIN(self.dataArr.count, maxBooks) ; i++) {
         UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-        NSString *book = self.dataArr[i].shortTitle;
+        NSString *book = self.dataArr[i];
         CGSize size = [book boundingRectWithSize:CGSizeMake(width-2, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:12]} context:nil].size;
         size.height += width * ratio + 5;
         

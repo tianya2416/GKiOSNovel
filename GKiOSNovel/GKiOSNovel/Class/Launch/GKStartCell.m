@@ -22,10 +22,8 @@
     [super awakeFromNib];
     self.titleLab.layer.masksToBounds = YES;
     self.titleLab.layer.cornerRadius = AppRadius;
-    self.titleLab.layer.borderWidth = AppLineHeight;
     // Initialization code
 }
-
 - (void)setModel:(GKRankModel *)model{
     _model = model;
     [self setSelect:model.select];
@@ -37,9 +35,9 @@
         self.titleLab.textColor = [UIColor whiteColor];
         self.titleLab.backgroundColor = AppColor;
     }else{
-        self.titleLab.layer.borderColor = AppColor.CGColor;
-        self.titleLab.backgroundColor = [UIColor whiteColor];
-        self.titleLab.textColor = AppColor;
+        self.titleLab.layer.borderColor = [UIColor clearColor].CGColor;
+        self.titleLab.backgroundColor = [UIColor colorWithRGB:0xededed];
+        self.titleLab.textColor = Appx999999;
     }
 }
 - (void)setStartState:(GKStartState)startState{
@@ -52,11 +50,10 @@
             [self setSelect:YES];
             break;
         default:
-        {
-            self.titleLab.layer.borderColor = Appx999999.CGColor;
-            self.titleLab.backgroundColor = [UIColor whiteColor];
-            self.titleLab.textColor = Appx999999;
-        }break;
+            [self setSelect:NO];
+            self.contentView.layer.masksToBounds = YES;
+            self.contentView.layer.cornerRadius = 12;
+         break;
     }
 }
 @end

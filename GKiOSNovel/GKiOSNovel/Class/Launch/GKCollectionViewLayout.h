@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GKRankModel.h"
 typedef NS_ENUM(NSInteger,GKLayoutStyle) {
     GKLayoutStyleTag,
     GKLayoutStyleCommend,
@@ -15,7 +14,7 @@ typedef NS_ENUM(NSInteger,GKLayoutStyle) {
 
 @interface GKCollectionViewLayout : UICollectionViewFlowLayout
 
-@property (strong, nonatomic) NSArray <GKRankModel *>*dataArr;
+@property (strong, nonatomic) NSArray <NSString *>*dataArr;
 
 + (instancetype)vcWithStyle:(GKLayoutStyle)style;
 @end

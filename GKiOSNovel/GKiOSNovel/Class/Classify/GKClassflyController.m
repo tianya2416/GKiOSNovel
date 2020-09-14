@@ -38,7 +38,6 @@
         GKBookInfo *info = [GKBookInfo modelWithJSON:object];
         if (page == RefreshPageStart) {
             [self.listData removeAllObjects];
-            [self showNavTitle:[NSString stringWithFormat:@"%@(%@)",self.name,@(info.total)]];
         }
         info.books.count ? [self.listData addObjectsFromArray:info.books] : nil;
         [self.tableView reloadData];

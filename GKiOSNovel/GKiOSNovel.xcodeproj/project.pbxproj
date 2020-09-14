@@ -54,6 +54,10 @@
 		0F2F6B0522E958FD00E18C65 /* SimplifiedCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F6B0322E958FD00E18C65 /* SimplifiedCode.txt */; };
 		0F2F6B0622E958FD00E18C65 /* TraditionalCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F6B0422E958FD00E18C65 /* TraditionalCode.txt */; };
 		0F2F6B0A22E97BAE00E18C65 /* BaseDownFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2F6B0922E97BAE00E18C65 /* BaseDownFont.m */; };
+		0F3B8C82250B57E200BCAF92 /* GKClassifyHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B8C80250B57E200BCAF92 /* GKClassifyHotCell.m */; };
+		0F3B8C83250B57E200BCAF92 /* GKClassifyHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3B8C81250B57E200BCAF92 /* GKClassifyHotCell.xib */; };
+		0F3B8C86250B700400BCAF92 /* GKSearchTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3B8C85250B700400BCAF92 /* GKSearchTopView.m */; };
+		0F3B8C88250B700E00BCAF92 /* GKSearchTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F3B8C87250B700E00BCAF92 /* GKSearchTopView.xib */; };
 		0F3E074E2318B1EE004C68FB /* GKMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E074D2318B1EE004C68FB /* GKMineModel.m */; };
 		0F5F63D722AFA2D8009096BD /* ProgressWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */; };
 		0F5F63E422AFA2D8009096BD /* BaseWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5F63B222AFA2D8009096BD /* BaseWebController.m */; };
@@ -240,6 +244,12 @@
 		0F2F6B0422E958FD00E18C65 /* TraditionalCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TraditionalCode.txt; sourceTree = "<group>"; };
 		0F2F6B0822E97BAE00E18C65 /* BaseDownFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDownFont.h; sourceTree = "<group>"; };
 		0F2F6B0922E97BAE00E18C65 /* BaseDownFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDownFont.m; sourceTree = "<group>"; };
+		0F3B8C7F250B57E200BCAF92 /* GKClassifyHotCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKClassifyHotCell.h; sourceTree = "<group>"; };
+		0F3B8C80250B57E200BCAF92 /* GKClassifyHotCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClassifyHotCell.m; sourceTree = "<group>"; };
+		0F3B8C81250B57E200BCAF92 /* GKClassifyHotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKClassifyHotCell.xib; sourceTree = "<group>"; };
+		0F3B8C84250B700400BCAF92 /* GKSearchTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKSearchTopView.h; sourceTree = "<group>"; };
+		0F3B8C85250B700400BCAF92 /* GKSearchTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKSearchTopView.m; sourceTree = "<group>"; };
+		0F3B8C87250B700E00BCAF92 /* GKSearchTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GKSearchTopView.xib; sourceTree = "<group>"; };
 		0F3E074C2318B1EE004C68FB /* GKMineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GKMineModel.h; sourceTree = "<group>"; };
 		0F3E074D2318B1EE004C68FB /* GKMineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKMineModel.m; sourceTree = "<group>"; };
 		0F5F639B22AFA2D8009096BD /* ProgressWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressWKWebView.m; sourceTree = "<group>"; };
@@ -649,6 +659,12 @@
 				0F8AA7E622B0DDFF00332ECB /* GKClassflyCell.h */,
 				0F8AA7E722B0DDFF00332ECB /* GKClassflyCell.m */,
 				0F8AA7E822B0DDFF00332ECB /* GKClassflyCell.xib */,
+				0F3B8C7F250B57E200BCAF92 /* GKClassifyHotCell.h */,
+				0F3B8C80250B57E200BCAF92 /* GKClassifyHotCell.m */,
+				0F3B8C81250B57E200BCAF92 /* GKClassifyHotCell.xib */,
+				0F3B8C84250B700400BCAF92 /* GKSearchTopView.h */,
+				0F3B8C85250B700400BCAF92 /* GKSearchTopView.m */,
+				0F3B8C87250B700E00BCAF92 /* GKSearchTopView.xib */,
 			);
 			path = Classify;
 			sourceTree = "<group>";
@@ -1108,6 +1124,7 @@
 				0F2F6B0622E958FD00E18C65 /* TraditionalCode.txt in Resources */,
 				0F175B512313DD4A00442BC5 /* GKReadSetCell.xib in Resources */,
 				0F175B502313DD4A00442BC5 /* GKReadBottomView.xib in Resources */,
+				0F3B8C83250B57E200BCAF92 /* GKClassifyHotCell.xib in Resources */,
 				0F175B5B2313DD4A00442BC5 /* GKMoreSetCell.xib in Resources */,
 				0F2669232314E14000A8DE26 /* GKDownLoadCell.xib in Resources */,
 				0FAB616F22C45720000F8ABB /* GKBookDetailView.xib in Resources */,
@@ -1123,6 +1140,7 @@
 				0F175B612313DD4A00442BC5 /* GKMoreSetView.xib in Resources */,
 				0F2669202314E14000A8DE26 /* GKDownCell.xib in Resources */,
 				0F175B5D2313DD4A00442BC5 /* GKReadTopView.xib in Resources */,
+				0F3B8C88250B700E00BCAF92 /* GKSearchTopView.xib in Resources */,
 				0FE39E1B22D5C730005C25D5 /* Launch.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1188,6 +1206,7 @@
 				0F175B552313DD4A00442BC5 /* GKMoreSetView.m in Sources */,
 				0F2BB0A022CDAB6E0067E1B3 /* BaseTableViewController.m in Sources */,
 				0FAB616B22C45720000F8ABB /* GKBookDetailController.m in Sources */,
+				0F3B8C82250B57E200BCAF92 /* GKClassifyHotCell.m in Sources */,
 				0F5F63ED22AFA2D8009096BD /* BaseCell.m in Sources */,
 				0FAB619C22C45755000F8ABB /* GKBookChapterModel.m in Sources */,
 				0FB6DB3D22BB3B6100C48F64 /* GKBookReadDataQueue.m in Sources */,
@@ -1267,6 +1286,7 @@
 				0FAB61BC22C457B5000F8ABB /* GKMineSelectController.m in Sources */,
 				0F1B813422B095610061FD7A /* GKBookModel.m in Sources */,
 				0F2A18B122B8E1CF00426D5A /* BaseNetCache.m in Sources */,
+				0F3B8C86250B700400BCAF92 /* GKSearchTopView.m in Sources */,
 				8F1A7CBD22B64DF700BB325E /* GKBookCaseDataQueue.m in Sources */,
 				0FC439FA240E31830034D9E6 /* NSString+Tool.m in Sources */,
 				0F26691E2314E14000A8DE26 /* GKDownCell.m in Sources */,

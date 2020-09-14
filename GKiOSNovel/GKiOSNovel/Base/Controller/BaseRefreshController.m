@@ -8,9 +8,9 @@
 
 #import "BaseRefreshController.h"
 
-static NSString *FDMSG_Home_DataRefresh                      = @"数据加载中...";
-static NSString *FDMSG_Home_DataEmpty                        = @"数据空空如也...";
-static NSString *FDNoNetworkMsg                              = @"无网络连接,请检查网络设置";
+static NSString *FDMSG_Home_DataRefresh                      = @"Data Loading...";
+static NSString *FDMSG_Home_DataEmpty                        = @"Data Empty...";
+static NSString *FDNoNetworkMsg                              = @"Net Error...";
 @interface BaseRefreshController ()<ATRefreshDataSource>
 @property (nonatomic, strong) NSMutableArray *images;
 @end
