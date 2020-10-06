@@ -26,7 +26,7 @@
     UINavigationBar *navBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:array];
     NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
     attribute[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    attribute[NSFontAttributeName] = [UIFont systemFontOfSize:18 weight:UIFontWeightHeavy];
+    attribute[NSFontAttributeName] = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
     navBar.titleTextAttributes = attribute;
     UIImage *backgroundImage = [UIImage imageWithColor:AppColor];
     [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];

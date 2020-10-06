@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,25 +25,25 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTg-vV-5wU">
-                        <rect key="frame" x="105" y="15" width="216" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="105" y="15" width="216" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Air-FZ-5Vh">
-                        <rect key="frame" x="105" y="44" width="216" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Air-FZ-5Vh">
+                        <rect key="frame" x="105" y="44.5" width="216" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CM3-f0-Xjs">
-                        <rect key="frame" x="105" y="107" width="155" height="16"/>
+                        <rect key="frame" x="105" y="71.5" width="155" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.18823529410000001" green="0.44705882349999998" blue="0.96470588239999999" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPm-Jy-XYP">
-                        <rect key="frame" x="270" y="105" width="51" height="20"/>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPm-Jy-XYP">
+                        <rect key="frame" x="270" y="69.5" width="51" height="20"/>
                         <color key="backgroundColor" red="0.18823529410000001" green="0.44705882349999998" blue="0.96470588239999999" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="zRT-bP-bnV"/>
@@ -57,10 +55,10 @@
                         </state>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbs-cc-Hvu">
-                        <rect key="frame" x="15" y="154" width="321" height="1"/>
+                        <rect key="frame" x="15" y="154.5" width="321" height="0.5"/>
                         <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="0.80000000000000004" id="lY5-Yp-1TK"/>
+                            <constraint firstAttribute="height" constant="0.5" id="lY5-Yp-1TK"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -71,7 +69,6 @@
                 <constraint firstItem="gTg-vV-5wU" firstAttribute="top" secondItem="Tgf-ud-ddI" secondAttribute="top" id="6Vk-Rp-8yO"/>
                 <constraint firstItem="Tgf-ud-ddI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="AWZ-oi-KFz"/>
                 <constraint firstItem="BPm-Jy-XYP" firstAttribute="trailing" secondItem="Air-FZ-5Vh" secondAttribute="trailing" id="Ca2-lx-h2D"/>
-                <constraint firstItem="CM3-f0-Xjs" firstAttribute="bottom" secondItem="Tgf-ud-ddI" secondAttribute="bottom" id="GEQ-2M-nET"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Tgf-ud-ddI" secondAttribute="bottom" priority="900" constant="15" id="GwZ-7l-kkS"/>
                 <constraint firstItem="gTg-vV-5wU" firstAttribute="leading" secondItem="Tgf-ud-ddI" secondAttribute="trailing" constant="10" id="JoX-8o-ELg"/>
                 <constraint firstItem="Air-FZ-5Vh" firstAttribute="trailing" secondItem="gTg-vV-5wU" secondAttribute="trailing" id="LOZ-Mm-bUH"/>
@@ -79,8 +76,9 @@
                 <constraint firstItem="rbs-cc-Hvu" firstAttribute="leading" secondItem="Tgf-ud-ddI" secondAttribute="leading" id="TRz-gX-iiK"/>
                 <constraint firstAttribute="bottom" secondItem="rbs-cc-Hvu" secondAttribute="bottom" id="XxO-PT-tg9"/>
                 <constraint firstAttribute="trailing" secondItem="gTg-vV-5wU" secondAttribute="trailing" constant="15" id="bq0-gP-jse"/>
+                <constraint firstItem="CM3-f0-Xjs" firstAttribute="top" secondItem="Air-FZ-5Vh" secondAttribute="bottom" constant="10" id="cJl-hN-Tk6"/>
                 <constraint firstAttribute="trailing" secondItem="rbs-cc-Hvu" secondAttribute="trailing" id="jVa-kW-gza"/>
-                <constraint firstItem="Air-FZ-5Vh" firstAttribute="top" secondItem="gTg-vV-5wU" secondAttribute="bottom" constant="8" id="mIN-39-vWK"/>
+                <constraint firstItem="Air-FZ-5Vh" firstAttribute="top" secondItem="gTg-vV-5wU" secondAttribute="bottom" constant="10" id="mIN-39-vWK"/>
                 <constraint firstItem="Tgf-ud-ddI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="nwi-md-SKI"/>
                 <constraint firstItem="BPm-Jy-XYP" firstAttribute="leading" secondItem="CM3-f0-Xjs" secondAttribute="trailing" constant="10" id="pge-Jp-kL0"/>
                 <constraint firstItem="Air-FZ-5Vh" firstAttribute="leading" secondItem="gTg-vV-5wU" secondAttribute="leading" id="sQR-rC-D3u"/>

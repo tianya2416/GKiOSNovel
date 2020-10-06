@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = Appxffffff;
     [self.view addSubview:self.launchView];
     [self.launchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.launchView.superview).offset(0);

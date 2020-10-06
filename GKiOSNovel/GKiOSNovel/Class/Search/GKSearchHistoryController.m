@@ -12,6 +12,7 @@
 #import "GKSearchTextView.h"
 #import "GKHomeReusableView.h"
 #import "GKStartCell.h"
+
 @interface GKSearchHistoryController ()<UITextFieldDelegate>
 @property (strong, nonatomic) GKSearchTextView *searchView;
 @property (strong, nonatomic) GKCollectionViewLayout *layout;
@@ -36,6 +37,9 @@
     }];
     [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
+    if ([self.searchView.textField canBecomeFirstResponder]) {
+        [self.searchView.textField becomeFirstResponder];
+    }
 }
 - (void)refreshData:(NSInteger)page{
     NSArray *datas = [BaseMacro hotDatas];
@@ -81,16 +85,17 @@
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(SCREEN_WIDTH, section == 0 ?(self.listData.count ? 40 : 0.01): (self.searchDatas.count ?  40 : 0.01));
+    return CGSizeMake(SCREEN_WIDTH, section == 0 ?(self.listData.count ? 48 : 0.01): (self.searchDatas.count ?  48 : 0.01));
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
     NSArray *listData = indexPath.section == 0 ? self.listData : self.searchDatas.copy;
     res.titleLab.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
     res.hidden = listData.count == 0;
+    [res.moreBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    res.titleLab.font = [UIFont systemFontOfSize:16 weight:UIFontWeightMedium];
     if (indexPath.section == 0) {
         res.titleLab.text = @"热门词语";
-        res.titleLab.font = [UIFont systemFontOfSize:17 weight:UIFontWeightMedium];
         [res.moreBtn setTitle:@"换一换" forState:UIControlStateNormal];
     }else{
         res.titleLab.text = @"历史记录";
@@ -106,14 +111,14 @@
 #pragma mark UICollectionViewDelegateFlowLayout
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10,10,10,10);
+    return UIEdgeInsetsMake(0,AppTop,0,AppTop);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *listData = indexPath.section == 0 ? self.listData : self.searchDatas.copy;
     NSString *title = listData[indexPath.row];
     CGFloat width = [title sizeForFont:[UIFont systemFontOfSize:14] size:CGSizeMake(MAXFLOAT, MAXFLOAT) mode:NSLineBreakByTruncatingTail].width;
-    return CGSizeMake(width + 20, 30);
+    return CGSizeMake(width + 30, 24);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 10;
@@ -162,7 +167,10 @@
     }
     return _searchView;
 }
-//- (void)goBack{
-//    [self goBack:NO];
-//}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+- (void)goBack{
+    [self goBack:NO];
+}
 @end

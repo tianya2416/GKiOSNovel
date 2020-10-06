@@ -21,7 +21,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.tableView.superview);
     }];
-    self.tableView.backgroundColor = Appxffffff;
+    self.tableView.backgroundColor = Appxf8f8f8;
 }
 #pragma mark - delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -66,19 +66,19 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat width = (SCREEN_WIDTH - 4*20)/3.0;
+    CGFloat width = (SCREEN_WIDTH - 4*AppTop)/3.0 - 0.1;
     CGFloat height = 40;
     return CGSizeMake(width, height);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 20;
+    return AppTop;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 20;
+    return AppTop;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(20,20,20,20);
+    return UIEdgeInsetsMake(0,AppTop,AppTop,AppTop);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(SCREEN_WIDTH,45);
@@ -86,7 +86,7 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
     res.moreBtn.hidden = YES;
-    res.titleLab.font = [UIFont systemFontOfSize:20 weight:UIFontWeightHeavy];
+    res.titleLab.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
     res.titleLab.text = @"选择几个项目作为首页数据";
     return res;
 }

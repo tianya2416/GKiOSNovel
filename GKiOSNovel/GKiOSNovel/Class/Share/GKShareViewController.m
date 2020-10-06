@@ -45,7 +45,7 @@
         make.height.offset(45);
         make.bottom.equalTo(self.cancleBtn.superview).offset(-15-TAB_BAR_ADDING);
     }];
-    
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     self.listImages = @[@"icon_wechat",@"icon_line",@"icon_qq",@"icon_qqzone"].mutableCopy;
     self.listData = @[@"微信",@"朋友圈",@"QQ",@"QQ空间"].mutableCopy;
     if (self.model) {

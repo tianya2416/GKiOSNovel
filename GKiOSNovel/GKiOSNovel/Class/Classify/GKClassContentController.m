@@ -7,7 +7,6 @@
 //
 
 #import "GKClassContentController.h"
-#import "GKSearchHistoryController.h"
 #import "GKStartViewController.h"
 #import "GKClassItemController.h"
 
@@ -37,8 +36,8 @@
 
 }
 - (void)loadData{
-    self.listTitles = @[@"男生",@"女生",@"出版社"];
-    self.listData = @[@"male",@"female",@"press"];
+    self.listTitles = @[@"男生",@"女生",@"名著",@"综合"];
+    self.listData = @[@"male",@"female",@"press",@"picture"];
     [self.magicController.magicView reloadData];
 
 }
@@ -71,9 +70,9 @@
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
     }
     [menuItem setTitle:self.listTitles[itemIndex] forState:UIControlStateNormal];
-    [menuItem setTitleColor:Appx666666 forState:UIControlStateNormal];
+    [menuItem setTitleColor:Appx252631 forState:UIControlStateNormal];
     [menuItem setTitleColor:AppColor forState:UIControlStateSelected];
-    menuItem.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightHeavy];
+    menuItem.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightBold];
     return menuItem;
 }
 /**
@@ -88,8 +87,7 @@
 {
     static NSString * itemViewCtrlId = @"com.new.magicView.identifier";
     GKClassItemController * viewCtrl = [magicView dequeueReusablePageWithIdentifier:itemViewCtrlId];
-    if (!viewCtrl)
-    {
+    if (!viewCtrl){
         viewCtrl = [[GKClassItemController alloc] init];
     }
     viewCtrl.titleName = self.listData[pageIndex];
@@ -119,12 +117,12 @@
         _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
         _magicController.magicView.navigationHeight = 44;
         _magicController.magicView.sliderHeight = 5.0;
-        _magicController.magicView.itemSpacing = 30;
+        _magicController.magicView.itemSpacing = 20;
         
         _magicController.magicView.againstStatusBar = YES;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
-        _magicController.magicView.itemScale = 1.15f;
+        _magicController.magicView.itemScale = 1.0f;
         _magicController.magicView.needPreloading = true;
         _magicController.magicView.bounces = false;
         

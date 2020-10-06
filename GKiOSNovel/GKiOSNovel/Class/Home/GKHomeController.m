@@ -136,11 +136,11 @@
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(AppTop,AppTop,AppTop,AppTop);
+    return UIEdgeInsetsMake(0,AppTop,5,AppTop);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     GKBookInfo *info = self.listData[section];
-    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? (section == 0 ?45 :30 ) : 0.001f);
+    return CGSizeMake(SCREEN_WIDTH, info.listData.count ? 50 : 0.001f);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     GKHomeReusableView *res = [GKHomeReusableView viewForCollectionView:collectionView elementKind:kind indexPath:indexPath];
@@ -178,7 +178,7 @@
 - (UIView *)recycleScrollView:(KLRecycleScrollView *)recycleScrollView viewForItemAtIndex:(NSInteger)index {
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:14];
-    label.textColor = Appx333333;
+    label.textColor = Appx666666;
     label.text = self.listHotWords[index];
     label.textAlignment = NSTextAlignmentLeft;
     return label;
@@ -194,7 +194,7 @@
 - (void)searchAction{
     GKSearchHistoryController *vc = [[GKSearchHistoryController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:false];
 }
 #pragma mark get
 - (GKHomeNet *)homeManager{
@@ -205,7 +205,7 @@
 }
 - (KLRecycleScrollView *)vmessage{
     if (!_vmessage) {
-        _vmessage = [[KLRecycleScrollView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH - 100, 35)];
+        _vmessage = [[KLRecycleScrollView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH - 100, 32)];
         _vmessage.delegate = self;
         _vmessage.direction = KLRecycleScrollViewDirectionTop;
         _vmessage.pagingEnabled = NO;
