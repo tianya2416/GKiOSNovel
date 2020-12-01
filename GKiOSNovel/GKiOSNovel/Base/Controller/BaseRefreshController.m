@@ -77,4 +77,15 @@ static NSString *FDNoNetworkMsg                              = @"Net Error...";
     return _images;
 }
 
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+//返回支持的方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+//这个是返回优先方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
 @end

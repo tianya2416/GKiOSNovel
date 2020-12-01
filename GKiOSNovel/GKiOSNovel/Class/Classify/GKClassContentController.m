@@ -105,7 +105,7 @@
         _magicController.magicView.separatorHeight = 0.50f;
         _magicController.magicView.separatorColor = [UIColor clearColor];
         _magicController.magicView.backgroundColor = [UIColor whiteColor];
-        _magicController.magicView.navigationInset = UIEdgeInsetsMake(0,5, 0,5);
+        _magicController.magicView.navigationInset = UIEdgeInsetsMake(STATUS_BAR_HIGHT,5, 0,5);
         _magicController.magicView.navigationColor = [UIColor whiteColor];
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         
@@ -115,11 +115,11 @@
         _magicController.magicView.sliderWidth = 5;
         
         _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
-        _magicController.magicView.navigationHeight = 44;
+        _magicController.magicView.navigationHeight = NAVI_BAR_HIGHT;
         _magicController.magicView.sliderHeight = 5.0;
         _magicController.magicView.itemSpacing = 20;
         
-        _magicController.magicView.againstStatusBar = YES;
+        _magicController.magicView.againstStatusBar = NO;
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;
         _magicController.magicView.itemScale = 1.0f;

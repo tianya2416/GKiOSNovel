@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - ATKit_ObjectC (0.1.6)
+  - ATKit_ObjectC (0.2.0)
   - ATRefresh_ObjectC (0.0.4):
     - DZNEmptyDataSet (~> 1.8.1)
     - KVOController (~> 1.2.0)
@@ -82,7 +82,7 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage
   - UICollectionView-ARDynamicHeightLayoutCell (from `https://github.com/tianya2416/FDCacheHeightLayoutCell.git`)
-  - VTMagic (from `https://github.com/tianya2416/VTMagicMacro.git`)
+  - VTMagic
   - YYKit
 
 SPEC REPOS:
@@ -102,6 +102,7 @@ SPEC REPOS:
     - MOBFoundation
     - SDCycleScrollView
     - SDWebImage
+    - VTMagic
     - YYKit
 
 EXTERNAL SOURCES:
@@ -115,15 +116,13 @@ EXTERNAL SOURCES:
     :git: https://github.com/CoderLT/MMPopupView.git
   UICollectionView-ARDynamicHeightLayoutCell:
     :git: https://github.com/tianya2416/FDCacheHeightLayoutCell.git
-  VTMagic:
-    :git: https://github.com/tianya2416/VTMagicMacro.git
 
 CHECKOUT OPTIONS:
   ATKit_ObjectC:
-    :commit: 708a893977aa4dbd30a5338f54a2091d4d5ffbfd
+    :commit: f3b0163bfa8462d842b98fb04ae01a5946223e88
     :git: https://github.com/tianya2416/ATKit_ObjectC.git
   ATRefresh_ObjectC:
-    :commit: f7b2bc99c17ca63fdde03b9dd6114737052f5820
+    :commit: d2d2187ec88bfbe6eac27092db2f9d22b6ef7ff8
     :git: https://github.com/tianya2416/ATRefresh_ObjectC.git
   MBProgressHUD:
     :commit: 9454198b351732bd4eb8cbd7658b6dd73e1e43c8
@@ -134,13 +133,10 @@ CHECKOUT OPTIONS:
   UICollectionView-ARDynamicHeightLayoutCell:
     :commit: 7beba9b579933131828d3a6b9a1d70cb77c0fac0
     :git: https://github.com/tianya2416/FDCacheHeightLayoutCell.git
-  VTMagic:
-    :commit: da473236ccddffdf53e4b95ea67d6d43bfd4ac35
-    :git: https://github.com/tianya2416/VTMagicMacro.git
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  ATKit_ObjectC: 161d1363668484ba9f04682deac285d6b0d2a786
+  ATKit_ObjectC: 205558bad000275e3e393dafb1fa98b683a9bfd4
   ATRefresh_ObjectC: 658355e190f39eee5f85c82f9e21068a8c24c537
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EAIntroView: 249559079ddfdbe80e5bcb755c04c3b964b2ac27
@@ -162,6 +158,6 @@ SPEC CHECKSUMS:
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 936c3e26dfd8509b58af38b7c84f27790eae7308
+PODFILE CHECKSUM: 3527ad8c6c950477c0baa25f1449ee7ec4628f92
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

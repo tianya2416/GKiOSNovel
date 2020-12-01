@@ -15,15 +15,22 @@
 //@property (strong, nonatomic) Lotti *playView;
 @property (strong, nonatomic) UIButton *skipBtn;
 @property (strong, nonatomic) NSTimer *timer;
+@property (copy, nonatomic)void(^completion)(void);
 @end
 
 @implementation GKLaunchController
++ (instancetype)vcWithCompletion:(void(^)(void))completion{
+    GKLaunchController *vc = [[[self class] alloc] init];
+    vc.completion = completion;
+    return vc;
+}
 - (void)dealloc{
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.fd_prefersNavigationBarHidden = YES;
     self.view.backgroundColor = Appxffffff;
     [self.view addSubview:self.launchView];
     [self.launchView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,7 +98,8 @@
 }
 - (void)dismissController
 {
-    [self goBack:false];
+    !self.completion ?: self.completion();
+//    [self goBack:false];
 //    [UIView animateWithDuration:0.35 delay:0.2 options:UIViewAnimationOptionCurveEaseOut animations:^{
 //        self.view.alpha = 0.0;
 //    } completion:^(BOOL finished) {

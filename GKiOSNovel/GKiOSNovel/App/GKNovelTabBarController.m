@@ -22,6 +22,8 @@
     [self loadUI];
 }
 - (void)loadUI{
+
+    
     GKAppModel *model = [GKAppTheme shareInstance].model;
     self.listData = @[].mutableCopy;
     self.tabBar.translucent = NO;
@@ -34,6 +36,13 @@
     GKMineController *mine = [[GKMineController alloc] init];
     [self vcWithController:mine title:@"我的" normal:model.icon_mine_n select:model.icon_mine_h];
     self.viewControllers = self.listData;
+    self.tabBar.tintColor = AppColor;
+    if (@available(iOS 10.0, *)) {
+        self.tabBar.unselectedItemTintColor = Appx999999;
+    } else {
+        // Fallback on earlier versions
+    }
+    
 }
 - (void)vcWithController:(UIViewController *)vc
                    title:(NSString *)title
@@ -46,17 +55,15 @@
     nv.tabBarItem.selectedImage = [[UIImage imageNamed:select] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:Appx999999} forState:UIControlStateNormal];
     [nv.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:AppColor} forState:UIControlStateSelected];
-    self.tabBar.tintColor = AppColor;
-    if (@available(iOS 10.0, *)) {
-        self.tabBar.unselectedItemTintColor = Appx999999;
-    } else {
-        // Fallback on earlier versions
-    }
     if (nv) {
         [self.listData addObject:nv];
     }
     
 }
+- (BOOL)prefersStatusBarHidden {
+    return [self.selectedViewController prefersStatusBarHidden];
+}
+
 ////是否自动旋转,返回YES可以自动旋转
 - (BOOL)shouldAutorotate {
     return [self.selectedViewController shouldAutorotate];
@@ -69,7 +76,5 @@
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return [self.selectedViewController preferredInterfaceOrientationForPresentation];
 }
-- (BOOL)prefersStatusBarHidden {
-    return [self.selectedViewController prefersStatusBarHidden];
-}
+
 @end

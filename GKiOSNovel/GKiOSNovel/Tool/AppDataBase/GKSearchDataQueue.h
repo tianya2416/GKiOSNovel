@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  @brief 删除表 该方法慎用
  */
 + (void)dropTableDataBase:(void (^)(BOOL))completion;
+
 @end
+
 
 NS_ASSUME_NONNULL_END

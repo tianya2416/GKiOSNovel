@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "GKNovelTabBarController.h"
-#import "GKStartViewController.h"
-@interface AppDelegate ()
+#import  <StoreKit/StoreKit.h>
+@interface AppDelegate ()<SKPaymentTransactionObserver>
 
 @end
 
@@ -18,18 +18,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [UIApplication sharedApplication].statusBarOrientation = UIInterfaceOrientationPortrait;
-#pragma clang diagnostic pop
 
     [GKShareTool shareInit];
     [GKJumpApp jumpToAppGuidePage:^{
-        [GKJumpApp jumpToAppTheme];
+        
+        self.window.rootViewController = [[GKNovelTabBarController alloc] init];
     }];
+
     return YES;
 }
 - (UIInterfaceOrientationMask)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    //return  UIInterfaceOrientationMaskAll;
     return self.makeOrientation == UIInterfaceOrientationLandscapeRight ? UIInterfaceOrientationMaskLandscapeRight:UIInterfaceOrientationMaskPortrait;;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -70,4 +69,16 @@
     return [GKShareTool handleOpenURL:url];
 }
 
+
+#pragma mark SKPaymentTransactionObserver
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions API_AVAILABLE(ios(3.0), macos(10.7), watchos(6.2)){
+    for (SKPaymentTransaction  *objc in transactions) {
+        if (objc.transactionState == SKPaymentTransactionStateDeferred) {
+            NSURL *url = [[NSBundle mainBundle] appStoreReceiptURL];
+            NSString *pay = url.absoluteString;
+            NSLog(@"%@",pay);
+        }
+        [[SKPaymentQueue defaultQueue] finishTransaction:objc];
+    }
+}
 @end

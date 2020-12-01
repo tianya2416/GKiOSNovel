@@ -25,9 +25,8 @@
         [GKJumpApp window].rootViewController = [GKStartViewController vcWithCompletion:completion];
     }else
     {
-        !completion ?: completion();
+        [GKJumpApp window].rootViewController = [GKLaunchController vcWithCompletion:completion];
     }
-    [GKJumpApp setAppLaunchController];
 }
 + (void)jumpToBookDetail:(NSString *)bookId{
     UIViewController *nvc = [UIViewController rootTopPresentedController];
@@ -90,7 +89,9 @@
     UIViewController *root = [UIViewController rootTopPresentedController];
     GKLaunchController *launchController = [[GKLaunchController alloc]init];
     launchController.modalPresentationStyle = UIModalPresentationFullScreen;
-    [root presentViewController:launchController animated:NO completion:nil];
+    BaseNavigationController *nvc = [[BaseNavigationController alloc] initWithRootViewController:launchController];
+    nvc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [root presentViewController:nvc animated:NO completion:nil];
 }
 +  (UIWindow *)window
 {
@@ -102,8 +103,5 @@
     {
         return [app keyWindow];
     }
-}
-+ (void)jumpToAppTheme{
-    [GKJumpApp window].rootViewController =  [[GKNovelTabBarController alloc] init];
 }
 @end

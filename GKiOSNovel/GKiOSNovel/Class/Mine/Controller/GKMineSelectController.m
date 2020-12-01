@@ -9,6 +9,7 @@
 #import "GKMineSelectController.h"
 #import "GKHomeReusableView.h"
 #import "GKStartCell.h"
+
 @interface GKMineSelectController ()
 @property (strong, nonatomic) UIButton *sureBtn;
 @property (strong, nonatomic) GKRankInfo *rankInfo;

@@ -7,8 +7,8 @@
 //
 
 #import "GKSearchDataQueue.h"
-
-
+#import <FMDB.h>
+#import "FMDatabaseAdditions.h"
 static NSString *SearchTable = @"SearchTable";
 
 @interface GKSearchDataQueue()
@@ -16,15 +16,27 @@ static NSString *SearchTable = @"SearchTable";
 
 @end
 
-
-
 @implementation GKSearchDataQueue
 + (void)tableExists:(FMDatabase *)dataBase{
+    NSString *time = @"createTime";
     if (![dataBase tableExists:SearchTable]) {
         if ([dataBase open]) {
-            NSString * sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,name varchar(128) NOT NULL,updateTime integer(10) NOT NULL)",SearchTable];
+            NSString * sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,name varchar(128) NOT NULL,updateTime integer(10) NOT NULL,'%@' integer(10))",SearchTable,time];
             if ([dataBase executeUpdate:sql]) {
                 NSLog(@"create table success");
+            }
+            [dataBase close];
+        }
+    }
+    BOOL haveTime = [dataBase columnExists:time inTableWithName:SearchTable];
+    if(!haveTime){
+        if ([dataBase open]) {
+            NSString *sql = [NSString stringWithFormat:@"ALTER TABLE '%@' ADD '%@' integer(10)",SearchTable,time];
+            BOOL worked = [dataBase executeUpdate:sql];
+            if(worked){
+                NSLog(@"插入成功");
+            }else{
+                NSLog(@"插入失败");
             }
             [dataBase close];
         }
@@ -51,7 +63,7 @@ static NSString *SearchTable = @"SearchTable";
                 if (res) {
                     sql = [NSString stringWithFormat:@"update %@ set updateTime = '%ld' where name='%@'",SearchTable,(long)time,hotWord];
                 }else{
-                    sql = [NSString stringWithFormat:@"insert or replace into '%@' (name,updateTime) values ('%@','%ld')",SearchTable ?: @"",hotWord?:@"",(long)time];
+                    sql = [NSString stringWithFormat:@"insert or replace into '%@' (name,updateTime,createTime) values ('%@','%ld','%ld')",SearchTable ?: @"",hotWord?:@"",(long)time,(long)time];
                 }
                 res = [db executeUpdate:sql];
                 if (res) {

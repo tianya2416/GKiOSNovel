@@ -15,6 +15,7 @@
 #import "GKNewNavBarView.h"
 #import "GKStartViewController.h"
 #import "GKSearchHistoryController.h"
+
 @interface GKHomeController()<KLRecycleScrollViewDelegate>
 @property (strong, nonatomic) GKHomeNet *homeManager;
 @property (strong, nonatomic) NSArray <GKBookInfo *>*listData;

@@ -18,7 +18,7 @@ target :GKiOSNovel  do
     pod 'EAIntroView'
     pod 'MMPopupView', :git => 'https://github.com/CoderLT/MMPopupView.git'
     pod 'MBProgressHUD',:git => 'https://github.com/tianya2416/MBProgress.git'
-    pod 'VTMagic',:git => 'https://github.com/tianya2416/VTMagicMacro.git'
+    pod 'VTMagic'
     pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/tianya2416/FDCacheHeightLayoutCell.git'
     pod 'FDFullscreenPopGesture', '1.1'
     pod 'SDCycleScrollView'
