@@ -105,7 +105,7 @@
 {
     GKBookInfo *info = self.listData[indexPath.section];
     GKBookModel *model = info.listData[indexPath.row];
-    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 configuration:^(__kindof GKHomeHotCell *cell) {
+    return  [collectionView at_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 caculateType:ATDynamicTypeWidth config:^(__kindof GKHomeHotCell * cell) {
         if ([model isKindOfClass:GKBookModel.class]) {
             cell.model = model;
         }else if ([model isKindOfClass:GKBookReadModel.class]){

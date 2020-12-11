@@ -71,8 +71,8 @@
     }
     [menuItem setTitle:self.listTitles[itemIndex] forState:UIControlStateNormal];
     [menuItem setTitleColor:Appx252631 forState:UIControlStateNormal];
-    [menuItem setTitleColor:AppColor forState:UIControlStateSelected];
-    menuItem.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightBold];
+    [menuItem setTitleColor:Appx252631 forState:UIControlStateSelected];
+    menuItem.titleLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
     return menuItem;
 }
 /**
@@ -111,12 +111,12 @@
         
         _magicController.magicView.sliderColor = AppColor;
         _magicController.magicView.sliderExtension = 1;
-        _magicController.magicView.bubbleRadius = 2.5;
-        _magicController.magicView.sliderWidth = 5;
+        _magicController.magicView.bubbleRadius = 1;//2.5;
+        _magicController.magicView.sliderWidth = 20;//5;
         
         _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
         _magicController.magicView.navigationHeight = NAVI_BAR_HIGHT;
-        _magicController.magicView.sliderHeight = 5.0;
+        _magicController.magicView.sliderHeight = 2.0;
         _magicController.magicView.itemSpacing = 20;
         
         _magicController.magicView.againstStatusBar = NO;
@@ -128,8 +128,5 @@
         
     }
     return _magicController;
-}
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
 }
 @end

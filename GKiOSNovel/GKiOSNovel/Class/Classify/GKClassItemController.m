@@ -50,7 +50,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [collectionView ar_sizeForCellWithClassCell:GKClassifyHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 configuration:^(__kindof GKClassifyHotCell *cell) {
+    return  [collectionView at_sizeForCellWithClassCell:GKClassifyHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 caculateType:ATDynamicTypeWidth config:^(__kindof GKClassifyHotCell * cell) {
         cell.model = self.listData[indexPath.row];
     }];
 }

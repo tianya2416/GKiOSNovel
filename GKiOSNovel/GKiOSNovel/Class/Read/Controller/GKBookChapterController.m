@@ -10,6 +10,7 @@
 #import "GKBookChapterCell.h"
 #import "GKStartCell.h"
 #import "GKBookChapterModel.h"
+#import "GKBookSourceModel.h"
 @interface GKBookChapterController ()
 @property (copy, nonatomic)NSString *bookSourceId;
 @property (assign, nonatomic)NSInteger chapterItem;
@@ -19,11 +20,9 @@
 @end
 
 @implementation GKBookChapterController
-+ (instancetype)vcWithChapter:(NSString *)bookSourceId chapter:(NSInteger )chapter completion:(void (^)(NSInteger index))completion{
++ (instancetype)vcWithChapter:(NSString *)bookSourceId {
     GKBookChapterController *vc = [[[self class] alloc] init];
-    vc.chapterItem = chapter;
     vc.bookSourceId = bookSourceId;
-    vc.completion = completion;
     return vc;
 }
 - (void)viewDidLoad {
@@ -37,13 +36,18 @@
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{
-    [GKNovelNet bookChapters:self.bookSourceId success:^(id  _Nonnull object) {
-        self.chapterInfo = [GKBookChapterInfo modelWithJSON:object];
-        [self.tableView reloadData];
-        [self endRefresh:NO];
-    } failure:^(NSString * _Nonnull error) {
-        [self endRefreshFailure];
-    }];
+     [GKNovelNet bookSummary:self.bookSourceId success:^(id object) {
+         NSArray <GKBookSourceModel *>*list = [NSArray modelArrayWithClass:GKBookSourceModel.class json:object];
+        [GKNovelNet bookChapters:list.firstObject._id success:^(id  _Nonnull object) {
+            self.chapterInfo = [GKBookChapterInfo modelWithJSON:object];
+            [self.tableView reloadData];
+            [self endRefresh:NO];
+        } failure:^(NSString * _Nonnull error) {
+            [self endRefreshFailure];
+        }];
+        } failure:^(NSString *error) {
+            [self endRefreshFailure];
+        }];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -63,8 +67,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    !self.completion ?: self.completion(indexPath.row);
-    [self goBack];
+}
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
+    return (170 + NAVI_BAR_HIGHT)/2;
 }
 @end
 @interface GKBookSourceController()

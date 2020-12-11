@@ -50,7 +50,7 @@
         dispatch_group_leave(group);
     }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        if ([YYReachability reachability].status != YYReachabilityStatusNone) {
+        if ([AFNetworkReachabilityManager manager].networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable) {
             if (list || books || booklists) {
                  NSMutableArray *datas = [[NSMutableArray alloc] init];
                 if (list) {

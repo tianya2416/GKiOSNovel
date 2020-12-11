@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GKBookDetailModel.h"
-NS_ASSUME_NONNULL_BEGIN
 
-@interface GKBookDetailCell : UICollectionViewCell
+
+@interface GKBookDetailCell : UIView
 @property (strong, nonatomic) UIImageView *backImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *contentLab;
@@ -31,4 +31,4 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGFloat)heightForWidth:(CGFloat)width model:(GKBookDetailModel *)model;
 @end
 
-NS_ASSUME_NONNULL_END
+

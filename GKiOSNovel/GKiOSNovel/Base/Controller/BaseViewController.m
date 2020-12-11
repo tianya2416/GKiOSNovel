@@ -23,7 +23,7 @@
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
     self.navigationController.navigationBar.translucent = NO;
-    self.view.backgroundColor = Appxf8f8f8;
+    self.view.backgroundColor = Appxffffff;
     self.navigationController.interactivePopGestureRecognizer.delegate=(id)self;
     self.fd_interactivePopDisabled = NO;
     self.fd_prefersNavigationBarHidden = NO;
@@ -40,13 +40,11 @@
     return YES ;
 }
 - (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
-
 - (BOOL)prefersStatusBarHidden {
     return NO;
 }
-
 - (BOOL)shouldAutorotate {
     return YES;
 }

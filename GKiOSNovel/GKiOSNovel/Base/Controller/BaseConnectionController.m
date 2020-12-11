@@ -19,7 +19,7 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.collectionView.superview);
     }];
-    self.collectionView.backgroundColor = Appxf8f8f8;
+    self.collectionView.backgroundColor = Appxffffff;
 }
 
 - (UICollectionView *)collectionView

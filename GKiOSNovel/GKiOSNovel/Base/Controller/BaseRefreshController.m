@@ -56,6 +56,10 @@ static NSString *FDNoNetworkMsg                              = @"Net Error...";
 - (NSString *)refreshEmptyToast{
     return FDMSG_Home_DataEmpty;
 }
+- (BOOL)refreshNetAvailable{
+    
+    return [AFNetworkReachabilityManager manager].networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable;
+}
 - (NSMutableArray *)images{
     if (!_images) {
         _images = @[].mutableCopy;
@@ -87,5 +91,8 @@ static NSString *FDNoNetworkMsg                              = @"Net Error...";
 //这个是返回优先方向
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationPortrait;
+}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
 }
 @end

@@ -53,13 +53,16 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 configuration:^(__kindof GKHomeHotCell *cell) {
+    return  [collectionView at_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3 caculateType:ATDynamicTypeWidth config:^(__kindof GKHomeHotCell * cell) {
         cell.model = self.listData[indexPath.row];
     }];
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GKHomeHotCell *cell = [GKHomeHotCell cellForCollectionView:collectionView indexPath:indexPath];
+    GKBookModel *model = self.listData[indexPath.row];
+    cell.model = model;
+    cell.deleteBtn.hidden = !self.editor;
     @weakify(self)
     @weakify(cell)
     [cell.deleteBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
@@ -67,9 +70,6 @@
         @strongify(cell)
         [self deleteAction:cell.model];
     }];
-    GKBookModel *model = self.listData[indexPath.row];
-    cell.model = model;
-    cell.deleteBtn.hidden = !self.editor;
     return cell;
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

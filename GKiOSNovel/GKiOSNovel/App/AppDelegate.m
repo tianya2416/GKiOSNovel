@@ -21,8 +21,7 @@
 
     [GKShareTool shareInit];
     [GKJumpApp jumpToAppGuidePage:^{
-        
-        self.window.rootViewController = [[GKNovelTabBarController alloc] init];
+        [GKJumpApp jumpToAppTheme];
     }];
 
     return YES;

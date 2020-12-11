@@ -19,6 +19,7 @@
     self.imageV.layer.cornerRadius = AppRadius;
 }
 - (void)setModel:(id)object{
+    _model = object;
     if ([object isKindOfClass:GKBookModel.class]) {
         GKBookModel *model = object;
         [self.imageV setGkImageWithURL:model.cover];

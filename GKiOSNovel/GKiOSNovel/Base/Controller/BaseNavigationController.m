@@ -25,10 +25,10 @@
     NSArray *array = [NSArray arrayWithObjects:[self class], nil]; //iOS9.0后使用
     UINavigationBar *navBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:array];
     NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
-    attribute[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    attribute[NSForegroundColorAttributeName] = Appx252631;
     attribute[NSFontAttributeName] = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
     navBar.titleTextAttributes = attribute;
-    UIImage *backgroundImage = [UIImage imageWithColor:AppColor];
+    UIImage *backgroundImage = [UIImage imageWithColor:Appxffffff];
     [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     [navBar setShadowImage:[UIImage new]];
 }
@@ -45,16 +45,6 @@
 }
 -(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     self.pushing = NO;
-}
-/**
- 设置导航栏样式
- */
-+ (void)load {
-    
-
-}
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
 }
 - (BOOL)shouldAutorotate{
     return self.visibleViewController.shouldAutorotate;

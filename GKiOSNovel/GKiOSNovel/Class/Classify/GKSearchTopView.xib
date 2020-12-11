@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,12 +14,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgc-y0-LTt">
-                    <rect key="frame" x="5" y="25" width="44" height="44"/>
+                    <rect key="frame" x="10" y="25" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="UDv-k2-t2K"/>
                         <constraint firstAttribute="height" constant="44" id="hWd-dm-mt8"/>
                     </constraints>
-                    <state key="normal" image="icon_read_back"/>
+                    <state key="normal" image="icon_nav_back"/>
                     <connections>
                         <action selector="backAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="vtz-HO-uOl"/>
                     </connections>
@@ -38,10 +38,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzZ-Wg-T4H">
-                    <rect key="frame" x="39" y="31" width="290" height="32"/>
+                    <rect key="frame" x="44" y="31" width="285" height="32"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入关键字" textAlignment="natural" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uv9-jp-b1p">
-                            <rect key="frame" x="10" y="0.0" width="280" height="32"/>
+                            <rect key="frame" x="10" y="0.0" width="275" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -62,7 +62,7 @@
                 <constraint firstAttribute="bottom" secondItem="Xgc-y0-LTt" secondAttribute="bottom" id="F4d-1k-PcK"/>
                 <constraint firstItem="Hf4-5X-RSm" firstAttribute="centerY" secondItem="Xgc-y0-LTt" secondAttribute="centerY" id="Hce-2T-jAV"/>
                 <constraint firstAttribute="trailing" secondItem="Hf4-5X-RSm" secondAttribute="trailing" constant="15" id="LjG-lG-wOE"/>
-                <constraint firstItem="Xgc-y0-LTt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="UqJ-qG-JD0"/>
+                <constraint firstItem="Xgc-y0-LTt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="UqJ-qG-JD0"/>
                 <constraint firstItem="fzZ-Wg-T4H" firstAttribute="centerY" secondItem="Xgc-y0-LTt" secondAttribute="centerY" id="iI6-Dx-f5g"/>
                 <constraint firstItem="Hf4-5X-RSm" firstAttribute="leading" secondItem="fzZ-Wg-T4H" secondAttribute="trailing" constant="10" id="t1m-w9-Zmh"/>
             </constraints>
@@ -77,6 +77,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_read_back" width="33" height="44"/>
+        <image name="icon_nav_back" width="35" height="35"/>
     </resources>
 </document>

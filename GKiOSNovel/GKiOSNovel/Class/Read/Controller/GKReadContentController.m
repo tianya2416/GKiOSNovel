@@ -9,7 +9,6 @@
 #import "GKReadContentController.h"
 #import "UIViewController+Tool.h"
 #import "GKReadViewController.h"
-#import "GKBookChapterController.h"
 #import "GKBookSourceModel.h"
 #import "GKBookChapterModel.h"
 #import "GKBookContentModel.h"

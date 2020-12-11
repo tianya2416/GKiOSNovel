@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *monthLab;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *width;
 @property (weak, nonatomic) IBOutlet UIButton *stateBtn;
+@property (weak, nonatomic) IBOutlet UIButton *nickBtn;
 
 @property (strong, nonatomic)GKBookModel *model;
 

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookChapterController : BaseTableViewController
-+ (instancetype)vcWithChapter:(NSString *)bookSourceId chapter:(NSInteger )chapter completion:(void (^)(NSInteger index))completion;
++ (instancetype)vcWithChapter:(NSString *)bookSourceId;
 @end
 @interface GKBookSourceController : BaseTableViewController
 + (instancetype)vcWithChapter:(NSString *)bookId sourceId:(NSString *)sourceId completion:(void (^)(NSInteger index))completion;

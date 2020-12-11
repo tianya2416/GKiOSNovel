@@ -54,7 +54,7 @@
 		<key>icon_man</key>
 		<string>icon_man</string>
 		<key>color</key>
-		<string>66A2F9</string>
+		<string>007EFE</string>
 	</dict>
 	<key>too_house</key>
 	<dict>
@@ -83,59 +83,59 @@
 		<key>color</key>
 		<string>F5DEB9</string>
 	</dict>
-    <key>too_zi</key>
-    <dict>
-        <key>title</key>
-        <string>魅力紫</string>
-        <key>icon_mine_h</key>
-        <string>icon_mine_h3</string>
-        <key>icon_mine_n</key>
-        <string>icon_mine_n</string>
-        <key>icon_case_h</key>
-        <string>icon_case_h3</string>
-        <key>icon_case_n</key>
-        <string>icon_case_n</string>
-        <key>icon_class_h</key>
-        <string>icon_class_h3</string>
-        <key>icon_class_n</key>
-        <string>icon_class_n</string>
-        <key>icon_home_n</key>
-        <string>icon_home_n</string>
-        <key>icon_home_h</key>
-        <string>icon_home_h3</string>
-        <key>icon_more</key>
-        <string>icon_more3</string>
-        <key>icon_man</key>
-        <string>icon_man3</string>
-        <key>color</key>
-        <string>A33FFC</string>
-    </dict>
-    <key>too_fen</key>
-    <dict>
-        <key>title</key>
-        <string>女生粉</string>
-        <key>icon_mine_h</key>
-        <string>icon_mine_h4</string>
-        <key>icon_mine_n</key>
-        <string>icon_mine_n</string>
-        <key>icon_case_h</key>
-        <string>icon_case_h4</string>
-        <key>icon_case_n</key>
-        <string>icon_case_n</string>
-        <key>icon_class_h</key>
-        <string>icon_class_h4</string>
-        <key>icon_class_n</key>
-        <string>icon_class_n</string>
-        <key>icon_home_n</key>
-        <string>icon_home_n</string>
-        <key>icon_home_h</key>
-        <string>icon_home_h4</string>
-        <key>icon_more</key>
-        <string>icon_more4</string>
-        <key>icon_man</key>
-        <string>icon_man4</string>
-        <key>color</key>
-        <string>F699F8</string>
-    </dict>
+	<key>too_zi</key>
+	<dict>
+		<key>title</key>
+		<string>魅力紫</string>
+		<key>icon_mine_h</key>
+		<string>icon_mine_h3</string>
+		<key>icon_mine_n</key>
+		<string>icon_mine_n</string>
+		<key>icon_case_h</key>
+		<string>icon_case_h3</string>
+		<key>icon_case_n</key>
+		<string>icon_case_n</string>
+		<key>icon_class_h</key>
+		<string>icon_class_h3</string>
+		<key>icon_class_n</key>
+		<string>icon_class_n</string>
+		<key>icon_home_n</key>
+		<string>icon_home_n</string>
+		<key>icon_home_h</key>
+		<string>icon_home_h3</string>
+		<key>icon_more</key>
+		<string>icon_more3</string>
+		<key>icon_man</key>
+		<string>icon_man3</string>
+		<key>color</key>
+		<string>A33FFC</string>
+	</dict>
+	<key>too_fen</key>
+	<dict>
+		<key>title</key>
+		<string>女生粉</string>
+		<key>icon_mine_h</key>
+		<string>icon_mine_h4</string>
+		<key>icon_mine_n</key>
+		<string>icon_mine_n</string>
+		<key>icon_case_h</key>
+		<string>icon_case_h4</string>
+		<key>icon_case_n</key>
+		<string>icon_case_n</string>
+		<key>icon_class_h</key>
+		<string>icon_class_h4</string>
+		<key>icon_class_n</key>
+		<string>icon_class_n</string>
+		<key>icon_home_n</key>
+		<string>icon_home_n</string>
+		<key>icon_home_h</key>
+		<string>icon_home_h4</string>
+		<key>icon_more</key>
+		<string>icon_more4</string>
+		<key>icon_man</key>
+		<string>icon_man4</string>
+		<key>color</key>
+		<string>F699F8</string>
+	</dict>
 </dict>
 </plist>

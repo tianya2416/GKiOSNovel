@@ -19,7 +19,7 @@
 #import <SDWebImage/SDWebImageManager.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UINavigationController+FDFullscreenPopGesture.h"
-#import "UICollectionView+ARDynamicCacheHeightLayoutCell.h"
+//#import "UICollectionView+ARDynamicCacheHeightLayoutCell.h"
 
 #import "BaseMacro.h"
 #import "BaseModel.h"
@@ -48,4 +48,6 @@
 #import "GKAppModel.h"
 #import "GKShareTool.h"
 #import "GKBookCacheDataQueue.h"
+
+#import "UICollectionView+ATKit.h"
 #endif /* GKiOSNovel_pch */

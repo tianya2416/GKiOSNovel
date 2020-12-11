@@ -8,7 +8,7 @@
 
 #import "GKJumpApp.h"
 #import "GKStartViewController.h"
-#import "GKBookDetailController.h"
+#import "GKBookDetailContentController.h"
 #import "GKBookListDetailController.h"
 #import "GKMineSelectController.h"
 #import "GKReadViewController.h"
@@ -30,7 +30,7 @@
 }
 + (void)jumpToBookDetail:(NSString *)bookId{
     UIViewController *nvc = [UIViewController rootTopPresentedController];
-    GKBookDetailController *vc = [GKBookDetailController vcWithBookId:bookId];
+    GKBookDetailContentController *vc = [GKBookDetailContentController vcWithConfig:bookId];
     vc.hidesBottomBarWhenPushed = YES;
 //    NSArray <UIViewController *>*list =  nvc.navigationController.viewControllers;
 //    NSMutableArray *vcs = @[].mutableCopy;
@@ -104,4 +104,8 @@
         return [app keyWindow];
     }
 }
++ (void)jumpToAppTheme{
+    [GKJumpApp window].rootViewController =  [[GKNovelTabBarController alloc] init];
+}
+
 @end

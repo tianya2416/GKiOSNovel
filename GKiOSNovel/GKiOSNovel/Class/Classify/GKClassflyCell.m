@@ -21,7 +21,9 @@
     [self.focusBtn setTitleColor:Appx999999 forState:UIControlStateNormal];
    // [self.focusBtn setBackgroundImage:[UIImage imageWithColor:AppColor] forState:UIControlStateNormal];
 //    self.width.constant = SCALEW(80);
-    self.nickNameLab.textColor = AppColor;
+//    self.nickNameLab.textColor = AppColor;
+    self.nickBtn.layer.masksToBounds = YES;
+    self.nickBtn.layer.cornerRadius = 3;
     self.imagV.layer.masksToBounds = YES;
     self.imagV.layer.cornerRadius = AppRadius;
     // Initialization code
@@ -42,7 +44,7 @@
         [self.focusBtn setTitle:[NSString stringWithFormat:@"关注度:%.2f%@",model.retentionRatio,@"%"] forState:UIControlStateNormal];
         [self.stateBtn setTitle:model.majorCate forState:UIControlStateNormal];
 
-        
+        [self.nickBtn setTitle:model.author forState:UIControlStateNormal];
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:model.shortIntro ?:@""];
         text.lineSpacing = 3;
         text.alignment = NSTextAlignmentLeft;

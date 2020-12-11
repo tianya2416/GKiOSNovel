@@ -34,9 +34,9 @@
     [GKNovelNet bookListDetail:self.bookId success:^(id  _Nonnull object) {
         self.model = [GKBookListDetailModel modelWithJSON:object[@"bookList"]];
         self.detailView.model = self.model;
-        CGFloat height = [self.detailView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-        [self.detailView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, height)];
-        self.tableView.tableHeaderView = self.detailView;
+//        CGFloat height = [self.detailView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//        [self.detailView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, height)];
+//        self.tableView.tableHeaderView = self.detailView;
         [self.tableView reloadData];
         [self endRefresh:NO];
     } failure:^(NSString * _Nonnull error) {

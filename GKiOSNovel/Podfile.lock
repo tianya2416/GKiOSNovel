@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - ATKit_ObjectC (0.2.0)
-  - ATRefresh_ObjectC (0.0.4):
+  - ATRefresh_ObjectC (0.0.5):
     - DZNEmptyDataSet (~> 1.8.1)
     - KVOController (~> 1.2.0)
     - MJRefresh (~> 3.4.3)
@@ -55,10 +55,10 @@ PODS:
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
-  - UICollectionView-ARDynamicHeightLayoutCell (1.0.3)
   - VTMagic (1.2.4):
     - VTMagic/Core (= 1.2.4)
   - VTMagic/Core (1.2.4)
+  - YNPageViewController (0.2.6)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -81,8 +81,8 @@ DEPENDENCIES:
   - mob_sharesdk/ShareSDKPlatforms/WeChat
   - SDCycleScrollView
   - SDWebImage
-  - UICollectionView-ARDynamicHeightLayoutCell (from `https://github.com/tianya2416/FDCacheHeightLayoutCell.git`)
   - VTMagic
+  - YNPageViewController (from `https://gitee.com/tianya24/YNPageViewController.git`)
   - YYKit
 
 SPEC REPOS:
@@ -114,15 +114,15 @@ EXTERNAL SOURCES:
     :git: https://github.com/tianya2416/MBProgress.git
   MMPopupView:
     :git: https://github.com/CoderLT/MMPopupView.git
-  UICollectionView-ARDynamicHeightLayoutCell:
-    :git: https://github.com/tianya2416/FDCacheHeightLayoutCell.git
+  YNPageViewController:
+    :git: https://gitee.com/tianya24/YNPageViewController.git
 
 CHECKOUT OPTIONS:
   ATKit_ObjectC:
-    :commit: f3b0163bfa8462d842b98fb04ae01a5946223e88
+    :commit: 521e8cba3ee9317b1b7dc20183f3cd2490aac770
     :git: https://github.com/tianya2416/ATKit_ObjectC.git
   ATRefresh_ObjectC:
-    :commit: d2d2187ec88bfbe6eac27092db2f9d22b6ef7ff8
+    :commit: 37295e5b4c3fa0045591baff4bfc957584e39191
     :git: https://github.com/tianya2416/ATRefresh_ObjectC.git
   MBProgressHUD:
     :commit: 9454198b351732bd4eb8cbd7658b6dd73e1e43c8
@@ -130,14 +130,14 @@ CHECKOUT OPTIONS:
   MMPopupView:
     :commit: 3037fead755aae3b7fe86006a3041b24d2da719f
     :git: https://github.com/CoderLT/MMPopupView.git
-  UICollectionView-ARDynamicHeightLayoutCell:
-    :commit: 7beba9b579933131828d3a6b9a1d70cb77c0fac0
-    :git: https://github.com/tianya2416/FDCacheHeightLayoutCell.git
+  YNPageViewController:
+    :commit: 9018ca54347f928f38626cfc567fce0d9149e58b
+    :git: https://gitee.com/tianya24/YNPageViewController.git
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   ATKit_ObjectC: 205558bad000275e3e393dafb1fa98b683a9bfd4
-  ATRefresh_ObjectC: 658355e190f39eee5f85c82f9e21068a8c24c537
+  ATRefresh_ObjectC: 5f0564bb1cd4624926457f1701733527ca20c994
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EAIntroView: 249559079ddfdbe80e5bcb755c04c3b964b2ac27
   EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
@@ -154,10 +154,10 @@ SPEC CHECKSUMS:
   MOBFoundation: 1663e6202a753bfa4bc7e889a837362870510587
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
-  UICollectionView-ARDynamicHeightLayoutCell: 5597bcbf30313a2413f01cbca936079d50d456d1
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
+  YNPageViewController: 33040d429adf0b415d4449ffeec848d8339934ea
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 3527ad8c6c950477c0baa25f1449ee7ec4628f92
+PODFILE CHECKSUM: 31178bad38e67238b757aa60121741ffa6801007
 
 COCOAPODS: 1.9.3

@@ -7,6 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#define SCREEN_WIDTH             [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT            [UIScreen mainScreen].bounds.size.height
+
+#define TAB_BAR_ADDING           [ATRefresh at_tabBar]
+#define STATUS_BAR_HIGHT         [ATRefresh at_statusBar]
+#define NAVI_BAR_HIGHT           [ATRefresh at_naviBar]
+
+#define SCALEW(value)       ((CGFloat)((SCREEN_WIDTH * (value) / 375.0f)))
 
 #define AppColor                 [UIColor colorWithHexString:[GKAppTheme shareInstance].model.color]
 #define Appx252631               [UIColor colorWithRGB:0x252631]
@@ -24,13 +32,11 @@
 #define placeholders     [UIImage imageNamed:@"placeholder_big"]
 #define placeholdersmall [UIImage imageNamed:@"placeholder_small"]
 
-//#define AppReadContent CGRectMake(AppTop, STATUS_BAR_HIGHT + 40, SCREEN_WIDTH - 30, SCREEN_HEIGHT - STATUS_BAR_HIGHT - TAB_BAR_ADDING - 30 - 40)
-
 #pragma mark login
-#define BaseUrl  @"https://api.zhuishushenqi.com/"
+#define BaseUrl      @"https://api.zhuishushenqi.com/"
 #define BaseUrlIcon  @"https://statics.zhuishushenqi.com"
 
-#define kBaseUrl(url)  [NSString stringWithFormat:@"%@%@", BaseUrl, url]
+#define kBaseUrl(url)      [NSString stringWithFormat:@"%@%@", BaseUrl, url]
 #define kBaseUrlIcon(url)  [NSString stringWithFormat:@"%@%@", BaseUrlIcon, url]
 
 #define BaseAssert(url) assert(url)

@@ -67,7 +67,7 @@
         make.top.equalTo(backBtn.superview).offset(STATUS_BAR_HIGHT);
         make.left.equalTo(backBtn.superview).offset(10);
     }];
-    [backBtn setImage:[UIImage imageNamed:@"icon_nav_back"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"icon_nav_back_1"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -199,15 +199,15 @@
     NSArray *list = self.bookDetail.listData[indexPath.section];
     id object = list[indexPath.row];
     if ([object isKindOfClass:GKBookDetailModel.class]) {
-        return [collectionView ar_sizeForCellWithClassCell:GKBookDetailCell.class indexPath:indexPath fixedValue:SCREEN_WIDTH configuration:^(__kindof GKBookDetailCell *cell) {
+        return  [collectionView at_sizeForCellWithClassCell:GKBookDetailCell.class indexPath:indexPath fixedValue:SCREEN_WIDTH caculateType:ATDynamicTypeWidth config:^(__kindof GKBookDetailCollectionCell * cell) {
             cell.model = object;
         }];
     }else if ([object isKindOfClass:GKBookListModel.class]){
-        return [collectionView ar_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3.0f configuration:^(__kindof GKHomeHotCell *cell) {
+        return  [collectionView at_sizeForCellWithClassCell:GKHomeHotCell.class indexPath:indexPath fixedValue:(SCREEN_WIDTH - 4*AppTop-1)/3.0f caculateType:ATDynamicTypeWidth config:^(__kindof GKBookDetailCollectionCell * cell) {
             cell.model = object;
         }];
     }else if ([object isKindOfClass:GKBookModel.class]){
-        return [collectionView ar_sizeForCellWithClassCell:GKBookDetailCollectionCell.class indexPath:indexPath fixedValue:SCREEN_WIDTH configuration:^(__kindof GKBookDetailCollectionCell * cell) {
+        return  [collectionView at_sizeForCellWithClassCell:GKBookDetailCollectionCell.class indexPath:indexPath fixedValue:SCREEN_WIDTH caculateType:ATDynamicTypeWidth config:^(__kindof GKBookDetailCollectionCell * cell) {
             cell.model = object;
         }];
     }
@@ -218,19 +218,19 @@
 {
     NSArray *list = self.bookDetail.listData[indexPath.section];
     id object = list[indexPath.row];
-    if ([object isKindOfClass:GKBookDetailModel.class]) {
-        GKBookDetailCell *cell = [GKBookDetailCell cellForCollectionView:collectionView indexPath:indexPath];
-        cell.model = object;
-        return cell;
-    }else if ([object isKindOfClass:GKBookListModel.class]){
-        GKHomeHotCell *cell = [GKHomeHotCell cellForCollectionView:collectionView indexPath:indexPath];
-        cell.model = object;
-        return cell;
-    }else if ([object isKindOfClass:GKBookModel.class]){
-        GKBookDetailCollectionCell *cell = [GKBookDetailCollectionCell cellForCollectionView:collectionView indexPath:indexPath];
-        cell.model = object;
-        return cell;
-    }
+//    if ([object isKindOfClass:GKBookDetailModel.class]) {
+//        GKBookDetailCell *cell = [GKBookDetailCell cellForCollectionView:collectionView indexPath:indexPath];
+//        cell.model = object;
+//        return cell;
+//    }else if ([object isKindOfClass:GKBookListModel.class]){
+//        GKHomeHotCell *cell = [GKHomeHotCell cellForCollectionView:collectionView indexPath:indexPath];
+//        cell.model = object;
+//        return cell;
+//    }else if ([object isKindOfClass:GKBookModel.class]){
+//        GKBookDetailCollectionCell *cell = [GKBookDetailCollectionCell cellForCollectionView:collectionView indexPath:indexPath];
+//        cell.model = object;
+//        return cell;
+//    }
     return [UICollectionViewCell cellForCollectionView:collectionView indexPath:indexPath];
 }
 #pragma mark delegate

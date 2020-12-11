@@ -35,26 +35,26 @@
         }];
     }
     if (loadData & GKLoadDataDataBase) {
-        dispatch_group_enter(group);
-        [GKBookReadDataQueue getDatasFromDataBase:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
-            self.readBook = [[GKBookInfo alloc] init];
-            self.readBook.state = GKBookInfoStateDataQueue;
-            self.readBook.shortTitle = @"浏览记录";
-            self.readBook.books = listData;
-            dispatch_group_leave(group);
-        }];
 //        dispatch_group_enter(group);
-//        [GKBookCaseDataQueue getDatasFromDataBase:^(NSArray<GKBookDetailModel *> * _Nonnull listData) {
-//            self.bookCase = [[GKBookInfo alloc] init];
-//            self.bookCase.state = GKBookInfoStateDataQueue;
-//            self.bookCase.shortTitle = @"我的书架";
-//            self.bookCase.books = listData;
+//        [GKBookReadDataQueue getDatasFromDataBase:^(NSArray<GKBookReadModel *> * _Nonnull listData) {
+//            self.readBook = [[GKBookInfo alloc] init];
+//            self.readBook.state = GKBookInfoStateDataQueue;
+//            self.readBook.shortTitle = @"浏览记录";
+//            self.readBook.books = listData;
 //            dispatch_group_leave(group);
 //        }];
+        dispatch_group_enter(group);
+        [GKBookCaseDataQueue getDatasFromDataBase:^(NSArray<GKBookDetailModel *> * _Nonnull listData) {
+            self.bookCase = [[GKBookInfo alloc] init];
+            self.bookCase.state = GKBookInfoStateDataQueue;
+            self.bookCase.shortTitle = @"我的书架";
+            self.bookCase.books = listData;
+            dispatch_group_leave(group);
+        }];
     }
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         [self.listData removeAllObjects];
-        if ( [YYReachability reachability].status != YYReachabilityStatusNone) {
+        if ([AFNetworkReachabilityManager manager].networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable) {
             if (self.readBook.books.count > 0) {
                 [self.listData addObject:self.readBook];
             }
