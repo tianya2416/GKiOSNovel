@@ -37,7 +37,6 @@
         make.left.right.bottom.equalTo(self.tableView.superview);
         make.top.equalTo(self.topView.mas_bottom);
     }];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshDefault];
     self.topView.keyword = self.hotWord;
 }

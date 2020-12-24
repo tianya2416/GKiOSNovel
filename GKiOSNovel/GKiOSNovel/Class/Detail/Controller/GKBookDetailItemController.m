@@ -31,7 +31,6 @@
     } failure:^(NSString *error) {
             
     }];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{
@@ -51,7 +50,8 @@
     cell.model = self.model;
     return cell;
 }
-- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
+
+- (CGFloat)refreshLogoVertica{
     return (170 + NAVI_BAR_HIGHT)/2;
 }
 @end
@@ -69,7 +69,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshNone];
     // Do any additional setup after loading the view.
 }
@@ -113,7 +112,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
    // GKBookInfo *info = self.listData[indexPath.section];
 }
-- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
+- (CGFloat)refreshLogoVertica{
     return (170 + NAVI_BAR_HIGHT)/2;
 }
 @end
@@ -133,7 +132,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshNone];
     // Do any additional setup after loading the view.
 }
@@ -177,7 +175,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
    // GKBookInfo *info = self.listData[indexPath.section];
 }
-- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
+- (CGFloat)refreshLogoVertica{
     return (170 + NAVI_BAR_HIGHT)/2;
 }
 @end

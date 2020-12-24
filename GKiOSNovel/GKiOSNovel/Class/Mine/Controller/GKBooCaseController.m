@@ -20,8 +20,7 @@
     [super viewDidLoad];
     [self showNavTitle:@"我的书架"];
     self.listData = @[].mutableCopy;
-    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到书籍详情页收藏你喜欢的书籍吧"];
-    [self setupRefresh:self.collectionView option:ATRefreshDefault];
+    [self setupRefresh:self.collectionView option:ATRefreshDefault image:@"icon_data_empty" title:@"数据空空如也...\n\r请到书籍详情页收藏你喜欢的书籍吧"];
     self.needRequesst = NO;
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
     [self.collectionView addGestureRecognizer:longPressGesture];
@@ -29,7 +28,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (self.needRequesst) {
-        [self headerRefreshing];
+        [self refreshData:1];
     }
     self.needRequesst = YES;
 }

@@ -48,7 +48,6 @@
     [self.tipLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.tipLab.superview);
     }];
-    [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
     [self.view addSubview:self.tabbar];
     [self.tabbar mas_makeConstraints:^(MASConstraintMaker *make) {

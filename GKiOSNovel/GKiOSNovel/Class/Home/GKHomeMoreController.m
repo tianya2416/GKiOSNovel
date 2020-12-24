@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showNavTitle:self.bookInfo.shortTitle];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshDefault];
     
 }

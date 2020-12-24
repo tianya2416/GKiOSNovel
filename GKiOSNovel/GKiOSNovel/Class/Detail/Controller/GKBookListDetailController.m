@@ -26,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showNavTitle:@"书单详情"];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshDefault];
     [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_share"] action:@selector(shareAction)];
 }

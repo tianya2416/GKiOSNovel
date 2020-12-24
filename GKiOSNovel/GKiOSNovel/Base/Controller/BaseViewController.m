@@ -13,6 +13,9 @@
 @end
 
 @implementation BaseViewController
+- (BOOL)refreshNetAvailable {
+    return [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable;
+}
 - (void)dealloc{
     NSLog(@"%s", __FUNCTION__);
     NSLog(@"%@", self.class);

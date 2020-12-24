@@ -30,7 +30,6 @@ static NSString *theme = @"我的主题";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{

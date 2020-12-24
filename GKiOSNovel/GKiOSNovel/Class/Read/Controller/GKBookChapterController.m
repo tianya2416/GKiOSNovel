@@ -32,7 +32,6 @@
 }
 - (void)loadUI{
     [self showNavTitle:@"章节选择"];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{
@@ -68,8 +67,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
-    return (170 + NAVI_BAR_HIGHT)/2;
+- (CGFloat)refreshLogoVertica{
+    return  (170 + NAVI_BAR_HIGHT)/2;
 }
 @end
 @interface GKBookSourceController()
@@ -90,7 +89,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self showNavTitle:@"源选择"];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{

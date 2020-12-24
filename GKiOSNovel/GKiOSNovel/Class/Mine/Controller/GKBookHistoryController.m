@@ -25,15 +25,14 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (self.needRequesst) {
-        [self headerRefreshing];
+        [self refreshData:1];
     }
     self.needRequesst = YES;
 }
 - (void)loadUI{
     [self showNavTitle:@"浏览记录"];
     self.listData = @[].mutableCopy;
-    [self setupEmpty:self.tableView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请到书籍详情页观看你喜欢的书籍吧"];
-    [self setupRefresh:self.tableView option:ATRefreshDefault];
+    [self setupRefresh:self.tableView option:ATRefreshDefault image:@"icon_data_empty" title:@"数据空空如也...\n\r请到书籍详情页观看你喜欢的书籍吧"];
 }
 - (void)loadData{
     
@@ -99,7 +98,7 @@
     model.updateTime = @"";
     [GKBookReadDataQueue updateDataToDataBase:model completion:^(BOOL success) {
         if (success) {
-            [self headerRefreshing];
+            [self refreshData:1];
         }
     }];
 }

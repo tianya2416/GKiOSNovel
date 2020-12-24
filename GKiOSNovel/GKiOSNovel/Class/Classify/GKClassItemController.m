@@ -23,7 +23,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
 }
 - (void)setTitleName:(NSString *)titleName{

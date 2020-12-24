@@ -30,8 +30,7 @@
     self.view.backgroundColor = Appxf8f8f8;
     self.tableView.backgroundView.backgroundColor = self.tableView.backgroundColor = Appxf8f8f8;
     [self showNavTitle:@"缓存下载"];
-    [self setupEmpty:self.tableView image:nil title:@"暂无数据"];
-    [self setupRefresh:self.tableView option:ATRefreshNone];
+    [self setupRefresh:self.tableView option:ATRefreshNone image:nil title:@"暂无数据"];
     UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 16)];
     self.tableView.tableHeaderView = footView;
 }

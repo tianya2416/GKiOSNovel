@@ -35,7 +35,6 @@
         make.left.right.bottom.equalTo(self.collectionView.superview);
         make.top.equalTo(self.searchView.mas_bottom);
     }];
-    [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshDefault];
     if ([self.searchView.textField canBecomeFirstResponder]) {
         [self.searchView.textField becomeFirstResponder];
@@ -61,7 +60,7 @@
         if (index > 0) {
             [GKSearchDataQueue deleteDatasToDataBase:self.searchDatas.copy completion:^(BOOL success) {
                 if (success) {
-                    [self headerRefreshing];
+                    [self refreshData:1];
                 }
             }];
         }
@@ -104,7 +103,7 @@
     @weakify(self)
     [res.moreBtn setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
         @strongify(self)
-        indexPath.section == 0 ? [self headerRefreshing]  : [self deleteAction];
+        indexPath.section == 0 ? [self refreshData:1]  : [self deleteAction];
     }];
     return res;
 }
@@ -145,7 +144,7 @@
     NSString *content = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [GKSearchDataQueue insertDataToDataBase:content completion:^(BOOL success) {
         if (success) {
-            [self headerRefreshing];
+            [self refreshData:1];
         }
     }];
     [self searchText:content];

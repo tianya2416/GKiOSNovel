@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - ATKit_ObjectC (0.2.0)
-  - ATRefresh_ObjectC (0.0.5):
+  - ATRefresh_ObjectC (0.1.0):
     - DZNEmptyDataSet (~> 1.8.1)
     - KVOController (~> 1.2.0)
     - MJRefresh (~> 3.4.3)
@@ -122,7 +122,7 @@ CHECKOUT OPTIONS:
     :commit: 521e8cba3ee9317b1b7dc20183f3cd2490aac770
     :git: https://github.com/tianya2416/ATKit_ObjectC.git
   ATRefresh_ObjectC:
-    :commit: 37295e5b4c3fa0045591baff4bfc957584e39191
+    :commit: e8aa8f2215fa91a658b81caa3b7c881b166d124b
     :git: https://github.com/tianya2416/ATRefresh_ObjectC.git
   MBProgressHUD:
     :commit: 9454198b351732bd4eb8cbd7658b6dd73e1e43c8
@@ -137,7 +137,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   ATKit_ObjectC: 205558bad000275e3e393dafb1fa98b683a9bfd4
-  ATRefresh_ObjectC: 5f0564bb1cd4624926457f1701733527ca20c994
+  ATRefresh_ObjectC: b607792724107434b685e14477d0a05ad7536ff3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EAIntroView: 249559079ddfdbe80e5bcb755c04c3b964b2ac27
   EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef

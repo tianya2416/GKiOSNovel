@@ -19,12 +19,11 @@
     [super viewDidLoad];
     [self showNavTitle:@"自定义首页"];
     [self setNavRightItemWithImage:[UIImage imageNamed:@"icon_nav_add"] action:@selector(addAction)];
-    [self setupEmpty:self.tableView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角进行添加"];
-    [self setupRefresh:self.tableView option:ATRefreshNone];
+    [self setupRefresh:self.tableView option:ATRefreshNone image:@"icon_data_empty" title:@"数据空空如也...\n\r请点击右上角进行添加"];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self headerRefreshing];
+    [self refreshData:1];
 }
 - (void)refreshData:(NSInteger)page{
     self.listData = [GKUserManager shareInstance].user.rankDatas.mutableCopy;

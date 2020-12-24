@@ -29,7 +29,6 @@
     [super viewDidLoad];
     [self showNavTitle:self.name];
     self.listData = @[].mutableCopy;
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshDefault];
     
 }

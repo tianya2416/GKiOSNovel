@@ -31,8 +31,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self setupEmpty:self.collectionView];
-//    [self setupRefresh:self.self.collectionView option:ATRefreshNone];
     [self.view addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.titleLab.superview);

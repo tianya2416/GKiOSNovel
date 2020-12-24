@@ -8,57 +8,30 @@
 
 #import "BaseRefreshController.h"
 
-static NSString *FDMSG_Home_DataRefresh                      = @"Data Loading...";
-static NSString *FDMSG_Home_DataEmpty                        = @"Data Empty...";
-static NSString *FDNoNetworkMsg                              = @"Net Error...";
-@interface BaseRefreshController ()<ATRefreshDataSource>
+NSString *loadTitle  = @"Data loading...";
+NSString *emptyTitle = @"Data Empty...";
+NSString *errorTitle = @"Net Error...";
+NSString *emptyData = @"icon_data_empty";
+NSString *errorData = @"icon_net_error";
+@interface BaseRefreshController ()
 @property (nonatomic, strong) NSMutableArray *images;
+@property (strong, nonatomic) ATRefreshData *refreshData;
 @end
 
 @implementation BaseRefreshController
+- (ATRefreshData *)refreshData{
+    if (!_refreshData) {
+        _refreshData = [[ATRefreshData alloc] init];
+        _refreshData.dataSource = self;
+        _refreshData.delegate = self;
+    }
+    return _refreshData;
+}
 - (void)dealloc {
     NSLog(@"%@", NSStringFromClass(self.class));
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataSource = self;
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
-        [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    }
-    self.navigationController.navigationBar.translucent = NO;
-    self.view.backgroundColor = Appxffffff;
-    self.navigationController.interactivePopGestureRecognizer.delegate=(id)self;
-    self.fd_interactivePopDisabled = NO;
-    self.fd_prefersNavigationBarHidden = NO;
-}
-#pragma mark ATRefreshDataSource
-- (NSArray <UIImage *>*)refreshFooterData{
-    return self.images;
-}
-- (NSArray <UIImage *>*)refreshHeaderData{
-    return self.images;
-}
-- (NSArray <UIImage *>*)refreshLoaderData{
-    return self.images;
-}
-- (UIImage *)refreshEmptyData{
-    return [UIImage imageNamed:@"icon_data_empty"];
-}
-- (UIImage *)refreshErrorData{
-    return [UIImage imageNamed:@"icon_net_error"];
-}
-- (NSString *)refreshLoaderToast{
-    return FDMSG_Home_DataRefresh;
-}
-- (NSString *)refreshErrorToast{
-    return FDNoNetworkMsg;
-}
-- (NSString *)refreshEmptyToast{
-    return FDMSG_Home_DataEmpty;
-}
-- (BOOL)refreshNetAvailable{
-    
-    return [AFNetworkReachabilityManager manager].networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable;
 }
 - (NSMutableArray *)images{
     if (!_images) {
@@ -80,19 +53,86 @@ static NSString *FDNoNetworkMsg                              = @"Net Error...";
     }
     return _images;
 }
-
-- (BOOL)shouldAutorotate {
-    return YES;
+- (void)setupRefresh:(UIScrollView *)scrollView option:(ATRefreshOption)option{
+    [self setupRefresh:scrollView option:option image:nil title:nil];
 }
-//返回支持的方向
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAll;
+- (void)setupRefresh:(UIScrollView *)scrollView
+              option:(ATRefreshOption)option
+               image:(NSString *)image
+               title:(NSString *)title{
+    if (title.length > 0) {
+        emptyTitle = title;
+    }
+    if (image) {
+        emptyData = image;
+    }
+    if ([self.refreshData respondsToSelector:@selector(setupRefresh:option:)]) {
+        [self.refreshData setupRefresh:scrollView option:option];
+    }
 }
-//这个是返回优先方向
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationPortrait;
+- (void)endRefresh:(BOOL)hasMore{
+    if ([self.refreshData respondsToSelector:@selector(endRefresh:)]) {
+        [self.refreshData endRefresh:hasMore];
+    }
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
+- (void)endRefreshFailure{
+    [self endRefreshFailure:nil];
+}
+- (void)endRefreshFailure:(NSString *)error{
+    if (error.length > 0) {
+        errorTitle = error;
+    }
+    if ([self.refreshData respondsToSelector:@selector(endRefreshFailure)]) {
+        [self.refreshData endRefreshFailure];
+    }
+}
+#pragma mark ATRefreshDelegate
+- (void)refreshData:(NSInteger)page {
+    
+}
+#pragma mark ATRefreshDataSource
+- (NSArray <UIImage *>*)refreshHeaderData{
+    return self.images;
+}
+- (NSArray <UIImage *>*)refreshFooterData{
+    return self.images;
+}
+- (UIImage *)refreshLogoData{
+    return self.refreshData.refreshing ? [UIImage imageNamed:@"icon_load_data"] : [UIImage imageNamed:[self refreshNetAvailable]? emptyData:errorData];
+}
+- (NSAttributedString *)refreshTitle{
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    NSString *text = self.refreshData.refreshing ? loadTitle : ([self refreshNetAvailable] ? emptyTitle : errorTitle);
+    NSDictionary* attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:16.0f],
+                                 NSForegroundColorAttributeName :[ATRefresh colorWithRGB:0X999999],
+                                 NSParagraphStyleAttributeName : paragraph};
+    return [[NSMutableAttributedString alloc] initWithString:text
+                                                  attributes:attributes];
+}
+- (CAAnimation *)refreshAnimation {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    animation.toValue = [NSValue valueWithCATransform3D: CATransform3DMakeRotation(M_PI_2, 0.0, 0.0, 1.0) ];
+    animation.duration = 0.25;
+    animation.cumulative = YES;
+    animation.repeatCount = MAXFLOAT;
+    return animation;
+}
+- (CGFloat)refreshLogoSpace{
+    return 10;
+}
+- (CGFloat)refreshLogoVertica{
+    return  - NAVI_BAR_HIGHT/2;
+}
+- (UIColor *)refreshColor{
+    return  [UIColor whiteColor];
+}
+- (NSAttributedString *)refreshSubtitle{
+    return nil;
+}
+- (UIButton *)refreshButton{
+    return nil;
 }
 @end

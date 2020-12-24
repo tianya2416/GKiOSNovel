@@ -18,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showNavTitle:@"主题切换"];
-    [self setupEmpty:self.tableView];
     [self setupRefresh:self.tableView option:ATRefreshNone];
 
 }

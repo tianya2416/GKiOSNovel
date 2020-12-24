@@ -66,9 +66,6 @@ static BOOL AFRequest = NO;
         return [AFRequestTool method:method serializer:serializer urlString:urlString params:params timeOut:timeOut success:^(id  _Nonnull object) {
             NSDictionary *dic = [BaseNetModel analysisData:object];
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (dic) {
-                    
-                }
                 !success ?: success(dic);
             });
         } failure:^(NSError * _Nonnull error) {

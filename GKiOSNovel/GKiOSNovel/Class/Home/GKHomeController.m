@@ -68,10 +68,9 @@
     self.option = GKLoadDataDefault;
     [GKUserManager reloadHomeDataNeed:^(GKLoadDataState option) {
         self.option = option;
-        [self headerRefreshing];
+        [self refreshData:1];
     }];
-    [self setupEmpty:self.collectionView image:[UIImage imageNamed:@"icon_data_empty"] title:@"数据空空如也...\n\r请点击右上角进行添加"];
-    [self setupRefresh:self.collectionView option:ATRefreshDefault];
+    [self setupRefresh:self.collectionView option:ATRefreshDefault image:@"icon_data_empty" title:@"数据空空如也...\n\r请点击右上角进行添加"];
     self.listHotWords = [BaseMacro hotDatas];
     [self.vmessage reloadData:self.listHotWords.count];
 }
@@ -85,7 +84,7 @@
         [self endRefresh:NO];
     } failure:^(NSString * _Nonnull error) {
         @strongify(self)
-        if (!self.reachable) {
+        if (!self.refreshNetAvailable) {
             [self endRefreshFailure];
         }else{
             self.listData = @[];

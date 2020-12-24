@@ -7,9 +7,17 @@
 //
 
 #import "BaseViewController.h"
-#import <ATRefresh_ObjectC/ATRefreshController.h>
+#import <ATRefresh_ObjectC.h>
+#import <ATRefreshData.h>
+@interface BaseRefreshController : BaseViewController<ATRefreshDataSource,ATRefreshDelegate>
+@property (strong, nonatomic,readonly) ATRefreshData *refreshData;
+//default
+- (void)setupRefresh:(UIScrollView *)scrollView option:(ATRefreshOption)option;
+//custom
+- (void)setupRefresh:(UIScrollView *)scrollView option:(ATRefreshOption)option image:(NSString *)image title:(NSString *)title;
+- (void)endRefresh:(BOOL)hasMore;
 
-@interface BaseRefreshController : ATRefreshController
-
+- (void)endRefreshFailure;
+- (void)endRefreshFailure:(NSString *)error;
 
 @end

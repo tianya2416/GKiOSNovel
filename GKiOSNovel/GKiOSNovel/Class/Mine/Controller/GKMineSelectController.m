@@ -33,7 +33,6 @@
         make.bottom.equalTo(self.sureBtn.mas_top).offset(-10);
         make.top.equalTo(self.collectionView.superview).offset(0);
     }];
-    [self setupEmpty:self.collectionView];
     [self setupRefresh:self.collectionView option:ATRefreshNone];
 }
 - (void)refreshData:(NSInteger)page{
