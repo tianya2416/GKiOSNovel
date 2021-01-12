@@ -10,7 +10,11 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "WXApi.h"
-#import "WeiboSDK.h"
+#import <UMCShare/WXApi.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <UMCommon/UMCommon.h>
+#import <UMShare/UMShare.h>
 @interface GKShareTool()<WXApiDelegate,QQApiInterfaceDelegate,TencentSessionDelegate>
 @property (copy, nonatomic) void (^completion)(NSString *error);
 @end
@@ -38,14 +42,19 @@ static GKShareTool *_instance;
     return [QQApiInterface isQQInstalled];
 }
 
-+ (BOOL)isWeiboInstalled {
-    return [WeiboSDK isWeiboAppInstalled];
-}
+
 + (void)shareInit {
-    [WXApi registerApp:WChatAppKey universalLink:@""];
-    TencentOAuth * a = [[TencentOAuth alloc] initWithAppId:QQAppKey
-                                               andDelegate:[GKShareTool sharedInstance]];
-    NSLog(@"%@",a.accessToken);
+    //https://www.3733.com/flutter/
+//    [WXApi registerApp:WChatAppKey universalLink:@""];
+//    TencentOAuth * a = [[TencentOAuth alloc] initWithAppId:QQAppKey
+//                                               andDelegate:[GKShareTool sharedInstance]];
+    [UMCommonLogManager setUpUMCommonLogManager];
+    [UMConfigure setLogEnabled:YES];
+    [[UMSocialManager defaultManager] openLog:true];
+    [UMConfigure initWithAppkey:@"59892ebcaed179694b000104" channel:@"App Store"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxdc1e388c3822c80b" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:nil];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105821097" appSecret:@"" redirectURL:nil];
+//    NSLog(@"%@",a.accessToken);
 }
 #pragma mark - 回调处理
 + (BOOL)handleOpenURL:(NSURL *)url {

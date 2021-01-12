@@ -65,9 +65,12 @@
     [nvc.navigationController pushViewController:vc animated:YES];
 }
 + (void)jumpToBookRead:(GKBookDetailModel *)model{
+    [GKJumpApp jumpToBookRead:model chapter:0];
+}
++ (void)jumpToBookRead:(GKBookDetailModel *)model chapter:(NSInteger)chapter{
     UIViewController *root = [UIViewController rootTopPresentedController];
     
-    GKReadContentController *vc = [GKReadContentController vcWithBookDetailModel:model];
+    GKReadContentController *vc = [GKReadContentController vcWithBookDetailModel:model chapter:chapter];
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
     vc.hidesBottomBarWhenPushed = YES;
     nav.modalPresentationStyle = UIModalPresentationFullScreen;

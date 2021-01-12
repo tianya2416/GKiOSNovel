@@ -16,6 +16,7 @@
 @implementation GKSetViewManager
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        NSLog(@"============%lf",topHeight);
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = YES;
         [self addSubview:self.botView];
@@ -41,6 +42,7 @@
         [self addSubview:self.tapView];
         [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.topView.superview);
+            //make.top.equalTo(self.topView.superview).offset(topHeight);
             make.bottom.equalTo(self.topView.superview.mas_top).offset(0);
             make.height.offset(topHeight);
         }];

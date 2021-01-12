@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GKBookChapterController : BaseTableViewController
+@property (strong, nonatomic)GKBookModel *model;
 + (instancetype)vcWithChapter:(NSString *)bookSourceId;
 @end
 @interface GKBookSourceController : BaseTableViewController

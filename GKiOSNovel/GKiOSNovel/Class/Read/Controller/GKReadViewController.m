@@ -108,7 +108,7 @@
     }
     [self.titleLab mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLab.superview).offset(AppTop);
-        make.top.equalTo(self.titleLab.superview).offset(STATUS_BAR_HIGHT);
+        make.top.equalTo(self.titleLab.superview).offset(STATUS_BAR_HIGHT + 8);
     }];
     [self.bookNameLab mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.bookNameLab.superview).offset(-AppTop);

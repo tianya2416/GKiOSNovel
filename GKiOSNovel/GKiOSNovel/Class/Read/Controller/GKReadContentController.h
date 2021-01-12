@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GKReadContentController : BaseViewController
 + (instancetype)vcWithBookDetailModel:(GKBookDetailModel *)model;
++ (instancetype)vcWithBookDetailModel:(GKBookDetailModel *)model chapter:(NSInteger)chapter;
 @end
 
 NS_ASSUME_NONNULL_END

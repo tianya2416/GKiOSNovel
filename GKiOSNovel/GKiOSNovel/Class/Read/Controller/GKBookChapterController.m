@@ -66,6 +66,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [GKJumpApp jumpToBookRead:self.model chapter:indexPath.row];
+    //GKJumpApp jumpToBookRead:self.model cha
 }
 - (CGFloat)refreshLogoVertica{
     return  (170 + NAVI_BAR_HIGHT)/2;

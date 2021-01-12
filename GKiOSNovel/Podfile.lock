@@ -35,26 +35,36 @@ PODS:
   - MJRefresh (3.4.3)
   - MMPopupView (1.7.3):
     - Masonry
-  - mob_sharesdk (4.3.8):
-    - mob_sharesdk/ShareSDK (= 4.3.8)
-    - MOBFoundation (>= 3.2.9)
-  - mob_sharesdk/ShareSDK (4.3.8):
-    - MOBFoundation (>= 3.2.9)
-  - mob_sharesdk/ShareSDKPlatforms/QQ (4.3.8):
-    - mob_sharesdk/ShareSDK
-    - MOBFoundation (>= 3.2.9)
-  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo (4.3.8):
-    - mob_sharesdk/ShareSDK
-    - MOBFoundation (>= 3.2.9)
-  - mob_sharesdk/ShareSDKPlatforms/WeChat (4.3.8):
-    - mob_sharesdk/ShareSDK
-    - MOBFoundation (>= 3.2.9)
-  - MOBFoundation (3.2.14)
   - SDCycleScrollView (1.80):
     - SDWebImage (>= 5.0.0)
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
+  - UMAPM (1.1.0)
+  - UMCCommon (7.2.5):
+    - UMAPM
+    - UMDevice
+  - UMCCommonLog (2.0.0)
+  - UMCShare/Core (6.10.1):
+    - UMCCommon
+  - UMCShare/Social/QQ (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedQQ
+  - UMCShare/Social/ReducedQQ (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedWeChat (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/WeChat (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+    - UMCShare/Social/ReducedWeChat
+  - UMCShare/UI (6.10.1):
+    - UMCCommon
+    - UMCShare/Core
+  - UMDevice (1.1.0)
   - VTMagic (1.2.4):
     - VTMagic/Core (= 1.2.4)
   - VTMagic/Core (1.2.4)
@@ -75,12 +85,12 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD (from `https://github.com/tianya2416/MBProgress.git`)
   - MMPopupView (from `https://github.com/CoderLT/MMPopupView.git`)
-  - mob_sharesdk
-  - mob_sharesdk/ShareSDKPlatforms/QQ
-  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo
-  - mob_sharesdk/ShareSDKPlatforms/WeChat
   - SDCycleScrollView
   - SDWebImage
+  - UMCCommonLog
+  - UMCShare/Social/QQ
+  - UMCShare/Social/WeChat
+  - UMCShare/UI
   - VTMagic
   - YNPageViewController (from `https://gitee.com/tianya24/YNPageViewController.git`)
   - YYKit
@@ -98,10 +108,13 @@ SPEC REPOS:
     - KVOController
     - Masonry
     - MJRefresh
-    - mob_sharesdk
-    - MOBFoundation
     - SDCycleScrollView
     - SDWebImage
+    - UMAPM
+    - UMCCommon
+    - UMCCommonLog
+    - UMCShare
+    - UMDevice
     - VTMagic
     - YYKit
 
@@ -150,14 +163,17 @@ SPEC CHECKSUMS:
   MBProgressHUD: 0f5bb58f04db85da16d8b9e9781df7f88cadd4ec
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   MMPopupView: b717b7fe100707ef3fcd17c93b050e4b9d0a60da
-  mob_sharesdk: 7689cb066326e50d99c9fb552d5d608ae3b63025
-  MOBFoundation: 1663e6202a753bfa4bc7e889a837362870510587
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  UMAPM: 2b966cff744dccdd9e2ed99efafce280be30833c
+  UMCCommon: f7480d316381612f90cdde3a3c0f39a7e2c0a788
+  UMCCommonLog: 9b7ddde5d14a52fc1986ba5ac3121b8b2f433638
+  UMCShare: 0846449c689e8bf6793a941b97f51f9afff927ef
+  UMDevice: 28d21a568c8e8322e5a03bbd53b138d0c098d3b3
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   YNPageViewController: 33040d429adf0b415d4449ffeec848d8339934ea
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 31178bad38e67238b757aa60121741ffa6801007
+PODFILE CHECKSUM: 61e3c83e5ecaf788cb4bd9eb7a233d910963bb34
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

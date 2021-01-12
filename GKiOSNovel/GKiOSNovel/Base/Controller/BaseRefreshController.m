@@ -9,11 +9,12 @@
 #import "BaseRefreshController.h"
 
 NSString *loadTitle  = @"Data loading...";
-NSString *emptyTitle = @"Data Empty...";
-NSString *errorTitle = @"Net Error...";
-NSString *emptyData = @"icon_data_empty";
 NSString *errorData = @"icon_net_error";
-@interface BaseRefreshController ()
+@interface BaseRefreshController (){
+    NSString *emptyData;
+    NSString *emptyTitle;
+    NSString *errorTitle;
+}
 @property (nonatomic, strong) NSMutableArray *images;
 @property (strong, nonatomic) ATRefreshData *refreshData;
 @end
@@ -54,18 +55,14 @@ NSString *errorData = @"icon_net_error";
     return _images;
 }
 - (void)setupRefresh:(UIScrollView *)scrollView option:(ATRefreshOption)option{
-    [self setupRefresh:scrollView option:option image:nil title:nil];
+    [self setupRefresh:scrollView option:option image:@"icon_data_empty" title:@"Data Empty..."];
 }
 - (void)setupRefresh:(UIScrollView *)scrollView
               option:(ATRefreshOption)option
                image:(NSString *)image
                title:(NSString *)title{
-    if (title.length > 0) {
-        emptyTitle = title;
-    }
-    if (image) {
-        emptyData = image;
-    }
+    emptyTitle = title;
+    emptyData = image;
     if ([self.refreshData respondsToSelector:@selector(setupRefresh:option:)]) {
         [self.refreshData setupRefresh:scrollView option:option];
     }
@@ -76,12 +73,10 @@ NSString *errorData = @"icon_net_error";
     }
 }
 - (void)endRefreshFailure{
-    [self endRefreshFailure:nil];
+    [self endRefreshFailure:@"Net Error..."];
 }
 - (void)endRefreshFailure:(NSString *)error{
-    if (error.length > 0) {
-        errorTitle = error;
-    }
+    errorTitle = error;
     if ([self.refreshData respondsToSelector:@selector(endRefreshFailure)]) {
         [self.refreshData endRefreshFailure];
     }

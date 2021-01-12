@@ -26,9 +26,13 @@ target :GKiOSNovel  do
     pod 'KLRecycleScrollView'
     pod 'HWPanModal'
 #---------- 分享SDK -------
-    pod 'mob_sharesdk'
-    pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
-    pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
-    pod 'mob_sharesdk/ShareSDKPlatforms/WeChat’
+#    pod 'mob_sharesdk'
+#    pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
+#    pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
+#    pod 'mob_sharesdk/ShareSDKPlatforms/WeChat’
+    pod 'UMCCommonLog'
+    pod 'UMCShare/UI'
+    pod 'UMCShare/Social/WeChat'
+    pod 'UMCShare/Social/QQ'
 end
 

@@ -11,6 +11,7 @@
 #import "GKBookDetaiContentCell.h"
 @interface GKBookDetailItemController ()
 @property (copy, nonatomic) NSString *bookId;
+@property (strong, nonatomic) NSArray *listData;
 @end
 
 @implementation GKBookDetailItemController
@@ -21,6 +22,7 @@
 }
 - (void)setModel:(GKBookDetailModel *)model{
     _model = model;
+    self.listData = @[_model];
     [self.tableView reloadData];
     [self endRefresh:false];
 }
@@ -40,14 +42,14 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.listData.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return  UITableViewAutomaticDimension;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GKBookDetaiContentCell *cell = [GKBookDetaiContentCell cellForTableView:tableView indexPath:indexPath];
-    cell.model = self.model;
+    cell.model = self.listData[indexPath.row];
     return cell;
 }
 

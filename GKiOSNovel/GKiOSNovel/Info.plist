@@ -37,7 +37,7 @@
 			<string>wechat</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx4105c558f6bb1bd1</string>
+				<string>wxdc1e388c3822c80b</string>
 			</array>
 		</dict>
 		<dict>
@@ -47,7 +47,7 @@
 			<string>qq</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tencent1109550572</string>
+				<string>tencent1105821097</string>
 			</array>
 		</dict>
 	</array>
@@ -55,6 +55,8 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>weixinULAPI</string>
+		<string>mqqapi</string>
 		<string>weixin</string>
 		<string>mqq</string>
 		<string>mqzone</string>

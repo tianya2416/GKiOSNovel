@@ -68,7 +68,9 @@
         if ([obj isKindOfClass:GKBookDetailItemController.class]) {
             GKBookDetailItemController *item = obj;
             item.model = _model;
-            *stop = YES;
+        }else if ([obj isKindOfClass:GKBookChapterController.class]){
+            GKBookChapterController *item = obj;
+            item.model = _model;
         }
     }];
 }

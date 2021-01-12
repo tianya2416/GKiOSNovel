@@ -50,4 +50,8 @@
 #import "GKBookCacheDataQueue.h"
 
 #import "UICollectionView+ATKit.h"
+
+#import <UMShare/UMShare.h>
+#import <UMCommon/UMCommon.h>
+#import <UMCommonLog/UMCommonLogManager.h>
 #endif /* GKiOSNovel_pch */
