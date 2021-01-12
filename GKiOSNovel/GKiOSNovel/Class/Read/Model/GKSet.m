@@ -16,19 +16,19 @@
     return [BaseMacro fontName];
 }
 - (CGFloat)font{
-    return _font ?: 20;
+    return _font ?: 18;
 }
 - (CGFloat)lineSpacing{
-    return _lineSpacing ?: 6;
+    return _lineSpacing ?: 2;
 }
 - (CGFloat)firstLineHeadIndent{
-    return _firstLineHeadIndent ?: 25;
+    return _firstLineHeadIndent ?: 20;
 }
 - (CGFloat)paragraphSpacingBefore{
-    return _paragraphSpacingBefore ?: 6;
+    return _paragraphSpacingBefore ?: 3.5;
 }
 - (CGFloat)paragraphSpacing{
-    return _paragraphSpacing ?: 6;
+    return _paragraphSpacing ?: 3.5;
 }
 - (GKSkinState)state{
     return _state ?: GKReadDefault;

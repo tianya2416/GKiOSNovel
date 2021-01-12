@@ -22,7 +22,7 @@
         }
         return CGRectMake(AppTop + insets.left, insets.top + 10 + 25, SCREEN_HEIGHT - AppTop*2 -insets.left -insets.right, SCREEN_WIDTH - insets.top - insets.bottom - 50);
     }
-    return CGRectMake(AppTop, STATUS_BAR_HIGHT + 25, SCREEN_WIDTH - 30, SCREEN_HEIGHT - STATUS_BAR_HIGHT - TAB_BAR_ADDING - 25 - 25);
+    return CGRectMake(AppTop, STATUS_BAR_HIGHT + 30, SCREEN_WIDTH - 30, SCREEN_HEIGHT - STATUS_BAR_HIGHT - TAB_BAR_ADDING - 30 - 30);
 }
 + (NSString *)fontName{
     return @"PingFang-SC-Regular";

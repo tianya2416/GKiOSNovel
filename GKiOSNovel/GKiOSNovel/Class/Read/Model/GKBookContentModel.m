@@ -29,8 +29,13 @@
 //    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
 //}
 - (NSString *)newContent{
-    _content = [_content stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
-    _content = [_content stringByReplacingOccurrencesOfString:@"\t" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\n\r" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\n\n" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\t\n" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\t\t" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\r\r" withString:@"\n"];
+    _content = [_content stringByReplacingOccurrencesOfString:@"\n\t" withString:@"\n"];
     _content = [self removeMorenNewline:_content];
     return _content;
 }
