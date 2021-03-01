@@ -87,12 +87,7 @@ static NSString *theme = @"我的主题";
     }else if ([title isEqualToString:theme]){
         vc = [[GKThemeViewController alloc] init];
     }else if([title isEqualToString:down]){
-        UMSocialMessageObject *object = [UMSocialMessageObject messageObject];
-        object.text = @"59892ebcaed179694b000104";
-        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_QQ messageObject:object currentViewController:self completion:^(id result, NSError *error) {
-                    
-        }];
-        //vc = [[GKDownViewController alloc] init];
+        vc = [[GKDownViewController alloc] init];
     }
     if (vc) {
         vc.hidesBottomBarWhenPushed = YES;

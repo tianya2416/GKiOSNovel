@@ -59,6 +59,7 @@
         make.top.left.right.equalTo(self.collectionView.superview);
         make.bottom.equalTo(self.tabbar.mas_top);
     }];
+    
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:backBtn];
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,6 +67,7 @@
         make.top.equalTo(backBtn.superview).offset(STATUS_BAR_HIGHT);
         make.left.equalTo(backBtn.superview).offset(10);
     }];
+    
     [backBtn setImage:[UIImage imageNamed:@"icon_nav_back_1"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     

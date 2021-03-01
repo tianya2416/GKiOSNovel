@@ -57,6 +57,7 @@
     });
 }
 - (void)downCompletion{
+
     __block NSInteger row = 0;
     __block BOOL res = NO;
     GKNovelDown *down = [GKNovelDown shareInstance];
