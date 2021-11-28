@@ -36,12 +36,12 @@
     GKMineController *mine = [[GKMineController alloc] init];
     [self vcWithController:mine title:@"我的" normal:model.icon_mine_n select:model.icon_mine_h];
     self.viewControllers = self.listData;
+    self.tabBar.shadowImage = [UIImage imageWithColor:Appxffffff];
+    self.tabBar.backgroundImage = [UIImage imageWithColor:Appxffffff];
+    self.tabBar.backgroundColor = Appxffffff;
+    
     self.tabBar.tintColor = AppColor;
-    if (@available(iOS 10.0, *)) {
-        self.tabBar.unselectedItemTintColor = Appx999999;
-    } else {
-        // Fallback on earlier versions
-    }
+    self.tabBar.unselectedItemTintColor = Appx999999;
     
     
 }

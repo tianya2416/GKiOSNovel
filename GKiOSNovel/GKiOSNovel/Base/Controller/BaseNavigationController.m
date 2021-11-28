@@ -22,15 +22,43 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.enabled = YES;
     }
-    NSArray *array = [NSArray arrayWithObjects:[self class], nil]; //iOS9.0后使用
-    UINavigationBar *navBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:array];
+//    NSArray *array = [NSArray arrayWithObjects:[self class], nil]; //iOS9.0后使用
+//    UINavigationBar *navBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:array];
+//
+//    navBar.titleTextAttributes = attribute;
+//    UIImage *backgroundImage = [UIImage imageWithColor:Appxffffff];
+//    [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+//    [navBar setShadowImage:[UIImage new]];
+    
+    UIColor *color = [UIColor whiteColor];
+    UIImage *imageColor = [UIImage imageWithColor:color];
+    UINavigationBar *naviBar = self.navigationBar;
+    [naviBar setTranslucent:NO];
+    [naviBar setTitleTextAttributes:[self defaultNvi]];
+    [naviBar setBackgroundImage:imageColor forBarMetrics:UIBarMetricsDefault];
+    naviBar.shadowImage = imageColor;
+    
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        appearance.shadowColor = color;
+        appearance.backgroundImage = imageColor;
+        appearance.backgroundColor = color;
+        appearance.titleTextAttributes = [self defaultNvi];
+        naviBar.scrollEdgeAppearance = appearance;
+        naviBar.standardAppearance = appearance;
+        naviBar.compactAppearance = appearance;
+        naviBar.compactScrollEdgeAppearance = appearance;
+    } else {
+        // Fallback on earlier versions
+    }
+    
+    
+}
+- (NSDictionary *)defaultNvi{
     NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
     attribute[NSForegroundColorAttributeName] = Appx252631;
     attribute[NSFontAttributeName] = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
-    navBar.titleTextAttributes = attribute;
-    UIImage *backgroundImage = [UIImage imageWithColor:Appxffffff];
-    [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-    [navBar setShadowImage:[UIImage new]];
+    return  attribute;
 }
 #pragma mark UINavigationControllerDelegate
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
