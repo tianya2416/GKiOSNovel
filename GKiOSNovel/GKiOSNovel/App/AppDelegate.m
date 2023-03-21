@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "GKNovelTabBarController.h"
-#import  <StoreKit/StoreKit.h>
-@interface AppDelegate ()<SKPaymentTransactionObserver>
+#import "GKLaunchController.h"
+
+@interface AppDelegate ()
 
 @end
 
@@ -18,12 +18,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-    //self.window.rootViewController = UIViewController.new
     [GKShareTool shareInit];
-    [GKJumpApp jumpToAppGuidePage:^{
+    GKLaunchController * vc = [GKLaunchController vcWithCompletion:^{
         [GKJumpApp jumpToAppTheme];
     }];
-
+    self.window.rootViewController = vc;
+    
     return YES;
 }
 - (UIInterfaceOrientationMask)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
@@ -99,15 +99,5 @@
     }
     return result;
 }
-#pragma mark SKPaymentTransactionObserver
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions API_AVAILABLE(ios(3.0), macos(10.7), watchos(6.2)){
-    for (SKPaymentTransaction  *objc in transactions) {
-        if (objc.transactionState == SKPaymentTransactionStateDeferred) {
-            NSURL *url = [[NSBundle mainBundle] appStoreReceiptURL];
-            NSString *pay = url.absoluteString;
-            NSLog(@"%@",pay);
-        }
-        [[SKPaymentQueue defaultQueue] finishTransaction:objc];
-    }
-}
+
 @end

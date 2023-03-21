@@ -53,7 +53,7 @@ static BOOL AFRequest = NO;
                           params:(NSDictionary *)params
                          success:(void(^)(id object))success
                          failure:(void(^)(NSString *error))failure{
-    return [BaseNetManager method:method serializer:serializer urlString:urlString params:params timeOut:10.0f success:success failure:failure];
+    return [BaseNetManager method:method serializer:serializer urlString:urlString params:params timeOut:5 success:success failure:failure];
 }
 + (NSURLSessionDataTask *)method:(HttpMethod)method
                       serializer:(HttpSerializer)serializer

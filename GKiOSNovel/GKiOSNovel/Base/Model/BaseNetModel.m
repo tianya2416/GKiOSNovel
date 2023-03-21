@@ -31,8 +31,9 @@
     }else if([response isKindOfClass:NSDictionary.class]){
         allResultData = response;
     }else{
-        BOOL res = ![response isKindOfClass:NSArray.class] || ![response isKindOfClass:NSDictionary.class];
-        NSAssert(!res,@"response must NSArray or NSDictionary");
+        allResultData = @{};
+//        BOOL res = ![response isKindOfClass:NSArray.class] || ![response isKindOfClass:NSDictionary.class];
+//        NSAssert(!res,@"response must NSArray or NSDictionary");
     }
     BaseNetModel * model = [BaseNetModel modelWithJSON:allResultData];
     model.allResultData = allResultData;
